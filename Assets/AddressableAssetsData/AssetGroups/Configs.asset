@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Configs
+  m_EditorClassIdentifier: 
+  m_GroupName: Configs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3d973e5542369974582ddca23bc0a586
+  m_SerializeEntries:
+  - m_GUID: 8f132f916124dc34d9895af733d28668
+    m_Address: Configs/GameConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 34c42602ddde52d40a32e9441e955793
+    m_Address: Configs/AudioConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 508b2ff0abf22044abb2363589caa9fe
+    m_Address: Assets/Configs/Localization/LocalizationRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 406b106d5643b4341b8725beb03c29b3
+    m_Address: Assets/Configs/Localization/LocalizationEn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c6c052537bcc2d144a83151d02b6a59c
+    m_Address: LocalizationData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9a170fa117788cb49a578ae53fae002c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f95437f89128fe342ba74ee131a6cd52, type: 2}
+    - {fileID: 11400000, guid: 4990b9b0097696e4eb949658154ed553, type: 2}

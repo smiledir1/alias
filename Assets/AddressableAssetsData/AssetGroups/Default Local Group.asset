@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: cc315a54b25a58b4a9ea0d720a887313
+  m_SerializeEntries:
+  - m_GUID: bb24a08c193f1d843bcb44efe159fdda
+    m_Address: IngameDebugConsole
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 33abcc1c41745a944be39284cc37dbda
+    m_Address: CheatsButton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 338c84afbc391a44e8e516621aa08281
+    m_Address: Assets/Audio/click1.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 19bc8c35cdf4a0b458f534d787607d8e
+    m_Address: PopupCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52a203f8bc6ca954486db7833d7e1665
+    m_Address: ScreenCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cd9da266f1040384a993550a121f0f15
+    m_Address: MessagePopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9174858e8958f8340b9545c311b067c6
+    m_Address: ConfirmPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9a170fa117788cb49a578ae53fae002c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8205572297c309f42910cba921618294, type: 2}
+    - {fileID: 11400000, guid: ba5839ef99007ae418bd1fbec73f7619, type: 2}

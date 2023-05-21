@@ -1,0 +1,16 @@
+{
+    "name": "Services.Logger",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6f68e653e2f5b73408647a53e621f73e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
