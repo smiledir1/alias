@@ -17,9 +17,6 @@ namespace Game.States
                 _assetsService.InstantiateAsync("CheatsButton"),
                 _assetsService.InstantiateAsync("IngameDebugConsole"));
 #endif
-
-            var metaState = new MetaGameState();
-            metaState.GoToState().Forget();
         }
     }
 }

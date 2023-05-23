@@ -3,6 +3,7 @@ using Common.Extensions;
 using Common.StateMachine;
 using Cysharp.Threading.Tasks;
 using Game.Services.GameConfig;
+using Game.Services.WordsPacks;
 using Game.States;
 using Game.UserData;
 using Services.Assets;
@@ -49,6 +50,9 @@ namespace Game.Bootstrap
 
             var entryGameState = new EntryGameState();
             await entryGameState.GoToState();
+            
+            var metaState = new MetaGameState();
+            metaState.GoToState().Forget();
 
 #if DEV_ENV
             var fullInitTime = Time.realtimeSinceStartup - devInitStartTime;
@@ -103,6 +107,9 @@ namespace Game.Bootstrap
 
             var gameConfigService = new GameConfigService(assetsService);
             ServiceLocator.AddService<IGameConfigService>(gameConfigService);
+            
+            var wordsPacksService = new WordsPacksService(assetsService);
+            ServiceLocator.AddService<IWordsPacksService>(wordsPacksService);
         }
     }
 }

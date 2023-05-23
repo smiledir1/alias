@@ -24,10 +24,10 @@ namespace Common.UniTaskAnimations.Editor
 
         private static SimpleTween _cachedTween;
         
-        private int _buttonsCount = 7;
+        private int _buttonsCount = 4;
         private float _buttonHeight = 20f;
         private string _cachedName = String.Empty;
-        private float ButtonsHeight => _buttonHeight;
+        private float ButtonsHeight => _buttonHeight * 2;
         private float Space => 10f;
         
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
@@ -48,7 +48,7 @@ namespace Common.UniTaskAnimations.Editor
             if (property.isExpanded)
             {
                 DrawSetTweenButtons(rect, property);
-                propertyYAdd = _buttonHeight;
+                propertyYAdd = ButtonsHeight;
             }
 
             var lastIndexOfPoint = tweenName.LastIndexOf('.');
@@ -157,21 +157,22 @@ namespace Common.UniTaskAnimations.Editor
                     1);
             }
 
-            x = propertyRect.x + buttonWidth * 4;
+            y += _buttonHeight;
+            x = propertyRect.x;
             buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
             if (GUI.Button(buttonRect, "Null"))
             {
                 property.managedReferenceValue = null;
             }
             
-            x = propertyRect.x + buttonWidth * 5;
+            x = propertyRect.x + buttonWidth * 1;
             buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
             if (GUI.Button(buttonRect, "Copy"))
             {
                 _cachedTween = property.managedReferenceValue as SimpleTween;
             }
             
-            x = propertyRect.x + buttonWidth * 6;
+            x = propertyRect.x + buttonWidth * 2;
             buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
             if (GUI.Button(buttonRect, "Paste"))
             {

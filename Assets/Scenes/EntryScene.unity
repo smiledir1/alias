@@ -1281,6 +1281,7 @@ GameObject:
   - component: {fileID: 1824757569}
   - component: {fileID: 1824757572}
   - component: {fileID: 1824757571}
+  - component: {fileID: 1824757573}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1372,11 +1373,130 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startOnAwake: 0
   _tween:
-    rid: 3139604198994739202
+    rid: 3139604285860347924
   references:
     version: 2
     RefIds:
-    - rid: 3139604198994739202
+    - rid: 3139604285860347924
+      type: {class: PositionTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 1824757567}
+        _startDelay: 0
+        _tweenTime: 1
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromPosition: {x: 0, y: 0, z: 0}
+        _toPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1824757573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824757567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65966b9d9c34c484c9220a04e0f27770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startOnAwake: 0
+  _tweens:
+  - rid: 3139604285860347917
+  - rid: 3139604285860347920
+  - rid: 3139604285860347919
+  references:
+    version: 2
+    RefIds:
+    - rid: 3139604285860347917
+      type: {class: PositionTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 1824757567}
+        _startDelay: 0
+        _tweenTime: 1
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromPosition: {x: 0, y: 0, z: 0}
+        _toPosition: {x: 0, y: 0, z: 0}
+    - rid: 3139604285860347919
+      type: {class: ScaleTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 1824757567}
+        _startDelay: 0
+        _tweenTime: 1
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromScale: {x: 0, y: 0, z: 0}
+        _toScale: {x: 1, y: 1, z: 1}
+    - rid: 3139604285860347920
       type: {class: PositionTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
       data:
         _tweenObject: {fileID: 1824757567}

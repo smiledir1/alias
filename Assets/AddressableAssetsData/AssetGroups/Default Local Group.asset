@@ -45,6 +45,18 @@ MonoBehaviour:
     m_Address: ConfirmPopup
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: bed14ff560d857c4e830567ff16357a5
+    m_Address: MetaScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ed877bd0f8e26924585cdba13eaadb82
+    m_Address: Assets/Configs/WordsPacks/SimplePack.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9d37552f28e7c6f4bb51c3a6fd3176de
+    m_Address: WordsPacksConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a170fa117788cb49a578ae53fae002c, type: 2}
   m_SchemaSet:
