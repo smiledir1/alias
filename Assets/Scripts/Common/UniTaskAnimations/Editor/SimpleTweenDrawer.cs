@@ -178,6 +178,11 @@ namespace Common.UniTaskAnimations.Editor
             {
                 var currentTween = property.managedReferenceValue as SimpleTween;
                 var targetGo =  currentTween?.TweenObject;
+                if (targetGo == null)
+                {
+                    var component = property.serializedObject?.targetObject as Component;
+                    if(component != null)targetGo = component.gameObject;
+                };
                 var cloneTween = SimpleTween.Clone(_cachedTween, targetGo);
                 property.managedReferenceValue = cloneTween;
             }

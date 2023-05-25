@@ -57,6 +57,10 @@ MonoBehaviour:
     m_Address: WordsPacksConfig
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 0325a8ce3b8ee72449b52b6c24a86d33
+    m_Address: ChoosePackPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a170fa117788cb49a578ae53fae002c, type: 2}
   m_SchemaSet:

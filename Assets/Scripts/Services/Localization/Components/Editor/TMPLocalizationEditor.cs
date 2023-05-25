@@ -39,7 +39,7 @@ namespace Services.Localization.Components.Editor
             var configPath = AssetDatabase.GUIDToAssetPath(configGuid);
             _localizationData = AssetDatabase.LoadAssetAtPath<LocalizationData>(configPath);
             var englishEntry = _localizationData.Languages.Find(
-                x => x.editorAsset.Language == SystemLanguage.English);
+                x => x.SystemLanguage == SystemLanguage.English);
             if (englishEntry == null)
             {
                 Debug.LogError($"Create English Language");
@@ -47,7 +47,7 @@ namespace Services.Localization.Components.Editor
             }
 
             _localizationEntryKeys.Clear();
-            foreach (var localizationEntry in englishEntry.editorAsset.Entries)
+            foreach (var localizationEntry in englishEntry.LanguageWords.editorAsset.Entries)
             {
                 _localizationEntryKeys.Add(localizationEntry.Key);
             }
@@ -71,6 +71,12 @@ namespace Services.Localization.Components.Editor
             var componentKey = _tmpLocalization.Key;
             if (string.IsNullOrEmpty(componentKey)) return;
 
+            if (GUI.changed)
+            {
+                _findKeys.Clear();
+                _findTexts.Clear();
+            }
+            
             if (!_localizationEntryKeys.Contains(componentKey))
             {
                 DrawContainsKey(componentKey);
@@ -160,9 +166,9 @@ namespace Services.Localization.Components.Editor
                 {
                     foreach (var language in _localizationData.Languages)
                     {
-                        var localizationEntry = language.editorAsset.Entries.Find(
+                        var localizationEntry = language.LanguageWords.editorAsset.Entries.Find(
                             x => x.Key == componentKey);
-                        DrawLocalizationText(localizationEntry.Text, language.editorAsset.Language.ToString());
+                        DrawLocalizationText(localizationEntry.Text, language.SystemLanguage.ToString());
                         _findTexts.Add(localizationEntry.Text);
                     }
                 }
@@ -171,7 +177,7 @@ namespace Services.Localization.Components.Editor
                     var i = 0;
                     foreach (var language in _localizationData.Languages)
                     {
-                        DrawLocalizationText(_findTexts[i], language.editorAsset.Language.ToString());
+                        DrawLocalizationText(_findTexts[i], language.SystemLanguage.ToString());
                         i++;
                     }
                 }
@@ -188,9 +194,9 @@ namespace Services.Localization.Components.Editor
                 if (_findTexts.Count == 0)
                 {
                     var languageEntry = _localizationData.Languages.Find(
-                        x => x.editorAsset.Language == _stripLanguage);
+                        x => x.SystemLanguage == _stripLanguage);
 
-                    var localizationEntry = languageEntry.editorAsset.Entries.Find(
+                    var localizationEntry = languageEntry.LanguageWords.editorAsset.Entries.Find(
                         x => x.Key == componentKey);
                     _findTexts.Add(localizationEntry.Text);
                     DrawLocalizationText(localizationEntry.Text, _stripLanguage.ToString());

@@ -71,10 +71,10 @@ namespace Services.Localization.Editor
             {
                 if (!Enum.TryParse(header[i], out SystemLanguage language)) continue;
                 var entry = _localizationData.Languages.Find(
-                    x => x.editorAsset.Language == language);
-                entry.editorAsset.Entries.Clear();
-                languageEntries.Add(entry.editorAsset);
-                EditorUtility.SetDirty(entry.editorAsset);
+                    x => x.SystemLanguage == language);
+                entry.LanguageWords.editorAsset.Entries.Clear();
+                languageEntries.Add(entry.LanguageWords.editorAsset);
+                EditorUtility.SetDirty(entry.LanguageWords.editorAsset);
                 languageEntriesPoses.Add(i);
             }
 

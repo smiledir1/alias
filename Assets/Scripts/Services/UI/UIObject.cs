@@ -23,7 +23,8 @@ namespace Services.UI
         #endregion
 
         #region Properties
-
+        
+        public UIModel UIModel { get; private set; }
         public int Group { get; private set; }
         public UIObjectState State { get; private set; }
 
@@ -50,6 +51,7 @@ namespace Services.UI
 
         internal virtual void Initialize(UIModel model, int group)
         {
+            UIModel = model;
             Group = group;
         }
 
@@ -144,6 +146,7 @@ namespace Services.UI
 
         protected void Close()
         {
+            UIModel?.Close();
             CloseAction?.Invoke();
         }
 

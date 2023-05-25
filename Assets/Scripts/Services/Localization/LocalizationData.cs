@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -14,19 +15,25 @@ namespace Services.Localization
 
         public string SpreadsheetUrl => _spreadsheetUrl;
 #endif
-        public List<SystemLanguage> UsesLanguages = new();
-        public List<AssetReferenceT<LanguageEntry>> Languages = new();
+        public List<LocalizationDataItem> Languages = new();
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            UsesLanguages.Clear();
             foreach (var language in Languages)
             {
                 if(language == null) continue;
-                UsesLanguages.Add(language.editorAsset.Language);
+                language.SystemLanguage = language.LanguageWords.editorAsset.Language;
             }
         }
 #endif
+    }
+    
+    [Serializable]
+    public class LocalizationDataItem
+    {
+        public SystemLanguage SystemLanguage;
+        public string LanguageLocalizeName;
+        public AssetReferenceT<LanguageEntry> LanguageWords;
     }
 }

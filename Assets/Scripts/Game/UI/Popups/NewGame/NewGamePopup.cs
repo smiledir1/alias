@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using Common.Extensions;
+using Common.StateMachine;
 using Cysharp.Threading.Tasks;
 using Game.Services.Teams;
 using Game.Services.WordsPacks;
+using Game.States;
 using Game.UI.Popups.ChoosePack;
 using Services.Helper;
 using Services.UI.PopupService;
@@ -58,7 +60,7 @@ namespace Game.UI.Popups.NewGame
         private async UniTask OnChoosePackButton()
         {
             var choosePackPopupModel = new ChoosePackPopupModel();
-            await _popupService.ShowAsync<ChoosePackPopup>(choosePackPopupModel);
+            _popupService.ShowAsync<ChoosePackPopup>(choosePackPopupModel).Forget();
             _choosePack = await choosePackPopupModel.WaitForPackItem();
             _packName.text = _choosePack.Name;
         }
@@ -81,8 +83,16 @@ namespace Game.UI.Popups.NewGame
         private void OnStartGameButton()
         {
             if (!CheckStartGame()) return;
-            
-            //startGame
+
+            var roundTimeSeconds = (int) _roundTime.value;
+            var isUnlimitedTimeForLastWord = _isUnlimitedTimeForLastWord.isOn;
+
+            var inGameState = new InGameState(
+                _choosePack,
+                roundTimeSeconds,
+                isUnlimitedTimeForLastWord,
+                _teams);
+            inGameState.GoToState().Forget();
         }
 
         private bool CheckStartGame()

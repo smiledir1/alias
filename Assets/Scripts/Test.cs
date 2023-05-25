@@ -56,13 +56,20 @@ public class Test : MonoBehaviour
 
     public void OpenMessagePopup()
     {
-        var messagePopupModel = new MessagePopupModel("tttterfdgdf");
+        var messagePopupModel = new MessagePopupModel("message" ,"tttterfdgdf");
         _popupService.ShowAsync<MessagePopup>(messagePopupModel);
+        WaitMessageClose(messagePopupModel).Forget();
+    }
+
+    private async UniTask WaitMessageClose(UIModel messagePopupModel)
+    {
+        await messagePopupModel.WaitForClose();
+        Debug.Log("Message Close");
     }
 
     public void OpenConfirmPopup()
     {
-        var messagePopupModel = new ConfirmPopupModel("Are you sure?");
+        var messagePopupModel = new ConfirmPopupModel("Are you sure?", "Some special text");
         _popupService.ShowAsync<ConfirmPopup>(messagePopupModel);
     }
 

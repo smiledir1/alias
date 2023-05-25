@@ -59,6 +59,9 @@ namespace Services.UI.Editor
             {
                 CheckEmptyFields();
             }
+            
+            //TODO: check addressables on object
+            //TODO: check animations (object and null)
 
             EditorGUILayout.EndHorizontal();
 

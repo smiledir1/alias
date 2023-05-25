@@ -54,6 +54,7 @@ namespace Services.UI
                         Debug.LogWarning("Popup Already Opened");
                         return uiObject;
                     }
+
                     var currentUIObject = ShowedListUIObjects[^1];
                     if (closePreviousUI)
                     {
@@ -160,7 +161,7 @@ namespace Services.UI
             {
                 return (T) tUIObject;
             }
-            
+
             if (!AssetsService.TryGetAssetReference<T>(out var reference))
             {
                 throw new NullReferenceException($"IUIObject {typeof(T).Name} not found");
@@ -175,9 +176,9 @@ namespace Services.UI
             UIObjectsLoadCache.Add(typeof(T), uiObject);
             UIObjectLoad?.Invoke(uiObject);
             await uiObject.LoadAsync();
-            
+
             uiObject.CloseAction += () => CloseCurrentUIObject(uiObject).Forget();
-            
+
             return uiObject;
         }
 
@@ -200,19 +201,27 @@ namespace Services.UI
         protected async UniTask OpenUIObject(UIObject uiObject)
         {
             IncrementBlockRaycast();
-            
-            uiObject.transform.SetAsLastSibling();
-            uiObject.gameObject.SetActive(true);
-            if (uiObject.State == UIObjectState.Loaded)
+            try
             {
-                UIObjectOpen?.Invoke(uiObject);
-                await uiObject.OpenAsync();
-            }
+                uiObject.transform.SetAsLastSibling();
+                uiObject.gameObject.SetActive(true);
+                if (uiObject.State == UIObjectState.Loaded)
+                {
+                    UIObjectOpen?.Invoke(uiObject);
+                    await uiObject.OpenAsync();
+                }
 
-            UIObjectStart?.Invoke(uiObject);
-            await uiObject.StartAsync();
-            
-            DecrementBlockRaycast();
+                UIObjectStart?.Invoke(uiObject);
+                await uiObject.StartAsync();
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+            finally
+            {
+                DecrementBlockRaycast();
+            }
         }
 
         protected async UniTask StopUIObject(UIObject uiObject)
@@ -227,7 +236,7 @@ namespace Services.UI
         protected async UniTask CloseUIObject(UIObject uiObject)
         {
             IncrementBlockRaycast();
-            
+
             if (uiObject.State == UIObjectState.Started)
             {
                 UIObjectStop?.Invoke(uiObject);
@@ -237,7 +246,7 @@ namespace Services.UI
             UIObjectClose?.Invoke(uiObject);
             await uiObject.CloseAsync();
             uiObject.gameObject.SetActive(false);
-            
+
             DecrementBlockRaycast();
         }
 
@@ -285,9 +294,10 @@ namespace Services.UI
                 Debug.LogWarning("DecrementBlockRaycast < 0");
                 _rayCastCount = 0;
             }
+
             if (_rayCastCount == 0) Canvas.DisableRaycast();
         }
-        
+
         private void ClearBlockRaycast()
         {
             _rayCastCount = 0;
@@ -299,7 +309,7 @@ namespace Services.UI
             IncrementBlockRaycast();
             ShowedListUIObjects.Add(uiObject);
         }
-        
+
         private void RemoveShowedObjectToList(UIObject uiObject)
         {
             DecrementBlockRaycast();

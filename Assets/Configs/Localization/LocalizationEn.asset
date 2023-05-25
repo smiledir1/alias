@@ -16,3 +16,21 @@ MonoBehaviour:
   Entries:
   - Key: close
     Text: Close
+  - Key: continue
+    Text: Continue
+  - Key: new_game
+    Text: New Game
+  - Key: settings
+    Text: Settings
+  - Key: confirm
+    Text: Confirm
+  - Key: packs
+    Text: Packs
+  - Key: pick
+    Text: Pick
+  - Key: start_new_game
+    Text: Start New Game
+  - Key: round_time
+    Text: Round Time
+  - Key: pack_name
+    Text: Pack Name

@@ -36,10 +36,12 @@ namespace Services.Localization
         private async UniTask FillLocalizationSet(SystemLanguage language)
         {
             _localizationSet.Clear();
-            for (var i = 0; i < _localizationData.UsesLanguages.Count; i++)
+            for (var i = 0; i < _localizationData.Languages.Count; i++)
             {
-                if (language != _localizationData.UsesLanguages[i]) continue;
-                var languageDataReference = _localizationData.Languages[i];
+                var languageDataItem = _localizationData.Languages[i];
+                if (languageDataItem.SystemLanguage != language) continue;
+                
+                var languageDataReference = languageDataItem.LanguageWords;
                 var languageData = languageDataReference.Asset == null
                     ? await languageDataReference.LoadAssetAsync()
                     : languageDataReference.Asset as LanguageEntry;

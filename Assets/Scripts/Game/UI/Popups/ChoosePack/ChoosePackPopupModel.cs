@@ -10,13 +10,13 @@ namespace Game.UI.Popups.ChoosePack
         
         public UniTask<WordsPacksConfigItem> WaitForPackItem()
         {
-            _completionSource ??= new UniTaskCompletionSource<WordsPacksConfigItem>();
+            _completionSource = new UniTaskCompletionSource<WordsPacksConfigItem>();
             return _completionSource.Task;
         }
 
         public void SetChoosePack(WordsPacksConfigItem wordsPacksConfigItem)
         {
-            _completionSource.TrySetResult(wordsPacksConfigItem);
+            _completionSource?.TrySetResult(wordsPacksConfigItem);
         }
     }
 }

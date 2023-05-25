@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: LocalizationsConfig
   m_EditorClassIdentifier: 
   _spreadsheetUrl: 
-  UsesLanguages: 1e0000000a000000
   Languages:
-  - m_AssetGUID: 508b2ff0abf22044abb2363589caa9fe
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: 406b106d5643b4341b8725beb03c29b3
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  - SystemLanguage: 10
+    LanguageLocalizeName: English
+    LanguageWords:
+      m_AssetGUID: 406b106d5643b4341b8725beb03c29b3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - SystemLanguage: 30
+    LanguageLocalizeName: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+    LanguageWords:
+      m_AssetGUID: 508b2ff0abf22044abb2363589caa9fe
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
