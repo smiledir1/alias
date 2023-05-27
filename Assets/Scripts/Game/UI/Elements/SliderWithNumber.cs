@@ -11,7 +11,19 @@ namespace Game.UI.Elements
 
         [SerializeField]
         private Slider _slider;
-        
-        
+
+        [SerializeField]
+        private int _roundDigits;
+
+        private void Awake()
+        {
+            _slider.onValueChanged.RemoveAllListeners();
+            _slider.onValueChanged.AddListener(OnValueChanged);
+        }
+
+        private void OnValueChanged(float value)
+        {
+            _number.text = value.ToString($"F{_roundDigits}");
+        }
     }
 }

@@ -91,6 +91,7 @@ namespace Services.Localization.Components.Editor
             if (GUI.changed)
             {
                 _findKeys.Clear();
+                EditorUtility.SetDirty(_tmpLocalization);
             }
 
             GUILayout.Label("Нажми, чтобы выбрать", EditorStyles.boldLabel);
@@ -156,6 +157,7 @@ namespace Services.Localization.Components.Editor
             if (GUI.changed)
             {
                 _findTexts.Clear();
+                EditorUtility.SetDirty(_tmpLocalization);
             }
 
             EditorGUILayout.LabelField("Нажми на текст, чтобы посмотреть", EditorStyles.boldLabel);

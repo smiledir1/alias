@@ -34,3 +34,11 @@ MonoBehaviour:
     Text: Round Time
   - Key: pack_name
     Text: Pack Name
+  - Key: last_word
+    Text: Last word
+  - Key: add_team
+    Text: Add team
+  - Key: remove_team
+    Text: Remove team
+  - Key: start_game
+    Text: Start game

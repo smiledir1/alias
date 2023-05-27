@@ -25,6 +25,10 @@ public class Test : MonoBehaviour
     private static IPopupService _popupService;
     
     public int number = 0;
+    
+    public float number2 = 0;
+    
+    public float round = 0;
 
     // public A SimpleA;
     // public B SimpleB;
@@ -80,6 +84,9 @@ public class Test : MonoBehaviour
             var hasValue = _assetsService == null;
             Debug.Log(hasValue);
         }
+
+
+        //ShowRound();
         //if (number != 5) return;
         // if (number == 7)
         // {
@@ -92,6 +99,11 @@ public class Test : MonoBehaviour
         // }
 
         //TestUserData();
+    }
+
+    private void ShowRound()
+    {
+        Debug.Log(number2.ToString($"F{round}"));
     }
 
     private UserDataService _userDataService;
