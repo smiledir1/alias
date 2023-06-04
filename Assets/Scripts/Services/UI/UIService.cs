@@ -36,6 +36,10 @@ namespace Services.UI
         public event Action<UIObject> UIObjectStop;
         public event Action<UIObject> UIObjectLoad;
         public event Action<UIObject> UIObjectUnload;
+        public event Action<UIObject> StackAdd;
+        public event Action<UIObject> StackRemove;
+        
+        public bool IsOpenedUI => ShowedListUIObjects.Count > 0;
 
         public virtual async UniTask<T> ShowAsync<T>(
             UIModel uiModel,
@@ -116,7 +120,7 @@ namespace Services.UI
             IncrementBlockRaycast();
 
             var showedUIObjectsCountLastIndex = ShowedListUIObjects.Count - 1;
-            await CloseUIObject(uiObject);
+            if (uiObject.State != UIObjectState.Loaded) await CloseUIObject(uiObject);
             RemoveShowedObjectToList(uiObject);
 
             if (showedUIObjectsCountLastIndex > 0 &&
@@ -308,12 +312,14 @@ namespace Services.UI
         {
             IncrementBlockRaycast();
             ShowedListUIObjects.Add(uiObject);
+            StackAdd?.Invoke(uiObject);
         }
 
         private void RemoveShowedObjectToList(UIObject uiObject)
         {
             DecrementBlockRaycast();
             ShowedListUIObjects.Remove(uiObject);
+            StackRemove?.Invoke(uiObject);
         }
 
         #endregion

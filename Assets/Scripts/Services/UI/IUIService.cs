@@ -12,7 +12,10 @@ namespace Services.UI
         event Action<UIObject> UIObjectStop;
         event Action<UIObject> UIObjectLoad;
         event Action<UIObject> UIObjectUnload;
-
+        event Action<UIObject> StackAdd;
+        event Action<UIObject> StackRemove;
+        
+        bool IsOpenedUI { get; }
         UniTask<T> ShowAsync<T>(
             UIModel uiModel,
             bool closePreviousUI = false,

@@ -18,5 +18,12 @@ namespace Services.UI.ScreenService
             _screenCanvas = await AssetsService.InstantiateAsync<ScreenCanvas>();
             await base.OnInitialize();
         }
+
+        public async UniTask<T> ShowAsync<T>(
+            UIModel uiModel,
+            int group = default) where T : UIObject
+        {
+            return await base.ShowAsync<T>(uiModel, true, group);
+        }
     }
 }

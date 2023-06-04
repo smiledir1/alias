@@ -88,6 +88,7 @@ namespace Game.UI.Popups.NewGame
             var isUnlimitedTimeForLastWord = _isUnlimitedTimeForLastWord.isOn;
 
             var inGameState = new InGameState(
+                true,
                 _choosePack,
                 roundTimeSeconds,
                 isUnlimitedTimeForLastWord,

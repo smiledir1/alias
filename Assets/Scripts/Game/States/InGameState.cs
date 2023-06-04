@@ -4,8 +4,8 @@ using Cysharp.Threading.Tasks;
 using Game.Services.Teams;
 using Game.Services.WordsPacks;
 using Game.UI.Screens.EndRound;
-using Game.UI.Screens.Game;
-using Game.UI.Screens.StartGame;
+using Game.UI.Screens.Round;
+using Game.UI.Screens.StartRound;
 using Game.UI.Screens.Teams;
 using Services.Helper;
 using Services.UI.ScreenService;
@@ -17,27 +17,40 @@ namespace Game.States
         [Service]
         private static IScreenService _screenService;
 
+        private readonly bool _isNewGame;
         private readonly WordsPacksConfigItem _wordsPacksConfigItem;
         private readonly int _roundTimeSeconds;
         private readonly bool _isUnlimitedTimeForLastWord;
         private readonly List<Team> _teams;
 
         public InGameState(
+            bool isNewGame,
             WordsPacksConfigItem wordsPacksConfigItem,
             int roundTimeSeconds,
             bool isUnlimitedTimeForLastWord,
             List<Team> teams)
         {
+            _isNewGame = isNewGame;
             _wordsPacksConfigItem = wordsPacksConfigItem;
             _roundTimeSeconds = roundTimeSeconds;
             _isUnlimitedTimeForLastWord = isUnlimitedTimeForLastWord;
             _teams = teams;
         }
 
-        protected override UniTask OnEnterState()
+        protected override async UniTask OnEnterState()
         {
-            StartRound(0).Forget();
-            return base.OnEnterState();
+            await _wordsPacksConfigItem.WordsPack.LoadSceneAsync();
+           
+            if (_isNewGame)
+            {
+                StartRound(1).Forget();
+            }
+            else
+            {
+                // load game
+            }
+
+            await base.OnEnterState();
         }
 
         private async UniTask StartRound(int round)
@@ -49,21 +62,21 @@ namespace Game.States
                 return;
             }
 
-            isStartRound = await ConfirmStartRoundScreen();
+            isStartRound = await ConfirmStartRoundScreen(round);
             if (!isStartRound)
             {
                 StartRound(round).Forget();
                 return;
             }
 
-            var isGameSkip = !await PlayGameRound();
-            if (isGameSkip)
+            var playedWords = await PlayGameRound(round);
+            if (playedWords == null)
             {
                 StartRound(round).Forget();
                 return;
             }
 
-            await EndGameRound(round);
+            await EndGameRound(round, playedWords);
         }
 
         private async UniTask<bool> StartRoundScreen(int round)
@@ -84,23 +97,35 @@ namespace Game.States
             metaState.GoToState().Forget();
         }
 
-        private async UniTask<bool> ConfirmStartRoundScreen()
+        private async UniTask<bool> ConfirmStartRoundScreen(int round)
         {
-            var startGameScreenModel = new StartRoundScreenModel();
+            var currentRound = round - 1;
+            var teamsCount = _teams.Count;
+            var roundTeamPos = currentRound % teamsCount;
+            var roundTeam = _teams[roundTeamPos];
+            var startGameScreenModel = new StartRoundScreenModel(roundTeam);
             _screenService.ShowAsync<StartRoundScreen>(startGameScreenModel).Forget();
             return await startGameScreenModel.WaitForStart();
         }
 
-        private async UniTask<bool> PlayGameRound()
+        private async UniTask<List<RoundWord>> PlayGameRound(int round)
         {
-            var gameScreenModel = new RoundScreenModel();
+            var currentRound = round - 1;
+            var teamsCount = _teams.Count;
+            var roundTeamPos = currentRound % teamsCount;
+            var roundTeam = _teams[roundTeamPos];
+            var gameScreenModel = new RoundScreenModel(
+                roundTeam,
+                _roundTimeSeconds,
+                _wordsPacksConfigItem,
+                _isUnlimitedTimeForLastWord);
             _screenService.ShowAsync<RoundScreen>(gameScreenModel).Forget();
             return await gameScreenModel.WaitForRound();
         }
 
-        private async UniTask EndGameRound(int round)
+        private async UniTask EndGameRound(int round, List<RoundWord> roundWords)
         {
-            var endGameScreenModel = new EndRoundScreenModel();
+            var endGameScreenModel = new EndRoundScreenModel(roundWords);
             _screenService.ShowAsync<EndRoundScreen>(endGameScreenModel).Forget();
             await endGameScreenModel.WaitForClose();
             var newRound = round + 1;
