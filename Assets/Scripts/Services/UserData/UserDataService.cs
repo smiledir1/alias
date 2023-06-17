@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Cysharp.Threading.Tasks;
-using Newtonsoft.Json;
+using Unity.Plastic.Newtonsoft.Json;
 using Services.Common;
 using UnityEngine;
 using File = System.IO.File;
 
 namespace Services.UserData
 {
-    //TODO: Strong Crypt
+    // TODO: Strong Crypt
+    // SaveBytes
+    // Crypt Settings?
     public class UserDataService : Service, IUserDataService
     {
-        private const int _xorKey = 49;
+        private const int XorKey = 49;
         
         private readonly List<UserDataObject> _allData;
         private Dictionary<Type, UserDataObject> _userDatCollection;
@@ -172,7 +174,7 @@ namespace Services.UserData
             for (var i = text.Length - 1; i >= 0; i--)
             {
                 var t = text[i];
-                var cryptChar = (char) (t ^ _xorKey);
+                var cryptChar = (char) (t ^ XorKey);
                 stringBuilder.Append(cryptChar);
             }
             return stringBuilder.ToString();

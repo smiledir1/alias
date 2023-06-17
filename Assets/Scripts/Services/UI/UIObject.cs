@@ -84,6 +84,7 @@ namespace Services.UI
             await OnCloseAsync();
             State = UIObjectState.Loaded;
             if (_closeTween != null) await _closeTween.StartAnimation();
+            UIModel?.Close();
         }
 
         internal async UniTask StartAsync()
@@ -146,7 +147,6 @@ namespace Services.UI
 
         protected void Close()
         {
-            UIModel?.Close();
             CloseAction?.Invoke();
         }
 

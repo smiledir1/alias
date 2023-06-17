@@ -38,7 +38,7 @@ namespace Services.UI
         public event Action<UIObject> UIObjectUnload;
         public event Action<UIObject> StackAdd;
         public event Action<UIObject> StackRemove;
-        
+
         public bool IsOpenedUI => ShowedListUIObjects.Count > 0;
 
         public virtual async UniTask<T> ShowAsync<T>(
@@ -47,15 +47,15 @@ namespace Services.UI
             int group = default) where T : UIObject
         {
             IncrementBlockRaycast();
+            var uiObject = await LoadUIObject<T>();
+
             try
             {
-                var uiObject = await LoadUIObject<T>();
-
                 if (ShowedListUIObjects.Count > 0)
                 {
                     if (ShowedListUIObjects.Contains(uiObject))
                     {
-                        Debug.LogWarning("Popup Already Opened");
+                        Debug.LogWarning($"UI Already Opened {uiObject.name}");
                         return uiObject;
                     }
 
@@ -79,8 +79,10 @@ namespace Services.UI
             catch (Exception e)
             {
                 Debug.LogError(e);
-                throw;
+                RemoveShowedObjectToList(uiObject);
+                return null;
             }
+
             finally
             {
                 DecrementBlockRaycast();
@@ -205,6 +207,7 @@ namespace Services.UI
         protected async UniTask OpenUIObject(UIObject uiObject)
         {
             IncrementBlockRaycast();
+
             try
             {
                 uiObject.transform.SetAsLastSibling();
@@ -218,10 +221,13 @@ namespace Services.UI
                 UIObjectStart?.Invoke(uiObject);
                 await uiObject.StartAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // ignored
+                uiObject.gameObject.SetActive(false);
+                Debug.LogError(e);
+                throw;
             }
+
             finally
             {
                 DecrementBlockRaycast();
@@ -240,18 +246,31 @@ namespace Services.UI
         protected async UniTask CloseUIObject(UIObject uiObject)
         {
             IncrementBlockRaycast();
-
-            if (uiObject.State == UIObjectState.Started)
+            try
             {
-                UIObjectStop?.Invoke(uiObject);
-                await uiObject.StopAsync();
+                if (uiObject.State == UIObjectState.Started)
+                {
+                    UIObjectStop?.Invoke(uiObject);
+                    await uiObject.StopAsync();
+                }
+
+                UIObjectClose?.Invoke(uiObject);
+                await uiObject.CloseAsync();
+                uiObject.gameObject.SetActive(false);
+            }
+            catch (Exception e)
+            {
+                if (e is not OperationCanceledException)
+                {
+                    Debug.LogError(e);
+                    throw;
+                }
             }
 
-            UIObjectClose?.Invoke(uiObject);
-            await uiObject.CloseAsync();
-            uiObject.gameObject.SetActive(false);
-
-            DecrementBlockRaycast();
+            finally
+            {
+                DecrementBlockRaycast();
+            }
         }
 
         protected async UniTask UnloadUIObject(UIObject uiObject, bool clearFromCache = true)

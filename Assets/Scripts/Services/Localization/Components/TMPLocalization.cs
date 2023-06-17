@@ -35,7 +35,7 @@ namespace Services.Localization.Components
         public void Recalculate()
         {
             if (_text == null) return;
-            _localizationService.GetText(_key);
+            _localizationService?.GetText(_key);
         }
 
 #if UNITY_EDITOR

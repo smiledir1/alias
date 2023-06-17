@@ -15,6 +15,9 @@ namespace Game.UI.Screens.Teams
 
         [SerializeField]
         private TextMeshProUGUI _roundSeconds;
+        
+        [SerializeField]
+        private TextMeshProUGUI _round;
 
         [SerializeField]
         private TeamItem _teamItemTemplate;
@@ -25,15 +28,16 @@ namespace Game.UI.Screens.Teams
         [SerializeField]
         private Button _startGame;
 
-        private List<TeamItem> _teamItems;
+        private readonly List<TeamItem> _teamItems = new ();
 
         protected override UniTask OnOpenAsync()
         {
-            _backButton.SetListener(OnBackButton);
-            _startGame.SetListener(OnStartGameButton);
+            _backButton.SetClickListener(OnBackButton);
+            _startGame.SetClickListener(OnStartGameButton);
 
             _packName.text = Model.WordsPacksConfigItem.Name;
             _roundSeconds.text = Model.RoundTimeSeconds.ToString();
+            _round.text = Model.CurrentRound.ToString();
 
             CreateTeamItems();
             return base.OnOpenAsync();
@@ -41,6 +45,7 @@ namespace Game.UI.Screens.Teams
 
         private void CreateTeamItems()
         {
+            _teamItemTemplate.gameObject.SetActive(false);
             foreach (var teamItem in _teamItems)
             {
                 Destroy(teamItem.gameObject);
@@ -65,14 +70,14 @@ namespace Game.UI.Screens.Teams
 
         private void OnBackButton()
         {
-            Model.GoBack();
             Close();
+            Model.GoBack();
         }
 
         private void OnStartGameButton()
         {
-            Model.StartRound();
             Close();
+            Model.StartRound();
         }
     }
 }

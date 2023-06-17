@@ -84,7 +84,8 @@ namespace Game.Bootstrap
 
             var userDataService = new UserDataService(new List<UserDataObject>()
             {
-                new SettingsUserData()
+                new SettingsUserData(),
+                new GameUserData()
             }, false);
             ServiceLocator.AddService<IUserDataService>(userDataService);
 

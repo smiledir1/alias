@@ -17,6 +17,7 @@ namespace Game.UI.Elements
 
         private void Awake()
         {
+            OnValueChanged(_slider.value);
             _slider.onValueChanged.RemoveAllListeners();
             _slider.onValueChanged.AddListener(OnValueChanged);
         }

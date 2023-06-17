@@ -25,8 +25,8 @@ namespace Game.UI.Popups.Confirm
         {
             _header.text = Model.Title;
             _text.text = Model.Message;
-            _confirmButton.SetListener(OnConfirmClick);
-            _closeButton.SetListener(OnCloseClick);
+            _confirmButton.SetClickListener(OnConfirmClick);
+            _closeButton.SetClickListener(OnCloseClick);
             return base.OnOpenAsync();
         }
         

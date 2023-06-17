@@ -22,17 +22,27 @@ namespace Game.Services.WordsPacks
                     continue;
                 }
 
-                var wordsList = item.WordsPack.editorAsset.Words;
-                var wordsCount = wordsList.Count > ExampleWords ? ExampleWords : wordsList.Count;
-                item.ExampleWords = string.Empty;
-                for (var i = 0; i < wordsCount; i++)
-                {
-                    var rndPos = Random.Range(0, wordsList.Count);
-                    var word = wordsList[rndPos];
-                    item.ExampleWords += $"{word}; ";
-                }
+                item.ExampleWords = GetExampleWords(item.WordsPack.editorAsset);
+                item.WordsCount = item.WordsPack.editorAsset.Words.Count.ToString();
             }
         }
+
+        public static string GetExampleWords(WordsPack wordsPack)
+        {
+            var wordsList = wordsPack.Words;
+            var wordsCount = wordsList.Count > ExampleWords ? ExampleWords : wordsList.Count;
+            var exampleWords = string.Empty;
+            for (var i = 0; i < wordsCount; i++)
+            {
+                var rndPos = Random.Range(0, wordsList.Count);
+                var word = wordsList[rndPos];
+                exampleWords += $"{word}; ";
+            }
+
+            return exampleWords;
+        }
+        
+       
 #endif
     }
 }

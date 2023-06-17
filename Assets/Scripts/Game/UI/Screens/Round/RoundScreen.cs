@@ -24,6 +24,9 @@ namespace Game.UI.Screens.Round
         private TextMeshProUGUI _currentWordLabel;
 
         [SerializeField]
+        private GameObject _lastWord;
+
+        [SerializeField]
         private Button _backButton;
 
         [SerializeField]
@@ -31,39 +34,50 @@ namespace Game.UI.Screens.Round
 
         [SerializeField]
         private Button _wrongAnswer;
-        
+
         private int _roundScore;
         private float _roundTimerSeconds;
         private WordsPack _wordsPack;
-        private HashSet<string> _playedPackWordsHash;
-        private List<string> _playedPackWords;
-        private List<RoundWord> _playedRoundWords;
+        private readonly HashSet<string> _playedPackWordsHash = new();
+        private readonly List<string> _playedPackWords = new();
+        private readonly List<RoundWord> _playedRoundWords = new();
         private string _currentWord;
         private int _generatedCount;
         private bool _waitLastWord;
 
         protected override UniTask OnOpenAsync()
         {
-            _backButton.SetListener(OnBackButton);
-            _rightAnswer.SetListener(OnRightAnswerButton);
-            _wrongAnswer.SetListener(OnWrongAnswerButton);
+            _backButton.SetClickListener(OnBackButton);
+            _rightAnswer.SetClickListener(OnRightAnswerButton);
+            _wrongAnswer.SetClickListener(OnWrongAnswerButton);
 
-            _waitLastWord = false;
-            _teamName.text = Model.RoundTeam.Name;
-            _roundScoreLabel.text = "0";
-            _roundTimerSeconds = Model.RoundTimeSeconds;
-            _roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
-            _generatedCount = 0;
-            
+            InitializeElements();
+
             _wordsPack = Model.WordsPacksConfigItem.WordsPack.Asset as WordsPack;
-            
+
             StartGame().Forget();
             return base.OnOpenAsync();
         }
 
         private void OnBackButton()
         {
+            Close();
             Model.GoBack();
+        }
+
+        private void InitializeElements()
+        {
+            _roundScore = 0;
+            _waitLastWord = false;
+            _teamName.text = Model.RoundTeam.Name;
+            _roundScoreLabel.text = "0";
+            _roundTimerSeconds = Model.RoundTimeSeconds;
+            _roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
+            _generatedCount = 0;
+            _playedPackWordsHash.Clear();
+            _playedPackWords.Clear();
+            _playedRoundWords.Clear();
+            _lastWord.SetActive(false);
         }
 
         private void OnRightAnswerButton()
@@ -72,7 +86,6 @@ namespace Game.UI.Screens.Round
             _roundScoreLabel.text = _roundScore.ToString();
             var newRoundWord = new RoundWord(_currentWord, true);
             _playedRoundWords.Add(newRoundWord);
-            ShowNewWord();
             CheckLastWord();
         }
 
@@ -82,10 +95,9 @@ namespace Game.UI.Screens.Round
             _roundScoreLabel.text = _roundScore.ToString();
             var newRoundWord = new RoundWord(_currentWord, false);
             _playedRoundWords.Add(newRoundWord);
-            ShowNewWord();
             CheckLastWord();
         }
-        
+
         // По-хорошему под это отдельный объект завести,
         // но тут не критично
         private async UniTask StartGame()
@@ -98,19 +110,20 @@ namespace Game.UI.Screens.Round
                 _roundTimerSeconds -= Time.deltaTime;
                 _roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
             }
-            
+
             // end Game
             // last word
             if (Model.IsUnlimitedTimeForLastWord)
             {
                 _waitLastWord = true;
+                _lastWord.SetActive(true);
             }
             else
             {
                 FinishRound();
             }
         }
-        
+
         private void ShowNewWord()
         {
             _currentWord = GetNewWord();
@@ -121,35 +134,42 @@ namespace Game.UI.Screens.Round
         {
             string word;
             do
-            { 
+            {
                 var wordsPackWordsCount = _wordsPack.Words.Count;
                 var wordPos = Random.Range(0, wordsPackWordsCount);
                 word = _wordsPack.Words[wordPos];
-
             } while (_playedPackWordsHash.Contains(word));
 
             _playedPackWords.Add(word);
             _playedPackWordsHash.Add(word);
             _generatedCount++;
 
-            if (_playedPackWords.Count < _generatedCount)
+            if (_playedPackWords.Count <= _generatedCount)
             {
                 _generatedCount = 0;
                 _playedPackWords.Clear();
                 _playedPackWordsHash.Clear();
             }
-            return word;
-        }
 
-        private void CheckLastWord()
-        {
-            if(_waitLastWord) FinishRound();
+            return word;
         }
 
         private void FinishRound()
         {
             Model.EndRound(_playedRoundWords);
             Close();
+        }
+
+        private void CheckLastWord()
+        {
+            if (_waitLastWord)
+            {
+                FinishRound();
+            }
+            else
+            {
+                ShowNewWord();
+            }
         }
     }
 

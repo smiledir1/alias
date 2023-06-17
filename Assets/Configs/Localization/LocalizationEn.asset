@@ -42,3 +42,17 @@ MonoBehaviour:
     Text: Remove team
   - Key: start_game
     Text: Start game
+  - Key: start_round
+    Text: Start round
+  - Key: are_you_ready
+    Text: Are you ready?
+  - Key: right
+    Text: Right
+  - Key: wrong
+    Text: Wrong
+  - Key: round
+    Text: Round
+  - Key: end_round
+    Text: End round
+  - Key: next_round
+    Text: Next round

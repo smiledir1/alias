@@ -23,8 +23,8 @@ namespace Game.UI.Screens.StartRound
 
         protected override UniTask OnOpenAsync()
         {
-            _backButton.SetListener(OnBackButton);
-            _startGame.SetListener(OnStartGameButton);
+            _backButton.SetClickListener(OnBackButton);
+            _startGame.SetClickListener(OnStartGameButton);
 
             _teamName.text = Model.RoundTeam.Name;
             _teamScore.text = Model.RoundTeam.Score.ToString();

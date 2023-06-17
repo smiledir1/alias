@@ -24,7 +24,6 @@ namespace Services.UI.Editor
         [MenuItem("Tools/UI Window")]
         private static void InitializeWindow()
         {
-            // Get existing open window or if none, make a new one:
             _window = GetWindow<UIHelperWindow>();
             _window.Show();
         }

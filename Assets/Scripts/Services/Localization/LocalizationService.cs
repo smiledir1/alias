@@ -10,7 +10,7 @@ namespace Services.Localization
     {
         #region Const
 
-        private const string _languageKey = "currentLanguage";
+        private const string LanguageKey = "currentLanguage";
 
         #endregion
 
@@ -19,6 +19,8 @@ namespace Services.Localization
         private readonly Dictionary<string, string> _localizationSet = new();
         private LocalizationData _localizationData;
         private SystemLanguage _language;
+
+        public SystemLanguage CurrentLanguage => _language;
 
         public LocalizationService(IAssetsService assetsService)
         {
@@ -29,7 +31,7 @@ namespace Services.Localization
         {
             // load all
             _localizationData = await _assetsService.LoadAsset<LocalizationData>();
-            _language = (SystemLanguage) PlayerPrefs.GetInt(_languageKey, (int) SystemLanguage.English);
+            _language = (SystemLanguage) PlayerPrefs.GetInt(LanguageKey, (int) SystemLanguage.English);
             await FillLocalizationSet(_language);
         }
 
@@ -63,7 +65,7 @@ namespace Services.Localization
             _language = language;
             await FillLocalizationSet(language);
 
-            PlayerPrefs.SetInt(_languageKey, (int) language);
+            PlayerPrefs.SetInt(LanguageKey, (int) language);
             PlayerPrefs.Save();
         }
     }

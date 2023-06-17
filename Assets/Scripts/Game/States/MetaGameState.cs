@@ -16,5 +16,11 @@ namespace Game.States
             var metaScreenModel = new MetaScreenModel();
             await _screenService.ShowAsync<MetaScreen>(metaScreenModel);
         }
+
+        protected override UniTask OnStopState()
+        {
+            _screenService.CloseCurrentUIObject().Forget();
+            return base.OnStopState();
+        }
     }
 }

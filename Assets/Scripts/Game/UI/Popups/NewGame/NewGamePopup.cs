@@ -49,10 +49,10 @@ namespace Game.UI.Popups.NewGame
 
         protected override UniTask OnOpenAsync()
         {
-            _choosePackButton.SetListener(() => OnChoosePackButton().Forget());
-            _addTeamButton.SetListener(OnAddTeamButton);
-            _removeTeamButton.SetListener(OnRemoveTeamButton);
-            _startGameButton.SetListener(OnStartGameButton);
+            _choosePackButton.SetClickListener(() => OnChoosePackButton().SafeForget());
+            _addTeamButton.SetClickListener(OnAddTeamButton);
+            _removeTeamButton.SetClickListener(OnRemoveTeamButton);
+            _startGameButton.SetClickListener(OnStartGameButton);
             ClearAll();
             return base.OnOpenAsync();
         }
@@ -74,33 +74,33 @@ namespace Game.UI.Popups.NewGame
 
         private void OnRemoveTeamButton()
         {
+            if(_teams.Count == 0) return;
             _teams.RemoveAt(_teams.Count - 1);
             var teamItem = _teamItems[^1];
-            Destroy(teamItem);
+            Destroy(teamItem.gameObject);
             _teamItems.RemoveAt(_teamItems.Count - 1);
         }
 
         private void OnStartGameButton()
         {
             if (!CheckStartGame()) return;
-
+            Close();
             var roundTimeSeconds = (int) _roundTime.value;
             var isUnlimitedTimeForLastWord = _isUnlimitedTimeForLastWord.isOn;
 
             var inGameState = new InGameState(
-                true,
                 _choosePack,
                 roundTimeSeconds,
                 isUnlimitedTimeForLastWord,
                 _teams);
-            inGameState.GoToState().Forget();
+            inGameState.GoToState().SafeForget();
         }
 
         private bool CheckStartGame()
         {
             if (_choosePack == null) return false;
-            if (_teams.Count <= 2) return false;
-            if (_roundTime.value < 15) return false;
+            if (_teams.Count < 2) return false;
+            if (_roundTime.value < 5) return false;
             return true;
         }
 
@@ -115,6 +115,7 @@ namespace Game.UI.Popups.NewGame
 
         private void ClearAll()
         {
+            _teamItemTemplate.gameObject.SetActive(false);
             foreach (var teamItem in _teamItems)
             {
                 Destroy(teamItem.gameObject);

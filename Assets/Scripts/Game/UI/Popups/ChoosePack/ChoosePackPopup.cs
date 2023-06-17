@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.Services.WordsPacks;
 using Services.Helper;
+using Services.Localization;
 using Services.UI.PopupService;
 using UnityEngine;
 
@@ -13,7 +15,10 @@ namespace Game.UI.Popups.ChoosePack
         private ChoosePackItem _choosePackItemTemplate;
 
         [Service]
-        private IWordsPacksService _wordsPacksService;
+        private static IWordsPacksService _wordsPacksService;
+
+        [Service]
+        private static ILocalizationService _localizationService;
 
         private readonly List<ChoosePackItem> _createdItems = new();
 
@@ -32,9 +37,11 @@ namespace Game.UI.Popups.ChoosePack
 
         private void CreateItems(List<WordsPacksConfigItem> configItems)
         {
+            var language = _localizationService.CurrentLanguage;
             var parentTransform = _choosePackItemTemplate.transform.parent;
             foreach (var configItem in configItems)
             {
+                if (configItem.Language != language) continue;
                 var packItem = Instantiate(_choosePackItemTemplate, parentTransform);
                 packItem.Initialize(configItem);
                 packItem.ChoosePack += OnPackChoose;

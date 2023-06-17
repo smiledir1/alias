@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Game.UI.Popups.Confirm;
 using Game.UI.Popups.Message;
@@ -52,6 +53,12 @@ public class Test : MonoBehaviour
     // [SerializeReference]
     // public C SimpleCRef2 = new C();
 
+    // public class Abc
+    // {
+    //     public event Action TestAction;
+    // }
+    //
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     private static void InitializeCode()
     {
@@ -63,6 +70,7 @@ public class Test : MonoBehaviour
         var messagePopupModel = new MessagePopupModel("message" ,"tttterfdgdf");
         _popupService.ShowAsync<MessagePopup>(messagePopupModel);
         WaitMessageClose(messagePopupModel).Forget();
+        
     }
 
     private async UniTask WaitMessageClose(UIModel messagePopupModel)
@@ -84,7 +92,6 @@ public class Test : MonoBehaviour
             var hasValue = _assetsService == null;
             Debug.Log(hasValue);
         }
-
 
         //ShowRound();
         //if (number != 5) return;

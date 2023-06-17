@@ -21,46 +21,97 @@ MonoBehaviour:
     m_Address: IngameDebugConsole
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33abcc1c41745a944be39284cc37dbda
     m_Address: CheatsButton
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 338c84afbc391a44e8e516621aa08281
     m_Address: Assets/Audio/click1.mp3
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19bc8c35cdf4a0b458f534d787607d8e
     m_Address: PopupCanvas
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 52a203f8bc6ca954486db7833d7e1665
     m_Address: ScreenCanvas
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd9da266f1040384a993550a121f0f15
     m_Address: MessagePopup
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9174858e8958f8340b9545c311b067c6
     m_Address: ConfirmPopup
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bed14ff560d857c4e830567ff16357a5
     m_Address: MetaScreen
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed877bd0f8e26924585cdba13eaadb82
     m_Address: Assets/Configs/WordsPacks/SimplePack.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9d37552f28e7c6f4bb51c3a6fd3176de
     m_Address: WordsPacksConfig
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0325a8ce3b8ee72449b52b6c24a86d33
     m_Address: ChoosePackPopup
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 951c41345fc708242a1644e77577e4e6
+    m_Address: TeamsScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83f07d267bdd50746a2f6245490c4c19
+    m_Address: NewGamePopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1141e683cf77c9f46ac426ba43b7f1a9
+    m_Address: StartRoundScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12d03c1ef1f1e774bba2eb275085e1b7
+    m_Address: EndRoundScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 421b5e6f0aac4b44699601617b252296
+    m_Address: RoundScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36530ce0d0ddcac4b915897c0abb1e2d
+    m_Address: Assets/Configs/WordsPacks/EverydayTreasuresPackRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1db161bb5fec04540975af8709186372
+    m_Address: Assets/Configs/WordsPacks/FamousFilmsPackRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11904f35b565d694b8305d745a569b43
+    m_Address: Assets/Configs/WordsPacks/FamousLogosAndBrandsPackRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a170fa117788cb49a578ae53fae002c, type: 2}
   m_SchemaSet:

@@ -4,17 +4,17 @@ namespace Services.UI
 {
     public abstract record UIModel
     {
-        private UniTaskCompletionSource _completionSource;
+        private UniTaskCompletionSource _closeCompletionSource;
 
         public UniTask WaitForClose()
         {
-            _completionSource = new UniTaskCompletionSource();
-            return _completionSource.Task;
+            _closeCompletionSource = new UniTaskCompletionSource();
+            return _closeCompletionSource.Task;
         }
 
         internal void Close()
         {
-            _completionSource?.TrySetResult();
+            _closeCompletionSource?.TrySetResult();
         }
     }
 }
