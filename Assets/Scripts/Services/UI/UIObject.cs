@@ -14,11 +14,11 @@ namespace Services.UI
         [Header("UIObject Main")]
         [SerializeField]
         [SerializeReference]
-        protected SimpleTween _openTween;
+        protected ITween _openTween;
 
         [SerializeField]
         [SerializeReference]
-        protected SimpleTween _closeTween;
+        protected ITween _closeTween;
 
         #endregion
 
@@ -101,12 +101,12 @@ namespace Services.UI
             State = UIObjectState.Opened;
         }
 
-        internal void SetOpenAnimation(SimpleTween openTween)
+        public void SetOpenAnimation(ITween openTween)
         {
             _openTween = openTween;
         }
 
-        internal void SetCloseAnimation(SimpleTween closeTween)
+        public void SetCloseAnimation(ITween closeTween)
         {
             _closeTween = closeTween;
         }

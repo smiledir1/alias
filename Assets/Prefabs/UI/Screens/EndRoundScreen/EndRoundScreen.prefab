@@ -1194,51 +1194,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openTween:
-    rid: 1209635566911488013
+    rid: 7359819798562996227
   _closeTween:
-    rid: 1209635566911488014
+    rid: 7359819798562996226
   _scoreLabel: {fileID: 4963415324808652685}
   _wordElementTemplate: {fileID: 7169795045821734072}
   _closeButton: {fileID: 6267626104990523190}
   references:
     version: 2
     RefIds:
-    - rid: 1209635566911488013
-      type: {class: TransparencyTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 5779089991699389972}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromOpacity: 0
-        _toOpacity: 1
-        _tweenObjectRenderer: {fileID: 8175785375452155507}
-    - rid: 1209635566911488014
-      type: {class: TransparencyTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+    - rid: 7359819798562996226
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
         _tweenObject: {fileID: 5779089991699389972}
         _startDelay: 0
@@ -1270,6 +1236,40 @@ MonoBehaviour:
           m_RotationOrder: 4
         _fromOpacity: 1
         _toOpacity: 0
+        _tweenObjectRenderer: {fileID: 8175785375452155507}
+    - rid: 7359819798562996227
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 5779089991699389972}
+        _startDelay: 0
+        _tweenTime: 0.3
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromOpacity: 0
+        _toOpacity: 1
         _tweenObjectRenderer: {fileID: 8175785375452155507}
 --- !u!1 &6776678541784298084
 GameObject:

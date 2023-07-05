@@ -3,7 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Common.UniTaskAnimations
+namespace Common.UniTaskAnimations.SimpleTweens
 {
     [Serializable]
     public class ScaleTween : SimpleTween
@@ -63,6 +63,7 @@ namespace Common.UniTaskAnimations
         {
             Vector3 startScale;
             Vector3 toScale;
+            AnimationCurve animationCurve;
             var tweenTime = TweenTime;
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
@@ -72,22 +73,33 @@ namespace Common.UniTaskAnimations
             {
                 startScale = _toScale;
                 toScale = _fromScale;
+                animationCurve = ReverseCurve;
             }
             else
             {
                 startScale = _fromScale;
                 toScale = _toScale;
+                animationCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var localScale = TweenObject.transform.localScale;
-                startScale = localScale;
-                var currentValue = localScale.x;
-                var currentPartValue = Mathf.Abs(toScale.x - currentValue);
-                var maxValue = Mathf.Abs(startScale.x - toScale.x);
-                var normalizePart = currentPartValue / maxValue;
-                tweenTime *= normalizePart;
+                var t = 1f;
+                if (toScale.x - startScale.x != 0f)
+                {
+                    t = (localScale.x - startScale.x) / (toScale.x - startScale.x);
+                }
+                else if (toScale.y - startScale.y != 0f)
+                {
+                    t = (localScale.y - startScale.y) / (toScale.y - startScale.y);
+                }
+                else if (toScale.z - startScale.z != 0f)
+                {
+                    t = (localScale.z - startScale.z) / (toScale.z - startScale.z);
+                }
+
+                time = tweenTime * t;
             }
 
             while (loop)
@@ -99,7 +111,7 @@ namespace Common.UniTaskAnimations
                     time += GetDeltaTime();
 
                     var normalizeTime = time / tweenTime;
-                    var lerpTime = AnimationCurve.Evaluate(normalizeTime);
+                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
                     var lerpValue = Vector3.LerpUnclamped(startScale, toScale, lerpTime);
 
                     TweenObject.transform.localScale = lerpValue;

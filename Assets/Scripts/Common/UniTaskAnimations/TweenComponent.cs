@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.UniTaskAnimations
 {
-    public class SimpleTweenComponent : MonoBehaviour
+    public class TweenComponent : MonoBehaviour
     {
         [Header("Component")]
         [SerializeField]
@@ -11,11 +11,11 @@ namespace Common.UniTaskAnimations
 
         [SerializeField]
         [SerializeReference]
-        private SimpleTween _tween;
+        private IBaseTween _tween;
 
-        public SimpleTween Tween => _tween;
+        public IBaseTween Tween => _tween;
 
-        internal void SetTween(SimpleTween tween)
+        internal void SetTween(IBaseTween tween)
         {
             _tween = tween;
         }

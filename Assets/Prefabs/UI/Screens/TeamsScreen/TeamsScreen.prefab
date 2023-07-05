@@ -361,9 +361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openTween:
-    rid: 1209635566911488006
+    rid: 7359819798562996232
   _closeTween:
-    rid: 1209635566911488007
+    rid: 7359819798562996236
   _packName: {fileID: 3948691839797788860}
   _roundSeconds: {fileID: 839965665238144025}
   _round: {fileID: 3895870992289073004}
@@ -373,8 +373,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1209635566911488006
-      type: {class: TransparencyTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+    - rid: 7359819798562996232
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
         _tweenObject: {fileID: 394194474674383403}
         _startDelay: 0
@@ -407,8 +407,8 @@ MonoBehaviour:
         _fromOpacity: 0
         _toOpacity: 1
         _tweenObjectRenderer: {fileID: -868650593548980201}
-    - rid: 1209635566911488007
-      type: {class: TransparencyTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+    - rid: 7359819798562996236
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
         _tweenObject: {fileID: 394194474674383403}
         _startDelay: 0

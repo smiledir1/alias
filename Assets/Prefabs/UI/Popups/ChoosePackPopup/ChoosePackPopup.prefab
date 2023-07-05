@@ -329,20 +329,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openTween:
-    rid: 3139604328084668417
+    rid: 7359819798562996238
   _closeTween:
-    rid: 3139604328084668418
+    rid: 7359819798562996239
   _closeButton: {fileID: 4730833508465318038}
   _choosePackItemTemplate: {fileID: 8968743549996698072}
   references:
     version: 2
     RefIds:
-    - rid: 3139604328084668417
-      type: {class: PositionTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+    - rid: 7359819798562996238
+      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
         _tweenObject: {fileID: 4248020211053057892}
         _startDelay: 0
-        _tweenTime: 0.5
+        _tweenTime: 0.3
         _loop: 0
         _animationCurve:
           serializedVersion: 2
@@ -350,8 +350,8 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 2
-            outSlope: 2
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
@@ -368,14 +368,14 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _fromPosition: {x: -2000, y: 0, z: 0}
+        _fromPosition: {x: -1000, y: 0, z: 0}
         _toPosition: {x: 0, y: 0, z: 0}
-    - rid: 3139604328084668418
-      type: {class: PositionTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+    - rid: 7359819798562996239
+      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
         _tweenObject: {fileID: 4248020211053057892}
         _startDelay: 0
-        _tweenTime: 0.5
+        _tweenTime: 0.3
         _loop: 0
         _animationCurve:
           serializedVersion: 2
@@ -392,8 +392,8 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 2
-            outSlope: 2
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
@@ -402,7 +402,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         _fromPosition: {x: 0, y: 0, z: 0}
-        _toPosition: {x: -2000, y: 0, z: 0}
+        _toPosition: {x: -1000, y: 0, z: 0}
 --- !u!1 &5879020989245493725
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,10 +3,10 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Common.UniTaskAnimations
+namespace Common.UniTaskAnimations.SimpleTweens
 {
     [Serializable]
-    public class TransparencyTween : SimpleTween
+    public class TransparencyCanvasGroupTween : SimpleTween
     {
         #region View
 
@@ -34,13 +34,13 @@ namespace Common.UniTaskAnimations
 
         #region Constructor
 
-        public TransparencyTween()
+        public TransparencyCanvasGroupTween()
         {
             _fromOpacity = 0;
             _toOpacity = 1;
         }
 
-        public TransparencyTween(
+        public TransparencyCanvasGroupTween(
             GameObject tweenObject,
             float startDelay,
             float tweenTime,
@@ -69,9 +69,15 @@ namespace Common.UniTaskAnimations
             bool startFromCurrentValue = false,
             CancellationToken cancellationToken = default)
         {
-            if (_tweenObjectRenderer == null) return;
+            if (_tweenObjectRenderer == null)
+            {
+                _tweenObjectRenderer = _tweenObject.GetComponent<CanvasGroup>();
+                if (_tweenObjectRenderer == null) return;
+            }
+
             float startOpacity;
             float toOpacity;
+            AnimationCurve animationCurve;
             var tweenTime = TweenTime;
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
@@ -81,21 +87,20 @@ namespace Common.UniTaskAnimations
             {
                 startOpacity = _toOpacity;
                 toOpacity = _fromOpacity;
+                animationCurve = ReverseCurve;
             }
             else
             {
                 startOpacity = _fromOpacity;
                 toOpacity = _toOpacity;
+                animationCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var currentValue = _tweenObjectRenderer.alpha;
-                startOpacity = currentValue;
-                var currentPartValue = Mathf.Abs(toOpacity - currentValue);
-                var maxValue = Mathf.Abs(startOpacity - toOpacity);
-                var normalizePart = currentPartValue / maxValue;
-                tweenTime *= normalizePart;
+                var t = (currentValue - startOpacity) / (toOpacity - startOpacity);
+                time = tweenTime * t;
             }
 
             while (loop)
@@ -107,7 +112,7 @@ namespace Common.UniTaskAnimations
                     time += GetDeltaTime();
 
                     var normalizeTime = time / tweenTime;
-                    var lerpTime = AnimationCurve.Evaluate(normalizeTime);
+                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
                     var lerpValue = Mathf.LerpUnclamped(startOpacity, toOpacity, lerpTime);
 
                     if (_tweenObjectRenderer == null) return;

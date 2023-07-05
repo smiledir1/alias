@@ -1,5 +1,8 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Settings;
+using UnityEngine;
 
 namespace Services.UI.Editor
 {
@@ -12,14 +15,16 @@ namespace Services.UI.Editor
         {
             _target = target as UIObject;
         }
-        
+
         public override void OnInspectorGUI()
         {
             DoDrawDefaultInspector(serializedObject);
         }
-        
+
         private void DoDrawDefaultInspector(SerializedObject obj)
         {
+            if (GUILayout.Button("Create Addressable")) CreateAddressable(_target);
+
             EditorGUI.BeginChangeCheck();
             obj.UpdateIfRequiredOrScript();
             var iterator = obj.GetIterator();
@@ -36,6 +41,17 @@ namespace Services.UI.Editor
 
             obj.ApplyModifiedProperties();
             EditorGUI.EndChangeCheck();
+        }
+
+        protected static void CreateAddressable(UIObject target)
+        {
+            var settings = AddressableAssetSettingsDefaultObject.Settings;
+            
+            var assetPath = AssetDatabase.GetAssetPath(target);
+            var assetGuid = AssetDatabase.AssetPathToGUID(assetPath);
+            settings.CreateAssetReference(assetGuid);
+            var entry = settings.FindAssetEntry(assetGuid);
+            entry.address = target.GetType().Name;
         }
     }
 }

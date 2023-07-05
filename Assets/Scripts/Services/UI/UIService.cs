@@ -14,6 +14,7 @@ namespace Services.UI
         #region Cache
 
         private int _rayCastCount;
+        private bool _hasAction;
 
         protected readonly IAssetsService AssetsService;
         protected readonly Dictionary<Type, UIObject> UIObjectsLoadCache = new();
@@ -46,7 +47,7 @@ namespace Services.UI
             bool closePreviousUI = false,
             int group = default) where T : UIObject
         {
-            IncrementBlockRaycast();
+            await WaitForStartAction();
             var uiObject = await LoadUIObject<T>();
 
             try
@@ -79,64 +80,53 @@ namespace Services.UI
             catch (Exception e)
             {
                 Debug.LogError(e);
-                RemoveShowedObjectToList(uiObject);
+                RemoveShowedObjectFromList(uiObject);
                 return null;
             }
 
             finally
             {
-                DecrementBlockRaycast();
+                CompleteAction();
             }
         }
 
         public async UniTask CloseCurrentUIObject()
         {
-            if (ShowedListUIObjects.Count == 0) return;
-
-            IncrementBlockRaycast();
-
-            var lastUIObject = ShowedListUIObjects[^1];
-            await CloseUIObject(lastUIObject);
-            RemoveShowedObjectToList(lastUIObject);
-
-            if (ShowedListUIObjects.Count > 0)
+            await WaitForStartAction();
+            if (ShowedListUIObjects.Count == 0)
             {
-                var currentUIObject = ShowedListUIObjects[^1];
-                await OpenUIObject(currentUIObject);
+                CompleteAction();
+                return;
             }
 
-            DecrementBlockRaycast();
+            var lastUIObject = ShowedListUIObjects[^1];
+            await CloseUIObjectAndCheckStack(lastUIObject);
+            
+            CompleteAction();
         }
 
         public async UniTask CloseCurrentUIObject<T>() where T : UIObject
         {
+            await WaitForStartAction();
+            
             if (!UIObjectsLoadCache.TryGetValue(typeof(T), out var uiObject)) return;
-            await CloseCurrentUIObject(uiObject);
+            await CloseUIObjectAndCheckStack(uiObject);
+            
+            CompleteAction();
         }
 
         public async UniTask CloseCurrentUIObject(UIObject uiObject)
         {
-            var uiObjectIndex = ShowedListUIObjects.IndexOf(uiObject);
-            if (uiObjectIndex == -1) return;
+            await WaitForStartAction();
+            
+            await CloseUIObjectAndCheckStack(uiObject);
 
-            IncrementBlockRaycast();
-
-            var showedUIObjectsCountLastIndex = ShowedListUIObjects.Count - 1;
-            if (uiObject.State != UIObjectState.Loaded) await CloseUIObject(uiObject);
-            RemoveShowedObjectToList(uiObject);
-
-            if (showedUIObjectsCountLastIndex > 0 &&
-                uiObjectIndex == showedUIObjectsCountLastIndex)
-            {
-                var currentUIObject = ShowedListUIObjects[^1];
-                await OpenUIObject(currentUIObject);
-            }
-
-            DecrementBlockRaycast();
+            CompleteAction();
         }
 
         public async UniTask CloseGroupUIObjects(int group)
         {
+            await WaitForStartAction();
             var closedUIObjectsTasks = new List<UniTask>();
             foreach (var showedUIObject in ShowedListUIObjects)
             {
@@ -145,6 +135,7 @@ namespace Services.UI
             }
 
             await UniTask.WhenAll(closedUIObjectsTasks);
+            CompleteAction();
         }
 
         public async UniTask UnloadAll()
@@ -183,7 +174,7 @@ namespace Services.UI
             UIObjectLoad?.Invoke(uiObject);
             await uiObject.LoadAsync();
 
-            uiObject.CloseAction += () => CloseCurrentUIObject(uiObject).Forget();
+            uiObject.CloseAction += () => CloseUIObjectAndCheckStack(uiObject).Forget();
 
             return uiObject;
         }
@@ -299,6 +290,27 @@ namespace Services.UI
             Object.Destroy(uiObject.gameObject);
         }
 
+        protected async UniTask CloseUIObjectAndCheckStack(UIObject uiObject)
+        {
+            var uiObjectIndex = ShowedListUIObjects.IndexOf(uiObject);
+            if (uiObjectIndex == -1)
+            {
+                CompleteAction();
+                return;
+            }
+
+            var showedUIObjectsCountLastIndex = ShowedListUIObjects.Count - 1;
+            RemoveShowedObjectFromList(uiObject);
+            if (uiObject.State != UIObjectState.Loaded) await CloseUIObject(uiObject);
+
+            if (showedUIObjectsCountLastIndex > 0 &&
+                uiObjectIndex == showedUIObjectsCountLastIndex)
+            {
+                var currentUIObject = ShowedListUIObjects[^1];
+                await OpenUIObject(currentUIObject);
+            }
+        }
+
         #endregion
 
         #region Private Method
@@ -334,11 +346,28 @@ namespace Services.UI
             StackAdd?.Invoke(uiObject);
         }
 
-        private void RemoveShowedObjectToList(UIObject uiObject)
+        private void RemoveShowedObjectFromList(UIObject uiObject)
         {
             DecrementBlockRaycast();
             ShowedListUIObjects.Remove(uiObject);
             StackRemove?.Invoke(uiObject);
+        }
+        
+        private async UniTask WaitForStartAction()
+        {
+            IncrementBlockRaycast();
+            while (_hasAction)
+            {
+                await UniTask.Yield();
+            }
+
+            _hasAction = true;
+        }
+
+        private void CompleteAction()
+        {
+            _hasAction = false;
+            DecrementBlockRaycast();
         }
 
         #endregion

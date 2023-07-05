@@ -13,11 +13,11 @@ namespace Services.UI.Editor
 
         [SerializeField]
         [SerializeReference]
-        private SimpleTween _openSimpleTween;
+        private ITween _openSimpleTween;
 
         [SerializeField]
         [SerializeReference]
-        private SimpleTween _closeSimpleTween;
+        private ITween _closeSimpleTween;
 
         private string _prefabPathFolder = "Assets/Prefabs";
 
@@ -72,7 +72,7 @@ namespace Services.UI.Editor
             var uiObjects = GetUIObjects<UIObject>();
             foreach (var uiObject in uiObjects)
             {
-                var openAnimation = SimpleTween.Clone(_openSimpleTween, uiObject.gameObject);
+                var openAnimation = ITween.Clone(_openSimpleTween, uiObject.gameObject);
                 uiObject.SetOpenAnimation(openAnimation);
                 EditorUtility.SetDirty(uiObject);
             }
@@ -86,7 +86,7 @@ namespace Services.UI.Editor
             var uiObjects = GetUIObjects<UIObject>();
             foreach (var uiObject in uiObjects)
             {
-                var closeAnimation = SimpleTween.Clone(_closeSimpleTween, uiObject.gameObject);
+                var closeAnimation = ITween.Clone(_closeSimpleTween, uiObject.gameObject);
                 uiObject.SetCloseAnimation(closeAnimation);
                 EditorUtility.SetDirty(uiObject);
             }

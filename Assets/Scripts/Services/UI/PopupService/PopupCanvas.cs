@@ -7,7 +7,7 @@ namespace Services.UI.PopupService
     public class PopupCanvas : UICanvas
     {
         [SerializeField]
-        private SimpleTweenComponent _raycastTween;
+        private TweenComponent _raycastTween;
 
         public override void EnableRaycast()
         {

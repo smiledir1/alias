@@ -1310,9 +1310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openTween:
-    rid: 1209635566911488012
+    rid: 7359819798562996230
   _closeTween:
-    rid: 1209635566911488011
+    rid: 7359819798562996234
   _teamName: {fileID: 6038252156794043843}
   _roundScoreLabel: {fileID: 6326816840890209543}
   _roundTimerSecondsLabel: {fileID: 3840291886115042126}
@@ -1324,42 +1324,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1209635566911488011
-      type: {class: TransparencyTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 5590386966689830896}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromOpacity: 1
-        _toOpacity: 0
-        _tweenObjectRenderer: {fileID: 7345138258335518968}
-    - rid: 1209635566911488012
-      type: {class: TransparencyTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+    - rid: 7359819798562996230
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
         _tweenObject: {fileID: 5590386966689830896}
         _startDelay: 0
@@ -1391,6 +1357,40 @@ MonoBehaviour:
           m_RotationOrder: 4
         _fromOpacity: 0
         _toOpacity: 1
+        _tweenObjectRenderer: {fileID: 7345138258335518968}
+    - rid: 7359819798562996234
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 5590386966689830896}
+        _startDelay: 0
+        _tweenTime: 0.3
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromOpacity: 1
+        _toOpacity: 0
         _tweenObjectRenderer: {fileID: 7345138258335518968}
 --- !u!225 &7345138258335518968
 CanvasGroup:

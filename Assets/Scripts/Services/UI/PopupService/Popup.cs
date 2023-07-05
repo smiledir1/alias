@@ -31,7 +31,7 @@ namespace Services.UI.PopupService
         }
 
 
-        internal bool CheckForCloseButton()
+        public bool CheckForCloseButton()
         {
             if (_closeButton == null)
             {

@@ -3,7 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Common.UniTaskAnimations
+namespace Common.UniTaskAnimations.SimpleTweens
 {
     [Serializable]
     public class RotationTween : SimpleTween
@@ -63,6 +63,7 @@ namespace Common.UniTaskAnimations
         {
             Vector3 startRotation;
             Vector3 toRotation;
+            AnimationCurve animationCurve;
             var tweenTime = TweenTime;
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
@@ -72,22 +73,33 @@ namespace Common.UniTaskAnimations
             {
                 startRotation = _toRotation;
                 toRotation = _fromRotation;
+                animationCurve = ReverseCurve;
             }
             else
             {
                 startRotation = _fromRotation;
                 toRotation = _toRotation;
+                animationCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
-                var localScale = TweenObject.transform.localScale;
-                startRotation = localScale;
-                var currentValue = localScale.x;
-                var currentPartValue = Mathf.Abs(toRotation.x - currentValue);
-                var maxValue = Mathf.Abs(startRotation.x - toRotation.x);
-                var normalizePart = currentPartValue / maxValue;
-                tweenTime *= normalizePart;
+                var localRotation = TweenObject.transform.eulerAngles;
+                var t = 1f;
+                if (toRotation.x - startRotation.x != 0f)
+                {
+                    t = (localRotation.x - startRotation.x) / (toRotation.x - startRotation.x);
+                }
+                else if (toRotation.y - startRotation.y != 0f)
+                {
+                    t = (localRotation.y - startRotation.y) / (toRotation.y - startRotation.y);
+                }
+                else if (toRotation.z - startRotation.z != 0f)
+                {
+                    t = (localRotation.z - startRotation.z) / (toRotation.z - startRotation.z);
+                }
+
+                time = tweenTime * t;
             }
 
             while (loop)
@@ -99,7 +111,7 @@ namespace Common.UniTaskAnimations
                     time += GetDeltaTime();
 
                     var normalizeTime = time / tweenTime;
-                    var lerpTime = AnimationCurve.Evaluate(normalizeTime);
+                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
                     var lerpValue = Vector3.LerpUnclamped(startRotation, toRotation, lerpTime);
 
                     TweenObject.transform.eulerAngles = lerpValue;

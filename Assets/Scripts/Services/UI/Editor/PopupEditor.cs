@@ -1,14 +1,16 @@
 ﻿#if UNITY_EDITOR
+using Services.UI.Editor;
 using UnityEditor;
+using UnityEngine;
 
 namespace Services.UI.PopupService.Editor
 {
     [CustomEditor(typeof(Popup), true)]
-    public class PopupEditor : UnityEditor.Editor
+    public class PopupEditor : UIObjectEditor
     {
         private Popup _target;
 
-        protected void OnEnable()
+        protected new void OnEnable()
         {
             _target = target as Popup;
         }
@@ -20,6 +22,8 @@ namespace Services.UI.PopupService.Editor
         
         private void DoDrawDefaultInspector(SerializedObject obj)
         {
+            if (GUILayout.Button("Create Addressable")) CreateAddressable(_target);
+            
             EditorGUI.BeginChangeCheck();
             obj.UpdateIfRequiredOrScript();
             var iterator = obj.GetIterator();

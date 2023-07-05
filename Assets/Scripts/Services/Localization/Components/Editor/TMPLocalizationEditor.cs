@@ -9,9 +9,9 @@ namespace Services.Localization.Components.Editor
     [CustomEditor(typeof(TMPLocalization))]
     public class TMPLocalizationEditor : UnityEditor.Editor
     {
-        private const string _pathToConfigs = "Assets/Configs";
-        private const int _drawCount = 10;
-        private const SystemLanguage _stripLanguage = SystemLanguage.English;
+        private const string PathToConfigs = "Assets/Configs";
+        private const int DrawCount = 10;
+        private const SystemLanguage StripLanguage = SystemLanguage.English;
 
         private TMPLocalization _tmpLocalization;
         private LocalizationData _localizationData;
@@ -27,7 +27,7 @@ namespace Services.Localization.Components.Editor
             _tmpLocalization = target as TMPLocalization;
 
             var assetsFilter = $"t:{nameof(LocalizationData)}";
-            var searchFolder = new[] {_pathToConfigs};
+            var searchFolder = new[] {PathToConfigs};
             var assets = AssetDatabase.FindAssets(assetsFilter, searchFolder);
             if (assets.Length == 0)
             {
@@ -120,7 +120,7 @@ namespace Services.Localization.Components.Editor
                         drawCount++;
                     }
 
-                    if (drawCount >= _drawCount)
+                    if (drawCount >= DrawCount)
                     {
                         break;
                     }
@@ -141,7 +141,7 @@ namespace Services.Localization.Components.Editor
                 }
             }
 
-            if (_findKeys.Count >= _drawCount)
+            if (_findKeys.Count >= DrawCount)
             {
                 GUILayout.Label("Еще..");
             }
@@ -196,16 +196,16 @@ namespace Services.Localization.Components.Editor
                 if (_findTexts.Count == 0)
                 {
                     var languageEntry = _localizationData.Languages.Find(
-                        x => x.SystemLanguage == _stripLanguage);
+                        x => x.SystemLanguage == StripLanguage);
 
                     var localizationEntry = languageEntry.LanguageWords.editorAsset.Entries.Find(
                         x => x.Key == componentKey);
                     _findTexts.Add(localizationEntry.Text);
-                    DrawLocalizationText(localizationEntry.Text, _stripLanguage.ToString());
+                    DrawLocalizationText(localizationEntry.Text, StripLanguage.ToString());
                 }
                 else
                 {
-                    DrawLocalizationText(_findTexts[0], _stripLanguage.ToString());
+                    DrawLocalizationText(_findTexts[0], StripLanguage.ToString());
                 }
 
                 GUILayout.Space(5);

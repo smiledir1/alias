@@ -558,6 +558,7 @@ GameObject:
   - component: {fileID: 126760786875773084}
   - component: {fileID: 6101067486117425831}
   - component: {fileID: 6279612389872245082}
+  - component: {fileID: 9105515841119511514}
   m_Layer: 5
   m_Name: MetaScreen
   m_TagString: Untagged
@@ -599,17 +600,83 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openTween:
-    rid: -2
+    rid: 7359819798562996229
   _closeTween:
-    rid: -2
+    rid: 7359819798562996233
   _continueGameButton: {fileID: 904261847171825463}
   _newGameButton: {fileID: 3860682873457958695}
   _settingsButton: {fileID: 1148256385563379406}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 7359819798562996229
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 3167975798666301352}
+        _startDelay: 0
+        _tweenTime: 0.3
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromOpacity: 0
+        _toOpacity: 1
+        _tweenObjectRenderer: {fileID: 9105515841119511514}
+    - rid: 7359819798562996233
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 3167975798666301352}
+        _startDelay: 0
+        _tweenTime: 0.3
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromOpacity: 1
+        _toOpacity: 0
+        _tweenObjectRenderer: {fileID: 9105515841119511514}
 --- !u!223 &6101067486117425831
 Canvas:
   m_ObjectHideFlags: 0
@@ -627,7 +694,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -648,6 +717,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &9105515841119511514
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3167975798666301352}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3394397766796684870
 GameObject:
   m_ObjectHideFlags: 0

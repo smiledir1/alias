@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Common.Extensions;
+using Common.UniTaskAnimations;
+using Common.UniTaskAnimations.SimpleTweens;
+using Common.Utils;
 using Cysharp.Threading.Tasks;
 using Game.UI.Popups.Confirm;
 using Game.UI.Popups.Message;
@@ -15,6 +18,7 @@ using Services.UserData;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Test Script for debug
 public class Test : MonoBehaviour
@@ -58,6 +62,50 @@ public class Test : MonoBehaviour
     //     public event Action TestAction;
     // }
     //
+    
+    // [SerializeReference]
+    // public AI SimpleARef;
+    //
+    // [SerializeReference]
+    // public AI SimpleA2Ref = new F();
+    //
+    // public interface AI
+    // {
+    //     
+    // }
+    //
+    // public interface BI
+    // {
+    //     
+    // }
+    //
+    // public class F : AI, BI
+    // {
+    //     public int Number = 5;
+    // }
+    
+    [SerializeReference]
+    public IBaseTween SimpleA1Ref;
+    
+    [SerializeReference]
+    public ITween SimpleA2Ref;   
+    
+    [SerializeReference]
+    public ITween SimpleA3Ref = new GroupTween(false);
+    
+    [SerializeReference]
+    public ITween SimpleA4Ref = new PositionTween();
+    
+    [SerializeField]
+    private Button _closeUi;
+
+    private void Awake()
+    {
+        _closeUi.SetClickListener(() =>
+        {
+            _popupService.CloseCurrentUIObject();
+        });
+    }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     private static void InitializeCode()
@@ -87,6 +135,8 @@ public class Test : MonoBehaviour
 
     private void OnValidate()
     {
+        Vector3 zazaz = new Vector3();
+        zazaz.x = 34f;
         if (number == 10)
         {
             var hasValue = _assetsService == null;

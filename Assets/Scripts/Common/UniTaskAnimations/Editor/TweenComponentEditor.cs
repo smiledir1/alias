@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace Common.UniTaskAnimations.Editor
 {
-    [CustomEditor(typeof(SimpleTweenComponent), true)]
-    public class SimpleTweenComponentEditor : UnityEditor.Editor
+    [CustomEditor(typeof(TweenComponent), true)]
+    public class TweenComponentEditor : UnityEditor.Editor
     {
-        private SimpleTweenComponent _target;
+        private TweenComponent _target;
 
         protected void OnEnable()
         {
-            _target = target as SimpleTweenComponent;
+            _target = target as TweenComponent;
         }
 
         public override void OnInspectorGUI()
@@ -54,7 +54,7 @@ namespace Common.UniTaskAnimations.Editor
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Start All (Reset)"))
             {
-                var allAnimations = _target.GetComponentsInChildren<SimpleTweenComponent>();
+                var allAnimations = _target.GetComponentsInChildren<TweenComponent>();
                 foreach (var animation in allAnimations)
                 {
                     animation.Tween.StartAnimation().Forget();
@@ -63,7 +63,7 @@ namespace Common.UniTaskAnimations.Editor
 
             if (GUILayout.Button("Stop All"))
             {
-                var allAnimations = _target.GetComponentsInChildren<SimpleTweenComponent>();
+                var allAnimations = _target.GetComponentsInChildren<TweenComponent>();
                 foreach (var animation in allAnimations)
                 {
                     animation.Tween.StopAnimation();
@@ -72,7 +72,7 @@ namespace Common.UniTaskAnimations.Editor
 
             if (GUILayout.Button("Reset All"))
             {
-                var allAnimations = _target.GetComponentsInChildren<SimpleTweenComponent>();
+                var allAnimations = _target.GetComponentsInChildren<TweenComponent>();
                 foreach (var animation in allAnimations)
                 {
                     animation.Tween.ResetValues();

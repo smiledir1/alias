@@ -1,12 +1,13 @@
 using System;
 using System.Threading;
+using Common.UniTaskAnimations.SimpleTweens;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Common.UniTaskAnimations
 {
     [Serializable]
-    public abstract class SimpleTween
+    public abstract class SimpleTween : ITween
     {
         #region View
 
@@ -81,7 +82,7 @@ namespace Common.UniTaskAnimations
 
         #region Animation
 
-        public bool ActiveAnimation => CancellationTokenSource != null;
+        public bool IsActiveAnimation => CancellationTokenSource != null;
 
         public GameObject TweenObject => _tweenObject;
 
@@ -110,7 +111,7 @@ namespace Common.UniTaskAnimations
                 Debug.LogError("Wrong Curve");
             }
 
-            if (reverse && ReverseCurve == null)
+            if (ReverseCurve == null && reverse && AnimationCurve != null)
             {
                 ReverseCurve = new AnimationCurve();
                 foreach (var k in AnimationCurve.keys)
@@ -163,16 +164,21 @@ namespace Common.UniTaskAnimations
 
         public static SimpleTween Clone(SimpleTween tween, GameObject targetObject = null)
         {
+            if (tween == null) return null;
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(tween.AnimationCurve);
+
             SimpleTween newTween = null;
             switch (tween)
             {
                 case PositionTween positionTween:
+
                     newTween = new PositionTween(
                         targetObject,
                         positionTween.StartDelay,
                         positionTween.TweenTime,
                         positionTween.Loop,
-                        positionTween.AnimationCurve,
+                        animationCurve,
                         positionTween.FromPosition,
                         positionTween.ToPosition);
                     break;
@@ -183,7 +189,7 @@ namespace Common.UniTaskAnimations
                         rotationTween.StartDelay,
                         rotationTween.TweenTime,
                         rotationTween.Loop,
-                        rotationTween.AnimationCurve,
+                        animationCurve,
                         rotationTween.FromRotation,
                         rotationTween.ToRotation);
                     break;
@@ -194,12 +200,12 @@ namespace Common.UniTaskAnimations
                         scaleTween.StartDelay,
                         scaleTween.TweenTime,
                         scaleTween.Loop,
-                        scaleTween.AnimationCurve,
+                        animationCurve,
                         scaleTween.FromScale,
                         scaleTween.ToScale);
                     break;
 
-                case TransparencyTween transparencyTween:
+                case TransparencyCanvasGroupTween transparencyTween:
                     CanvasGroup canvasGroup = null;
                     if (targetObject != null)
                     {
@@ -210,12 +216,12 @@ namespace Common.UniTaskAnimations
                         }
                     }
 
-                    newTween = new TransparencyTween(
+                    newTween = new TransparencyCanvasGroupTween(
                         targetObject,
                         transparencyTween.StartDelay,
                         transparencyTween.TweenTime,
                         transparencyTween.Loop,
-                        transparencyTween.AnimationCurve,
+                        animationCurve,
                         canvasGroup,
                         transparencyTween.FromOpacity,
                         transparencyTween.ToOpacity);
@@ -226,12 +232,17 @@ namespace Common.UniTaskAnimations
         }
 
         #endregion /Static
-    }
 
-    public enum LoopType
-    {
-        Once,
-        Loop,
-        PingPong
+        #region Editor
+
+#if UNITY_EDITOR
+
+        internal virtual void OnGuiChange()
+        {
+            
+        }
+#endif
+
+        #endregion
     }
 }
