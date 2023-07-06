@@ -150,5 +150,26 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         #endregion /Animation
+        
+        #region Static
+
+        public static RotationTween Clone(
+            RotationTween tween,
+            GameObject targetObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(tween.AnimationCurve);
+                    
+            return new RotationTween(
+                targetObject,
+                tween.StartDelay,
+                tween.TweenTime,
+                tween.Loop,
+                animationCurve,
+                tween.FromRotation,
+                tween.ToRotation);
+        }
+
+        #endregion
     }
 }

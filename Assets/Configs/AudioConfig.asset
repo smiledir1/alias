@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc13e13818914bc9aa452a49e33ed6ed, type: 3}
   m_Name: AudioConfig
   m_EditorClassIdentifier: 
-  _sounds: []
+  _sounds:
+  - _reference:
+      m_AssetGUID: 338c84afbc391a44e8e516621aa08281
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _type: 0
+    _id: click1

@@ -171,5 +171,26 @@ namespace Common.UniTaskAnimations.SimpleTweens
 #endif
 
         #endregion
+        
+        #region Static
+
+        public static PositionTween Clone(
+            PositionTween tween,
+            GameObject targetObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(tween.AnimationCurve);
+                    
+            return new PositionTween(
+                targetObject,
+                tween.StartDelay,
+                tween.TweenTime,
+                tween.Loop,
+                animationCurve,
+                tween.FromPosition,
+                tween.ToPosition);
+        }
+
+        #endregion
     }
 }

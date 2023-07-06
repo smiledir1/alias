@@ -17,6 +17,8 @@ namespace Services.Audio
         }
 
 #if UNITY_EDITOR
+        public List<SoundSettings> Sounds => _sounds;
+        
         public void AddSoundSettings(SoundSettings soundSettings)
         {
             if (_sounds.Exists(

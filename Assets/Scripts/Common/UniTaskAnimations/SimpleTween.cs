@@ -168,65 +168,25 @@ namespace Common.UniTaskAnimations
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
 
-            SimpleTween newTween = null;
-            switch (tween)
+            SimpleTween newTween = tween switch
             {
-                case PositionTween positionTween:
-
-                    newTween = new PositionTween(
-                        targetObject,
-                        positionTween.StartDelay,
-                        positionTween.TweenTime,
-                        positionTween.Loop,
-                        animationCurve,
-                        positionTween.FromPosition,
-                        positionTween.ToPosition);
-                    break;
-
-                case RotationTween rotationTween:
-                    newTween = new RotationTween(
-                        targetObject,
-                        rotationTween.StartDelay,
-                        rotationTween.TweenTime,
-                        rotationTween.Loop,
-                        animationCurve,
-                        rotationTween.FromRotation,
-                        rotationTween.ToRotation);
-                    break;
-
-                case ScaleTween scaleTween:
-                    newTween = new ScaleTween(
-                        targetObject,
-                        scaleTween.StartDelay,
-                        scaleTween.TweenTime,
-                        scaleTween.Loop,
-                        animationCurve,
-                        scaleTween.FromScale,
-                        scaleTween.ToScale);
-                    break;
-
-                case TransparencyCanvasGroupTween transparencyTween:
-                    CanvasGroup canvasGroup = null;
-                    if (targetObject != null)
-                    {
-                        canvasGroup = targetObject.GetComponent<CanvasGroup>();
-                        if (canvasGroup == null)
-                        {
-                            targetObject.AddComponent<CanvasGroup>();
-                        }
-                    }
-
-                    newTween = new TransparencyCanvasGroupTween(
-                        targetObject,
-                        transparencyTween.StartDelay,
-                        transparencyTween.TweenTime,
-                        transparencyTween.Loop,
-                        animationCurve,
-                        canvasGroup,
-                        transparencyTween.FromOpacity,
-                        transparencyTween.ToOpacity);
-                    break;
-            }
+                BezierPositionTween bezierPositionTween => 
+                    BezierPositionTween.Clone(bezierPositionTween, targetObject),
+                ColorImageTween colorImageTween => 
+                    ColorImageTween.Clone(colorImageTween, targetObject),
+                FillImageTween fillImageTween => 
+                    FillImageTween.Clone(fillImageTween, targetObject),
+                PositionTween positionTween => 
+                    PositionTween.Clone(positionTween, targetObject),
+                RotationTween rotationTween => 
+                    RotationTween.Clone(rotationTween, targetObject),
+                ScaleTween scaleTween => 
+                    ScaleTween.Clone(scaleTween, targetObject),
+                TransparencyCanvasGroupTween transparencyTween => 
+                    TransparencyCanvasGroupTween.Clone(transparencyTween,
+                    targetObject),
+                _ => null
+            };
 
             return newTween;
         }

@@ -154,5 +154,37 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         #endregion /Animation
+
+        #region Static
+
+        public static TransparencyCanvasGroupTween Clone(
+            TransparencyCanvasGroupTween tween,
+            GameObject targetObject = null)
+        {
+            CanvasGroup canvasGroup = null;
+            if (targetObject != null)
+            {
+                canvasGroup = targetObject.GetComponent<CanvasGroup>();
+                if (canvasGroup == null)
+                {
+                    targetObject.AddComponent<CanvasGroup>();
+                }
+            }
+            
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(tween.AnimationCurve);
+                    
+            return new TransparencyCanvasGroupTween(
+                targetObject,
+                tween.StartDelay,
+                tween.TweenTime,
+                tween.Loop,
+                animationCurve,
+                canvasGroup,
+                tween.FromOpacity,
+                tween.ToOpacity);
+        }
+
+        #endregion
     }
 }

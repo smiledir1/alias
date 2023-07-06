@@ -322,5 +322,29 @@ namespace Common.UniTaskAnimations.SimpleTweens
 #endif
 
         #endregion
+        
+        #region Static
+
+        public static BezierPositionTween Clone(
+            BezierPositionTween tween,
+            GameObject targetObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(tween.AnimationCurve);
+                    
+            return new BezierPositionTween(
+                targetObject,
+                tween.StartDelay,
+                tween.TweenTime,
+                tween.Loop,
+                animationCurve,
+                tween.FromPosition,
+                tween.ToPosition,
+                tween.Bezier1Offset,
+                tween.Bezier2Offset,
+                tween.Precision);
+        }
+
+        #endregion
     }
 }

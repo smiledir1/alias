@@ -150,5 +150,26 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         #endregion /Animation
+        
+        #region Static
+
+        public static ScaleTween Clone(
+            ScaleTween tween,
+            GameObject targetObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(tween.AnimationCurve);
+                    
+            return new ScaleTween(
+                targetObject,
+                tween.StartDelay,
+                tween.TweenTime,
+                tween.Loop,
+                animationCurve,
+                tween.FromScale,
+                tween.ToScale);
+        }
+
+        #endregion
     }
 }

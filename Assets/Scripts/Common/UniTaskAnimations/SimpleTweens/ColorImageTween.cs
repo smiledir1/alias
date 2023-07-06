@@ -163,5 +163,37 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         #endregion /Animation
+        
+        #region Static
+
+        public static ColorImageTween Clone(
+            ColorImageTween tween,
+            GameObject targetObject = null)
+        {
+            Image tweenImage = null;
+            if (targetObject != null)
+            {
+                tweenImage = targetObject.GetComponent<Image>();
+                if (tweenImage == null)
+                {
+                    targetObject.AddComponent<Image>();
+                }
+            }
+            
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(tween.AnimationCurve);
+                    
+            return new ColorImageTween(
+                targetObject,
+                tween.StartDelay,
+                tween.TweenTime,
+                tween.Loop,
+                animationCurve,
+                tweenImage,
+                tween.FromColor,
+                tween.ToColor);
+        }
+
+        #endregion
     }
 }
