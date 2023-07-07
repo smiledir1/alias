@@ -61,6 +61,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
             bool startFromCurrentValue = false,
             CancellationToken cancellationToken = default)
         {
+            if (TweenObject == null) return;
+            
             Vector3 startRotation;
             Vector3 toRotation;
             AnimationCurve animationCurve;

@@ -8,7 +8,7 @@ namespace Common.UniTaskAnimations.Editor
     [CustomEditor(typeof(TweenComponent), true)]
     public class TweenComponentEditor : UnityEditor.Editor
     {
-        private TweenComponent _target;
+        private static TweenComponent _target;
 
         protected void OnEnable()
         {
@@ -24,7 +24,8 @@ namespace Common.UniTaskAnimations.Editor
         private void DrawAnimationButtons()
         {
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Start (Reset)"))
+            
+            if (GUILayout.Button("Start (Reset) %#Z"))
             {
                 _target.Tween.StartAnimation().Forget();
             }
@@ -80,6 +81,12 @@ namespace Common.UniTaskAnimations.Editor
             }
 
             EditorGUILayout.EndHorizontal();
+        }
+
+        [MenuItem("Tools/Tween Animations/Start (Reset) Last Animation %#z")]
+        private static void SpecialCommand() 
+        {
+            _target.Tween.StartAnimation().Forget();
         }
     }
 }

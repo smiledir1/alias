@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Common.UniTaskAnimations.SimpleTweens
 {
     [Serializable]
-    public class PositionTween : SimpleTween
+    public class OffsetPositionTween : SimpleTween
     {
         #region View
 
@@ -28,13 +28,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         #region Constructor
 
-        public PositionTween()
+        public OffsetPositionTween()
         {
             _fromPosition = Vector3.zero;
             _toPosition = Vector3.zero;
         }
 
-        public PositionTween(
+        public OffsetPositionTween(
             GameObject tweenObject,
             float startDelay,
             float tweenTime,
@@ -63,6 +63,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (TweenObject == null) return;
             
+            var targetPosition = TweenObject.transform.localPosition;
+
             Vector3 startPosition;
             Vector3 toPosition;
             AnimationCurve animationCurve;
@@ -73,14 +75,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startPosition = _toPosition;
-                toPosition = _fromPosition;
+                startPosition = targetPosition + _toPosition;
+                toPosition = targetPosition + _fromPosition;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startPosition = _fromPosition;
-                toPosition = _toPosition;
+                startPosition = targetPosition + _fromPosition;
+                toPosition = targetPosition + _toPosition;
                 animationCurve = AnimationCurve;
             }
 
@@ -142,6 +144,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
+            //todo:
             TweenObject.transform.localPosition = _fromPosition;
         }
 
@@ -159,32 +162,31 @@ namespace Common.UniTaskAnimations.SimpleTweens
         [UnityEditor.DrawGizmo(UnityEditor.GizmoType.Selected)]
         private static void OnDrawGizmo(TweenComponent component, UnityEditor.GizmoType gizmoType)
         {
-            if (component.Tween is not PositionTween positionTween) return;
+            if (component.Tween is not OffsetPositionTween positionTween) return;
             Gizmos.color = Color.magenta;
-            var parentPosition =
+            var targetPosition =
                 positionTween.TweenObject == null ||
-                positionTween.TweenObject.transform == null ||
-                positionTween.TweenObject.transform.parent == null
+                positionTween.TweenObject.transform == null
                     ? Vector3.zero
-                    : positionTween.TweenObject.transform.parent.position;
-            var fromPosition = parentPosition + positionTween.FromPosition;
-            var toPosition = parentPosition + positionTween.ToPosition;
+                    : positionTween.TweenObject.transform.position;
+            var fromPosition = targetPosition + positionTween.FromPosition;
+            var toPosition = targetPosition + positionTween.ToPosition;
             Gizmos.DrawLine(fromPosition, toPosition);
         }
 #endif
 
         #endregion
-        
+
         #region Static
 
-        public static PositionTween Clone(
-            PositionTween tween,
+        public static OffsetPositionTween Clone(
+            OffsetPositionTween tween,
             GameObject targetObject = null)
         {
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
-            return new PositionTween(
+
+            return new OffsetPositionTween(
                 targetObject,
                 tween.StartDelay,
                 tween.TweenTime,

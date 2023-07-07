@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -7,137 +8,118 @@ using UnityEngine.UI;
 namespace Common.UniTaskAnimations.SimpleTweens
 {
     [Serializable]
-    public class ColorImageTween : SimpleTween
+    public class FrameByFrameTween : SimpleTween
     {
         #region View
-    
+
         [Header("Current Tween")]
         [SerializeField]
-        private Color _fromColor;
-    
-        [SerializeField]
-        private Color _toColor;
-    
-        [SerializeField]
-        private Graphic _tweenGraphic;
+        private Image _tweenImage;
         
+        [SerializeField]
+        private List<Sprite> _sprites;
+
         #endregion /View
-    
+        
         #region Properties
-    
-        public Color FromColor => _fromColor;
-        public Color ToColor => _toColor;
-        public Graphic TweenGraphic => _tweenGraphic;
-    
+
+        public Image TweenImage => _tweenImage;
+        public List<Sprite> Sprites => _sprites;
+
         #endregion
-    
+        
         #region Constructor
-    
-        public ColorImageTween()
+
+        public FrameByFrameTween()
         {
-            _fromColor = Color.white;
-            _toColor = Color.black;
+            _sprites = new List<Sprite>();
         }
-    
-        public ColorImageTween(
+
+        public FrameByFrameTween(
             GameObject tweenObject,
             float startDelay,
             float tweenTime,
             LoopType loop,
             AnimationCurve animationCurve,
-            Graphic tweenGraphic,
-            Color fromColor,
-            Color toColor) :
+            Image tweenImage,
+            List<Sprite> sprites) :
             base(tweenObject,
                 startDelay,
                 tweenTime,
                 loop,
                 animationCurve)
         {
-            _fromColor = fromColor;
-            _toColor = toColor;
-            _tweenGraphic = tweenGraphic;
+            _tweenImage = tweenImage;
+            _sprites = sprites;
         }
-    
-        #endregion
-        
-        #region Animation
 
+        #endregion /Constructor
+
+        #region Animation
         protected override async UniTask Tween(
             bool reverse = false,
             bool startFromCurrentValue = false,
             CancellationToken cancellationToken = default)
         {
-            if (_tweenGraphic == null)
+            if (_tweenImage == null)
             {
-                _tweenGraphic = _tweenObject.GetComponent<Graphic>();
-                if (_tweenGraphic == null) return;
+                _tweenImage = _tweenObject.GetComponent<Image>();
+                if (_tweenImage == null) return;
             }
             
-            Color startColor;
-            Color toColor;
+            if(_sprites.Count == 0) return;
+
+            int startSprite;
+            int toSprite;
             AnimationCurve animationCurve;
             var tweenTime = TweenTime;
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
             var loop = true;
-
+            
             if (reverse)
             {
-                startColor = _toColor;
-                toColor = _fromColor;
+                startSprite = _sprites.Count - 1;
+                toSprite = 0;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startColor = _fromColor;
-                toColor = _toColor;
+                startSprite = 0;
+                toSprite = _sprites.Count - 1;
                 animationCurve = AnimationCurve;
             }
-
+            
             if (startFromCurrentValue)
             {
-                var localColor = _tweenGraphic.color;
-                var t = 1f;
-                if (toColor.r - startColor.r != 0f)
-                {
-                    t = (localColor.r - startColor.r) / (toColor.r - startColor.r);
-                }
-                else if (toColor.g - startColor.g != 0f)
-                {
-                    t = (localColor.g - startColor.g) / (toColor.g - startColor.g);
-                }
-                else if (toColor.b - startColor.b != 0f)
-                {
-                    t = (localColor.b - startColor.b) / (toColor.b - startColor.b);
-                }
-                
-                else if (toColor.a - startColor.a != 0f)
-                {
-                    t = (localColor.a - startColor.a) / (toColor.a - startColor.a);
-                }
-
+                var currentPosition = GetImageSpritePosition();
+                var t = (currentPosition - startSprite) / (toSprite - startSprite);
                 time = tweenTime * t;
             }
 
             while (loop)
             {
-                _tweenGraphic.color = startColor;
-
+                _tweenImage.sprite = _sprites[startSprite];
+                
                 while (time < tweenTime)
                 {
                     time += GetDeltaTime();
 
                     var normalizeTime = time / tweenTime;
                     var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
-                    var lerpValue = Color.LerpUnclamped(startColor, toColor, lerpTime);
+                    var lerpValue = Mathf.LerpUnclamped(startSprite, toSprite, lerpTime);
 
-                    _tweenGraphic.color = lerpValue;
+                    if (_tweenImage == null) return;
+                    var currentSpritePos = (int) (toSprite > startSprite 
+                        ? Mathf.Ceil(lerpValue) 
+                        : Mathf.Floor(lerpValue));
+                    _tweenImage.sprite = _sprites[currentSpritePos];
                     await UniTask.Yield(cancellationToken);
                 }
-
-                _tweenGraphic.color = toColor;
-                time -= TweenTime;
+                
+                _tweenImage.sprite = _sprites[toSprite];
+                
+                time -= tweenTime;
 
                 switch (Loop)
                 {
@@ -149,8 +131,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
                         break;
 
                     case LoopType.PingPong:
-                        toColor = startColor;
-                        startColor = _tweenGraphic.color;
+                        if (_tweenImage == null) return;
+                        toSprite = startSprite;
+                        startSprite = GetImageSpritePosition();
                         break;
                 }
             }
@@ -158,28 +141,27 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            if (_tweenGraphic == null) _tweenGraphic = TweenObject.GetComponent<Graphic>();
-            _tweenGraphic.color = _fromColor;
+            if(_sprites == null || _sprites.Count == 0) return;
+            _tweenImage.sprite = _sprites[0];
         }
-
-        public void SetColor(Color from, Color to)
+        
+        public void SetSprites(List<Sprite> sprites)
         {
-            _fromColor = from;
-            _toColor = to;
+            _sprites = sprites;
         }
 
         #endregion /Animation
         
         #region Static
 
-        public static ColorImageTween Clone(
-            ColorImageTween tween,
+        public static FrameByFrameTween Clone(
+            FrameByFrameTween tween,
             GameObject targetObject = null)
         {
-            Graphic tweenImage = null;
+            Image tweenImage = null;
             if (targetObject != null)
             {
-                tweenImage = targetObject.GetComponent<Graphic>();
+                tweenImage = targetObject.GetComponent<Image>();
                 if (tweenImage == null)
                 {
                     targetObject.AddComponent<Image>();
@@ -188,16 +170,33 @@ namespace Common.UniTaskAnimations.SimpleTweens
             
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
-            return new ColorImageTween(
+            
+            return new FrameByFrameTween(
                 targetObject,
                 tween.StartDelay,
                 tween.TweenTime,
                 tween.Loop,
                 animationCurve,
                 tweenImage,
-                tween.FromColor,
-                tween.ToColor);
+                tween.Sprites);
+        }
+
+        #endregion
+
+        #region Private
+
+        private int GetImageSpritePosition()
+        {
+            if (_tweenImage == null || _tweenImage.sprite == null) return 0;
+            var imageSprite = _tweenImage.sprite;
+            for (var i = 0; i < _sprites.Count; i++)
+            {
+                var sprite = _sprites[i];
+                if (sprite != imageSprite) continue;
+                return i;
+            }
+
+            return 0;
         }
 
         #endregion
