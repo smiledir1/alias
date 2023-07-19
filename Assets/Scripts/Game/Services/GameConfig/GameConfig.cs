@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+#if UNITY_EDITOR
+using Common.Utils.Defines;
+#endif
 
 namespace Game.Services.GameConfig
 {
@@ -10,10 +14,29 @@ namespace Game.Services.GameConfig
 
         public bool IsDebug => _isDebug;
         
+#if UNITY_EDITOR
+
+        private const string DevDefine = "DEV_ENV";
+
         private void OnValidate()
         {
-            //TODO: if debug or release change ENV_DEV RELEASE_ENV
-            //TODO: make Debug Types
+            UnityEditor.PlayerSettings.GetScriptingDefineSymbols(
+                UnityEditor.Build.NamedBuildTarget.Standalone,
+                out var projectDefines);
+            var addDefines = new List<string>(projectDefines);
+            
+            if (_isDebug)
+            {
+                addDefines.Add(DevDefine);
+            }
+            else
+            {
+                addDefines.Remove(DevDefine);
+            }
+
+            DefinesUtils.SetDefinesForTargets(addDefines);
         }
+        
+#endif
     }
 }

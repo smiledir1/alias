@@ -35,7 +35,7 @@ MonoBehaviour:
   - Key: pack_name
     Text: Pack Name
   - Key: last_word
-    Text: Last word
+    Text: Last Word
   - Key: add_team
     Text: Add team
   - Key: remove_team
@@ -56,3 +56,35 @@ MonoBehaviour:
     Text: End round
   - Key: next_round
     Text: Next round
+  - Key: dynamite_team
+    Text: Explosive Guys
+  - Key: reading_stars_team
+    Text: Reading Stars
+  - Key: energized_team
+    Text: Energized
+  - Key: magic_walkers_team
+    Text: Magic Walkers
+  - Key: strong_athletes_team
+    Text: Strong Athletes
+  - Key: lucky_team
+    Text: Lucky Team
+  - Key: magic_dice_team
+    Text: Magic Dice
+  - Key: sea_dwellers_team
+    Text: 'Sea Dwellers '
+  - Key: meat_lovers_team
+    Text: Meat Lovers
+  - Key: penpals_team
+    Text: Penpals
+  - Key: strict_engineers_team
+    Text: Strict Engineers
+  - Key: magnetized_team
+    Text: Magnetized
+  - Key: adventurers_team
+    Text: Adventurers
+  - Key: brave_chemists_team
+    Text: Brave Chemists
+  - Key: teams
+    Text: Teams
+  - Key: free_skip
+    Text: Free Skip

@@ -27,6 +27,12 @@ namespace Services.UI
             AssetsService = assetsService;
         }
 
+        protected override async UniTask OnInitialize()
+        {
+            await WaitForServiceInitialize(AssetsService);
+            await base.OnInitialize();
+        }
+
         protected abstract UICanvas Canvas { get; }
 
         #region IUIService

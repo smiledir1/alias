@@ -1,16 +1,19 @@
-﻿using System;
+﻿using UnityEngine;
 
 namespace Game.Services.Teams
 {
-    [Serializable]
     public class Team
     {
-        public string Name;
+        public Sprite Icon { get; }
+        public string Name { get; }
+        public string Id { get; }
         public int Score;
 
-        public Team(string name)
+        internal Team(string name, string id, Sprite icon)
         {
             Name = name;
+            Id = id;
+            Icon = icon;
         }
     }
 }

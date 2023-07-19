@@ -982,6 +982,8 @@ RectTransform:
   - {fileID: 171288103}
   - {fileID: 1625717939}
   - {fileID: 1824757568}
+  - {fileID: 1399916444}
+  - {fileID: 1890892919}
   - {fileID: 1385501078}
   - {fileID: 889698137}
   - {fileID: 158273863}
@@ -1018,7 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bf62b1350f2304aa4c2fd0a40f0e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  number: 0
+  number: 10
   number2: 0
   round: 0
   SimpleA1Ref:
@@ -2691,6 +2693,150 @@ MonoBehaviour:
   _text: {fileID: 1385501079}
   _recalculateOnEnable: 0
   _key: 
+--- !u!1 &1399916443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399916444}
+  - component: {fileID: 1399916448}
+  - component: {fileID: 1399916447}
+  - component: {fileID: 1399916446}
+  - component: {fileID: 1399916445}
+  m_Layer: 5
+  m_Name: Image (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1399916444
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399916443}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219788314}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -200, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1399916445
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399916443}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1399916446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399916443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startOnAwake: 0
+  _tween:
+    rid: 7359820116790083585
+  references:
+    version: 2
+    RefIds:
+    - rid: 7359820116790083585
+      type: {class: BezierPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 1399916443}
+        _startDelay: 0
+        _tweenTime: 1
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromPosition: {x: 200, y: 100, z: 0}
+        _toPosition: {x: 600, y: 200, z: 0}
+        _bezier1Offset: {x: 100, y: -100, z: 0}
+        _bezier2Offset: {x: -100, y: 100, z: 0}
+        _precision: 0.05
+--- !u!114 &1399916447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399916443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1399916448
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399916443}
+  m_CullTransparentMesh: 1
 --- !u!1 &1548491029
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,33 +2927,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         _tweenImage: {fileID: 1548491032}
-        _sprites:
-        - {fileID: 21300000, guid: 47fb68e3b75d8bb4da791d346d95c452, type: 3}
-        - {fileID: 21300000, guid: d34ac7f82c300124abb2683fc99450cf, type: 3}
-        - {fileID: 21300000, guid: d14c1b1fa52141c4cb95474bbb04c49c, type: 3}
-        - {fileID: 21300000, guid: 8b45b004e9756d041afb9dc1f35e43e3, type: 3}
-        - {fileID: 21300000, guid: 2761d528bab9d1f4f82f260b56c65695, type: 3}
-        - {fileID: 21300000, guid: a4d14272830618440afedb0e895c0f25, type: 3}
-        - {fileID: 21300000, guid: fbb0c259c598bfc45a9f30da07cb7038, type: 3}
-        - {fileID: 21300000, guid: 205bfedb72573ea43b338189d1218995, type: 3}
-        - {fileID: 21300000, guid: df846928da4bed14e8eb437733681a64, type: 3}
-        - {fileID: 21300000, guid: a9554730f2c10c843aa72eaaa715b185, type: 3}
-        - {fileID: 21300000, guid: 5121c95eb4ff1da47bd68e8cf22c0901, type: 3}
-        - {fileID: 21300000, guid: 9fa0aa3014f2118458054d5d1bb7d648, type: 3}
-        - {fileID: 21300000, guid: 980af79543b8e3b4ab95dfbf6688c516, type: 3}
-        - {fileID: 21300000, guid: 2a8c96d6a32c8ed47ad3aa37ac463fcf, type: 3}
-        - {fileID: 21300000, guid: bb70326529cdce1449041d52d2de4929, type: 3}
-        - {fileID: 21300000, guid: d648a67b013b87e4792683d52663e353, type: 3}
-        - {fileID: 21300000, guid: 5273724e68cc1d04aa008c127d4b4079, type: 3}
-        - {fileID: 21300000, guid: dfc39aa0e79bb3b468c395239bfdbae2, type: 3}
-        - {fileID: 21300000, guid: 1d1fcedd3e9688a4082be21cc06b6cbd, type: 3}
-        - {fileID: 21300000, guid: 3c6488b2ecfd7184cac72057bbde6176, type: 3}
-        - {fileID: 21300000, guid: 796356d4ad906e3438aaba4647ab03d1, type: 3}
-        - {fileID: 21300000, guid: f4f6935965bba0042b4a0fcd2b6e4c54, type: 3}
-        - {fileID: 21300000, guid: eb84dad872973564b8ffd3055e99c676, type: 3}
-        - {fileID: 21300000, guid: 36b0f0f14f17c9746a3ab9d83c2fa5fa, type: 3}
-        - {fileID: 21300000, guid: b830565e3f9144b44add25c1933aa6fc, type: 3}
-        - {fileID: 21300000, guid: 89f0fffec05e1bc448aafc669d6ceeb1, type: 3}
+        _sprites: []
 --- !u!114 &1548491032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3418,7 +3538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181.69327, y: 0}
+  m_AnchoredPosition: {x: -200, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1824757569
@@ -3485,12 +3605,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startOnAwake: 0
   _tween:
-    rid: -2
+    rid: 7359820116790083585
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 7359820116790083585
+      type: {class: BezierPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 1824757567}
+        _startDelay: 0
+        _tweenTime: 1
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromPosition: {x: -200, y: -100, z: 0}
+        _toPosition: {x: 200, y: 100, z: 0}
+        _bezier1Offset: {x: 100, y: -100, z: 0}
+        _bezier2Offset: {x: -100, y: 100, z: 0}
+        _precision: 0.05
 --- !u!1 &1856536986
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,6 +3754,150 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856536986}
+  m_CullTransparentMesh: 1
+--- !u!1 &1890892918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890892919}
+  - component: {fileID: 1890892923}
+  - component: {fileID: 1890892922}
+  - component: {fileID: 1890892921}
+  - component: {fileID: 1890892920}
+  m_Layer: 5
+  m_Name: Image (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1890892919
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890892918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219788314}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -200, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1890892920
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890892918}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1890892921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890892918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startOnAwake: 0
+  _tween:
+    rid: 7359820116790083585
+  references:
+    version: 2
+    RefIds:
+    - rid: 7359820116790083585
+      type: {class: BezierPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 1890892918}
+        _startDelay: 0
+        _tweenTime: 1
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _fromPosition: {x: 600, y: 200, z: 0}
+        _toPosition: {x: 400, y: -100, z: 0}
+        _bezier1Offset: {x: 100, y: -100, z: 0}
+        _bezier2Offset: {x: -100, y: 100, z: 0}
+        _precision: 0.05
+--- !u!114 &1890892922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890892918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1890892923
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890892918}
   m_CullTransparentMesh: 1
 --- !u!1 &2103471131
 GameObject:

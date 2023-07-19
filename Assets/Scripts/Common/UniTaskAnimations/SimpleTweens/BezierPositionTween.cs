@@ -56,7 +56,6 @@ namespace Common.UniTaskAnimations.SimpleTweens
             _bezier1Offset = Vector3.zero;
             _bezier2Offset = Vector3.zero;
             _precision = 0.05f;
-
         }
 
         public BezierPositionTween(
@@ -100,7 +99,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             CancellationToken cancellationToken = default)
         {
             if (TweenObject == null) return;
-            
+
             Vector3 startPosition;
             Vector3 toPosition;
             AnimationCurve animationCurve;
@@ -125,7 +124,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (startFromCurrentValue)
             {
                 var localPosition = TweenObject.transform.localPosition;
-                
+
                 var t2 = 0f;
                 for (var i = 1; i < _bezierPoints.Length; i++)
                 {
@@ -147,14 +146,15 @@ namespace Common.UniTaskAnimations.SimpleTweens
                         : qty > qtz
                             ? qty
                             : qtz;
-                    if (qtx is < 0 or > 1 || 
-                        qty is < 0 or > 1 || 
+                    if (qtx is < 0 or > 1 ||
+                        qty is < 0 or > 1 ||
                         qtz is < 0 or > 1) continue;
                     var fromLen = _bezierLens[i - 1];
                     var toLen = _bezierLens[i];
                     var ft = fromLen + (toLen - fromLen) * qt;
                     t2 = ft;
                 }
+
                 time = tweenTime * t2;
             }
 
@@ -289,17 +289,20 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (component.Tween is not BezierPositionTween bezierPositionTween) return;
             if (bezierPositionTween.Precision < 0.001f) return;
             Gizmos.color = Color.magenta;
-            var parentPosition =
-                bezierPositionTween.TweenObject == null ||
-                bezierPositionTween.TweenObject.transform == null
-                    ? Vector3.zero
-                    : bezierPositionTween.TweenObject.transform.parent.position;
+            var parent = bezierPositionTween.TweenObject == null ||
+                         bezierPositionTween.TweenObject.transform == null ||
+                         bezierPositionTween.TweenObject.transform.parent == null
+                ? null
+                : bezierPositionTween.TweenObject.transform.parent;
+            
+            var parentPosition = parent == null ? Vector3.zero : parent.position;
+            var parentScale = parent == null ? Vector3.one : parent.lossyScale;
 
-            var b0 = parentPosition + bezierPositionTween.FromPosition;
-            var b3 = parentPosition + bezierPositionTween.ToPosition;
+            var b0 = parentPosition + GetScaledPosition(parentScale, bezierPositionTween.FromPosition);
+            var b3 = parentPosition + GetScaledPosition(parentScale, bezierPositionTween.ToPosition);
 
-            var b1 = b0 + bezierPositionTween.Bezier1Offset;
-            var b2 = b3 + bezierPositionTween.Bezier2Offset;
+            var b1 = b0 + GetScaledPosition(parentScale, bezierPositionTween.Bezier1Offset);
+            var b2 = b3 + GetScaledPosition(parentScale, bezierPositionTween.Bezier2Offset);
 
             var list = new List<Vector3>();
             for (var i = 0f; i < 1f; i += bezierPositionTween.Precision)
@@ -316,7 +319,24 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Gizmos.DrawLineStrip(list.ToArray(), false);
         }
 
-        internal override void OnGuiChange()
+        private static Vector3 GetParentPosition(BezierPositionTween bezierPositionTween)
+        {
+            return bezierPositionTween.TweenObject == null ||
+                   bezierPositionTween.TweenObject.transform == null ||
+                   bezierPositionTween.TweenObject.transform.parent == null
+                ? Vector3.zero
+                : bezierPositionTween.TweenObject.transform.parent.position;
+        }
+
+        private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position)
+        {
+            return new Vector3(
+                position.x * scale.x,
+                position.y * scale.y,
+                position.z * scale.z);
+        }
+
+        public override void OnGuiChange()
         {
             CreatePoints();
             base.OnGuiChange();
@@ -324,7 +344,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 #endif
 
         #endregion
-        
+
         #region Static
 
         public static BezierPositionTween Clone(
@@ -333,7 +353,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
+
             return new BezierPositionTween(
                 targetObject,
                 tween.StartDelay,

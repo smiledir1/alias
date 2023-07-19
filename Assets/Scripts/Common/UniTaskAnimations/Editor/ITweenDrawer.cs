@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿using Cysharp.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 namespace Common.UniTaskAnimations.Editor
 {
     [CustomPropertyDrawer(typeof(ITween), true)]
-    public class ITweenDrawer : IBaseTweenDrawer
+    public class TweenDrawer : BaseTweenDrawer
     {
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
@@ -23,6 +24,11 @@ namespace Common.UniTaskAnimations.Editor
 
             var propertyRect = new Rect(rect.x, rect.y + propertyYAdd, rect.width, rect.height);
             EditorGUI.PropertyField(propertyRect, property, label, true);
+            
+            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
+            {
+                OnGuiChange(baseTween).Forget();
+            }
         }
     }
 }

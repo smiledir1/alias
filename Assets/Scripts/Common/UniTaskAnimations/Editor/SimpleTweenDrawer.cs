@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Common.UniTaskAnimations.Editor
 {
     [CustomPropertyDrawer(typeof(SimpleTween), true)]
-    public class SimpleTweenDrawer : IBaseTweenDrawer
+    public class SimpleTweenDrawer : BaseTweenDrawer
     {
         #region Consts
 
@@ -76,10 +76,10 @@ namespace Common.UniTaskAnimations.Editor
 
             var propertyRect = new Rect(rect.x, rect.y + propertyYAdd, rect.width, rect.height);
             EditorGUI.PropertyField(propertyRect, property, label, true);
-
-            if (GUI.changed && property.managedReferenceValue is SimpleTween simpleTween)
+            
+            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
             {
-                OnGuiChange(simpleTween).Forget();
+                OnGuiChange(baseTween).Forget();
             }
         }
 
@@ -214,12 +214,6 @@ namespace Common.UniTaskAnimations.Editor
             {
                 property.managedReferenceValue = null;
             }
-        }
-
-        private async UniTask OnGuiChange(SimpleTween simpleTween)
-        {
-            await UniTask.Yield();
-            simpleTween.OnGuiChange();
         }
     }
 }

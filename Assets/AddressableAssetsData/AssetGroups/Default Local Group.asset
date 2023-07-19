@@ -112,6 +112,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a74a899cebd29eb4db1dda676981f2e8
+    m_Address: SettingsPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b96e70b32370c34c947c56588333286
+    m_Address: Configs/TeamsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8ef4acff4c0e254086846b7eb2bc2b1
+    m_Address: TeamsPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17a2a59cab09df14c81e8e7acaef4b6a
+    m_Address: Configs/AnalyticsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a170fa117788cb49a578ae53fae002c, type: 2}
   m_SchemaSet:

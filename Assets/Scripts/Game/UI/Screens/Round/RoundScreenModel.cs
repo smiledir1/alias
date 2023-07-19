@@ -10,12 +10,15 @@ namespace Game.UI.Screens.Round
         Team RoundTeam,
         int RoundTimeSeconds,
         WordsPacksConfigItem WordsPacksConfigItem,
-        bool IsUnlimitedTimeForLastWord) : UIModel
+        bool IsUnlimitedTimeForLastWord,
+        bool FreeSkip) : UIModel
     {
         public Team RoundTeam { get; } = RoundTeam;
         public int RoundTimeSeconds { get; } = RoundTimeSeconds;
         public WordsPacksConfigItem WordsPacksConfigItem { get; } = WordsPacksConfigItem;
         public bool IsUnlimitedTimeForLastWord { get; } = IsUnlimitedTimeForLastWord;
+
+        public bool FreeSkip { get; } = FreeSkip;
 
         private UniTaskCompletionSource<List<RoundWord>> _completionSource;
 

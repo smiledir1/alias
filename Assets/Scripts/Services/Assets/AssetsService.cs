@@ -11,7 +11,7 @@ namespace Services.Assets
 
         protected override async UniTask OnInitialize()
         {
-            await Addressables.InitializeAsync();
+            await Addressables.InitializeAsync().ToUniTask();
         }
 
         #endregion
@@ -56,7 +56,7 @@ namespace Services.Assets
             var assetReference = GetAssetReference<T>();
             return await assetReference.LoadAssetAsync<T>();
         }
-        
+
         public bool TryGetAssetReference<T>(out AssetReference reference) where T : class
         {
             reference = GetAssetReference<T>();

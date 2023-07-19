@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.IO;
 using System.Text;
 using UnityEditor;
@@ -292,6 +293,8 @@ namespace Services.Localization.Editor
                 {
                     newTranslations[j, i] = _translations[j, i];
                 }
+                
+                newTranslations[translationsLengthJ, i] = string.Empty;
             }
 
             _translations = newTranslations;
@@ -321,7 +324,6 @@ namespace Services.Localization.Editor
             }
 
             _translations = newTranslations;
-            
         }
 
         private void Up()
@@ -351,9 +353,11 @@ namespace Services.Localization.Editor
                     var newEntry = new LocalizationEntry(key, text);
                     entries.Add(newEntry);
                 }
+
                 EditorUtility.SetDirty(language.LanguageWords.editorAsset);
             }
 
+            AssetDatabase.SaveAssets();
             Debug.Log("Save complete");
         }
 
@@ -383,3 +387,4 @@ namespace Services.Localization.Editor
         }
     }
 }
+#endif

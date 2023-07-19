@@ -2,5 +2,6 @@
 {
     public interface IService
     {
+        ServiceState State { get; }
     }
 }

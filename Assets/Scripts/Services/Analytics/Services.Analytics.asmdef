@@ -1,0 +1,21 @@
+{
+    "name": "Services.Analytics",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6f68e653e2f5b73408647a53e621f73e",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:5ad6eba178a70d34880242f102a32626",
+        "GUID:acc38f75b801c57408bda314ca9a15a0",
+        "GUID:5e0b455853cd340e0813387221dfd501",
+        "GUID:fe25561d224ed4743af4c60938a59d0b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

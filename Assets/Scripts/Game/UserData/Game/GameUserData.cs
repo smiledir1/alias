@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Game.Services.Teams;
 using Services.UserData;
 
-namespace Game.UserData
+namespace Game.UserData.Game
 {
     [Serializable]
     public class GameUserData : UserDataObject
@@ -13,9 +12,9 @@ namespace Game.UserData
         public string WordsPacksConfigItemName;
         public int RoundTimeSeconds;
         public bool IsUnlimitedTimeForLastWord;
-        public List<Team> Teams;
+        public bool FreeSkip;
+        public List<TeamData> Teams;
         public int CurrentRound;
-        
-        //TODO: Add played words
+        public List<int> PlayedWordsIndexes;
     }
 }

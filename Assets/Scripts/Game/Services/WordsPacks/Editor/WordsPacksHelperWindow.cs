@@ -61,6 +61,8 @@ namespace Game.Services.WordsPacks.Editor
             foreach (var word in words)
             {
                 var clearWord = word.Replace("  ", "");
+                clearWord = clearWord.Replace('\r', '\0');
+                clearWord = clearWord.Replace('\n', '\0');
                 if(wordsHash.Contains(clearWord)) continue;
                 wordsHash.Add(clearWord);
                 wordsList.Add(clearWord);

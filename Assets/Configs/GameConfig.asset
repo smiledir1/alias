@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15afed57997b40d3bbbfe89283bf9f9f, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  _isDebug: 0
+  _isDebug: 1

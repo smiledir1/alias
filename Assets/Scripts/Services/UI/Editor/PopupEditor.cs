@@ -8,11 +8,11 @@ namespace Services.UI.PopupService.Editor
     [CustomEditor(typeof(Popup), true)]
     public class PopupEditor : UIObjectEditor
     {
-        private Popup _target;
+        private Popup _targetPopup;
 
         protected new void OnEnable()
         {
-            _target = target as Popup;
+            _targetPopup = target as Popup;
         }
         
         public override void OnInspectorGUI()
@@ -22,7 +22,7 @@ namespace Services.UI.PopupService.Editor
         
         private void DoDrawDefaultInspector(SerializedObject obj)
         {
-            if (GUILayout.Button("Create Addressable")) CreateAddressable(_target);
+            if (GUILayout.Button("Create Addressable")) CreateAddressable(_targetPopup);
             
             EditorGUI.BeginChangeCheck();
             obj.UpdateIfRequiredOrScript();

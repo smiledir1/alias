@@ -15,9 +15,9 @@ namespace Services.UI.PopupService
 
         protected override async UniTask OnInitialize()
         {
+            await base.OnInitialize();
             _popupCanvas = await AssetsService.InstantiateAsync<PopupCanvas>();
             _popupCanvas.DisableRaycast();
-            await base.OnInitialize();
         }
     }
 }

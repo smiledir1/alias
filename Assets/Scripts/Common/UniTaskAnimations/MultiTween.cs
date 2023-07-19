@@ -86,9 +86,15 @@ namespace Common.UniTaskAnimations
 
         private void CheckInitialize()
         {
+            if (_animations == null) _animations = new List<ITween>();
             if (_animations.Count == 0) InitializeChildren();
         }
         
-        
+#if UNITY_EDITOR
+        public virtual void OnGuiChange()
+        {
+            _animations = new List<ITween>();
+        }
+#endif
     }
 }

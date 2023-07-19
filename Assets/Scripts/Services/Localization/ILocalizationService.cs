@@ -7,7 +7,9 @@ namespace Services.Localization
     public interface ILocalizationService : IService
     {
         SystemLanguage CurrentLanguage { get; }
+        string CurrentLanguageLocalizeName { get; }
         string GetText(string key);
         UniTask ChangeLanguage(SystemLanguage language);
+        UniTask<SystemLanguage> ChangeLanguage();
     }
 }

@@ -2,7 +2,11 @@
 using Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Game.Services.WordsPacks;
+using Game.UserData;
+using Game.UserData.Game;
+using Services.Helper;
 using Services.UI;
+using Services.UserData;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,11 +43,14 @@ namespace Game.UI.Screens.Round
         private float _roundTimerSeconds;
         private WordsPack _wordsPack;
         private readonly HashSet<string> _playedPackWordsHash = new();
-        private readonly List<string> _playedPackWords = new();
+        private readonly List<int> _playedPackWordsIndexes = new();
         private readonly List<RoundWord> _playedRoundWords = new();
         private string _currentWord;
         private int _generatedCount;
         private bool _waitLastWord;
+
+        [Service]
+        private static IUserDataService _userData;
 
         protected override UniTask OnOpenAsync()
         {
@@ -75,7 +82,7 @@ namespace Game.UI.Screens.Round
             _roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
             _generatedCount = 0;
             _playedPackWordsHash.Clear();
-            _playedPackWords.Clear();
+            _playedPackWordsIndexes.Clear();
             _playedRoundWords.Clear();
             _lastWord.SetActive(false);
         }
@@ -91,7 +98,7 @@ namespace Game.UI.Screens.Round
 
         private void OnWrongAnswerButton()
         {
-            _roundScore--;
+            if (!Model.FreeSkip) _roundScore--;
             _roundScoreLabel.text = _roundScore.ToString();
             var newRoundWord = new RoundWord(_currentWord, false);
             _playedRoundWords.Add(newRoundWord);
@@ -102,6 +109,7 @@ namespace Game.UI.Screens.Round
         // но тут не критично
         private async UniTask StartGame()
         {
+            LoadWords();
             ShowNewWord();
             await UniTask.Yield();
             while (_roundTimerSeconds > 0)
@@ -124,6 +132,30 @@ namespace Game.UI.Screens.Round
             }
         }
 
+        private void LoadWords()
+        {
+            var gameUserData = _userData.GetData<GameUserData>();
+            if (gameUserData.PlayedWordsIndexes == null) return;
+            foreach (var indexes in gameUserData.PlayedWordsIndexes)
+            {
+                _generatedCount++;
+                _playedPackWordsHash.Add(_wordsPack.Words[indexes]);
+            }
+        }
+
+        private void SaveWords()
+        {
+            var gameUserData = _userData.GetData<GameUserData>();
+            var saveIndexes = new List<int>();
+            foreach (var index in _playedPackWordsIndexes)
+            {
+                _generatedCount++;
+                saveIndexes.Add(index);
+            }
+
+            gameUserData.PlayedWordsIndexes = saveIndexes;
+        }
+
         private void ShowNewWord()
         {
             _currentWord = GetNewWord();
@@ -133,21 +165,22 @@ namespace Game.UI.Screens.Round
         private string GetNewWord()
         {
             string word;
+            int wordPos;
+            var wordsPackWordsCount = _wordsPack.Words.Count;
             do
             {
-                var wordsPackWordsCount = _wordsPack.Words.Count;
-                var wordPos = Random.Range(0, wordsPackWordsCount);
+                wordPos = Random.Range(0, wordsPackWordsCount);
                 word = _wordsPack.Words[wordPos];
             } while (_playedPackWordsHash.Contains(word));
 
-            _playedPackWords.Add(word);
+            _playedPackWordsIndexes.Add(wordPos);
             _playedPackWordsHash.Add(word);
             _generatedCount++;
-
-            if (_playedPackWords.Count <= _generatedCount)
+            
+            if (wordsPackWordsCount <= _generatedCount)
             {
                 _generatedCount = 0;
-                _playedPackWords.Clear();
+                _playedPackWordsIndexes.Clear();
                 _playedPackWordsHash.Clear();
             }
 
@@ -156,6 +189,7 @@ namespace Game.UI.Screens.Round
 
         private void FinishRound()
         {
+            SaveWords();
             Model.EndRound(_playedRoundWords);
             Close();
         }

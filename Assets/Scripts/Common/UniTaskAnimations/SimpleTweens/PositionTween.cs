@@ -62,7 +62,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             CancellationToken cancellationToken = default)
         {
             if (TweenObject == null) return;
-            
+
             Vector3 startPosition;
             Vector3 toPosition;
             AnimationCurve animationCurve;
@@ -161,20 +161,31 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (component.Tween is not PositionTween positionTween) return;
             Gizmos.color = Color.magenta;
-            var parentPosition =
-                positionTween.TweenObject == null ||
-                positionTween.TweenObject.transform == null ||
-                positionTween.TweenObject.transform.parent == null
-                    ? Vector3.zero
-                    : positionTween.TweenObject.transform.parent.position;
-            var fromPosition = parentPosition + positionTween.FromPosition;
-            var toPosition = parentPosition + positionTween.ToPosition;
+            var parent = positionTween.TweenObject == null ||
+                         positionTween.TweenObject.transform == null ||
+                         positionTween.TweenObject.transform.parent == null
+                ? null
+                : positionTween.TweenObject.transform.parent;
+
+            var parentPosition = parent == null ? Vector3.zero : parent.position;
+            var parentScale = parent == null ? Vector3.one : parent.lossyScale;
+
+            var fromPosition = parentPosition + GetScaledPosition(parentScale, positionTween.FromPosition);
+            var toPosition = parentPosition + GetScaledPosition(parentScale, positionTween.ToPosition);
             Gizmos.DrawLine(fromPosition, toPosition);
+        }
+
+        private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position)
+        {
+            return new Vector3(
+                position.x * scale.x,
+                position.y * scale.y,
+                position.z * scale.z);
         }
 #endif
 
         #endregion
-        
+
         #region Static
 
         public static PositionTween Clone(
@@ -183,7 +194,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
+
             return new PositionTween(
                 targetObject,
                 tween.StartDelay,

@@ -1,11 +1,15 @@
 using Game.Services.Teams;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.UI.Screens.Teams
 {
     public class TeamItem : MonoBehaviour
     {
+        [SerializeField]
+        private Image _icon;
+            
         [SerializeField]
         private TextMeshProUGUI _name;
         
@@ -20,6 +24,7 @@ namespace Game.UI.Screens.Teams
             _name.text = team.Name;
             _score.text = team.Score.ToString();
             _roundTeamMark.SetActive(isRoundTeam);
+            _icon.sprite = team.Icon;
         }
     }
 }

@@ -3,9 +3,11 @@ using Common.Extensions;
 using Common.StateMachine;
 using Cysharp.Threading.Tasks;
 using Game.Services.GameConfig;
+using Game.Services.Teams;
 using Game.Services.WordsPacks;
 using Game.States;
-using Game.UserData;
+using Game.UserData.Game;
+using Services.Analytics;
 using Services.Assets;
 using Services.Audio;
 using Services.Localization;
@@ -21,7 +23,7 @@ namespace Game.Bootstrap
 {
     public static class Bootstrapper
     {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Initialize()
         {
             InitializeAsync().SafeForget();
@@ -50,7 +52,7 @@ namespace Game.Bootstrap
 
             var entryGameState = new EntryGameState();
             await entryGameState.GoToState();
-            
+
             var metaState = new MetaGameState();
             metaState.GoToState().Forget();
 
@@ -82,9 +84,8 @@ namespace Game.Bootstrap
             var localizationService = new LocalizationService(assetsService);
             ServiceLocator.AddService<ILocalizationService>(localizationService);
 
-            var userDataService = new UserDataService(new List<UserDataObject>()
+            var userDataService = new UserDataService(new List<UserDataObject>
             {
-                new SettingsUserData(),
                 new GameUserData()
             }, false);
             ServiceLocator.AddService<IUserDataService>(userDataService);
@@ -94,6 +95,13 @@ namespace Game.Bootstrap
 
             var screenService = new ScreenService(assetsService);
             ServiceLocator.AddService<IScreenService>(screenService);
+
+#if DEV_ENV
+            var analyticsService = new FakeAnalyticsService();
+#else
+            var analyticsService = new AnalyticsService(assetsService);
+#endif
+            ServiceLocator.AddService<IAnalyticsService>(analyticsService);
 
             // TODO: SceneLoader (Curtains?)
             // TODO: HttpService? (Get, Post)
@@ -108,9 +116,12 @@ namespace Game.Bootstrap
 
             var gameConfigService = new GameConfigService(assetsService);
             ServiceLocator.AddService<IGameConfigService>(gameConfigService);
-            
+
             var wordsPacksService = new WordsPacksService(assetsService);
             ServiceLocator.AddService<IWordsPacksService>(wordsPacksService);
+
+            var teamsService = new TeamsService(assetsService, localizationService);
+            ServiceLocator.AddService<ITeamsService>(teamsService);
         }
     }
 }

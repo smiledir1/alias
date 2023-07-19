@@ -1,7 +1,6 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.AddressableAssets;
-using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 
 namespace Services.UI.Editor
@@ -51,6 +50,7 @@ namespace Services.UI.Editor
             var assetGuid = AssetDatabase.AssetPathToGUID(assetPath);
             settings.CreateAssetReference(assetGuid);
             var entry = settings.FindAssetEntry(assetGuid);
+            if(entry == null) return;
             entry.address = target.GetType().Name;
         }
     }

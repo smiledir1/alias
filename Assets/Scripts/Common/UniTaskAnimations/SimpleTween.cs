@@ -170,21 +170,25 @@ namespace Common.UniTaskAnimations
 
             SimpleTween newTween = tween switch
             {
-                BezierPositionTween bezierPositionTween => 
+                BezierPositionTween bezierPositionTween =>
                     BezierPositionTween.Clone(bezierPositionTween, targetObject),
-                ColorImageTween colorImageTween => 
+                ColorImageTween colorImageTween =>
                     ColorImageTween.Clone(colorImageTween, targetObject),
-                FillImageTween fillImageTween => 
+                FillImageTween fillImageTween =>
                     FillImageTween.Clone(fillImageTween, targetObject),
-                PositionTween positionTween => 
+                FrameByFrameTween frameByFrameTween =>
+                    FrameByFrameTween.Clone(frameByFrameTween, targetObject),
+                OffsetPositionTween offsetPositionTween =>
+                    OffsetPositionTween.Clone(offsetPositionTween, targetObject),
+                PositionTween positionTween =>
                     PositionTween.Clone(positionTween, targetObject),
-                RotationTween rotationTween => 
+                RotationTween rotationTween =>
                     RotationTween.Clone(rotationTween, targetObject),
-                ScaleTween scaleTween => 
+                ScaleTween scaleTween =>
                     ScaleTween.Clone(scaleTween, targetObject),
-                TransparencyCanvasGroupTween transparencyTween => 
+                TransparencyCanvasGroupTween transparencyTween =>
                     TransparencyCanvasGroupTween.Clone(transparencyTween,
-                    targetObject),
+                        targetObject),
                 _ => null
             };
 
@@ -196,10 +200,8 @@ namespace Common.UniTaskAnimations
         #region Editor
 
 #if UNITY_EDITOR
-
-        internal virtual void OnGuiChange()
+        public virtual void OnGuiChange()
         {
-            
         }
 #endif
 

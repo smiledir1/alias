@@ -144,8 +144,6 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            //todo:
-            TweenObject.transform.localPosition = _fromPosition;
         }
 
         public void SetPosition(Vector3 from, Vector3 to)

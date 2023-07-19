@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ab448095c94a299a64807dd8a4f0af, type: 3}
+  m_Name: TeamsConfig
+  m_EditorClassIdentifier: 
+  Teams:
+  - _id: 0
+    _nameLocalizationKey: dynamite_team
+    _icon: {fileID: 21300000, guid: 1b3c97fb49d1c1d4aa244db090c49bda, type: 3}
+  - _id: 1
+    _nameLocalizationKey: reading_stars_team
+    _icon: {fileID: 21300000, guid: 3fa2a209ca4531046aa7ebd87dff62d5, type: 3}
+  - _id: 2
+    _nameLocalizationKey: energized_team
+    _icon: {fileID: 21300000, guid: 4ba6383ee1778c44fb66391aa237cca1, type: 3}
+  - _id: 3
+    _nameLocalizationKey: magic_walkers_team
+    _icon: {fileID: 21300000, guid: 2c05d264400b3bf4e9f5e1d90bb9c99e, type: 3}
+  - _id: 4
+    _nameLocalizationKey: strong_athletes_team
+    _icon: {fileID: 21300000, guid: 6edcdb25eff356f4b93faadfc37a69c2, type: 3}
+  - _id: 5
+    _nameLocalizationKey: lucky_team
+    _icon: {fileID: 21300000, guid: d9727533bf3aaed49a1260ae6c2a6da1, type: 3}
+  - _id: 6
+    _nameLocalizationKey: magic_dice_team
+    _icon: {fileID: 21300000, guid: 29e9daab57d256548b60e9ab89b6c93a, type: 3}
+  - _id: 7
+    _nameLocalizationKey: sea_dwellers_team
+    _icon: {fileID: 21300000, guid: a93aefe91c50c5f4687382bf50a2a647, type: 3}
+  - _id: 8
+    _nameLocalizationKey: meat_lovers_team
+    _icon: {fileID: 21300000, guid: 2336a209bef899a479726f6b953db417, type: 3}
+  - _id: 9
+    _nameLocalizationKey: penpals_team
+    _icon: {fileID: 21300000, guid: f803ce40694c2694c948fefcc32338ab, type: 3}
+  - _id: 10
+    _nameLocalizationKey: strict_engineers_team
+    _icon: {fileID: 21300000, guid: 0935ae4f65a095c49bc4e63240f00bc0, type: 3}
+  - _id: 11
+    _nameLocalizationKey: magnetized_team
+    _icon: {fileID: 21300000, guid: 1355960f9c75a09419cc3232c32fa207, type: 3}
+  - _id: 12
+    _nameLocalizationKey: adventurers_team
+    _icon: {fileID: 21300000, guid: d5a3f91fe046c9f4e998936afa908cc7, type: 3}
+  - _id: 13
+    _nameLocalizationKey: brave_chemists_team
+    _icon: {fileID: 21300000, guid: d367082460df01e4d9edd084a28c0250, type: 3}

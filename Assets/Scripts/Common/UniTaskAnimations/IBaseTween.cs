@@ -24,5 +24,15 @@ namespace Common.UniTaskAnimations
             };
             return newTween;
         }
+        
+        #region Editor
+
+#if UNITY_EDITOR
+        void OnGuiChange()
+        {
+        }
+#endif
+
+        #endregion
     }
 }

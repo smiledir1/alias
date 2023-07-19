@@ -7,9 +7,11 @@ namespace Game.UI.Screens.EndRound
 {
     public record EndRoundScreenModel(
         Team CurrentTeam,
-        List<RoundWord> RoundWords) : UIModel
+        List<RoundWord> RoundWords,
+        bool FreeSkip) : UIModel
     {
         public List<RoundWord> RoundWords { get; } = RoundWords;
         public Team CurrentTeam { get; } = CurrentTeam;
+        public bool FreeSkip { get; } = FreeSkip;
     }
 }

@@ -11,7 +11,7 @@ namespace Services.Localization.Components
         private TextMeshProUGUI _text;
 
         [SerializeField]
-        private bool _recalculateOnEnable;
+        private bool _recalculateOnEnable = true;
 
         [SerializeField]
         private string _key;
@@ -34,7 +34,7 @@ namespace Services.Localization.Components
         public void Recalculate()
         {
             if (_text == null) return;
-            _localizationService?.GetText(_key);
+            _text.text = _localizationService?.GetText(_key);
         }
 
 #if UNITY_EDITOR

@@ -15,7 +15,7 @@ namespace Services.Audio
 
         #endregion
 
-        private IAssetsService _assetsService;
+        private readonly IAssetsService _assetsService;
 
         private GameObject _soundsRootGameObject;
         private AudioConfig _config;
@@ -34,6 +34,8 @@ namespace Services.Audio
 
         protected override async UniTask OnInitialize()
         {
+            await WaitForServiceInitialize(_assetsService);
+            
             _soundsRootGameObject = new GameObject("Audio");
             _config = await _assetsService.LoadAsset<AudioConfig>();
             _sfxVolume = PlayerPrefs.GetFloat(_sfxVolumeKey, _sfxVolume);

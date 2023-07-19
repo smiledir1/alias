@@ -6,7 +6,6 @@ using UnityEngine;
 namespace Services.UI
 {
     //TODO: обдумать насчет модели / контроллера / презентера / етц
-
     public abstract class UIObject : MonoBehaviour
     {
         #region View
@@ -101,12 +100,12 @@ namespace Services.UI
             State = UIObjectState.Opened;
         }
 
-        public void SetOpenAnimation(ITween openTween)
+        internal void SetOpenAnimation(ITween openTween)
         {
             _openTween = openTween;
         }
-
-        public void SetCloseAnimation(ITween closeTween)
+       
+        internal void SetCloseAnimation(ITween closeTween)
         {
             _closeTween = closeTween;
         }

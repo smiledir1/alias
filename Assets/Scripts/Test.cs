@@ -1,27 +1,22 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 using Common.Extensions;
 using Common.UniTaskAnimations;
 using Common.UniTaskAnimations.SimpleTweens;
-using Common.Utils;
 using Cysharp.Threading.Tasks;
 using Game.UI.Popups.Confirm;
 using Game.UI.Popups.Message;
-using Game.UserData;
 using Services.Assets;
 using Services.Helper;
 using Services.UI;
 using Services.UI.PopupService;
 using Services.UserData;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 //Test Script for debug
-public class Test : MonoBehaviour
+public class Test : MonoBehaviour, IHasServices
 {
     [Service]
     private static IAssetsService _assetsService;
@@ -135,13 +130,13 @@ public class Test : MonoBehaviour
 
     private void OnValidate()
     {
-        Vector3 zazaz = new Vector3();
-        zazaz.x = 34f;
-        if (number == 10)
-        {
-            var hasValue = _assetsService == null;
-            Debug.Log(hasValue);
-        }
+        // Vector3 zazaz = new Vector3();
+        // zazaz.x = 34f;
+        // if (number == 10)
+        // {
+        //     var hasValue = _assetsService == null;
+        //     Debug.Log(hasValue);
+        // }
 
         //ShowRound();
         //if (number != 5) return;
@@ -156,36 +151,88 @@ public class Test : MonoBehaviour
         // }
 
         //TestUserData();
+       // CheckServices();
+    }
+
+    private void CheckServices()
+    {
+        if(number < 5) return;
+        
+        var time = Time.realtimeSinceStartup;
+        
+        var iServices = typeof(IHasServices);
+            
+        var attributeType = typeof(ServiceAttribute);
+            
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        foreach (var assembly in assemblies)
+        {
+            var types = assembly.GetTypes();
+            foreach (var type in types)
+            {
+                if (!type.IsSubclassOf(typeof(MonoBehaviour)) ||
+                    !type.IsSubclassOf(iServices)) continue;
+                  
+                var fields = type.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
+                foreach (var fieldInfo in fields)
+                {
+                    var isCustom = false;
+                    foreach (var attributeData in fieldInfo.CustomAttributes)
+                    {
+                        if (attributeData.AttributeType != attributeType) continue;
+                        isCustom = true;
+                        break;
+                    }
+                      
+                    if (isCustom)
+                    {
+                        // var fieldType = fieldInfo.FieldType;
+                        // if (!Services.TryGetValue(fieldType, out var service))
+                        // {
+                        //     Debug.Log($"Not Added Service: {fieldType} on Type: {type}");
+                        //     continue;
+                        // }
+                        //    
+                        // fieldInfo.SetValue(null, service);
+                    }
+                }
+            }
+        }
+
+        var finalTime = Time.realtimeSinceStartup - time;
+        Debug.Log(finalTime);
     }
 
     private void ShowRound()
     {
+        //Unity.Services.Analytics.AnalyticsService
         Debug.Log(number2.ToString($"F{round}"));
     }
 
     private UserDataService _userDataService;
     private void TestUserData()
     {
-        if (number == 5)
-        {
-            _userDataService = new UserDataService(new List<UserDataObject>()
-            {
-                new SettingsUserData()
-            }, false);
-            _userDataService.Initialize().Forget();
-        }
         
-        if (number == 6)
-        {
-            _userDataService.SaveUserData();
-        }
+        // if (number == 5)
+        // {
+        //     _userDataService = new UserDataService(new List<UserDataObject>()
+        //     {
+        //       //  new SettingsUserData()
+        //     }, false);
+        //     _userDataService.Initialize().Forget();
+        // }
+        //
+        // if (number == 6)
+        // {
+        //     _userDataService.SaveUserData();
+        // }
 
-        if (number == 7)
-        {
-            var settings = _userDataService.GetData<SettingsUserData>();
-            settings.VibrationEnabled = !settings.VibrationEnabled;
-            Debug.Log($"vv: {settings.VibrationEnabled}");
-        }
+        // if (number == 7)
+        // {
+        //    // var settings = _userDataService.GetData<SettingsUserData>();
+        //     settings.VibrationEnabled = !settings.VibrationEnabled;
+        //     Debug.Log($"vv: {settings.VibrationEnabled}");
+        // }
     }
     
     // private B _b;
@@ -205,49 +252,49 @@ public class Test : MonoBehaviour
     // {
     //     Debug.Log("Deleg2");
     // }
-    
-    [CustomPropertyDrawer(typeof(A), true)]
-    public class ADrawer : PropertyDrawer
-    {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        {
-            EditorGUI.PropertyField(position, property, label, true);
-
-            // var context = property.serializedObject.context;
-            // var iterator = property.serializedObject.GetIterator();
-            // foreach (var iter in iterator)
-            // {
-            //     var propertyyy = iter as SerializedProperty;
-            //     Debug.Log($"enter {propertyyy.type} {propertyyy.propertyType}");
-            //     
-            //     if (iter == null)
-            //     {
-            //         Debug.Log("null");
-            //     }
-            //     
-            //     if (propertyyy.type == "A")
-            //     {
-            //         Debug.Log("type A");
-            //     }
-            // }
-            if (GUI.Button(new Rect(position.xMin + 50f, position.yMax - 20f, position.width - 100f, 20f), "button"))
-            {
-                if (property.managedReferenceId == -1)
-                {
-                    Debug.Log("Shoud Be SerializeReference");
-                    return;
-                }
-
-                var reff = property.managedReferenceValue;
-                property.managedReferenceValue = new B();
-            }
-        }
-
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return EditorGUI.GetPropertyHeight(property) + 20f;
-        }
-    }
+    //
+    // [CustomPropertyDrawer(typeof(A), true)]
+    // public class ADrawer : PropertyDrawer
+    // {
+    //     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    //     {
+    //         EditorGUI.PropertyField(position, property, label, true);
+    //
+    //         // var context = property.serializedObject.context;
+    //         // var iterator = property.serializedObject.GetIterator();
+    //         // foreach (var iter in iterator)
+    //         // {
+    //         //     var propertyyy = iter as SerializedProperty;
+    //         //     Debug.Log($"enter {propertyyy.type} {propertyyy.propertyType}");
+    //         //     
+    //         //     if (iter == null)
+    //         //     {
+    //         //         Debug.Log("null");
+    //         //     }
+    //         //     
+    //         //     if (propertyyy.type == "A")
+    //         //     {
+    //         //         Debug.Log("type A");
+    //         //     }
+    //         // }
+    //         if (GUI.Button(new Rect(position.xMin + 50f, position.yMax - 20f, position.width - 100f, 20f), "button"))
+    //         {
+    //             if (property.managedReferenceId == -1)
+    //             {
+    //                 Debug.Log("Shoud Be SerializeReference");
+    //                 return;
+    //             }
+    //
+    //             var reff = property.managedReferenceValue;
+    //             property.managedReferenceValue = new B();
+    //         }
+    //     }
+    //
+    //     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    //     {
+    //         return EditorGUI.GetPropertyHeight(property) + 20f;
+    //     }
+    // }
 
     [Serializable]
     public abstract class A

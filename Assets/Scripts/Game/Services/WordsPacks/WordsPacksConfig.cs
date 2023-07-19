@@ -10,7 +10,7 @@ namespace Game.Services.WordsPacks
 
 #if UNITY_EDITOR
         private const int ExampleWords = 10;
-        
+
         [NaughtyAttributes.Button]
         private void CalculateWords()
         {
@@ -29,20 +29,25 @@ namespace Game.Services.WordsPacks
 
         public static string GetExampleWords(WordsPack wordsPack)
         {
+            var usedIndexes = new HashSet<int>(ExampleWords);
             var wordsList = wordsPack.Words;
             var wordsCount = wordsList.Count > ExampleWords ? ExampleWords : wordsList.Count;
             var exampleWords = string.Empty;
             for (var i = 0; i < wordsCount; i++)
             {
-                var rndPos = Random.Range(0, wordsList.Count);
+                int rndPos;
+                do
+                {
+                    rndPos = Random.Range(0, wordsList.Count);
+                } while (usedIndexes.Contains(rndPos));
+
                 var word = wordsList[rndPos];
                 exampleWords += $"{word}; ";
+                usedIndexes.Add(rndPos);
             }
 
             return exampleWords;
         }
-        
-       
 #endif
     }
 }

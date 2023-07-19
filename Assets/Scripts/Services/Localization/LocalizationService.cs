@@ -22,6 +22,12 @@ namespace Services.Localization
 
         public SystemLanguage CurrentLanguage => _language;
 
+        public string CurrentLanguageLocalizeName =>
+            _localizationData.Languages.Find(
+                    l => l.SystemLanguage == _language)
+                .LanguageLocalizeName;
+
+
         public LocalizationService(IAssetsService assetsService)
         {
             _assetsService = assetsService;
@@ -29,9 +35,11 @@ namespace Services.Localization
 
         protected override async UniTask OnInitialize()
         {
-            // load all
+            await WaitForServiceInitialize(_assetsService);
+            
             _localizationData = await _assetsService.LoadAsset<LocalizationData>();
-            _language = (SystemLanguage) PlayerPrefs.GetInt(LanguageKey, (int) SystemLanguage.English);
+            var systemLanguage = Application.systemLanguage;
+            _language = (SystemLanguage) PlayerPrefs.GetInt(LanguageKey, (int) systemLanguage);
             await FillLocalizationSet(_language);
         }
 
@@ -42,7 +50,7 @@ namespace Services.Localization
             {
                 var languageDataItem = _localizationData.Languages[i];
                 if (languageDataItem.SystemLanguage != language) continue;
-                
+
                 var languageDataReference = languageDataItem.LanguageWords;
                 var languageData = languageDataReference.Asset == null
                     ? await languageDataReference.LoadAssetAsync()
@@ -67,6 +75,22 @@ namespace Services.Localization
 
             PlayerPrefs.SetInt(LanguageKey, (int) language);
             PlayerPrefs.Save();
+        }
+
+        public async UniTask<SystemLanguage> ChangeLanguage()
+        {
+            var languages = _localizationData.Languages;
+            var currentLanguageIndex = languages.FindIndex(
+                l => l.SystemLanguage == _language);
+            currentLanguageIndex++;
+            if (currentLanguageIndex == languages.Count) currentLanguageIndex = 0;
+            var language = languages[currentLanguageIndex].SystemLanguage;
+            _language = language;
+            await FillLocalizationSet(language);
+
+            PlayerPrefs.SetInt(LanguageKey, (int) language);
+            PlayerPrefs.Save();
+            return language;
         }
     }
 }

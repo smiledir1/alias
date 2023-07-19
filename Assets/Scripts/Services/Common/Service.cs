@@ -27,5 +27,10 @@ namespace Services.Common
         protected virtual UniTask OnInitialize() => UniTask.CompletedTask;
         protected virtual UniTask OnStart() => UniTask.CompletedTask;
         protected virtual UniTask OnDispose() => UniTask.CompletedTask;
+
+        protected static async UniTask WaitForServiceInitialize(IService service)
+        {
+            while (service.State != ServiceState.Initialized) await UniTask.Yield();
+        }
     }
 }

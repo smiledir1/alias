@@ -7,7 +7,7 @@ using Game.UI.Screens.EndRound;
 using Game.UI.Screens.Round;
 using Game.UI.Screens.StartRound;
 using Game.UI.Screens.Teams;
-using Game.UserData;
+using Game.UserData.Game;
 using Services.Helper;
 using Services.UI.ScreenService;
 using Services.UserData;
@@ -18,19 +18,24 @@ namespace Game.States
     {
         [Service]
         private static IScreenService _screenService;
-        
+
         [Service]
         private static IUserDataService _userData;
-        
+
         [Service]
         private static IWordsPacksService _wordsPacksService;
+        
+        [Service]
+        private static ITeamsService _teamsService;
+
 
         private readonly bool _isNewGame;
         private WordsPacksConfigItem _wordsPacksConfigItem;
         private int _roundTimeSeconds;
         private bool _isUnlimitedTimeForLastWord;
+        private bool _freeSkip;
         private List<Team> _teams;
-        
+
         /// <summary>
         /// Load Last Game
         /// </summary>
@@ -38,7 +43,7 @@ namespace Game.States
         {
             _isNewGame = false;
         }
-        
+
         /// <summary>
         /// Create new game
         /// </summary>
@@ -50,12 +55,15 @@ namespace Game.States
             WordsPacksConfigItem wordsPacksConfigItem,
             int roundTimeSeconds,
             bool isUnlimitedTimeForLastWord,
+            bool freeSkip,
             List<Team> teams)
         {
+            // TODO: объеденить в Settings?
             _isNewGame = true;
             _wordsPacksConfigItem = wordsPacksConfigItem;
             _roundTimeSeconds = roundTimeSeconds;
             _isUnlimitedTimeForLastWord = isUnlimitedTimeForLastWord;
+            _freeSkip = freeSkip;
             _teams = teams;
         }
 
@@ -66,12 +74,17 @@ namespace Game.States
             {
                 currentRound = LoadGame();
             }
-            
+            else
+            {
+                var gameUserData = _userData.GetData<GameUserData>();
+                gameUserData.PlayedWordsIndexes = new List<int>();
+            }
+
             if (_wordsPacksConfigItem.WordsPack.Asset == null)
             {
                 await _wordsPacksConfigItem.WordsPack.LoadAssetAsync();
             }
-            
+
             StartRound(currentRound).Forget();
 
             await base.OnEnterState();
@@ -87,13 +100,6 @@ namespace Game.States
                 return;
             }
 
-            isStartRound = await ConfirmStartRoundScreen(round);
-            if (!isStartRound)
-            {
-                StartRound(round).Forget();
-                return;
-            }
-
             var playedWords = await PlayGameRound(round);
             if (playedWords == null)
             {
@@ -102,6 +108,8 @@ namespace Game.States
             }
 
             await EndGameRound(round, playedWords);
+            var newRound = round + 1;
+            StartRound(newRound).Forget();
         }
 
         private async UniTask<bool> StartRoundScreen(int round)
@@ -122,17 +130,6 @@ namespace Game.States
             metaState.GoToState().Forget();
         }
 
-        private async UniTask<bool> ConfirmStartRoundScreen(int round)
-        {
-            var currentRound = round - 1;
-            var teamsCount = _teams.Count;
-            var roundTeamPos = currentRound % teamsCount;
-            var roundTeam = _teams[roundTeamPos];
-            var startGameScreenModel = new StartRoundScreenModel(roundTeam);
-            _screenService.ShowAsync<StartRoundScreen>(startGameScreenModel).Forget();
-            return await startGameScreenModel.WaitForStart();
-        }
-
         private async UniTask<List<RoundWord>> PlayGameRound(int round)
         {
             var currentRound = round - 1;
@@ -143,7 +140,8 @@ namespace Game.States
                 roundTeam,
                 _roundTimeSeconds,
                 _wordsPacksConfigItem,
-                _isUnlimitedTimeForLastWord);
+                _isUnlimitedTimeForLastWord,
+                _freeSkip);
             _screenService.ShowAsync<RoundScreen>(gameScreenModel).Forget();
             return await gameScreenModel.WaitForRound();
         }
@@ -154,11 +152,9 @@ namespace Game.States
             var teamsCount = _teams.Count;
             var roundTeamPos = currentRound % teamsCount;
             var roundTeam = _teams[roundTeamPos];
-            var endGameScreenModel = new EndRoundScreenModel(roundTeam, roundWords);
+            var endGameScreenModel = new EndRoundScreenModel(roundTeam, roundWords, _freeSkip);
             _screenService.ShowAsync<EndRoundScreen>(endGameScreenModel).Forget();
             await endGameScreenModel.WaitForClose();
-            var newRound = round + 1;
-            StartRound(newRound).Forget();
         }
 
         private void SaveGame(int round)
@@ -167,7 +163,8 @@ namespace Game.States
             gameUserData.WordsPacksConfigItemName = _wordsPacksConfigItem.Name;
             gameUserData.RoundTimeSeconds = _roundTimeSeconds;
             gameUserData.IsUnlimitedTimeForLastWord = _isUnlimitedTimeForLastWord;
-            gameUserData.Teams = _teams;
+            gameUserData.FreeSkip = _freeSkip;
+            gameUserData.Teams = _teamsService.CreateDataFromTeams(_teams);
             gameUserData.CurrentRound = round;
             _userData.SaveUserData<GameUserData>();
         }
@@ -175,12 +172,13 @@ namespace Game.States
         private int LoadGame()
         {
             var gameUserData = _userData.GetData<GameUserData>();
-            _wordsPacksConfigItem =_wordsPacksService.WordsPacksConfig.WordsPacksItems.Find(
+            _wordsPacksConfigItem = _wordsPacksService.WordsPacksConfig.WordsPacksItems.Find(
                 x => x.Name == gameUserData.WordsPacksConfigItemName);
             if (_wordsPacksConfigItem == null) return 0;
             _roundTimeSeconds = gameUserData.RoundTimeSeconds;
             _isUnlimitedTimeForLastWord = gameUserData.IsUnlimitedTimeForLastWord;
-            _teams = gameUserData.Teams;
+            _freeSkip = gameUserData.FreeSkip;
+            _teams = _teamsService.CreateTeamsFromData(gameUserData.Teams);;
             return gameUserData.CurrentRound;
         }
     }

@@ -21,6 +21,8 @@ namespace Game.Services.GameConfig
 
         protected override async UniTask OnInitialize()
         {
+            await WaitForServiceInitialize(_assetsService);
+            
             GameConfig = await _assetsService.LoadAsset<GameConfig>();
         }
     }

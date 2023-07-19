@@ -1,11 +1,12 @@
 ﻿using Common.UniTaskAnimations.SimpleTweens;
+using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
 namespace Common.UniTaskAnimations.Editor
 {
     [CustomPropertyDrawer(typeof(IBaseTween), true)]
-    public class IBaseTweenDrawer : PropertyDrawer
+    public class BaseTweenDrawer : PropertyDrawer
     {
         protected static float _buttonHeight = 20f;
         protected static float Space => 10f;
@@ -30,6 +31,11 @@ namespace Common.UniTaskAnimations.Editor
 
             var propertyRect = new Rect(rect.x, rect.y + propertyYAdd, rect.width, rect.height);
             EditorGUI.PropertyField(propertyRect, property, label, true);
+            
+            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
+            {
+                OnGuiChange(baseTween).Forget();
+            }
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -121,6 +127,12 @@ namespace Common.UniTaskAnimations.Editor
                     property.managedReferenceValue = baseTween;
                 }
             }
+        }
+        
+        protected async UniTask OnGuiChange(IBaseTween baseTween)
+        {
+            await UniTask.Yield();
+            baseTween.OnGuiChange();
         }
     }
 }

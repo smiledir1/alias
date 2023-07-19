@@ -10,11 +10,11 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
     {
         private string _textFieldValue;
         private int _framesCount;
-
+        private bool _expand;
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
             base.OnGUI(rect, property, label);
-
+            
             DrawCalculate(rect, property, label);
         }
 

@@ -19,20 +19,20 @@ namespace Game.UI.Screens.EndRound
 
         [SerializeField]
         private Button _closeButton;
-        
+
         private int _currentScore;
         private readonly List<WordElement> _wordElements = new();
 
         protected override UniTask OnOpenAsync()
         {
             _closeButton.SetClickListener(Close);
-            
+
             ClearAll();
-            
+
             _currentScore = 0;
             foreach (var roundWord in Model.RoundWords)
             {
-                _currentScore += roundWord.IsRightAnswered ? 1 : -1;
+                _currentScore += CountScore(roundWord.IsRightAnswered);
                 CreateWordElement(roundWord);
             }
 
@@ -55,6 +55,7 @@ namespace Game.UI.Screens.EndRound
                 wordElement.AnsweredChange -= OnWordElementAnsweredChange;
                 Destroy(wordElement.gameObject);
             }
+
             _wordElements.Clear();
         }
 
@@ -72,6 +73,15 @@ namespace Game.UI.Screens.EndRound
         {
             _currentScore += isOn ? 1 : -1;
             _scoreLabel.text = _currentScore.ToString();
+        }
+
+        private int CountScore(bool isRightAnswered)
+        {
+            return isRightAnswered
+                ? 1
+                : Model.FreeSkip
+                    ? 0
+                    : -1;
         }
     }
 }
