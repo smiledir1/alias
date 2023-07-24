@@ -9,7 +9,7 @@ namespace Game.Services.WordsPacks
         public List<WordsPacksConfigItem> WordsPacksItems;
 
 #if UNITY_EDITOR
-        private const int ExampleWords = 10;
+        private const int ExampleWords = 5;
 
         [NaughtyAttributes.Button]
         private void CalculateWords()
@@ -42,6 +42,8 @@ namespace Game.Services.WordsPacks
                 } while (usedIndexes.Contains(rndPos));
 
                 var word = wordsList[rndPos];
+                if (word.EndsWith('\r')) word = word[..^1];
+                if (word.EndsWith('\n')) word = word[..^1];
                 exampleWords += $"{word}; ";
                 usedIndexes.Add(rndPos);
             }

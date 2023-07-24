@@ -88,3 +88,15 @@ MonoBehaviour:
     Text: Teams
   - Key: free_skip
     Text: Free Skip
+  - Key: stop
+    Text: Stop
+  - Key: in_pack_
+    Text: 'Word in pack: {0}'
+  - Key: rules_text
+    Text: In Alias, players form teams of two or more people. The goal of the game
+      is to explain a word to another player using synonyms, antonyms, descriptions,
+      and various clues. Players cross out fields on the game sheet according to
+      the number of words correctly guessed. The team that reaches the finish line
+      first wins the game!
+  - Key: rules
+    Text: Rules

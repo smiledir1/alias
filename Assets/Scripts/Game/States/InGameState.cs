@@ -5,9 +5,9 @@ using Game.Services.Teams;
 using Game.Services.WordsPacks;
 using Game.UI.Screens.EndRound;
 using Game.UI.Screens.Round;
-using Game.UI.Screens.StartRound;
 using Game.UI.Screens.Teams;
 using Game.UserData.Game;
+using Services.Analytics;
 using Services.Helper;
 using Services.UI.ScreenService;
 using Services.UserData;
@@ -24,10 +24,12 @@ namespace Game.States
 
         [Service]
         private static IWordsPacksService _wordsPacksService;
-        
+
         [Service]
         private static ITeamsService _teamsService;
 
+        [Service]
+        private static IAnalyticsService _analyticsService;
 
         private readonly bool _isNewGame;
         private WordsPacksConfigItem _wordsPacksConfigItem;
@@ -47,10 +49,6 @@ namespace Game.States
         /// <summary>
         /// Create new game
         /// </summary>
-        /// <param name="wordsPacksConfigItem"></param>
-        /// <param name="roundTimeSeconds"></param>
-        /// <param name="isUnlimitedTimeForLastWord"></param>
-        /// <param name="teams"></param>
         public InGameState(
             WordsPacksConfigItem wordsPacksConfigItem,
             int roundTimeSeconds,
@@ -58,7 +56,6 @@ namespace Game.States
             bool freeSkip,
             List<Team> teams)
         {
-            // TODO: объеденить в Settings?
             _isNewGame = true;
             _wordsPacksConfigItem = wordsPacksConfigItem;
             _roundTimeSeconds = roundTimeSeconds;
@@ -86,12 +83,19 @@ namespace Game.States
             }
 
             StartRound(currentRound).Forget();
-
+            SendGameEvent(
+                currentRound.ToString(),
+                _wordsPacksConfigItem.Name,
+                _roundTimeSeconds.ToString(),
+                _isUnlimitedTimeForLastWord.ToString(),
+                _freeSkip.ToString(),
+                _teams.Count.ToString());
             await base.OnEnterState();
         }
 
         private async UniTask StartRound(int round)
         {
+            SendStartRoundEvent(round);
             SaveGame(round);
             var isStartRound = await StartRoundScreen(round);
             if (!isStartRound)
@@ -108,6 +112,10 @@ namespace Game.States
             }
 
             await EndGameRound(round, playedWords);
+
+
+            SendEndRoundEvent(round, playedWords.Count);
+
             var newRound = round + 1;
             StartRound(newRound).Forget();
         }
@@ -178,8 +186,47 @@ namespace Game.States
             _roundTimeSeconds = gameUserData.RoundTimeSeconds;
             _isUnlimitedTimeForLastWord = gameUserData.IsUnlimitedTimeForLastWord;
             _freeSkip = gameUserData.FreeSkip;
-            _teams = _teamsService.CreateTeamsFromData(gameUserData.Teams);;
+            _teams = _teamsService.CreateTeamsFromData(gameUserData.Teams);
             return gameUserData.CurrentRound;
+        }
+
+        private void SendGameEvent(
+            string round,
+            string packName, 
+            string roundTime,
+            string lastWord,
+            string freeSkip,
+            string teamsCount)
+        {
+            var parameters = new List<Parameter>
+            {
+                new("round", round),
+                new("pack_name", packName),
+                new("round_time", roundTime),
+                new("last_word", lastWord),
+                new("free_skip", freeSkip),
+                new("teams_count", teamsCount),
+            };
+            _analyticsService.SendEvent("start_round", parameters);
+        }
+
+        private void SendStartRoundEvent(int round)
+        {
+            var parameters = new List<Parameter>
+            {
+                new("round", round.ToString()),
+            };
+            _analyticsService.SendEvent("start_round", parameters);
+        }
+
+        private void SendEndRoundEvent(int round, int playerWordsCount)
+        {
+            var parameters = new List<Parameter>
+            {
+                new("round", round.ToString()),
+                new("player_words_count", playerWordsCount.ToString()),
+            };
+            _analyticsService.SendEvent("start_round", parameters);
         }
     }
 }

@@ -1,0 +1,221 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fe8b80c7204f0686acab8de70571d2, type: 3}
+  m_Name: HarryPotterUniverseEn
+  m_EditorClassIdentifier: 
+  Words:
+  - Harry Potter
+  - Hermione Granger
+  - Ron Weasley
+  - Dumbledore
+  - Lord Voldemort
+  - Hogwarts
+  - Muggles
+  - Magic
+  - Wand
+  - Sorcery
+  - Spells
+  - Patronus
+  - Dumbledore's Army
+  - Sorting Hat
+  - Gryffindor
+  - Ravenclaw
+  - Hufflepuff
+  - Slytherin
+  - Neville Longbottom
+  - Luna Lovegood
+  - Draco Malfoy
+  - Hagrid
+  - Professor Snape
+  - Half-Blood Prince
+  - Fred and George Weasley
+  - Ollivander
+  - Goddess of Four Houses
+  - Carrows
+  - Grindelwald
+  - Fleur Delacour
+  - Cromwell
+  - Quaffle
+  - Bludger
+  - Golden Snitch
+  - Golden Trios
+  - Griffin Sword
+  - Tom Riddle's Diary
+  - Baskin-Robbins
+  - Trixie-Lixie
+  - Medicinal Robe
+  - Fortyfaun
+  - Bubblegum
+  - Breather Capsule
+  - Goblin
+  - Half-Bloods
+  - Quidditch
+  - Gryffindor Team
+  - Potions
+  - Cauldron
+  - Folders
+  - Snake Skin Cloak
+  - Bagel
+  - Raincoat
+  - Fairy
+  - Cherry Wand
+  - Reading Glasses
+  - Rainbow
+  - Saffron
+  - Field Flowers
+  - Lavender Brown
+  - Riddikulus
+  - Quidditch Banter
+  - Blue Rose Charm
+  - Charm of Perpetuity
+  - Pocket Star
+  - Magical Axe
+  - Tortoise
+  - Eagle
+  - Finwick
+  - Hook
+  - Firework
+  - Pillow
+  - Gnome
+  - Mat
+  - Sphere
+  - Cube
+  - Mirror of Erised
+  - Endless Tape
+  - Casket of Horrors
+  - Great Chainsaw
+  - Ugly Duckling
+  - Ice Dragons
+  - Underground Galleries
+  - Wheel of the Universe
+  - Secret Star
+  - Magic Hamburger
+  - Icy Trident
+  - Food for Thought
+  - Journey to the North
+  - Storm over the South Ocean
+  - Dragon's Ascent
+  - Mystery Letter
+  - Masked Ball
+  - Lost Village
+  - Forgotten Land
+  - Goblin Spindle
+  - Path to the Oasis
+  - Griphook's Helm
+  - Magic Cape
+  - Legends of Britain
+  - Magical Wood
+  - Mountain Spirit
+  - Firm Horn
+  - Forgotten Wonders
+  - Magic Mountain
+  - Flying Carriages
+  - Gnomish Helmet
+  - Magical Signet
+  - Royal Glove
+  - Finding Santa's
+  - Black Wolf's Pride
+  - Minerva's Chariots
+  - Head of the Meteorological Department
+  - Crown of Feathers
+  - Transfiguration Charm
+  - Fierce Harpoon
+  - Hordlock
+  - Magic Magnets
+  - Magic Land
+  - Youngest Magician's Store
+  - Siren in the Garden
+  - Magic Chest
+  - Pots of Honey
+  - Brave Dreams
+  - Floating Pearl
+  - Magic Net
+  - Endless Smiles
+  - Forgotten Fortress
+  - Enchanted Lake
+  - Ring of Secrets
+  - Everlasting Circle
+  - Guiding Star
+  - Whispers of Eternity
+  - Mystical Moon
+  - Magic Bow
+  - Ring of Power
+  - Captivating Past
+  - Lost City
+  - Black Labyrinth
+  - Forgotten Scrolls
+  - Gnomish Hammer
+  - Curious Box
+  - Covenant Word
+  - Magical Mirror
+  - Amulet of Magic
+  - Lost Key
+  - Enchanting Song
+  - Dreaming Soul
+  - Mysterious Fears
+  - Devilish Angels
+  - Magic River
+  - Mystical Mountain
+  - Mysterious Mirror
+  - Flying Saucer
+  - Magic Jump Rope
+  - Ring of Time
+  - Forbidden Hammer
+  - Wizarding Pharmacy
+  - Gnome's Secrets
+  - Magical Dust
+  - Secret Spells
+  - Magical Path
+  - Wealth of the Magician
+  - Magic Heart
+  - Forgotten Sword
+  - Magical Dance
+  - Enchanted River
+  - Enigmatic Glance
+  - Enchanted Path
+  - Mystic Dance
+  - Magic Well
+  - Charming Baneberry
+  - Magic Silk
+  - Gryffindor Lion
+  - Dome of the Closed Hill
+  - Well of Magical Power
+  - Forbidden Grove
+  - Evil Screech
+  - Secret Garden
+  - Enchanted Rain
+  - Griffindor's Roar
+  - Ravenclaw's Wit
+  - Hufflepuff's Loyalty
+  - Slytherin's Cunning
+  - Forbidden Forest
+  - Deathly Hallows
+  - Marauder's Map
+  - Yule Ball
+  - Room of Requirement
+  - Quidditch World Cup
+  - The Triwizard Tournament
+  - Great Hall
+  - Diagon Alley
+  - "Platform 9\xBE"
+  - The Whomping Willow
+  - The Forbidden Corridor
+  - The Chamber of Secrets
+  - The Triwizard Maze
+  - The Forbidden Forest
+  - The Room of Requirement
+  - The Quidditch Pitch
+  - The Great Lake
+  - The Hog's Head Inn
+  - The Leaky Cauldron
+  - The Burrow
+  - The Astronomy Tower

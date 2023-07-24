@@ -99,7 +99,7 @@ namespace Game.Bootstrap
 #if DEV_ENV
             var analyticsService = new FakeAnalyticsService();
 #else
-            var analyticsService = new AnalyticsService(assetsService);
+            var analyticsService = new UniversalAnalyticsService(assetsService);
 #endif
             ServiceLocator.AddService<IAnalyticsService>(analyticsService);
 

@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fe8b80c7204f0686acab8de70571d2, type: 3}
+  m_Name: CulinaryDelightsEn
+  m_EditorClassIdentifier: 
+  Words:
+  - Food
+  - Cuisine
+  - Dish
+  - Recipe
+  - Delicious
+  - Cooking
+  - Breakfast
+  - Lunch
+  - Dinner
+  - Sweets
+  - Dessert
+  - Soup
+  - Salad
+  - Meat
+  - Fish
+  - Vegetables
+  - Fruits
+  - Side dish
+  - Pizza
+  - Hamburger
+  - Sandwich
+  - Pasta
+  - Sauce
+  - Coffee
+  - Tea
+  - Milk
+  - Bread
+  - Bun
+  - Cake
+  - Chocolate
+  - Ice cream
+  - Pastry
+  - Candy
+  - Cookie
+  - Caramel
+  - To have breakfast
+  - To have lunch
+  - To have dinner
+  - To cook
+  - To bake
+  - To boil
+  - To fry
+  - Cheese
+  - Yogurt
+  - Mayonnaise
+  - Spices
+  - Salt
+  - Pepper
+  - Olive oil
+  - Oil
+  - Vinegar
+  - Honey
+  - Ketchup
+  - Mustard
+  - Horseradish
+  - Cilantro
+  - Parsley
+  - Dill
+  - Basil
+  - Mint
+  - Rosemary
+  - Cumin
+  - Saffron
+  - Turmeric
+  - Cinnamon
+  - Vanilla
+  - Ginger
+  - Cocoa
+  - Coriander
+  - Oregano
+  - Paprika
+  - Chili pepper
+  - Fennel
+  - Cardamom
+  - Beetroot
+  - Radish
+  - Eggplant
+  - Onion
+  - Garlic
+  - Carrot
+  - Cabbage
+  - Zucchini
+  - Tomato
+  - Cucumber
+  - Banana
+  - Apple
+  - Pear
+  - Orange
+  - Lemon
+  - Kiwi
+  - Pomegranate
+  - Blueberry
+  - Strawberry
+  - Cherry
+  - Watermelon
+  - Pineapple
+  - Grapefruit
+  - Raspberry
+  - Mandarin
+  - Peach
+  - Cashew
+  - Peanut
+  - Pistachio
+  - Almond
+  - Walnut
+  - Sesame
+  - Parmesan
+  - Mozzarella
+  - Feta
+  - Camembert
+  - Brie
+  - Cheddar
+  - Gouda
+  - Emmental
+  - Bell pepper
+  - Chinese cabbage
+  - Cauliflower
+  - Pumpkin
+  - Broccoli
+  - Potato
+  - Potatoes
+  - Carrots
+  - Tomatoes
+  - Cucumbers
+  - Peppers
+  - Cherries
+  - Bell peppers
+  - Eggplants
+  - Asparagus
+  - Mushrooms
+  - Beets
+  - Onions
+  - Garnish
+  - Dumplings
+  - Vareniki
+  - Rice
+  - Porridge
+  - Corn porridge
+  - Oatmeal
+  - Buckwheat
+  - Millet
+  - Cottage cheese pancakes
+  - Pancakes
+  - Eggs
+  - Omelet
+  - Scrambled eggs
+  - Cutlets
+  - Schnitzel
+  - Meatballs
+  - Stew
+  - Chicken
+  - Beef
+  - Pork
+  - Lamb
+  - Shrimp
+  - Squid
+  - Mussels
+  - Oysters
+  - Octopus
+  - Salmon
+  - Cod
+  - Carp
+  - Trout
+  - Zander
+  - Flounder
+  - Mackerel
+  - Cookies
+  - Cupcake
+  - Cheesecake
+  - Pie
+  - Muffin
+  - Gingerbread
+  - Eclairs
+  - Marshmallows
+  - Lollipops
+  - Zephyr
+  - Halva
+  - Medovik
+  - Napoleon
+  - Tiramisu
+  - Mannik
+  - Roulade
+  - Juice
+  - Compote
+  - Water
+  - Fruit drink
+  - Cocktail
+  - Grape juice
+  - Multifruit juice
+  - Apple juice
+  - Blueberry juice
+  - Orange juice
+  - Cherry juice
+  - Pineapple juice
+  - Apple

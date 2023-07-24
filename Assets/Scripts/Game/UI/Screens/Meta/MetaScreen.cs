@@ -4,9 +4,7 @@ using Cysharp.Threading.Tasks;
 using Game.States;
 using Game.UI.Popups.NewGame;
 using Game.UI.Popups.Settings;
-using Game.UserData;
 using Game.UserData.Game;
-using Services.Analytics;
 using Services.Helper;
 using Services.UI;
 using Services.UI.PopupService;
@@ -33,10 +31,6 @@ namespace Game.UI.Screens.Meta
         [Service]
         private static IUserDataService _userData;
         
-        [Service]
-        private static IAnalyticsService _analyticsService;
-        
-
         protected override UniTask OnOpenAsync()
         {
             var activeContinueButton = _userData.GetData<GameUserData>().CurrentRound != 0;
@@ -45,7 +39,6 @@ namespace Game.UI.Screens.Meta
             _continueGameButton.SetClickListener(OnContinueGameButton);
             _newGameButton.SetClickListener(OnNewGameButton);
             _settingsButton.SetClickListener(OnSettingsButton);
-            _analyticsService.SendEvent("uuuu ee");
             return base.OnStartAsync();
         }
 

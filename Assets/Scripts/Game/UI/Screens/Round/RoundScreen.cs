@@ -2,9 +2,9 @@
 using Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Game.Services.WordsPacks;
-using Game.UserData;
 using Game.UserData.Game;
 using Services.Helper;
+using Services.Localization;
 using Services.UI;
 using Services.UserData;
 using TMPro;
@@ -15,6 +15,7 @@ namespace Game.UI.Screens.Round
 {
     public class RoundScreen : UIObject<RoundScreenModel>
     {
+        private const string WordInPackKey = "in_pack_";
         [SerializeField]
         private TextMeshProUGUI _teamName;
 
@@ -38,6 +39,18 @@ namespace Game.UI.Screens.Round
 
         [SerializeField]
         private Button _wrongAnswer;
+        
+        [SerializeField]
+        private Button _startButton;
+        
+        [SerializeField]
+        private GameObject _gameFields;
+        
+        [SerializeField]
+        private Button _stopButton;
+        
+        [SerializeField]
+        private TextMeshProUGUI _wordInPack;
 
         private int _roundScore;
         private float _roundTimerSeconds;
@@ -48,21 +61,27 @@ namespace Game.UI.Screens.Round
         private string _currentWord;
         private int _generatedCount;
         private bool _waitLastWord;
+        private bool _isPause;
+        private string _wordInPackLocalize;
 
         [Service]
         private static IUserDataService _userData;
+        
+        [Service]
+        private static ILocalizationService _localizationService;
 
         protected override UniTask OnOpenAsync()
         {
             _backButton.SetClickListener(OnBackButton);
             _rightAnswer.SetClickListener(OnRightAnswerButton);
             _wrongAnswer.SetClickListener(OnWrongAnswerButton);
-
+            _startButton.SetClickListener(OnStartButton);
+            _stopButton.SetClickListener(OnStopButton);
+            
             InitializeElements();
 
             _wordsPack = Model.WordsPacksConfigItem.WordsPack.Asset as WordsPack;
 
-            StartGame().Forget();
             return base.OnOpenAsync();
         }
 
@@ -85,6 +104,9 @@ namespace Game.UI.Screens.Round
             _playedPackWordsIndexes.Clear();
             _playedRoundWords.Clear();
             _lastWord.SetActive(false);
+            _startButton.gameObject.SetActive(true);
+            _gameFields.SetActive(false);
+            _wordInPackLocalize = _localizationService.GetText(WordInPackKey);
         }
 
         private void OnRightAnswerButton()
@@ -109,12 +131,15 @@ namespace Game.UI.Screens.Round
         // но тут не критично
         private async UniTask StartGame()
         {
+            _startButton.gameObject.SetActive(false);
+            _gameFields.SetActive(true);
             LoadWords();
             ShowNewWord();
             await UniTask.Yield();
             while (_roundTimerSeconds > 0)
             {
                 await UniTask.Yield();
+                if (_isPause) continue;
                 _roundTimerSeconds -= Time.deltaTime;
                 _roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
             }
@@ -160,6 +185,7 @@ namespace Game.UI.Screens.Round
         {
             _currentWord = GetNewWord();
             _currentWordLabel.text = _currentWord;
+            _wordInPack.text = string.Format(_wordInPackLocalize, _wordsPack.Words.Count - _generatedCount);
         }
 
         private string GetNewWord()
@@ -183,7 +209,7 @@ namespace Game.UI.Screens.Round
                 _playedPackWordsIndexes.Clear();
                 _playedPackWordsHash.Clear();
             }
-
+            
             return word;
         }
 
@@ -204,6 +230,37 @@ namespace Game.UI.Screens.Round
             {
                 ShowNewWord();
             }
+        }
+
+        private void OnStartButton()
+        {
+            if (_isPause)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                StartGame().Forget();
+            }
+        }
+        
+        private void OnStopButton()
+        {
+            PauseGame();
+        }
+
+        private void PauseGame()
+        {
+            _startButton.gameObject.SetActive(true);
+            _gameFields.SetActive(false);
+            _isPause = true;
+        }
+
+        private void ResumeGame()
+        {
+            _startButton.gameObject.SetActive(false);
+            _gameFields.SetActive(true);
+            _isPause = false;
         }
     }
 

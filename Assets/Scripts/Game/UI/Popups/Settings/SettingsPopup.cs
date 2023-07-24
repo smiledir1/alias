@@ -1,5 +1,7 @@
 ﻿using Common.Extensions;
 using Cysharp.Threading.Tasks;
+using Game.UI.Helper;
+using Game.UI.Popups.Rules;
 using Services.Audio;
 using Services.Helper;
 using Services.Localization;
@@ -19,43 +21,49 @@ namespace Game.UI.Popups.Settings
 
         [SerializeField]
         private TextMeshProUGUI _languageName;
-        
+
         [Header("Audio")]
         [SerializeField]
         private Button _soundButton;
 
         [SerializeField]
         private GameObject _soundsOn;
-        
+
         [SerializeField]
         private GameObject _soundOff;
-        
+
         [SerializeField]
         private Button _musicButton;
-        
+
         [SerializeField]
         private GameObject _musicsOn;
-        
+
         [SerializeField]
         private GameObject _musicOff;
-        
+
         [Header("Other")]
         [SerializeField]
         private TextMeshProUGUI _version;
 
+        [SerializeField]
+        private Button _rulesButton;
+
         [Service]
         private static IAudioService _audioService;
-        
+
         [Service]
         private static ILocalizationService _localizationService;
-        
-        
+
+        [Service]
+        private static IPopupService _popupService;
+
         protected override UniTask OnOpenAsync()
         {
             _languageButton.SetClickListener(OnLanguageButton);
             _soundButton.SetClickListener(OnSoundButton);
             _musicButton.SetClickListener(OnMusicButton);
-
+            _rulesButton.SetClickListener(OnRulesButton);
+            
             _languageName.text = _localizationService.CurrentLanguageLocalizeName;
             _version.text = Application.version;
             return base.OnOpenAsync();
@@ -91,6 +99,12 @@ namespace Game.UI.Popups.Settings
             {
                 localization.Recalculate();
             }
+        }
+
+        private void OnRulesButton()
+        {
+            var emptyModel = new EmptyUIModel();
+            _popupService.ShowAsync<RulesPopup>(emptyModel).Forget();
         }
     }
 }

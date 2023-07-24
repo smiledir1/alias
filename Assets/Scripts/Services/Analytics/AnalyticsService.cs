@@ -5,14 +5,14 @@ using Services.Common;
 
 namespace Services.Analytics
 {
-    public class AnalyticsService : Service, IAnalyticsService
+    public class UniversalAnalyticsService : Service, IAnalyticsService
     {
         private readonly IAssetsService _assetsService;
 
         private AnalyticsConfig _analyticsConfig;
         private List<IAnalyticsManager> _managers = new();
 
-        public AnalyticsService(IAssetsService assetsService)
+        public UniversalAnalyticsService(IAssetsService assetsService)
         {
             _assetsService = assetsService;
         }

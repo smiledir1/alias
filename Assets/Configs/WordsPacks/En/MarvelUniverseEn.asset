@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fe8b80c7204f0686acab8de70571d2, type: 3}
+  m_Name: MarvelUniverseEn
+  m_EditorClassIdentifier: 
+  Words:
+  - Marvel
+  - Superhero
+  - Villain
+  - Avengers
+  - Guardians of the Galaxy
+  - X-Men
+  - Spider-Man
+  - Iron Man
+  - Captain America
+  - Thor
+  - Hulk
+  - Black Widow
+  - Doctor Strange
+  - Black Panther
+  - Scarlet Witch
+  - Ant-Man
+  - Captain Marvel
+  - Falcon
+  - Winter Soldier
+  - Vision
+  - Hawkeye
+  - Nick Fury
+  - Loki
+  - Thanos
+  - Ultron
+  - Red Skull
+  - Green Goblin
+  - Magneto
+  - Deadpool
+  - Mystique
+  - Wolverine
+  - Storm
+  - Cyclops
+  - Jean Grey
+  - Professor X
+  - Iceman
+  - Beast
+  - Rogue
+  - Gambit
+  - Nightcrawler
+  - Silver Surfer
+  - Nova
+  - Doctor Doom
+  - Daredevil
+  - Jessica Jones
+  - Luke Cage
+  - Iron Fist
+  - Punisher
+  - Blade
+  - Ghost Rider
+  - Moon Knight
+  - She-Hulk
+  - Ms. Marvel
+  - Fantastic Four
+  - Human Torch
+  - Thing
+  - Invisible Woman
+  - Doctor Strange's Sanctum Sanctorum
+  - Xavier's School for Gifted Youngsters
+  - Stark Tower
+  - Avengers Tower
+  - Asgard
+  - Wakanda
+  - S.H.I.E.L.D.
+  - H.A.M.M.E.R.
+  - HYDRA
+  - The Hand
+  - The Skrulls
+  - The Kree
+  - The Celestials
+  - The Watchers
+  - The Elders of the Universe
+  - The Nova Corps
+  - The Shi'ar Empire
+  - The Dark Phoenix
+  - The Infinity Stones
+  - The Tesseract
+  - The Cosmic Cube
+  - The Orb
+  - The Infinity Gauntlet
+  - The Bifrost Bridge
+  - The Helicarrier
+  - The Quinjet
+  - The Daily Bugle
+  - The Raft
+  - The Savage Land
+  - The Negative Zone
+  - The Microverse
+  - The Quantum Realm
+  - The Black Order
+  - The Power Cosmic
+  - The Phoenix Force
+  - The Reality Stone
+  - The Space Stone
+  - The Mind Stone
+  - The Time Stone
+  - The Soul Stone
+  - The Power Stone
+  - Tony Stark
+  - Steve Rogers
+  - Natasha Romanoff
+  - Bruce Banner
+  - Clint Barton
+  - James Rhodes
+  - Sam Wilson
+  - T'Challa
+  - Scott Lang
+  - Peter Parker
+  - Stephen Strange
+  - Carol Danvers
+  - Bucky Barnes
+  - Wanda Maximoff
+  - The Hulk
+  - Gamora
+  - Nebula
+  - Drax the Destroyer
+  - Groot
+  - Rocket Raccoon
+  - Star-Lord
+  - Peter Quill
+  - Ego the Living Planet
+  - Yondu Udonta
+  - Mantis
+  - Black Bolt
+  - Medusa
+  - Crystal
+  - Karnak
+  - Lockjaw
+  - Doctor Strange's Cloak of Levitation
+  - Mjolnir
+  - Stormbreaker
+  - Iron Man's Arc Reactor
+  - Captain America's Shield
+  - Spider-Man's Web Shooters
+  - Black Panther's Vibranium Suit
+  - Doctor Strange's Eye of Agamotto
+  - Ant-Man's Pym Particles
+  - Captain Marvel's Photon Blasts
+  - Thanos' Infinity Gauntlet
+  - The Chitauri
+  - The Outriders
+  - The Ravagers
+  - The Sovereign
+  - The Dark Elves
+  - The Frost Giants
+  - The Kree Empire
+  - The Skrull Empire
+  - The Brotherhood of Mutants
+  - The Hellfire Club
+  - The Morlocks
+  - The Sinister Six
+  - The Defenders
+  - The Inhumans
+  - The Shi'ar Imperial Guard
+  - The Living Tribunal
+  - The Grandmaster
+  - The Collector
+  - The Beyonder
+  - The Eternals
+  - The Deviants
+  - The Collector

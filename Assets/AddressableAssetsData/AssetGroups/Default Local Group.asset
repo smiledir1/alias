@@ -57,8 +57,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ed877bd0f8e26924585cdba13eaadb82
-    m_Address: Assets/Configs/WordsPacks/SimplePack.asset
+  - m_GUID: c77446515535dcd47a6e12c8adde4f2c
+    m_Address: Assets/Configs/WordsPacks/CulinaryDelightsEn.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -129,6 +129,56 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 17a2a59cab09df14c81e8e7acaef4b6a
     m_Address: Configs/AnalyticsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a09f1138b3f7b0b439e1c05316bdb71c
+    m_Address: Assets/Configs/WordsPacks/LegendsAndMythsRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5fd96e43da28c64aaf93bf292aeffe1
+    m_Address: Assets/Configs/WordsPacks/Ru/TravelRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 194348069d18fe340ae51d50886494e0
+    m_Address: Assets/Configs/WordsPacks/Ru/DeliciousWordsRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cd6ed35b92ec0d488601025df3bad4e
+    m_Address: Assets/Configs/WordsPacks/HarryPotterRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e46fc9a290892b4cb5f687338f4e85b
+    m_Address: Assets/Configs/WordsPacks/RandomWordsRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0563a88b1946564495c23e0f282eba9
+    m_Address: Assets/Configs/WordsPacks/RandomWordsEn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7bdfd0e254320b4083732514aea4980
+    m_Address: Assets/Configs/WordsPacks/MagicalJourneysEn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4db8ace483e2054aa9801e145e71de2
+    m_Address: Assets/Configs/WordsPacks/HarryPotterUniverseEn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51520e2f1e935c54695d59a064007af9
+    m_Address: Assets/Configs/WordsPacks/MarvelUniverseEn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec323a80a668f4a4484ffc88b067d679
+    m_Address: RulesPopup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
