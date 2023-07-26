@@ -16,20 +16,59 @@ namespace Common.UniTaskAnimations.Editor
 
         private static readonly int _buttonsCount = 4;
         private static string _cachedName = string.Empty;
-        private new static float ButtonsHeight => _buttonHeight * 2;
 
         #endregion
 
-        private GameObject _tweenObject;
+        protected float PropertyHeight;
+        protected GameObject TweenObject;
+        protected SimpleTween TargetTween;
 
         private bool _initialized;
         private readonly PopupTypes _inheredTypes = new();
         private int _popupTweenIndex;
+        private string _changedType;
+        private IBaseTween _changedTween;
 
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
             Initialize();
 
+            _changedType = null;
+            _changedTween = null;
+
+            MakeTweenLabel(property, label);
+
+            var propertyRect = new Rect(rect.x, rect.y, rect.width, rect.height);
+            var foldoutRect = new Rect(propertyRect.x, propertyRect.y, propertyRect.width, _lineHeight);
+            property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label);
+            propertyRect.y += _lineHeight;
+
+            if (property.isExpanded)
+            {
+                FillTweenObject(property);
+                propertyRect.y += DrawChooseTween(propertyRect);
+                propertyRect.y += DrawSetTweenButtons(propertyRect, property);
+                propertyRect.y += DrawMainProperties(propertyRect, property);
+                propertyRect.y += DrawTweenProperties(propertyRect, property, label);
+            }
+
+            PropertyHeight = propertyRect.y;
+            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
+            {
+                OnGuiChange(baseTween).Forget();
+            }
+
+            if (_changedType != null) ChangeType(_changedType, property);
+            if (_changedTween != null) ChangeTween(_changedTween, property);
+        }
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return PropertyHeight;
+        }
+
+        private void MakeTweenLabel(SerializedProperty property, GUIContent label)
+        {
             string tweenName;
             if (property.managedReferenceId == -1 ||
                 property.managedReferenceValue == null)
@@ -40,24 +79,6 @@ namespace Common.UniTaskAnimations.Editor
             else
             {
                 tweenName = property.managedReferenceValue.GetType().ToString();
-            }
-
-            var propertyYAdd = 0f;
-            if (property.isExpanded)
-            {
-                if (_tweenObject == null)
-                {
-                    _tweenObject = property.serializedObject.targetObject switch
-                    {
-                        GameObject go => go,
-                        Component component => component.gameObject,
-                        _ => _tweenObject
-                    };
-                }
-
-                DrawChooseTween(rect, property);
-                DrawSetTweenButtons(rect, property);
-                propertyYAdd = ButtonsHeight;
             }
 
             var lastIndexOfPoint = tweenName.LastIndexOf('.');
@@ -73,37 +94,22 @@ namespace Common.UniTaskAnimations.Editor
                 label.text += $" {shortTweenName}";
                 _cachedName = label.text;
             }
-
-            var propertyRect = new Rect(rect.x, rect.y + propertyYAdd, rect.width, rect.height);
-            EditorGUI.PropertyField(propertyRect, property, label, true);
-            
-            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
-            {
-                OnGuiChange(baseTween).Forget();
-            }
         }
 
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return property.isExpanded
-                ? EditorGUI.GetPropertyHeight(property) + ButtonsHeight + Space
-                : EditorGUI.GetPropertyHeight(property);
-        }
-
-        private void DrawSetTweenButtons(Rect propertyRect, SerializedProperty property)
+        private float DrawSetTweenButtons(Rect propertyRect, SerializedProperty property)
         {
             var buttonWidth = propertyRect.width / _buttonsCount;
             var x = propertyRect.x;
-            var y = propertyRect.yMin + _buttonHeight;
+            var y = propertyRect.yMin;
 
-            var buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
+            var buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
             if (GUI.Button(buttonRect, "Copy"))
             {
                 CachedTween = property.managedReferenceValue as IBaseTween;
             }
 
             x = propertyRect.x + buttonWidth;
-            buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
+            buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
             if (GUI.Button(buttonRect, "Paste"))
             {
                 var currentTween = property.managedReferenceValue as SimpleTween;
@@ -114,9 +120,10 @@ namespace Common.UniTaskAnimations.Editor
                     if (component != null) targetGo = component.gameObject;
                 }
 
-                var cloneTween = IBaseTween.Clone(CachedTween, targetGo);
-                property.managedReferenceValue = cloneTween;
+                _changedTween = IBaseTween.Clone(CachedTween, targetGo);
             }
+
+            return _lineHeight;
         }
 
         private class PopupTypes
@@ -167,37 +174,39 @@ namespace Common.UniTaskAnimations.Editor
             _inheredTypes.Compile();
         }
 
-        private void DrawChooseTween(Rect propertyRect, SerializedProperty property)
+        private float DrawChooseTween(Rect propertyRect)
         {
-            var y = propertyRect.yMin;
             var x = propertyRect.x;
+            var y = propertyRect.yMin;
 
             var labelWidth = propertyRect.width * 7 / 32;
-            var labelRect = new Rect(x, y, labelWidth, _buttonHeight);
+            var labelRect = new Rect(x, y, labelWidth, _lineHeight);
             EditorGUI.LabelField(labelRect, "Tween:");
 
             var popupX = x + labelWidth;
             var popupWidth = propertyRect.width * 3 / 8;
-            var popupRect = new Rect(popupX, y, popupWidth, _buttonHeight);
+            var popupRect = new Rect(popupX, y, popupWidth, _lineHeight);
             _popupTweenIndex = EditorGUI.Popup(popupRect, _popupTweenIndex, _inheredTypes.Names);
 
             var spaceX = popupX + popupWidth;
             var spaceWidth = propertyRect.width / 32;
-            var spaceRect = new Rect(spaceX, y, spaceWidth, _buttonHeight);
+            var spaceRect = new Rect(spaceX, y, spaceWidth, _lineHeight);
             EditorGUI.LabelField(spaceRect, " ");
 
             var buttonX = spaceX + spaceWidth;
             var buttonWidth = propertyRect.width * 3 / 8;
-            var buttonRect = new Rect(buttonX, y, buttonWidth, _buttonHeight);
+            var buttonRect = new Rect(buttonX, y, buttonWidth, _lineHeight);
             if (GUI.Button(buttonRect, "Set"))
             {
-                SetType(_inheredTypes[_popupTweenIndex], property);
+                _changedType = _inheredTypes[_popupTweenIndex];
             }
+
+            return _lineHeight;
         }
 
-        private void SetType(string typeName, SerializedProperty property)
+        private void ChangeType(string typeName, SerializedProperty property)
         {
-            var tween = TweenFactory.CreateSimpleTween(typeName, _tweenObject);
+            var tween = TweenFactory.CreateSimpleTween(typeName, TweenObject);
 
             if (tween != null)
             {
@@ -214,6 +223,73 @@ namespace Common.UniTaskAnimations.Editor
             {
                 property.managedReferenceValue = null;
             }
+        }
+
+        private void ChangeTween(IBaseTween baseTween, SerializedProperty property)
+        {
+            property.managedReferenceValue = baseTween;
+        }
+
+        private void FillTweenObject(SerializedProperty property)
+        {
+            if (TweenObject != null) return;
+
+            TweenObject = property.serializedObject.targetObject switch
+            {
+                GameObject go => go,
+                Component component => component.gameObject,
+                _ => TweenObject
+            };
+
+            TargetTween = property.managedReferenceValue as SimpleTween;
+        }
+
+        private float DrawMainProperties(Rect propertyRect, SerializedProperty property)
+        {
+            var x = propertyRect.x;
+            var y = propertyRect.y;
+            var width = propertyRect.width;
+            var height = _lineHeight;
+
+            var labelRect = new Rect(x, y, width, height);
+
+            EditorGUI.LabelField(labelRect, "Main Tween", EditorStyles.boldLabel);
+            y += height;
+
+            var tweenObjectRect = new Rect(x, y, width, height);
+            var tweenObjectProperty = property.FindPropertyRelative("_tweenObject");
+            EditorGUI.PropertyField(tweenObjectRect, tweenObjectProperty);
+            y += height;
+
+            var startDelayRect = new Rect(x, y, width, height);
+            var startDelayProperty = property.FindPropertyRelative("_startDelay");
+            EditorGUI.PropertyField(startDelayRect, startDelayProperty);
+            y += height;
+
+            var tweenTimeRect = new Rect(x, y, width, height);
+            var tweenTimeProperty = property.FindPropertyRelative("_tweenTime");
+            EditorGUI.PropertyField(tweenTimeRect, tweenTimeProperty);
+            y += height;
+
+            var loopRect = new Rect(x, y, width, height);
+            var loopProperty = property.FindPropertyRelative("_loop");
+            EditorGUI.PropertyField(loopRect, loopProperty);
+            y += height;
+
+            var animationCurveRect = new Rect(x, y, width, height);
+            var animationCurveProperty = property.FindPropertyRelative("_animationCurve");
+            EditorGUI.PropertyField(animationCurveRect, animationCurveProperty);
+            y += height;
+
+            return y - propertyRect.y;
+        }
+
+        protected virtual float DrawTweenProperties(
+            Rect propertyRect,
+            SerializedProperty property,
+            GUIContent label)
+        {
+            return 0f;
         }
     }
 }

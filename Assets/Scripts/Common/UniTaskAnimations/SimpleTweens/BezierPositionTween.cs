@@ -11,7 +11,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
     {
         #region View
 
-        [Header("Current Tween")]
+        [SerializeField]
+        private PositionType _positionType;
+
         [SerializeField]
         private Vector3 _fromPosition;
 
@@ -32,6 +34,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         #region Properties
 
+        public PositionType PositionType => _positionType;
         public Vector3 FromPosition => _fromPosition;
         public Vector3 ToPosition => _toPosition;
         public Vector3 Bezier1Offset => _bezier1Offset;
@@ -44,6 +47,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         private Vector3[] _bezierPoints;
         private float[] _bezierLens;
+        private RectTransform _rectTransform;
 
         #endregion
 
@@ -51,6 +55,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public BezierPositionTween()
         {
+            _positionType = PositionType.Local;
             _fromPosition = Vector3.zero;
             _toPosition = Vector3.zero;
             _bezier1Offset = Vector3.zero;
@@ -64,6 +69,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             float tweenTime,
             LoopType loop,
             AnimationCurve animationCurve,
+            PositionType positionType,
             Vector3 fromPosition,
             Vector3 toPosition,
             Vector3 bezier1Offset,
@@ -77,9 +83,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (precision <= 0f)
             {
-                throw new Exception("precision mus be > 0");
+                throw new Exception("precision must be > 0");
             }
 
+            _positionType = positionType;
             _fromPosition = fromPosition;
             _toPosition = toPosition;
             _bezier1Offset = bezier1Offset;
@@ -100,10 +107,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (TweenObject == null) return;
 
+            _rectTransform = _tweenObject.transform as RectTransform;
             Vector3 startPosition;
             Vector3 toPosition;
             AnimationCurve animationCurve;
-            var tweenTime = TweenTime;
+            var tweenTime = _tweenTime;
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
             var loop = true;
@@ -123,7 +131,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (startFromCurrentValue)
             {
-                var localPosition = TweenObject.transform.localPosition;
+                var localPosition = GetCurrentPosition();
 
                 var t2 = 0f;
                 for (var i = 1; i < _bezierPoints.Length; i++)
@@ -160,8 +168,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             while (loop)
             {
-                TweenObject.transform.localPosition = startPosition;
-                var cur = 0;
+                GoToPosition(startPosition);
+                var cur = reverse ? _bezierLens.Length - 2 : 1;
                 while (time < tweenTime)
                 {
                     time += GetDeltaTime();
@@ -169,26 +177,51 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     var normalizeTime = time / tweenTime;
                     var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
 
-                    for (var i = cur; i < _bezierLens.Length; i++)
+                    Vector3 startPoint;
+                    Vector3 toPoint;
+                    float startLen;
+                    float endLen;
+                    
+                    if (reverse)
                     {
-                        if (_bezierLens[i] < lerpTime) continue;
-                        cur = i;
-                        break;
+                        lerpTime = 1 - lerpTime;
+                        for (var i = cur; i >= 0; i--)
+                        {
+                            if (_bezierLens[i] > lerpTime) continue;
+                            cur = i;
+                            break;
+                        }
+                        
+                        startPoint = _bezierPoints[cur];
+                        toPoint = _bezierPoints[cur + 1];
+
+                        startLen = _bezierLens[cur];
+                        endLen = _bezierLens[cur + 1];
+                    }
+                    else
+                    {
+                        for (var i = cur; i < _bezierLens.Length; i++)
+                        {
+                            if (_bezierLens[i] < lerpTime) continue;
+                            cur = i;
+                            break;
+                        }
+                        
+                        startPoint = _bezierPoints[cur - 1];
+                        toPoint = _bezierPoints[cur];
+
+                        startLen = _bezierLens[cur - 1];
+                        endLen = _bezierLens[cur];
                     }
 
-                    var startPoint = _bezierPoints[cur - 1];
-                    var toPoint = _bezierPoints[cur];
-
-                    var startLen = _bezierLens[cur - 1];
-                    var endLen = _bezierLens[cur];
                     var valueTime = (lerpTime - startLen) / (endLen - startLen);
 
                     var lerpValue = Vector3.LerpUnclamped(startPoint, toPoint, valueTime);
-                    TweenObject.transform.localPosition = lerpValue;
+                    GoToPosition(lerpValue);
                     await UniTask.Yield(cancellationToken);
                 }
 
-                TweenObject.transform.localPosition = toPosition;
+                GoToPosition(toPosition);
                 time -= tweenTime;
 
                 switch (Loop)
@@ -202,7 +235,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
                     case LoopType.PingPong:
                         toPosition = startPosition;
-                        startPosition = TweenObject.transform.localPosition;
+                        startPosition = GetCurrentPosition();
                         break;
                 }
             }
@@ -210,13 +243,48 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            TweenObject.transform.localPosition = _fromPosition;
+            GoToPosition(_fromPosition);
         }
 
-        public void SetPosition(Vector3 from, Vector3 to)
+        public void SetPositions(
+            PositionType positionType,
+            Vector3 from,
+            Vector3 to,
+            Vector3 bezier1Offset,
+            Vector3 bezier2Offset)
         {
+            _positionType = positionType;
             _fromPosition = from;
             _toPosition = to;
+            _bezier1Offset = bezier1Offset;
+            _bezier2Offset = bezier2Offset;
+        }
+
+        internal Vector3 GetCurrentPosition()
+        {
+            return _positionType switch
+            {
+                PositionType.Local => _tweenObject.transform.localPosition,
+                PositionType.Global => _tweenObject.transform.position,
+                PositionType.Anchored => _rectTransform.anchoredPosition,
+                _ => Vector3.zero
+            };
+        }
+
+        internal void GoToPosition(Vector3 position)
+        {
+            switch (_positionType)
+            {
+                case PositionType.Local:
+                    _tweenObject.transform.localPosition = position;
+                    return;
+                case PositionType.Global:
+                    _tweenObject.transform.position = position;
+                    return;
+                case PositionType.Anchored:
+                    _rectTransform.anchoredPosition = position;
+                    return;
+            }
         }
 
         #endregion /Animation
@@ -248,13 +316,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 var t = i * _precision;
                 _bezierPoints[i] = CalculatePointPosition(b0, b1, b2, b3, t);
 
-                len = (_bezierPoints[i] - _bezierPoints[i - 1]).sqrMagnitude;
+                len = (_bezierPoints[i] - _bezierPoints[i - 1]).magnitude;
                 _bezierLens[i] = fullSqrPath + len;
                 fullSqrPath += len;
             }
 
             _bezierPoints[lastPos] = b3;
-            len = (_bezierPoints[lastPos] - _bezierPoints[lastPos - 1]).sqrMagnitude;
+            len = (_bezierPoints[lastPos] - _bezierPoints[lastPos - 1]).magnitude;
             _bezierLens[lastPos] = fullSqrPath + len;
             fullSqrPath += len;
 
@@ -288,21 +356,43 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (component.Tween is not BezierPositionTween bezierPositionTween) return;
             if (bezierPositionTween.Precision < 0.001f) return;
+
             Gizmos.color = Color.magenta;
+
+            switch (bezierPositionTween.PositionType)
+            {
+                case PositionType.Local:
+                    DrawLocalPosition(bezierPositionTween);
+                    break;
+                case PositionType.Global:
+                    DrawGlobalPosition(bezierPositionTween);
+                    break;
+                case PositionType.Anchored:
+                    DrawAnchoredPosition(bezierPositionTween);
+                    break;
+            }
+        }
+
+        private static void DrawLocalPosition(BezierPositionTween bezierPositionTween)
+        {
             var parent = bezierPositionTween.TweenObject == null ||
                          bezierPositionTween.TweenObject.transform == null ||
                          bezierPositionTween.TweenObject.transform.parent == null
                 ? null
                 : bezierPositionTween.TweenObject.transform.parent;
-            
+
             var parentPosition = parent == null ? Vector3.zero : parent.position;
             var parentScale = parent == null ? Vector3.one : parent.lossyScale;
 
-            var b0 = parentPosition + GetScaledPosition(parentScale, bezierPositionTween.FromPosition);
-            var b3 = parentPosition + GetScaledPosition(parentScale, bezierPositionTween.ToPosition);
+            var b0 = parentPosition +
+                     GetScaledPosition(parentScale, bezierPositionTween.FromPosition);
+            var b3 = parentPosition +
+                     GetScaledPosition(parentScale, bezierPositionTween.ToPosition);
 
-            var b1 = b0 + GetScaledPosition(parentScale, bezierPositionTween.Bezier1Offset);
-            var b2 = b3 + GetScaledPosition(parentScale, bezierPositionTween.Bezier2Offset);
+            var b1 = b0 +
+                     GetScaledPosition(parentScale, bezierPositionTween.Bezier1Offset);
+            var b2 = b3 +
+                     GetScaledPosition(parentScale, bezierPositionTween.Bezier2Offset);
 
             var list = new List<Vector3>();
             for (var i = 0f; i < 1f; i += bezierPositionTween.Precision)
@@ -316,16 +406,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             Gizmos.DrawSphere(b1, 10f);
             Gizmos.DrawSphere(b2, 10f);
+            Gizmos.DrawSphere(b0, 10f);
+            Gizmos.DrawSphere(b3, 10f);
             Gizmos.DrawLineStrip(list.ToArray(), false);
-        }
-
-        private static Vector3 GetParentPosition(BezierPositionTween bezierPositionTween)
-        {
-            return bezierPositionTween.TweenObject == null ||
-                   bezierPositionTween.TweenObject.transform == null ||
-                   bezierPositionTween.TweenObject.transform.parent == null
-                ? Vector3.zero
-                : bezierPositionTween.TweenObject.transform.parent.position;
         }
 
         private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position)
@@ -336,11 +419,80 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 position.z * scale.z);
         }
 
+        private static void DrawGlobalPosition(BezierPositionTween bezierPositionTween)
+        {
+            var b0 = bezierPositionTween.FromPosition;
+            var b3 = bezierPositionTween.ToPosition;
+
+            var b1 = b0 + bezierPositionTween.Bezier1Offset;
+            var b2 = b3+ bezierPositionTween.Bezier2Offset;
+
+            var list = new List<Vector3>();
+            for (var i = 0f; i < 1f; i += bezierPositionTween.Precision)
+            {
+                var position = CalculatePointPosition(b0, b1, b2, b3, i);
+                list.Add(position);
+            }
+
+            var lastPosition = CalculatePointPosition(b0, b1, b2, b3, 1);
+            list.Add(lastPosition);
+
+            Gizmos.DrawSphere(b1, 10f);
+            Gizmos.DrawSphere(b2, 10f);
+            Gizmos.DrawSphere(b0, 10f);
+            Gizmos.DrawSphere(b3, 10f);
+            Gizmos.DrawLineStrip(list.ToArray(), false);
+        }
+
+        private static void DrawAnchoredPosition(BezierPositionTween bezierPositionTween)
+        {
+            var parent = bezierPositionTween.TweenObject == null ||
+                         bezierPositionTween.TweenObject.transform == null ||
+                         bezierPositionTween.TweenObject.transform.parent == null
+                ? null
+                : bezierPositionTween.TweenObject.transform.parent;
+
+            var parentPosition = parent == null ? Vector3.zero : parent.position;
+            var parentScale = parent == null ? Vector3.one : parent.lossyScale;
+            var rectTransform = bezierPositionTween._rectTransform;
+            var difPosition = rectTransform.localPosition - rectTransform.anchoredPosition3D;
+            var difScaled = GetScaledPosition(parentScale, difPosition);
+
+            var b0 = parentPosition
+                     + GetScaledPosition(parentScale, bezierPositionTween.FromPosition)
+                     + difScaled;
+            var b3 = parentPosition
+                     + GetScaledPosition(parentScale, bezierPositionTween.ToPosition)
+                     + difScaled;
+            var b1 = b0 +
+                     GetScaledPosition(parentScale, bezierPositionTween.Bezier1Offset);
+            var b2 = b3 +
+                     GetScaledPosition(parentScale, bezierPositionTween.Bezier2Offset);
+
+            var list = new List<Vector3>();
+            for (var i = 0f; i < 1f; i += bezierPositionTween.Precision)
+            {
+                var position = CalculatePointPosition(b0, b1, b2, b3, i);
+                list.Add(position);
+            }
+
+            var lastPosition = CalculatePointPosition(b0, b1, b2, b3, 1);
+            list.Add(lastPosition);
+
+            Gizmos.DrawSphere(b1, 10f);
+            Gizmos.DrawSphere(b2, 10f);
+            Gizmos.DrawSphere(b0, 10f);
+            Gizmos.DrawSphere(b3, 10f);
+            Gizmos.DrawLineStrip(list.ToArray(), false);
+        }
+
         public override void OnGuiChange()
         {
+            if (_tweenObject != null) _rectTransform = _tweenObject.transform as RectTransform;
             CreatePoints();
             base.OnGuiChange();
         }
+
 #endif
 
         #endregion
@@ -360,6 +512,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 tween.TweenTime,
                 tween.Loop,
                 animationCurve,
+                tween.PositionType,
                 tween.FromPosition,
                 tween.ToPosition,
                 tween.Bezier1Offset,

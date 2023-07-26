@@ -11,7 +11,6 @@ namespace Common.UniTaskAnimations
     {
         #region View
 
-        [Header("Main Tween")]
         [SerializeField]
         protected GameObject _tweenObject;
 
@@ -116,7 +115,11 @@ namespace Common.UniTaskAnimations
                 ReverseCurve = new AnimationCurve();
                 foreach (var k in AnimationCurve.keys)
                 {
-                    ReverseCurve.AddKey(1 - k.time, 1 - k.value);
+                    ReverseCurve.AddKey(new Keyframe(
+                        1 - k.time, 
+                        1 - k.value,
+                        k.inTangent, 
+                        k.outTangent));
                 }
             }
 
@@ -202,9 +205,20 @@ namespace Common.UniTaskAnimations
 #if UNITY_EDITOR
         public virtual void OnGuiChange()
         {
+            ReverseCurve = null;
         }
 #endif
 
         #endregion
+    }
+
+    public enum PositionType
+    {
+        Local,
+        Global,
+        /// <summary>
+        /// Only for UI elements
+        /// </summary>
+        Anchored
     }
 }

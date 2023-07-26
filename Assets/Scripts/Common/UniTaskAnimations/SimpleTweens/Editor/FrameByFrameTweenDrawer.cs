@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR
-using Common.UniTaskAnimations.Editor;
+﻿using Common.UniTaskAnimations.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,30 +10,63 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
         private string _textFieldValue;
         private int _framesCount;
         private bool _expand;
-        public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
+
+        protected override float DrawTweenProperties(
+            Rect propertyRect, 
+            SerializedProperty property, 
+            GUIContent label)
         {
-            base.OnGUI(rect, property, label);
+            var x = propertyRect.x;
+            var y = propertyRect.y;
+            var width = propertyRect.width;
+            var height = _lineHeight;
             
-            DrawCalculate(rect, property, label);
+            y += DrawTweenProperties(propertyRect, property);
+
+            var calculateRect = new Rect(x, y, width, height);
+            y += DrawCalculate(calculateRect, property, label);
+            
+            return y - propertyRect.y;
         }
 
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        private float DrawTweenProperties(Rect propertyRect, SerializedProperty property)
         {
-            var baseHeight = base.GetPropertyHeight(property, label);
-            return baseHeight + _buttonHeight;
+            var x = propertyRect.x;
+            var y = propertyRect.y;
+            var width = propertyRect.width;
+            var height = _lineHeight;
+
+            var labelRect = new Rect(x, y, width, height);
+            EditorGUI.LabelField(labelRect, "Current Tween", EditorStyles.boldLabel);
+            y += height;
+            
+            var tweenImageRect = new Rect(x, y, width, height);
+            var tweenImageProperty = property.FindPropertyRelative("_tweenImage");
+            EditorGUI.PropertyField(tweenImageRect, tweenImageProperty);
+            y += height;
+            
+            var spritesRect = new Rect(x, y, width, height);
+            var spritesProperty = property.FindPropertyRelative("_sprites");
+            EditorGUI.PropertyField(spritesRect, spritesProperty);
+            y += EditorGUI.GetPropertyHeight(spritesProperty);
+            
+            return y - propertyRect.y;
         }
 
-        private void DrawCalculate(Rect propertyRect, SerializedProperty property, GUIContent label)
+        private float DrawCalculate(
+            Rect propertyRect, 
+            SerializedProperty property,
+            GUIContent label)
         {
             var width = propertyRect.width / 3;
             var x = propertyRect.x;
-            var y = base.GetPropertyHeight(property, label) + propertyRect.yMin;
+            var y = propertyRect.y;
 
-            var labelRect = new Rect(x, y, width, _buttonHeight);
+            var labelRect = new Rect(x, y, width, _lineHeight);
             GUI.Label(labelRect, "time to: frames in second (1 second)");
 
             x += width;
-            var textFieldRect = new Rect(x, y, width, _buttonHeight);
+            var textFieldRect = new Rect(x, y, width, _lineHeight);
             _textFieldValue = GUI.TextField(textFieldRect, _textFieldValue);
             if (!int.TryParse(_textFieldValue, out var value) ||
                 value < 1)
@@ -48,7 +80,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             }
 
             x += width;
-            var buttonRect = new Rect(x, y, width, _buttonHeight);
+            var buttonRect = new Rect(x, y, width, _lineHeight);
             if (GUI.Button(buttonRect, "Calculate"))
             {
                 if (property.managedReferenceValue is FrameByFrameTween currentTween)
@@ -64,7 +96,8 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
                         currentTween.Sprites);
                 }
             }
+
+            return _lineHeight;
         }
     }
 }
-#endif

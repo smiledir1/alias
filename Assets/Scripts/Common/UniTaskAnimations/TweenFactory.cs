@@ -17,6 +17,13 @@ namespace Common.UniTaskAnimations
         {
             keys = new[] {new Keyframe(0, 0), new Keyframe(1, 1)}
         };
+        
+        private static readonly AnimationCurve LinearAnimationCurve = new()
+        {
+            keys = new[] {
+                new Keyframe(0, 0, 1, 1), 
+                new Keyframe(1, 1, 1, 1)}
+        };
 
         #endregion /Example Values
 
@@ -56,6 +63,7 @@ namespace Common.UniTaskAnimations
                 TweenTime,
                 Loop,
                 AnimationCurve,
+                PositionType.Local,
                 Vector3.zero,
                 Vector3.zero);
         }
@@ -112,6 +120,7 @@ namespace Common.UniTaskAnimations
                 TweenTime,
                 Loop,
                 AnimationCurve,
+                PositionType.Local,
                 Vector3.zero,
                 Vector3.zero,
                 Vector3.zero,
@@ -168,14 +177,13 @@ namespace Common.UniTaskAnimations
                 image.color = Color.white;
             }
 
-            //TODO: linear curve default
             var sprites = new List<Sprite>();
             return new FrameByFrameTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                LinearAnimationCurve,
                 image,
                 sprites);
         }

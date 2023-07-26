@@ -11,7 +11,6 @@ namespace Common.UniTaskAnimations.SimpleTweens
     {
         #region View
     
-        [Header("Current Tween")]
         [SerializeField]
         private Color _fromColor;
     

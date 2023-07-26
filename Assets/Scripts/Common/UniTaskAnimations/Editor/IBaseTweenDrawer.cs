@@ -8,9 +8,9 @@ namespace Common.UniTaskAnimations.Editor
     [CustomPropertyDrawer(typeof(IBaseTween), true)]
     public class BaseTweenDrawer : PropertyDrawer
     {
-        protected static float _buttonHeight = 20f;
+        protected static float _lineHeight = 20f;
         protected static float Space => 10f;
-        protected static float ButtonsHeight => _buttonHeight;
+        protected static float LinesHeight => _lineHeight;
 
         protected static IBaseTween CachedTween;
 
@@ -26,7 +26,7 @@ namespace Common.UniTaskAnimations.Editor
             if (property.isExpanded)
             {
                 DrawButtons(rect, property);
-                propertyYAdd = ButtonsHeight;
+                propertyYAdd = LinesHeight;
             }
 
             var propertyRect = new Rect(rect.x, rect.y + propertyYAdd, rect.width, rect.height);
@@ -41,7 +41,7 @@ namespace Common.UniTaskAnimations.Editor
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             return property.isExpanded
-                ? EditorGUI.GetPropertyHeight(property) + ButtonsHeight + Space
+                ? EditorGUI.GetPropertyHeight(property) + LinesHeight + Space
                 : EditorGUI.GetPropertyHeight(property);
         }
 
@@ -56,7 +56,7 @@ namespace Common.UniTaskAnimations.Editor
             var buttonWidth = propertyRect.width / buttonCount;
             var x = propertyRect.x;
             var y = propertyRect.yMin;
-            var buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
+            var buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
 
             if (GUI.Button(buttonRect, "Null"))
             {
@@ -64,7 +64,7 @@ namespace Common.UniTaskAnimations.Editor
             }
 
             x = buttonRect.x + buttonWidth;
-            buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
+            buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
             if (GUI.Button(buttonRect, "Group"))
             {
                 baseTween = new GroupTween(false);
@@ -73,7 +73,7 @@ namespace Common.UniTaskAnimations.Editor
             if (hasMultiButton)
             {
                 x = buttonRect.x + buttonWidth;
-                buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
+                buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
                 if (GUI.Button(buttonRect, "Multi"))
                 {
                     baseTween = new MultiTween(null, 0.2f);
@@ -81,21 +81,21 @@ namespace Common.UniTaskAnimations.Editor
             }
 
             x = buttonRect.x + buttonWidth;
-            buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
+            buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
             if (GUI.Button(buttonRect, "Simple"))
             {
                 baseTween = new PositionTween();
             }
 
             x = buttonRect.x + buttonWidth;
-            buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
+            buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
             if (GUI.Button(buttonRect, "Copy"))
             {
                 CachedTween = property.managedReferenceValue as IBaseTween;
             }
 
             x = buttonRect.x + buttonWidth;
-            buttonRect = new Rect(x, y, buttonWidth, _buttonHeight);
+            buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
             if (GUI.Button(buttonRect, "Paste"))
             {
                 var currentTween = property.managedReferenceValue as IBaseTween;

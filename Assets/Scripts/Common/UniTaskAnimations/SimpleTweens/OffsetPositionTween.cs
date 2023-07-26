@@ -10,7 +10,6 @@ namespace Common.UniTaskAnimations.SimpleTweens
     {
         #region View
 
-        [Header("Current Tween")]
         [SerializeField]
         private Vector3 _fromPosition;
 
@@ -146,7 +145,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
         }
 
-        public void SetPosition(Vector3 from, Vector3 to)
+        public void SetPositions(Vector3 from, Vector3 to)
         {
             _fromPosition = from;
             _toPosition = to;

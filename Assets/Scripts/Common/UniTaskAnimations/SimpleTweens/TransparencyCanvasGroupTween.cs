@@ -10,7 +10,6 @@ namespace Common.UniTaskAnimations.SimpleTweens
     {
         #region View
 
-        [Header("Current Tween")]
         [SerializeField]
         [Range(0, 1)]
         private float _fromOpacity;

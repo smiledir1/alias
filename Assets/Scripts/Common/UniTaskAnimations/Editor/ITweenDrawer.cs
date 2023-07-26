@@ -19,7 +19,7 @@ namespace Common.UniTaskAnimations.Editor
             if (property.isExpanded)
             {
                 DrawButtons(rect, property, false);
-                propertyYAdd = ButtonsHeight;
+                propertyYAdd = LinesHeight;
             }
 
             var propertyRect = new Rect(rect.x, rect.y + propertyYAdd, rect.width, rect.height);

@@ -73,6 +73,9 @@ namespace Editor
             {
                 EditorSceneManager.playModeStartScene = null;
             }
+            
+            Menu.SetChecked("Tools/Scenes/AlwaysStartFromEntryScene",
+                _isAlwaysStartFromEntryScene);
         }
 
         private static void OpenScene(string sceneName)
