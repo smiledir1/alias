@@ -23,7 +23,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         [SerializeField]
         [Range(0.001f, 0.5f)]
         private float _precision = 0.05f;
-        
+
         [SerializeField]
         [Range(0f, 1f)]
         private float _alpha = 1f;
@@ -176,7 +176,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
                     if (reverse)
                     {
-                        lerpTime = 1 - lerpTime;
+                        lerpTime = 1f - lerpTime;
                         for (var i = cur; i >= 0; i--)
                         {
                             if (_linesLens[i] > lerpTime) continue;
@@ -329,7 +329,6 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             var min = 0.0001f;
             var count = (int) ((1f - min) / _precision) + 2;
-            //var count = (int) (1f / _precision);
             var alpha = _alpha;
 
             var fullCount = (positionsCount - 1) * count;
@@ -345,8 +344,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
             var p1 = _positions[0];
             var p2 = _positions[1];
             var p3 = _positions[2];
-            
-            CountPoints(p0, p1, p2, p3, alpha, 1, count);
+
+            fullSqrPath = CountPoints(p0, p1, p2, p3,
+                alpha, 1, count, fullSqrPath, 1);
 
             for (var i = 2; i < lastPos; i++)
             {
@@ -354,8 +354,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 p1 = _positions[i - 1];
                 p2 = _positions[i];
                 p3 = _positions[i + 1];
-                
-                CountPoints(p0, p1, p2, p3, alpha, i, count);
+
+                fullSqrPath = CountPoints(p0, p1, p2, p3,
+                    alpha, i, count, fullSqrPath, 0);
             }
 
             p0 = _positions[lastPos - 2];
@@ -363,31 +364,39 @@ namespace Common.UniTaskAnimations.SimpleTweens
             p2 = _positions[lastPos];
             p3 = _positions[lastPos] + p2;
 
-            CountPoints(p0, p1, p2, p3, alpha, lastPos, count);
+            fullSqrPath = CountPoints(p0, p1, p2, p3,
+                alpha, lastPos, count, fullSqrPath, 0);
 
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < fullCount; i++)
             {
                 _linesLens[i] /= fullSqrPath;
             }
         }
 
-        private void CountPoints(
+        private float CountPoints(
             Vector2 p0,
             Vector2 p1,
             Vector2 p2,
             Vector2 p3,
             float alpha,
             int pointPos,
-            int count)
+            int count,
+            float fullSqrPath,
+            int startArrayPos)
         {
-            for (var j = 0; j < count; j++)
+            for (var j = startArrayPos; j < count; j++)
             {
                 var arrayPos = count * (pointPos - 1) + j;
                 var t = j * _precision;
                 t = t > 1 ? 1 : t;
                 _curvePoints[arrayPos] = GetPoint(
                     p0, p1, p2, p3, t, alpha);
+                var len = (_curvePoints[arrayPos] - _curvePoints[arrayPos - 1]).magnitude;
+                _linesLens[arrayPos] = fullSqrPath + len;
+                fullSqrPath += len;
             }
+
+            return fullSqrPath;
         }
 
         public Vector2 GetPoint(
@@ -582,6 +591,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
     public enum MultiLineType
     {
         Line,
+
         CatmullRom
         //TODO: bezier
     }

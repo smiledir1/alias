@@ -185,7 +185,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
                     if (reverse)
                     {
-                        lerpTime = 1 - lerpTime;
+                        lerpTime = 1f - lerpTime;
                         for (var i = cur; i >= 0; i--)
                         {
                             if (_bezierLens[i] > lerpTime) continue;
