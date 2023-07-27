@@ -9,7 +9,7 @@ namespace Services.Localization
     public class LocalizationData : ScriptableObject
     {
 #if UNITY_EDITOR
-        [Header("https://docs.google.com/spreadsheets/d/SPREADSHEETHASH/export?format=csv")]
+        [Header("https://docs.google.com/spreadsheets/d/[SPREADSHEETHASH]/export?format=csv")]
         [SerializeField]
         private string _spreadsheetUrl;
 

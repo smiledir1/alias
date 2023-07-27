@@ -2,8 +2,10 @@
 using System;
 using System.IO;
 using System.Text;
+using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Services.Localization.Editor
 {
@@ -20,6 +22,7 @@ namespace Services.Localization.Editor
         private static string _currentAddLocalizeLanguage;
         private static string _searchText;
         private static Vector2 _scrollPos;
+        private static string _spreadsheetUrl;
 
         private static GUIStyle _centeredLabel;
         private static GUIStyle _searchStyle;
@@ -129,6 +132,20 @@ namespace Services.Localization.Editor
             }
 
             EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.BeginHorizontal();
+            var labelText =
+                "CSV URL example: " +
+                "https://docs.google.com/spreadsheets/d/[SPREADSHEETHASH]/export?format=tsv";
+            EditorGUILayout.LabelField(labelText);
+            
+            _spreadsheetUrl = EditorGUILayout.TextField(_spreadsheetUrl);
+            
+            if (GUILayout.Button("Download CSV"))
+            {
+                DownloadCsv();
+            }
+            EditorGUILayout.EndHorizontal();
 
             serializeWindowObject.ApplyModifiedProperties();
         }
@@ -174,22 +191,29 @@ namespace Services.Localization.Editor
 
         private void ImportCSV()
         {
-            const char RowSeparator = ';';
-            const char ColumnSeparator = '\n';
-
-            //TODO: проверить порядок
-
             var path = $"{Application.dataPath}/loc.csv";
             var text = File.ReadAllText(path, Encoding.UTF8);
 
-            var lines = text.Split(ColumnSeparator);
-            var header = lines[0].Split(RowSeparator);
+            
+            const char RowSeparator = ';';
+            const char ColumnSeparator = '\n';
+            ImportFromText(text, RowSeparator, ColumnSeparator);
+
+            Debug.Log("Import complete");
+        }
+
+        private void ImportFromText(string text, char rowSeparator, char columnSeparator)
+        {
+            //TODO: проверить порядок
+            
+            var lines = text.Split(columnSeparator);
+            var header = lines[0].Split(rowSeparator);
 
             _keys = new string[lines.Length - 1];
             _translations = new string[lines.Length - 1, header.Length - 1];
             for (var i = 1; i < lines.Length; ++i)
             {
-                var items = lines[i].Split(RowSeparator);
+                var items = lines[i].Split(rowSeparator);
                 var pos = i - 1;
                 _keys[pos] = items[0];
                 for (var j = 1; j < items.Length; j++)
@@ -197,8 +221,6 @@ namespace Services.Localization.Editor
                     _translations[pos, j - 1] = items[j];
                 }
             }
-
-            Debug.Log("Import complete");
         }
 
         private void ExportCSV()
@@ -384,6 +406,43 @@ namespace Services.Localization.Editor
             }
 
             return false;
+        }
+
+        private void DownloadCsv()
+        {
+            DownloadAndParseTable().Forget();
+        }
+
+        private async UniTask DownloadAndParseTable()
+        {
+            if (!_spreadsheetUrl.EndsWith("tsv"))
+            {
+                var lastSlash = _spreadsheetUrl.LastIndexOf('/') + 1;
+                _spreadsheetUrl = _spreadsheetUrl.Substring(0, lastSlash);
+                _spreadsheetUrl += "export?format=tsv";
+            }
+            var parseData = await DownloadTable(_spreadsheetUrl);
+            
+            const char RowSeparator = '\t';
+            const char ColumnSeparator = '\n';
+            ImportFromText(parseData, RowSeparator, ColumnSeparator);
+        }
+
+
+        private static async UniTask<string> DownloadTable(string actualUrl)
+        {
+            using var request = UnityWebRequest.Get(actualUrl);
+            await request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.ConnectionError ||
+                request.result == UnityWebRequest.Result.ProtocolError ||
+                request.result == UnityWebRequest.Result.DataProcessingError)
+            {
+                Debug.LogError(request.error);
+                return string.Empty;
+            }
+
+            Debug.Log("Successful download");
+            return request.downloadHandler.text;
         }
     }
 }

@@ -1003,6 +1003,7 @@ RectTransform:
   - {fileID: 59931620}
   - {fileID: 239951351}
   - {fileID: 1114045540}
+  - {fileID: 1477450860}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3078,6 +3079,154 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399916443}
   m_CullTransparentMesh: 1
+--- !u!1 &1477450859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477450860}
+  - component: {fileID: 1477450864}
+  - component: {fileID: 1477450863}
+  - component: {fileID: 1477450862}
+  - component: {fileID: 1477450861}
+  m_Layer: 5
+  m_Name: Image (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1477450860
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477450859}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219788314}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 7.5, y: 1.17, z: 0.49}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 902, y: 397}
+  m_SizeDelta: {x: 96, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1477450861
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477450859}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1477450862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477450859}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startOnAwake: 0
+  _tween:
+    rid: 7359820294689128450
+  references:
+    version: 2
+    RefIds:
+    - rid: 7359820294689128450
+      type: {class: MultiPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 1477450859}
+        _startDelay: 0
+        _tweenTime: 1
+        _loop: 2
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _positionType: 0
+        _lineType: 1
+        _positions:
+        - {x: -348, y: 1, z: 0}
+        - {x: -140, y: 310, z: 0}
+        - {x: 106, y: 130, z: 0}
+        - {x: 362, y: 397, z: 0}
+        _precision: 0.083
+        _alpha: 1
+--- !u!114 &1477450863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477450859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 89f0fffec05e1bc448aafc669d6ceeb1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1477450864
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477450859}
+  m_CullTransparentMesh: 1
 --- !u!1 &1548491029
 GameObject:
   m_ObjectHideFlags: 0
@@ -3114,8 +3263,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102, y: -293}
-  m_SizeDelta: {x: 651, y: 366}
+  m_AnchoredPosition: {x: 500, y: 500}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1548491031
 MonoBehaviour:
@@ -3131,12 +3280,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startOnAwake: 0
   _tween:
-    rid: -2
+    rid: 7359820271979855873
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 7359820271979855873
+      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        _tweenObject: {fileID: 1548491029}
+        _startDelay: 0
+        _tweenTime: 1
+        _loop: 0
+        _animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _positionType: 0
+        _fromPosition: {x: 0, y: 0, z: 0}
+        _toPosition: {x: 500, y: 500, z: 0}
 --- !u!114 &1548491032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3322,6 +3503,7 @@ GameObject:
   - component: {fileID: 1590529565}
   - component: {fileID: 1590529564}
   - component: {fileID: 1590529563}
+  - component: {fileID: 1590529566}
   m_Layer: 5
   m_Name: Image (11)
   m_TagString: Untagged
@@ -3336,17 +3518,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590529561}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 219788314}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 7.5, y: 1.17, z: 0.49}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 994.3, y: 934}
+  m_AnchoredPosition: {x: 540, y: 0}
   m_SizeDelta: {x: 96, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590529563
@@ -3363,17 +3545,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startOnAwake: 0
   _tween:
-    rid: 7359820248953389094
+    rid: 7359820294689128450
   references:
     version: 2
     RefIds:
-    - rid: 7359820248953389094
-      type: {class: BezierPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+    - rid: 7359820294689128450
+      type: {class: MultiPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
         _tweenObject: {fileID: 1590529561}
         _startDelay: 0
         _tweenTime: 1
-        _loop: 0
+        _loop: 2
         _animationCurve:
           serializedVersion: 2
           m_Curve:
@@ -3399,11 +3581,16 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         _positionType: 0
-        _fromPosition: {x: 13, y: 74, z: 0}
-        _toPosition: {x: 454.3, y: 934, z: 0}
-        _bezier1Offset: {x: -967.8, y: 0, z: 0}
-        _bezier2Offset: {x: -961.67, y: 0, z: 0}
-        _precision: 0.48
+        _lineType: 1
+        _positions:
+        - {x: 0, y: 0, z: 0}
+        - {x: 200, y: 500, z: 0}
+        - {x: 0, y: 500, z: 0}
+        - {x: -168, y: 356, z: 0}
+        - {x: -288, y: 684, z: 0}
+        - {x: 8, y: 736, z: 0}
+        _precision: 0.055
+        _alpha: 1
 --- !u!114 &1590529564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3442,6 +3629,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590529561}
   m_CullTransparentMesh: 1
+--- !u!225 &1590529566
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590529561}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1625717938
 GameObject:
   m_ObjectHideFlags: 0

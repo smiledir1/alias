@@ -47,6 +47,7 @@ namespace Common.UniTaskAnimations
                 nameof(ColorImageTween) => CreateColorImageTween(tweenObject),
                 nameof(FrameByFrameTween) => CreateFrameByFrameTween(tweenObject),
                 nameof(OffsetPositionTween) => CreateOffsetPositionTween(tweenObject),
+                nameof(MultiPositionTween) => CreateMultiPositionTween(tweenObject),
                 _ => null
             };
         }
@@ -198,6 +199,20 @@ namespace Common.UniTaskAnimations
                 AnimationCurve,
                 Vector3.zero,
                 Vector3.zero);
+        }
+        
+        public static SimpleTween CreateMultiPositionTween(GameObject tweenObject = null)
+        {
+            return new MultiPositionTween(
+                tweenObject,
+                StartDelay,
+                TweenTime,
+                Loop,
+                AnimationCurve,
+                PositionType.Local,
+                MultiLineType.Line,
+                new List<Vector3>(),
+                0.05f);
         }
 
         #endregion

@@ -61,6 +61,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             _bezier1Offset = Vector3.zero;
             _bezier2Offset = Vector3.zero;
             _precision = 0.05f;
+            CreatePoints();
         }
 
         public BezierPositionTween(
@@ -74,7 +75,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Vector3 toPosition,
             Vector3 bezier1Offset,
             Vector3 bezier2Offset,
-            float precision) :
+            float precision = 0.05f) :
             base(tweenObject,
                 startDelay,
                 tweenTime,
@@ -181,7 +182,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     Vector3 toPoint;
                     float startLen;
                     float endLen;
-                    
+
                     if (reverse)
                     {
                         lerpTime = 1 - lerpTime;
@@ -191,7 +192,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                             cur = i;
                             break;
                         }
-                        
+
                         startPoint = _bezierPoints[cur];
                         toPoint = _bezierPoints[cur + 1];
 
@@ -206,7 +207,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                             cur = i;
                             break;
                         }
-                        
+
                         startPoint = _bezierPoints[cur - 1];
                         toPoint = _bezierPoints[cur];
 
@@ -236,6 +237,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     case LoopType.PingPong:
                         toPosition = startPosition;
                         startPosition = GetCurrentPosition();
+                        reverse = !reverse;
                         break;
                 }
             }
@@ -384,31 +386,30 @@ namespace Common.UniTaskAnimations.SimpleTweens
             var parentPosition = parent == null ? Vector3.zero : parent.position;
             var parentScale = parent == null ? Vector3.one : parent.lossyScale;
 
-            var b0 = parentPosition +
-                     GetScaledPosition(parentScale, bezierPositionTween.FromPosition);
-            var b3 = parentPosition +
-                     GetScaledPosition(parentScale, bezierPositionTween.ToPosition);
+            var b0 = parentPosition
+                     + GetScaledPosition(parentScale, bezierPositionTween.FromPosition);
+            var b3 = parentPosition
+                     + GetScaledPosition(parentScale, bezierPositionTween.ToPosition);
 
-            var b1 = b0 +
-                     GetScaledPosition(parentScale, bezierPositionTween.Bezier1Offset);
-            var b2 = b3 +
-                     GetScaledPosition(parentScale, bezierPositionTween.Bezier2Offset);
+            var b1 = b0
+                     + GetScaledPosition(parentScale, bezierPositionTween.Bezier1Offset);
+            var b2 = b3
+                     + GetScaledPosition(parentScale, bezierPositionTween.Bezier2Offset);
 
-            var list = new List<Vector3>();
-            for (var i = 0f; i < 1f; i += bezierPositionTween.Precision)
+            var count = bezierPositionTween._bezierPoints.Length;
+            var lines = new Vector3[count];
+
+            for (var i = 0; i < count; i++)
             {
-                var position = CalculatePointPosition(b0, b1, b2, b3, i);
-                list.Add(position);
+                lines[i] = parentPosition
+                           + GetScaledPosition(parentScale, bezierPositionTween._bezierPoints[i]);
             }
 
-            var lastPosition = CalculatePointPosition(b0, b1, b2, b3, 1);
-            list.Add(lastPosition);
-
+            Gizmos.DrawSphere(b0, 10f);
             Gizmos.DrawSphere(b1, 10f);
             Gizmos.DrawSphere(b2, 10f);
-            Gizmos.DrawSphere(b0, 10f);
             Gizmos.DrawSphere(b3, 10f);
-            Gizmos.DrawLineStrip(list.ToArray(), false);
+            Gizmos.DrawLineStrip(lines, false);
         }
 
         private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position)
@@ -425,23 +426,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
             var b3 = bezierPositionTween.ToPosition;
 
             var b1 = b0 + bezierPositionTween.Bezier1Offset;
-            var b2 = b3+ bezierPositionTween.Bezier2Offset;
+            var b2 = b3 + bezierPositionTween.Bezier2Offset;
 
-            var list = new List<Vector3>();
-            for (var i = 0f; i < 1f; i += bezierPositionTween.Precision)
-            {
-                var position = CalculatePointPosition(b0, b1, b2, b3, i);
-                list.Add(position);
-            }
-
-            var lastPosition = CalculatePointPosition(b0, b1, b2, b3, 1);
-            list.Add(lastPosition);
-
+            Gizmos.DrawSphere(b0, 10f);
             Gizmos.DrawSphere(b1, 10f);
             Gizmos.DrawSphere(b2, 10f);
-            Gizmos.DrawSphere(b0, 10f);
             Gizmos.DrawSphere(b3, 10f);
-            Gizmos.DrawLineStrip(list.ToArray(), false);
+            Gizmos.DrawLineStrip(bezierPositionTween._bezierPoints, false);
         }
 
         private static void DrawAnchoredPosition(BezierPositionTween bezierPositionTween)
@@ -464,26 +455,26 @@ namespace Common.UniTaskAnimations.SimpleTweens
             var b3 = parentPosition
                      + GetScaledPosition(parentScale, bezierPositionTween.ToPosition)
                      + difScaled;
-            var b1 = b0 +
-                     GetScaledPosition(parentScale, bezierPositionTween.Bezier1Offset);
-            var b2 = b3 +
-                     GetScaledPosition(parentScale, bezierPositionTween.Bezier2Offset);
+            var b1 = b0
+                     + GetScaledPosition(parentScale, bezierPositionTween.Bezier1Offset);
+            var b2 = b3
+                     + GetScaledPosition(parentScale, bezierPositionTween.Bezier2Offset);
 
-            var list = new List<Vector3>();
-            for (var i = 0f; i < 1f; i += bezierPositionTween.Precision)
+            var count = bezierPositionTween._bezierPoints.Length;
+            var lines = new Vector3[count];
+
+            for (var i = 0; i < count; i++)
             {
-                var position = CalculatePointPosition(b0, b1, b2, b3, i);
-                list.Add(position);
+                lines[i] = parentPosition
+                           + GetScaledPosition(parentScale, bezierPositionTween._bezierPoints[i])
+                           + difScaled;
             }
 
-            var lastPosition = CalculatePointPosition(b0, b1, b2, b3, 1);
-            list.Add(lastPosition);
-
+            Gizmos.DrawSphere(b0, 10f);
             Gizmos.DrawSphere(b1, 10f);
             Gizmos.DrawSphere(b2, 10f);
-            Gizmos.DrawSphere(b0, 10f);
             Gizmos.DrawSphere(b3, 10f);
-            Gizmos.DrawLineStrip(list.ToArray(), false);
+            Gizmos.DrawLineStrip(lines, false);
         }
 
         public override void OnGuiChange()

@@ -11,5 +11,6 @@ namespace Services.Localization
         string GetText(string key);
         UniTask ChangeLanguage(SystemLanguage language);
         UniTask<SystemLanguage> ChangeLanguage();
+        string GetFormattedText(string key, params object[] parameters);
     }
 }

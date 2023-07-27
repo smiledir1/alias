@@ -67,6 +67,12 @@ namespace Services.Localization
         {
             return _localizationSet.TryGetValue(key, out var text) ? text : key;
         }
+        
+        public string GetFormattedText(string key, params object[] parameters)
+        {
+            var localizeText = _localizationSet.TryGetValue(key, out var text) ? text : key;
+            return string.Format(localizeText, parameters);
+        }
 
         public async UniTask ChangeLanguage(SystemLanguage language)
         {
