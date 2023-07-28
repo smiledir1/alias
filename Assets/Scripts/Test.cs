@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Threading;
 using Common.Extensions;
 using Common.UniTaskAnimations;
 using Common.UniTaskAnimations.SimpleTweens;
@@ -29,6 +30,16 @@ public class Test : MonoBehaviour, IHasServices
     public float number2 = 0;
     
     public float round = 0;
+
+    public async UniTask TestAnimation()
+    {
+        var positionAnim = TweenFactory.CreatePositionTween(gameObject);
+        
+        var token = new CancellationTokenSource();
+        await positionAnim.StartAnimation(cancellationToken: token.Token);
+       
+        Debug.Log("complete");
+    }
 
     // public A SimpleA;
     // public B SimpleB;

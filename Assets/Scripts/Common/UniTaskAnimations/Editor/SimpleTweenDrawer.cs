@@ -41,6 +41,7 @@ namespace Common.UniTaskAnimations.Editor
             var propertyRect = new Rect(rect.x, rect.y, rect.width, rect.height);
             var foldoutRect = new Rect(propertyRect.x, propertyRect.y, propertyRect.width, _lineHeight);
             property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label);
+            var startHeight = propertyRect.y;
             propertyRect.y += _lineHeight;
 
             if (property.isExpanded)
@@ -52,7 +53,7 @@ namespace Common.UniTaskAnimations.Editor
                 propertyRect.y += DrawTweenProperties(propertyRect, property, label);
             }
 
-            PropertyHeight = propertyRect.y;
+            PropertyHeight = propertyRect.y - startHeight;
             if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
             {
                 OnGuiChange(baseTween).Forget();
@@ -232,16 +233,22 @@ namespace Common.UniTaskAnimations.Editor
 
         private void FillTweenObject(SerializedProperty property)
         {
-            if (TweenObject != null) return;
-
-            TweenObject = property.serializedObject.targetObject switch
-            {
-                GameObject go => go,
-                Component component => component.gameObject,
-                _ => TweenObject
-            };
-
             TargetTween = property.managedReferenceValue as SimpleTween;
+            TweenObject = TargetTween?.TweenObject;
+            if (TweenObject == null)
+            {
+                TweenObject = property.serializedObject.targetObject switch
+                {
+                    GameObject go => go,
+                    Component component => component.gameObject,
+                    _ => TweenObject
+                };
+                
+                if (TargetTween != null)
+                {
+                    property.managedReferenceValue = SimpleTween.Clone(TargetTween, TweenObject);
+                }
+            }
         }
 
         private float DrawMainProperties(Rect propertyRect, SerializedProperty property)
