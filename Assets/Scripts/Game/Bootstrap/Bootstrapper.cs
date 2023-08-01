@@ -17,7 +17,9 @@ using Services.UI.PopupService;
 using Services.UI.ScreenService;
 using Services.UserData;
 using Services.Vibration;
+using Services.YandexGames;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Bootstrap
 {
@@ -26,6 +28,9 @@ namespace Game.Bootstrap
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Initialize()
         {
+#if DEV_ENV
+            if (SceneManager.GetActiveScene().buildIndex != 0) return;
+#endif
             InitializeAsync().SafeForget();
         }
 
@@ -102,7 +107,11 @@ namespace Game.Bootstrap
             var analyticsService = new UniversalAnalyticsService(assetsService);
 #endif
             ServiceLocator.AddService<IAnalyticsService>(analyticsService);
-
+            
+            var yandexService = new YandexGamesService(assetsService);
+            ServiceLocator.AddService<IYandexGamesService>(yandexService);
+            yandexService.InitializePlayer(PlayerPhotoSize.Small).Forget();
+            
             // TODO: SceneLoader (Curtains?)
             // TODO: HttpService? (Get, Post)
             // TODO: InApps? (UnityServices)

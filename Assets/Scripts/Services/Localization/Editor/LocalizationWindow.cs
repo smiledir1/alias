@@ -1,8 +1,11 @@
 ﻿#if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -27,6 +30,15 @@ namespace Services.Localization.Editor
         private static GUIStyle _centeredLabel;
         private static GUIStyle _searchStyle;
         private static LocalizationData _localizationData;
+
+        private bool _isGoogleTranslateOpen;
+        private int _googleFromLanguage;
+        private int _googleToLanguage;
+        private string _googleFromText;
+        private string _googleToText;
+        private int _googleTextHeight = 20;
+        private static readonly string[] _googleTranslateLanguages = {"ru", "en", "de", "fi", "fr", "it", "ja", "ko",
+            "zh", "es", "sv", "tr",};
 
         [MenuItem("Tools/Localization Window")]
         private static void InitializeWindow()
@@ -60,6 +72,21 @@ namespace Services.Localization.Editor
             if (_window == null) InitializeWindow();
             var serializeWindowObject = new SerializedObject(this);
 
+            DrawTopMenu();
+
+            DrawScrollView();
+
+            DrawCheckLabel();
+
+            DrawButtonMenu();
+
+            DrawGoogleElements();
+
+            serializeWindowObject.ApplyModifiedProperties();
+        }
+
+        private void DrawTopMenu()
+        {
             EditorGUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Import CSV"))
@@ -74,18 +101,19 @@ namespace Services.Localization.Editor
 
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal();
-
-            _currentAddLanguage = (SystemLanguage) EditorGUILayout.EnumPopup("Language", _currentAddLanguage);
-
-            _currentAddLocalizeLanguage = EditorGUILayout.TextField(_currentAddLocalizeLanguage);
-
-            if (GUILayout.Button("Add"))
-            {
-                AddLanguage();
-            }
-
-            EditorGUILayout.EndHorizontal();
+            //TODO: 
+            // EditorGUILayout.BeginHorizontal();
+            //
+            // _currentAddLanguage = (SystemLanguage) EditorGUILayout.EnumPopup("Language", _currentAddLanguage);
+            //
+            // _currentAddLocalizeLanguage = EditorGUILayout.TextField(_currentAddLocalizeLanguage);
+            //
+            // if (GUILayout.Button("Add"))
+            // {
+            //     AddLanguage();
+            // }
+            //
+            // EditorGUILayout.EndHorizontal();
 
             _searchText = EditorGUILayout.TextField(_searchText, _searchStyle);
 
@@ -100,54 +128,6 @@ namespace Services.Localization.Editor
             }
 
             EditorGUILayout.EndHorizontal();
-
-            DrawScrollView();
-
-            DrawCheckLabel();
-
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Add Key"))
-            {
-                AddKey();
-            }
-
-            if (GUILayout.Button("Remove Last Key"))
-            {
-                RemoveLastKey();
-            }
-
-            if (GUILayout.Button("Up"))
-            {
-                Up();
-            }
-
-            if (GUILayout.Button("Down"))
-            {
-                Down();
-            }
-
-            if (GUILayout.Button("Save"))
-            {
-                Save();
-            }
-
-            EditorGUILayout.EndHorizontal();
-            
-            EditorGUILayout.BeginHorizontal();
-            var labelText =
-                "CSV URL example: " +
-                "https://docs.google.com/spreadsheets/d/[SPREADSHEETHASH]/export?format=tsv";
-            EditorGUILayout.LabelField(labelText);
-            
-            _spreadsheetUrl = EditorGUILayout.TextField(_spreadsheetUrl);
-            
-            if (GUILayout.Button("Download CSV"))
-            {
-                DownloadCsv();
-            }
-            EditorGUILayout.EndHorizontal();
-
-            serializeWindowObject.ApplyModifiedProperties();
         }
 
         private static void CreateLocalizationData()
@@ -194,7 +174,7 @@ namespace Services.Localization.Editor
             var path = $"{Application.dataPath}/loc.csv";
             var text = File.ReadAllText(path, Encoding.UTF8);
 
-            
+
             const char RowSeparator = ';';
             const char ColumnSeparator = '\n';
             ImportFromText(text, RowSeparator, ColumnSeparator);
@@ -205,7 +185,7 @@ namespace Services.Localization.Editor
         private void ImportFromText(string text, char rowSeparator, char columnSeparator)
         {
             //TODO: проверить порядок
-            
+
             var lines = text.Split(columnSeparator);
             var header = lines[0].Split(rowSeparator);
 
@@ -295,6 +275,37 @@ namespace Services.Localization.Editor
             EditorGUILayout.EndScrollView();
         }
 
+        private void DrawButtonMenu()
+        {
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Add Key"))
+            {
+                AddKey();
+            }
+
+            if (GUILayout.Button("Remove Last Key"))
+            {
+                RemoveLastKey();
+            }
+
+            if (GUILayout.Button("Up"))
+            {
+                Up();
+            }
+
+            if (GUILayout.Button("Down"))
+            {
+                Down();
+            }
+
+            if (GUILayout.Button("Save"))
+            {
+                Save();
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+
         private void AddKey()
         {
             var newKeys = new string[_keys.Length + 1];
@@ -315,7 +326,7 @@ namespace Services.Localization.Editor
                 {
                     newTranslations[j, i] = _translations[j, i];
                 }
-                
+
                 newTranslations[translationsLengthJ, i] = string.Empty;
             }
 
@@ -421,8 +432,9 @@ namespace Services.Localization.Editor
                 _spreadsheetUrl = _spreadsheetUrl.Substring(0, lastSlash);
                 _spreadsheetUrl += "export?format=tsv";
             }
+
             var parseData = await DownloadTable(_spreadsheetUrl);
-            
+
             const char RowSeparator = '\t';
             const char ColumnSeparator = '\n';
             ImportFromText(parseData, RowSeparator, ColumnSeparator);
@@ -443,6 +455,87 @@ namespace Services.Localization.Editor
 
             Debug.Log("Successful download");
             return request.downloadHandler.text;
+        }
+
+        private void DrawGoogleSpreadSheetDownload()
+        {
+            EditorGUILayout.BeginHorizontal();
+            var labelText =
+                "CSV URL example: " +
+                "https://docs.google.com/spreadsheets/d/[SPREADSHEETHASH]/export?format=tsv";
+            EditorGUILayout.LabelField(labelText, GUI.tooltip);
+
+            _spreadsheetUrl = EditorGUILayout.TextField(_spreadsheetUrl);
+
+            if (GUILayout.Button("Download CSV"))
+            {
+                DownloadCsv();
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+        
+        private void DrawGoogleElements()
+        {
+            var buttonOpenText = _isGoogleTranslateOpen ? "Close Google" : "Open Google";
+            if (GUILayout.Button(buttonOpenText)) _isGoogleTranslateOpen = !_isGoogleTranslateOpen;
+            if (!_isGoogleTranslateOpen) return;
+
+            DrawGoogleSpreadSheetDownload();
+            DrawGoogleLocalization();
+        }
+
+        private void DrawGoogleLocalization()
+        {
+            _googleTextHeight = EditorGUILayout.IntSlider(
+                "Text Height", _googleTextHeight, 20, 500);
+            
+            EditorGUILayout.BeginHorizontal();
+
+            _googleFromLanguage = EditorGUILayout.Popup(_googleFromLanguage, _googleTranslateLanguages);
+            _googleToLanguage = EditorGUILayout.Popup(_googleToLanguage, _googleTranslateLanguages);
+            
+            EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.BeginHorizontal();
+
+            var width = _window.position.width / 2;
+            _googleFromText = EditorGUILayout.TextArea(_googleFromText, 
+                GUILayout.Height(_googleTextHeight), GUILayout.Width(width));
+            _googleToText = EditorGUILayout.TextArea(_googleToText, 
+                GUILayout.Height(_googleTextHeight), GUILayout.Width(width));
+            
+            EditorGUILayout.EndHorizontal();
+            
+            if (GUILayout.Button("Translate")) TranslateFromGoogle().Forget();
+        }
+
+        private async UniTask TranslateFromGoogle()
+        {
+            var fromLanguage = _googleTranslateLanguages[_googleFromLanguage];
+            var toLanguage = _googleTranslateLanguages[_googleToLanguage];
+            var translateText = WebUtility.UrlEncode(_googleFromText);
+            var url =
+                $"https://translate.google.com/translate_a/single" +
+                $"?client=gtx&dt=t&sl={fromLanguage}&tl={toLanguage}&q={translateText}";
+
+            var webRequest = UnityWebRequest.Get(url);
+
+            try
+            {
+                var response = await webRequest.SendWebRequest();
+                var responseText = response.downloadHandler.text;
+                var jsonArray = JArray.Parse(responseText);
+                _googleToText = jsonArray[0][0][0].ToString();
+                Debug.Log("Translate done");
+            }
+            catch
+            {
+                Debug.LogError("(enMessage) The process is not completed! Most likely, you made too " +
+                               "many requests. In this case, the Google Translate API blocks access to the " +
+                               "translation for a while.  Please try again later. Do not translate the text " +
+                               "too often, so that Google does not consider your actions as spam");
+            }
         }
     }
 }

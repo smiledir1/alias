@@ -107,24 +107,24 @@ namespace Services.UI
 
             var lastUIObject = ShowedListUIObjects[^1];
             await CloseUIObjectAndCheckStack(lastUIObject);
-            
+
             CompleteAction();
         }
 
         public async UniTask CloseCurrentUIObject<T>() where T : UIObject
         {
             await WaitForStartAction();
-            
+
             if (!UIObjectsLoadCache.TryGetValue(typeof(T), out var uiObject)) return;
             await CloseUIObjectAndCheckStack(uiObject);
-            
+
             CompleteAction();
         }
 
         public async UniTask CloseCurrentUIObject(UIObject uiObject)
         {
             await WaitForStartAction();
-            
+
             await CloseUIObjectAndCheckStack(uiObject);
 
             CompleteAction();
@@ -358,7 +358,7 @@ namespace Services.UI
             ShowedListUIObjects.Remove(uiObject);
             StackRemove?.Invoke(uiObject);
         }
-        
+
         private async UniTask WaitForStartAction()
         {
             IncrementBlockRaycast();

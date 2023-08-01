@@ -51,7 +51,7 @@ namespace Common.Extensions
         
         private static string GetSourceCall()
         {
-#if !RELEASE_ENV
+#if DEv_ENV
             var frame = new System.Diagnostics.StackTrace(0, true).GetFrame(2);
             var filename = frame.GetFileName();
             var assetName = filename?.Replace("\\", "/").Replace(Application.dataPath, "Assets");

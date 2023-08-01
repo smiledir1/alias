@@ -1,4 +1,6 @@
 using Common.Extensions;
+using Services.Helper;
+using Services.YandexGames;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -17,6 +19,16 @@ namespace Common.Cheats
         
         [SerializeField]
         private CheatsInput _cheatsInputTemplate;
+        
+        [SerializeField]
+        private CheatsLabel _cheatsLabelTemplate;
+
+        #endregion
+
+        #region Services
+
+        [Service]
+        private static IYandexGamesService _yandexGamesService;
 
         #endregion
 
@@ -59,6 +71,14 @@ namespace Common.Cheats
             newCheatsButton.Initialize(labelText, inputText, onClick);
             newCheatsButton.gameObject.SetActive(true);
         }
+
+        private void CreateCheatsLabel(string labelText)
+        {
+            var parent = _cheatsInputTemplate.transform.parent;
+            var newCheatsButton = Instantiate(_cheatsLabelTemplate, parent);
+            newCheatsButton.Initialize(labelText);
+            newCheatsButton.gameObject.SetActive(true);
+        }
         
         #endregion
 
@@ -67,6 +87,7 @@ namespace Common.Cheats
         // TODO: Придумать как вынести
         private void CreateCheats()
         {
+            CreateCheatsLabel("Test Block");
             CreateCheatsButton("Test Button", () =>
             {
                 Debug.Log("Test");
@@ -76,6 +97,43 @@ namespace Common.Cheats
             {
                 Debug.Log($"Test {text}");
             });
+            
+            CreateCheatsLabel("Yandex Block");
+            CreateCheatsButton("GetEnvironment", async () =>
+            {
+                var environment = await _yandexGamesService.GetEnvironment();
+                Debug.Log(environment.ToString());
+            });
+            
+            CreateCheatsButton("InitializePlayer", async () =>
+            {
+                var playerData = await _yandexGamesService.InitializePlayer(PlayerPhotoSize.Small);
+                Debug.Log(playerData.ToString());
+            });
+            
+            CreateCheatsButton("ShowReview", async () =>
+            {
+                var reviewReason = await _yandexGamesService.ShowReview();
+                Debug.Log(reviewReason.ToString());
+            });
+            
+            CreateCheatsButton("ShowFullscreenAd", async () =>
+            {
+                await _yandexGamesService.ShowFullscreenAd();
+                Debug.Log("ShowFullscreenAd showed");
+            });
+            
+            CreateCheatsButton("ShowRewardedVideoAd", async () =>
+            {
+                await _yandexGamesService.ShowRewardedVideoAd(OnReward);
+                Debug.Log("ShowRewardedVideoAd showed");
+
+                void OnReward()
+                {
+                    Debug.Log("Get Reward");
+                }
+            });
+
         }
 
         #endregion

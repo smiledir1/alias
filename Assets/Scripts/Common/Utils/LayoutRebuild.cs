@@ -9,6 +9,9 @@ namespace Common.Utils
         [SerializeField]
         private LayoutGroup _layoutGroup;
 
+        [SerializeField]
+        private int _rebuildFrames = 1;
+
         private void Start()
         {
             if (_layoutGroup == null) _layoutGroup = GetComponent<LayoutGroup>();
@@ -17,7 +20,11 @@ namespace Common.Utils
 
         public async UniTask WaitRebuild()
         {
-            await UniTask.Yield();
+            for (var i = 0; i < _rebuildFrames; i++)
+            {
+                await UniTask.Yield();
+            }
+            
             Rebuild();
         }
 

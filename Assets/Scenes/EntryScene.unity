@@ -1386,6 +1386,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        _positionType: 0
         _fromPosition: {x: -400, y: 0, z: 0}
         _toPosition: {x: 500, y: 0, z: 0}
         _bezier1Offset: {x: 350, y: -250, z: 0}
@@ -2523,6 +2524,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        _positionType: 0
         _fromPosition: {x: 0, y: 200, z: 0}
         _toPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &932393361

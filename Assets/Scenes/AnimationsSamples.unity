@@ -279,7 +279,6 @@ GameObject:
   - component: {fileID: 219788313}
   - component: {fileID: 219788312}
   - component: {fileID: 219788311}
-  - component: {fileID: 219788315}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -375,40 +374,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &219788315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219788310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24bf62b1350f2304aa4c2fd0a40f0e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  number: 0
-  number2: 0
-  round: 0
-  SimpleA1Ref:
-    rid: -2
-  SimpleA2Ref:
-    rid: -2
-  SimpleA3Ref:
-    rid: 1209636076761907209
-  SimpleA4Ref:
-    rid: -2
-  _closeUi: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 1209636076761907209
-      type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
-      data:
-        _synchronously: 0
-        _tweens: []
 --- !u!1 &231414823
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ namespace Services.UI
         {
             _raycastBlock.gameObject.SetActive(true);
         }
-        
+
         public virtual void DisableRaycast()
         {
             _raycastBlock.gameObject.SetActive(false);

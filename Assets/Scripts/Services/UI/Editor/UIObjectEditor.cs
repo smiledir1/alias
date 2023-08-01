@@ -22,7 +22,8 @@ namespace Services.UI.Editor
 
         private void DoDrawDefaultInspector(SerializedObject obj)
         {
-            if (GUILayout.Button("Create Addressable")) CreateAddressable(_target);
+            if (GUILayout.Button("Create Addressable") 
+                && !Application.isPlaying) CreateAddressable(_target);
 
             EditorGUI.BeginChangeCheck();
             obj.UpdateIfRequiredOrScript();

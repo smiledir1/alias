@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Rules
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e3298be39b911446953655796ca364e, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: b0df04c2a597d4346b2cfac0ea42fd04, type: 2}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 5087722274788155812}
   _recalculateOnEnable: 0
-  _key: settings
+  _key: rules
 --- !u!1 &1685724530907150160
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _layoutGroup: {fileID: 7996979021182136105}
+  _rebuildFrames: 5
 --- !u!1 &8644888089463994702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1026,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        _positionType: 0
         _fromPosition: {x: -1000, y: 0, z: 0}
         _toPosition: {x: 0, y: 0, z: 0}
     - rid: 7359820226103345153
@@ -1058,5 +1060,6 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        _positionType: 0
         _fromPosition: {x: 0, y: 0, z: 0}
         _toPosition: {x: -1000, y: 0, z: 0}
