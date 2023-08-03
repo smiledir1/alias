@@ -13,14 +13,12 @@ namespace Services.YandexGames
         public event Action CloseRewardedVideo;
         public event Action RewardRewardedVideo;
         public event Action ErrorRewardedVideo;
-        public event Action<string> PurchaseSuccess;
-        public event Action<string> PurchaseFailed;
-        public event Action<string> PaymentsEntries;
         public event Action<string> SetEnvironmentData;
         public event Action<bool> ReviewSent;
         public event Action<string> ReviewError;
         public event Action PromptSuccess;
         public event Action PromptFail;
+        public event Action PromptError;
 
         private void Awake()
         {
@@ -80,26 +78,6 @@ namespace Services.YandexGames
 
         #endregion
 
-        #region Payments
-
-        public void OnPurchaseSuccess(string id)
-        {
-            PurchaseSuccess?.Invoke(id);
-        }
-
-        public void OnPurchaseFailed(string id)
-        {
-            PurchaseFailed?.Invoke(id);
-        }
-
-        public void OnPaymentsEntries(string data)
-        {
-            PaymentsEntries?.Invoke(data);
-            var paymentsData = JsonUtility.FromJson<JsonPayments>(data);
-        }
-
-        #endregion
-
         #region Environment
 
         public void OnSetEnvironmentData(string data)
@@ -111,15 +89,9 @@ namespace Services.YandexGames
 
         #region Review
 
-        public void OnReviewSent2(string feedbackSent)
-        {
-            Debug.Log($"OnReviewSent2 {feedbackSent}");
-        }
-
         public void OnReviewSent(int feedbackSent)
         {
             var feedbackSentBool = feedbackSent == 1;
-            Debug.Log($"OnReviewSent1 {feedbackSentBool}");
             ReviewSent?.Invoke(feedbackSentBool);
         }
         
@@ -141,21 +113,16 @@ namespace Services.YandexGames
         {
             PromptFail?.Invoke();
         }
+        
+        public void OnPromptError()
+        {
+            PromptError?.Invoke();
+        }
 
         #endregion
 
         #region Saves
 
         #endregion
-    }
-
-    public class JsonPayments
-    {
-        public string[] id;
-        public string[] title;
-        public string[] description;
-        public string[] imageURI;
-        public string[] priceValue;
-        public int[] purchased;
     }
 }

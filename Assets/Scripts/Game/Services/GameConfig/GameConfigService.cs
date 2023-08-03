@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Services.Assets;
 using Services.Common;
+using UnityEngine;
 
 namespace Game.Services.GameConfig
 {
@@ -24,6 +25,8 @@ namespace Game.Services.GameConfig
             await WaitForServiceInitialize(_assetsService);
             
             GameConfig = await _assetsService.LoadAsset<GameConfig>();
+
+            Application.targetFrameRate = GameConfig.FrameRate;
         }
     }
 }

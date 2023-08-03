@@ -37,14 +37,14 @@ namespace Game.Services.Teams
         public Team CreateTeamFromConfig(TeamItem item)
         {
             var teamName = _localizationService.GetText(item.NameLocalizationKey);
-            return new Team(teamName, item.Id, item.Icon);
+            return new Team(teamName, item.Id, item.Icon, 0);
         }
         
         public Team CreateTeamFromData(TeamData data)
         {
             var item = TeamsConfig.Teams.Find(t => t.Id == data.Id);
             var teamName = _localizationService.GetText(item.NameLocalizationKey);
-            return new Team(teamName, item.Id, item.Icon);
+            return new Team(teamName, item.Id, item.Icon, data.Score);
         }
         
         public List<Team> CreateTeamsFromData(List<TeamData> data)

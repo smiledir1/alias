@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Reflection;
 using System.Threading;
 using Common.Extensions;
@@ -31,6 +32,8 @@ public class Test : MonoBehaviour, IHasServices
     
     public float round = 0;
 
+   
+    
     public async UniTask TestAnimation()
     {
         var positionAnim = TweenFactory.CreatePositionTween(gameObject);
@@ -104,6 +107,9 @@ public class Test : MonoBehaviour, IHasServices
     
     [SerializeField]
     private Button _closeUi;
+    
+    public string DateFormat = "dd-mm-yy";
+    public string Date = "";
 
     private void Awake()
     {
@@ -141,6 +147,7 @@ public class Test : MonoBehaviour, IHasServices
 
     private void OnValidate()
     {
+        
         // Vector3 zazaz = new Vector3();
         // zazaz.x = 34f;
         // if (number == 10)
@@ -163,6 +170,20 @@ public class Test : MonoBehaviour, IHasServices
 
         //TestUserData();
        // CheckServices();
+       //DebugDate();
+    }
+
+    private void DebugDate()
+    {
+        if (DateTime.TryParseExact(Date, DateFormat, null,
+                DateTimeStyles.None, out var parsedDate))
+        {
+            Debug.Log($"{Date} {parsedDate}");
+        }
+        else
+        {
+            Debug.Log($"{Date} zaza");
+        }
     }
 
     private void CheckServices()

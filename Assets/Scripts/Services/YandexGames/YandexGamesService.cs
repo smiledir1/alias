@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Services.Assets;
 using Services.Common;
 using UnityEngine;
@@ -12,29 +11,31 @@ namespace Services.YandexGames
     /// </summary>
     public class YandexGamesService : Service, IYandexGamesService
     {
-        [DllImport("__Internal")]
+#if !UNITY_EDITOR && UNITY_WEBGL
+        [System.Runtime.InteropServices.DllImport("__Internal")]
         private static extern void InitializePlayer(string playerPhotoSize, bool scopes);
 
-        [DllImport("__Internal")]
+        [System.Runtime.InteropServices.DllImport("__Internal")]
         private static extern void FullscreenAdShow();
 
-        [DllImport("__Internal")]
+        [System.Runtime.InteropServices.DllImport("__Internal")]
         private static extern void RewardedVideoShow();
 
-        [DllImport("__Internal")]
+        [System.Runtime.InteropServices.DllImport("__Internal")]
         private static extern void RequestingEnvironmentData();
 
-        [DllImport("__Internal")]
+        [System.Runtime.InteropServices.DllImport("__Internal")]
         private static extern void Review();
 
-        [DllImport("__Internal")]
+        [System.Runtime.InteropServices.DllImport("__Internal")]
         private static extern void PromptShow();
 
-        [DllImport("__Internal")]
+        [System.Runtime.InteropServices.DllImport("__Internal")]
         private static extern void BuyPayments(string id);
 
-        [DllImport("__Internal")]
+        [System.Runtime.InteropServices.DllImport("__Internal")]
         private static extern void GetPayments();
+#endif
 
         private readonly IAssetsService _assetsService;
 
@@ -47,6 +48,7 @@ namespace Services.YandexGames
         private UniTaskCompletionSource<bool> _rewardedVideoAdSource;
         private UniTaskCompletionSource<EnvironmentData> _environmentDataSource;
         private UniTaskCompletionSource<ReviewReason> _reviewSource;
+        private UniTaskCompletionSource<bool> _promptSource;
 
         public YandexGamesService(IAssetsService assetsService)
         {
@@ -75,6 +77,10 @@ namespace Services.YandexGames
 
             _yandexGamesProxy.ReviewSent += OnReviewSent;
             _yandexGamesProxy.ReviewError += OnReviewError;
+
+            _yandexGamesProxy.PromptSuccess += OnPromptSuccess;
+            _yandexGamesProxy.PromptFail += OnPromptFail;
+            _yandexGamesProxy.PromptError += OnPromptError;
         }
 
         protected override UniTask OnDispose()
@@ -94,7 +100,10 @@ namespace Services.YandexGames
 
             _yandexGamesProxy.ReviewSent -= OnReviewSent;
             _yandexGamesProxy.ReviewError -= OnReviewError;
-            
+
+            _yandexGamesProxy.PromptSuccess -= OnPromptSuccess;
+            _yandexGamesProxy.PromptFail -= OnPromptFail;
+            _yandexGamesProxy.PromptError -= OnPromptError;
             return base.OnDispose();
         }
 
@@ -106,7 +115,8 @@ namespace Services.YandexGames
             return UniTask.FromResult(new PlayerData());
 #else
             _initializePlayerSource = new UniTaskCompletionSource<PlayerData>();
-            InitializePlayer(photoSize.ToString(), true);
+            var photoSizeName = photoSize.ToEnumString();
+            InitializePlayer(photoSizeName, true);
             return _initializePlayerSource.Task;
 #endif
         }
@@ -163,22 +173,22 @@ namespace Services.YandexGames
 #endif
         }
 
-        public void OnOpenRewardedVideo()
+        private void OnOpenRewardedVideo()
         {
         }
 
-        public void OnCloseRewardedVideo()
+        private void OnCloseRewardedVideo()
         {
             _rewardedVideoAdSource?.TrySetResult(true);
         }
 
-        public void OnRewardRewardedVideo()
+        private void OnRewardRewardedVideo()
         {
             _onRewardedCallback?.Invoke();
             _onRewardedCallback = null;
         }
 
-        public void OnErrorRewardedVideo()
+        private void OnErrorRewardedVideo()
         {
             _rewardedVideoAdSource?.TrySetResult(false);
         }
@@ -208,6 +218,32 @@ namespace Services.YandexGames
 
         #region Prompt
 
+        public UniTask<bool> ShowPrompt()
+        {
+#if UNITY_EDITOR
+            return UniTask.FromResult(true);
+#else
+            _promptSource = new UniTaskCompletionSource<bool>();
+            PromptShow();
+            return _promptSource.Task;
+#endif
+        }
+
+        private void OnPromptSuccess()
+        {
+            _promptSource.TrySetResult(true);
+        }
+
+        private void OnPromptFail()
+        {
+            _promptSource.TrySetResult(false);
+        }
+
+        private void OnPromptError()
+        {
+            _promptSource.TrySetResult(false);
+        }
+
         #endregion
 
         #region Review
@@ -229,25 +265,30 @@ namespace Services.YandexGames
             _reviewSource.TrySetResult(reason);
         }
 
-        public void OnReviewError(string reasonType)
+        private void OnReviewError(string reasonType)
         {
             var reason = ReviewReasonHelper.ToEnum(reasonType);
             _reviewSource.TrySetResult(reason);
         }
 
         #endregion
-
-        #region Payments
-
-        #endregion
     }
 
-    public class PlayerData
+    public record PlayerData(
+        string IsPlayerAuth,
+        string PlayerName,
+        string PlayerId,
+        string PlayerPhotoUrl)
     {
-        public string IsPlayerAuth;
-        public string PlayerName;
-        public string PlayerId;
-        public string PlayerPhotoUrl;
+        public string IsPlayerAuth { get; } = IsPlayerAuth;
+        public string PlayerName { get; } = PlayerName;
+        public string PlayerId { get; } = PlayerId;
+        public string PlayerPhotoUrl { get; } = PlayerPhotoUrl;
+
+        public PlayerData()
+            : this("false", "NoName", "NoId", "NoUrl")
+        {
+        }
 
         public override string ToString()
         {
@@ -259,20 +300,32 @@ namespace Services.YandexGames
         }
     }
 
-    public class EnvironmentData
+    public record EnvironmentData(
+        string Language = "ru",
+        string Domain = "ru",
+        string DeviceType = "desktop",
+        bool IsMobile = false,
+        bool IsDesktop = true,
+        bool IsTablet = false,
+        bool IsTV = false,
+        string AppID = "app",
+        string BrowserLang = "ru",
+        string Payload = "no",
+        bool PromptCanShow = true,
+        bool ReviewCanShow = true)
     {
-        public string Language = "ru";
-        public string Domain = "ru";
-        public string DeviceType = "desktop";
-        public bool IsMobile;
-        public bool IsDesktop = true;
-        public bool IsTablet;
-        public bool IsTV;
-        public string AppID;
-        public string BrowserLang;
-        public string Payload;
-        public bool PromptCanShow;
-        public bool ReviewCanShow;
+        public string Language { get; } = Language;
+        public string Domain { get; } = Domain;
+        public string DeviceType { get; } = DeviceType;
+        public bool IsMobile { get; } = IsMobile;
+        public bool IsDesktop { get; } = IsDesktop;
+        public bool IsTablet { get; } = IsTablet;
+        public bool IsTV { get; } = IsTV;
+        public string AppID { get; } = AppID;
+        public string BrowserLang { get; } = BrowserLang;
+        public string Payload { get; } = Payload;
+        public bool PromptCanShow { get; } = PromptCanShow;
+        public bool ReviewCanShow { get; } = ReviewCanShow;
 
         public override string ToString()
         {

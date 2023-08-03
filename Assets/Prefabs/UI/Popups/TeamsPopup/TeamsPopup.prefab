@@ -1050,6 +1050,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        _positionType: 0
         _fromPosition: {x: -1000, y: 0, z: 0}
         _toPosition: {x: 0, y: 0, z: 0}
     - rid: 7359819953496129538
@@ -1083,6 +1084,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        _positionType: 0
         _fromPosition: {x: 0, y: 0, z: 0}
         _toPosition: {x: -1000, y: 0, z: 0}
 --- !u!1 &7838454442716206683
@@ -1348,7 +1350,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 4000, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5486674039344460498
 CanvasRenderer:

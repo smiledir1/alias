@@ -11,85 +11,6 @@
     <!-- Yandex Games SDK -->
     <script src="https://yandex.ru/games/sdk/v2"></script>
 
-    <!-- Yandex.Metrika counter -->
-
-    #if BANNER_DYNAMIC_1
-    <style>
-        #RTB1 {
-            position: fixed;
-            display: none;
-        }
-
-            #RTB1.show {
-                display: block;
-            }
-    </style>
-    #endif
-
-    #if BANNER_DYNAMIC_2
-    <style>
-        #RTB2 {
-            position: fixed;
-            display: none;
-        }
-
-            #RTB2.show {
-                display: block;
-            }
-    </style>
-    #endif
-
-    #if BANNER_STATIC_1
-    <style>
-        #RTBStatic1 {
-            position: fixed;
-            width: 80%;
-            height: 15%;
-            left: 10%;
-            bottom: 0;
-            display: none;
-        }
-
-            #RTBStatic1.show {
-                display: block;
-            }
-
-        @media screen and (max-width: 800px) {
-            #RTBStatic1 {
-                width: 320px;
-                height: 50px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-    </style>
-    #endif
-
-    #if BANNER_STATIC_2
-    <style>
-        #RTBStatic2 {
-            position: fixed;
-            width: 80%;
-            height: 15%;
-            left: 10%;
-            top: 0;
-            display: none;
-        }
-
-            #RTBStatic2.show {
-                display: block;
-            }
-
-        @media screen and (max-width: 800px) {
-            #RTBStatic2 {
-                width: 320px;
-                height: 50px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-    </style>
-    #endif
 
 </head>
 <body class="{{{ SPLASH_SCREEN_STYLE.toLowerCase() }}}">
@@ -105,124 +26,6 @@
         <div class="spinner"></div>
     </div>
 </div>
-
-#if BANNER_DYNAMIC_1
-<div id="RTB1">
-    <script>
-        const rbt1 = document.querySelector('#RTB1');
-
-        function ExecuteCodeRTB1() {
-            try {
-                {{{ BANNER_DYNAMIC_1 }}}
-            } catch (e) {
-                console.error('CRASH Render RTB1: ', e.message);
-            }
-        }
-
-        function ActivityRTB1(state) {
-            try {
-                if (state) {
-                    rbt1.classList.add('show');
-                } else {
-                    rbt1.classList.remove('show');
-                }
-            } catch (e) {
-                console.error('CRASH Activity RTB1: ', e.message);
-            }
-        }
-
-        function RecalculateRTB1(_width, _height, _left, _top) {
-            try {
-                document.getElementById('RTB1').style.width = _width;
-                document.getElementById('RTB1').style.height = _height;
-                document.getElementById('RTB1').style.left = _left;
-                document.getElementById('RTB1').style.top = _top;
-            } catch (e) {
-                console.error('CRASH Recalculate RTB1: ', e.message);
-            }
-        }
-    </script>
-</div>
-#endif
-
-#if BANNER_DYNAMIC_2
-<div id="RTB2">
-    <script>
-        const rbt2 = document.querySelector('#RTB2');
-
-        function ExecuteCodeRTB2() {
-            try {
-                {{{ BANNER_DYNAMIC_2 }}}
-            } catch (e) {
-                console.error('CRASH Render RTB2: ', e.message);
-            }
-        }
-
-        function ActivityRTB2(state) {
-            try {
-                if (state) {
-                    rbt2.classList.add('show');
-                } else {
-                    rbt2.classList.remove('show');
-                }
-            } catch (e) {
-                console.error('CRASH Activity RTB2: ', e.message);
-            }
-        }
-
-        function RecalculateRTB2(_width, _height, _left, _top) {
-            try {
-                document.getElementById('RTB2').style.width = _width;
-                document.getElementById('RTB2').style.height = _height;
-                document.getElementById('RTB2').style.left = _left;
-                document.getElementById('RTB2').style.top = _top;
-            } catch (e) {
-                console.error('CRASH Recalculate RTB2: ', e.message);
-            }
-        }
-    </script>
-</div>
-#endif
-
-#if BANNER_STATIC_1
-<div id="RTBStatic1">
-    <script>
-        const rbtLoadGame1 = document.querySelector('#RTBStatic1');
-        rbtLoadGame1.classList.add('show');
-
-        function ExecuteCodeStaticRTB1() {
-            try {
-                if (document.getElementById('RTBStatic1').style.display !== 'none') {
-                    {{{ BANNER_STATIC_1 }}}
-                }
-            } catch (e) {
-                console.error('CRASH Render Static RTB1: ', e.message);
-            }
-        }
-        ExecuteCodeStaticRTB1();
-    </script>
-</div>
-#endif
-
-#if BANNER_STATIC_2
-<div id="RTBStatic2">
-    <script>
-        const rbtLoadGame2 = document.querySelector('#RTBStatic2');
-        rbtLoadGame2.classList.add('show');
-
-        function ExecuteCodeStaticRTB2() {
-            try {
-                if (document.getElementById('RTBStatic2').style.display !== 'none') {
-                    {{{ BANNER_STATIC_2 }}}
-                }
-            } catch (e) {
-                console.error('CRASH Render Static RTB2: ', e.message);
-            }
-        }
-        ExecuteCodeStaticRTB2();
-    </script>
-</div>
-#endif
 
 <script>
     const hideFullScreenButton = "";
@@ -341,15 +144,15 @@
                 console.error('CRASH canShowFeedback: ', e.message);
             }
 
-            if (initGame == true) {
-                InitSDK(photoSizeForInit, scopesForInit)
-                if (firstAd)
-                    FullscreenShow();
-            }
-            else {
-                if (firstAd)
-                    ysdk.adv.showFullscreenAdv();
-            }
+            //if (initGame == true) {
+            //    InitSDK(photoSizeForInit, scopesForInit)
+            //    if (firstAd)
+            //        FullscreenShow();
+            //}
+            //else {
+            //    if (firstAd)
+            //        ysdk.adv.showFullscreenAdv();
+            //}
         });
 
     function InitSDK(photoSize, scopes) {
@@ -368,12 +171,12 @@
         try {
             console.log('Authorized failed');
             let authJson = {
-                "playerAuth": "rejected",
+                "playerAuth": "false",
                 "playerName": "unauthorized",
                 "playerId": "unauthorized",
                 "playerPhoto": "null"
             };
-            myGameInstance.SendMessage('YandexGame', 'SetInitializationSDK', JSON.stringify(authJson));
+            myGameInstance.SendMessage('YandexGamesProxy', 'OnPlayerInitialized', JSON.stringify(authJson));
         } catch (e) {
             console.error('CRASH Not Authorized: ', e.message);
         }
@@ -399,12 +202,12 @@
                     NotAuthorized();
                 } else {
                     let authJson = {
-                        "playerAuth": "resolved",
+                        "playerAuth": "true",
                         "playerName": playerName,
                         "playerId": player.getUniqueID(),
                         "playerPhoto": playerPhoto
                     };
-                    myGameInstance.SendMessage('YandexGame', 'SetInitializationSDK', JSON.stringify(authJson));
+                    myGameInstance.SendMessage('YandexGamesProxy', 'OnPlayerInitialized', JSON.stringify(authJson));
                     window.focus();
                 }
             }).catch(e => {
@@ -436,16 +239,16 @@
                     callbacks: {
                         onOpen: () => {
                             console.log('Open Fullscreen Ad');
-                            myGameInstance.SendMessage('YandexGame', 'OpenFullAd');
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnOpenFullscreenAd');
                         },
                         onClose: (wasShown) => {
-                            if (wasShown) myGameInstance.SendMessage('YandexGame', 'CloseFullAd', 'true');
-                            else myGameInstance.SendMessage('YandexGame', 'CloseFullAd', 'false');
+                            var wasShownValue = wasShown ? 1 : 0;   
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnCloseFullscreenAd', wasShownValue);
                             window.focus();
                         },
                         onError: (error) => {
                             console.error('Error Fullscreen Ad', error);
-                            myGameInstance.SendMessage('YandexGame', 'ErrorFullAd');
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnErrorFullscreenAd');
                             window.focus();
                         }
                     }
@@ -455,28 +258,28 @@
         }
     }
 
-    function RewardedShow(id) {
+    function RewardedShow() {
         try {
             window.ysdk.adv.showRewardedVideo(
                 {
                     callbacks:
                     {
                         onOpen: () => {
-                            console.log('Opened Video Ad. Id: ' + id);
-                            myGameInstance.SendMessage('YandexGame', 'OpenVideo');
+                            console.log('Opened Video Ad. Id: ');
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnOpenRewardedVideo');
                         },
                         onClose: () => {
-                            console.log('Closed Video Ad. Id: ' + id);
-                            myGameInstance.SendMessage('YandexGame', 'CloseVideo');
+                            console.log('Closed Video Ad. Id: ' );
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnCloseRewardedVideo');
                             window.focus();
                         },
                         onRewarded: () => {
-                            console.log('Reward Video Ad. Id: ' + id);
-                            myGameInstance.SendMessage('YandexGame', 'RewardVideo', id);
+                            console.log('Reward Video Ad. Id: ');
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnRewardRewardedVideo');
                         },
                         onError: (e) => {
-                            console.error('Error Video Ad. Id: ' + id, e);
-                            myGameInstance.SendMessage('YandexGame', 'ErrorVideo');
+                            console.error('Error Video Ad. Id: ', e);
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnErrorRewardedVideo');
                         }
                     }
                 });
@@ -523,11 +326,11 @@
             if (payments != null) {
                 payments.purchase(id).then(purchase => {
                     console.log('Purchase Success');
-                    myGameInstance.SendMessage('YandexGame', 'OnPurchaseSuccess', id);
+                    myGameInstance.SendMessage('YandexGamesProxy', 'OnPurchaseSuccess', id);
                     window.focus();
                 }).catch(e => {
                     console.error('Purchase Failed', e.message);
-                    myGameInstance.SendMessage('YandexGame', 'OnPurchaseFailed', id);
+                    myGameInstance.SendMessage('YandexGamesProxy', 'OnPurchaseFailed', id);
                     window.focus();
                 })
             } else {
@@ -547,7 +350,8 @@
                         let productID = [products.length];
                         let title = [products.length];
                         let description = [products.length];
-                        let imageURI = [products.length];
+                        let imageURI = [products.length];                        
+                        let price = [products.length];
                         let priceValue = [products.length];
                         let purchased = [products.length];
     
@@ -556,6 +360,7 @@
                             title[i] = products[i].title;
                             description[i] = products[i].description;
                             imageURI[i] = products[i].imageURI;
+                            price[i] = products[i].price;
                             priceValue[i] = products[i].priceValue;
                             purchased[i] = 0;
                         }
@@ -576,9 +381,10 @@
                                     "description": description,
                                     "imageURI": imageURI,
                                     "priceValue": priceValue,
+                                    "price": price,
                                     "purchased": purchased
                                 };
-                                myGameInstance.SendMessage('YandexGame', 'PaymentsEntries', JSON.stringify(jsonPayments));
+                                myGameInstance.SendMessage('YandexGamesProxy', 'OnPaymentsEntries', JSON.stringify(jsonPayments));
                             })
                     });
             }
@@ -635,17 +441,17 @@
         try {
             player.getData(["saves"]).then(data => {
                 if (data.saves) {
-                    myGameInstance.SendMessage('YandexGame', 'SetLoadSaves', JSON.stringify(data.saves));
+                    myGameInstance.SendMessage('YandexGamesProxy', 'SetLoadSaves', JSON.stringify(data.saves));
                 } else {
-                    myGameInstance.SendMessage('YandexGame', 'SetLoadSaves', "noData");
+                    myGameInstance.SendMessage('YandexGamesProxy', 'SetLoadSaves', "noData");
                 }
             }).catch(() => {
                 console.error('getData Error!');
-                myGameInstance.SendMessage('YandexGame', 'SetLoadSaves', "noData");
+                myGameInstance.SendMessage('YandexGamesProxy', 'SetLoadSaves', "noData");
             });
         } catch (e) {
             console.error('CRASH Load saves Cloud: ', e.message);
-            myGameInstance.SendMessage('YandexGame', 'SetLoadSaves', "noData");
+            myGameInstance.SendMessage('YandexGamesProxy', 'SetLoadSaves', "noData");
         }
     }
 
@@ -653,7 +459,7 @@
         try {
             ysdk.getLeaderboards().then(_lb => {
                 leaderboard = _lb
-                myGameInstance.SendMessage('YandexGame', 'InitializedLB');
+                myGameInstance.SendMessage('YandexGamesProxy', 'InitializedLB');
             });
         } catch (e) {
             console.error('CRASH Init Leaderboard: ', e.message);
@@ -749,12 +555,12 @@
             "playersName": playersName,
             "scorePlayers": scorePlayers
         };
-        myGameInstance.SendMessage('YandexGame', 'LeaderboardEntries', JSON.stringify(jsonLB));
+        myGameInstance.SendMessage('YandexGamesProxy', 'LeaderboardEntries', JSON.stringify(jsonLB));
     }
 
     function LanguageRequest() {
         try {
-            myGameInstance.SendMessage('YandexGame', 'SetLanguage', ysdk.environment.i18n.lang);
+            myGameInstance.SendMessage('YandexGamesProxy', 'SetLanguage', ysdk.environment.i18n.lang);
         } catch (e) {
             console.error('CRASH Language Request: ', e.message);
         }
@@ -776,7 +582,7 @@
                 "promptCanShow": promptCanShow,
                 "reviewCanShow": reviewCanShow
             };
-            myGameInstance.SendMessage('YandexGame', 'SetEnvironmentData', JSON.stringify(jsonEnvir));
+            myGameInstance.SendMessage('YandexGamesProxy', 'OnSetEnvironmentData', JSON.stringify(jsonEnvir));
         } catch (e) {
             console.error('CRASH Requesting Environment Data: ', e.message);
         }
@@ -788,39 +594,44 @@
                 .then(({ value, reason }) => {
                     if (value) {
                         ysdk.feedback.requestReview().then(({feedbackSent}) => {
-                            console.log('feedbackSent ', feedbackSent);
-                            if (feedbackSent)
-                                myGameInstance.SendMessage('YandexGame', 'ReviewSent', 'true');
-                            else myGameInstance.SendMessage('YandexGame', 'ReviewSent', 'false');
+                            var feedbackValue = feedbackSent ? 1 : 0;                        
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnReviewSent', feedbackValue);
                             window.focus();
                         })
                     }
                     else {
                         console.log('reviewCanShow = false', reason)
+                        myGameInstance.SendMessage('YandexGamesProxy', 'OnReviewError', reason);
                         window.focus();
                     }
                 })
         } catch (e) {
             console.error('CRASH Review: ', e.message);
+            myGameInstance.SendMessage('YandexGamesProxy', 'OnReviewError', 'UNKNOWN');
             window.focus();
         }
     }
 
     function PromptShow() {
         try {
-            ysdk.shortcut.showPrompt()
-                .then(result => {
-                    console.log('Shortcut created?:', result);
-                    if (result.outcome === 'accepted') {
-                        console.log('Prompt Success');
-                        myGameInstance.SendMessage('YandexGame', 'OnPromptSuccess');
-                    }
-                    else {
-                        myGameInstance.SendMessage('YandexGame', 'OnPromptFail');
-                    }
-                    window.focus();
-                });
+            if(canShowPrompt){
+                ysdk.shortcut.showPrompt()
+                    .then(result => {
+                        console.log('Shortcut created?:', result);
+                        if (result.outcome === 'accepted') {
+                            console.log('Prompt Success');
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnPromptSuccess');
+                        }
+                        else {
+                            myGameInstance.SendMessage('YandexGamesProxy', 'OnPromptFail');
+                        }
+                        window.focus();
+                    });
+                }else{
+                    myGameInstance.SendMessage('YandexGamesProxy', 'OnPromptFail');
+                }
         } catch (e) {
+            myGameInstance.SendMessage('YandexGamesProxy', 'OnPromptError');
             console.error('CRASH Prompt Show: ', e.message);
             window.focus();
         }
@@ -835,22 +646,7 @@
     }
 
     function StaticRBTDeactivate() {
-        #if BANNER_STATIC_1
-        try {
-            rbtLoadGame1.classList.remove('show');
-            document.getElementById('RTBStatic1').style.display = 'none';
-        } catch (e) {
-            console.error('CRASH off RTBStatic1: ', e.message);
-        }
-        #endif
-        #if BANNER_STATIC_2
-        try {
-            rbtLoadGame2.classList.remove('show');
-            document.getElementById('RTBStatic2').style.display = 'none';
-        } catch (e) {
-            console.error('CRASH off RTBStatic2: ', e.message);
-        }
-        #endif
+        
     }
 
     document.body.appendChild(script);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Common.UniTaskAnimations;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -44,6 +45,8 @@ namespace Services.UI
 
         #region Cache
 
+        private CancellationTokenSource _animationTokenSource;
+
         #endregion
 
         #region Internal Methods
@@ -74,7 +77,18 @@ namespace Services.UI
             UIObjectOpen?.Invoke();
             await OnOpenAsync();
             State = UIObjectState.Opened;
-            if (_openTween != null) await _openTween.StartAnimation();
+            if (_openTween != null)
+            {
+                var hasActiveAnimation = _animationTokenSource != null;
+                if (hasActiveAnimation)
+                {
+                    _animationTokenSource.Cancel();
+                    _openTween.ResetValues();
+                }
+                _animationTokenSource = new CancellationTokenSource();
+                await _openTween.StartAnimation(false, false, _animationTokenSource.Token);
+                _animationTokenSource = null;
+            }
         }
 
         internal async UniTask CloseAsync()
@@ -82,7 +96,18 @@ namespace Services.UI
             UIObjectClose?.Invoke();
             await OnCloseAsync();
             State = UIObjectState.Loaded;
-            if (_closeTween != null) await _closeTween.StartAnimation();
+            if (_closeTween != null)
+            {
+                var hasActiveAnimation = _animationTokenSource != null;
+                if (hasActiveAnimation)
+                {
+                    _animationTokenSource.Cancel();
+                    _closeTween.ResetValues();
+                }
+                _animationTokenSource = new CancellationTokenSource();
+                await _closeTween.StartAnimation(false, false, _animationTokenSource.Token);
+                _animationTokenSource = null;
+            }
             UIModel?.Close();
         }
 

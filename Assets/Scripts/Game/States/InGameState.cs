@@ -7,6 +7,7 @@ using Game.UI.Screens.EndRound;
 using Game.UI.Screens.Round;
 using Game.UI.Screens.Teams;
 using Game.UserData.Game;
+using Services.Advertisement;
 using Services.Analytics;
 using Services.Helper;
 using Services.UI.ScreenService;
@@ -30,6 +31,9 @@ namespace Game.States
 
         [Service]
         private static IAnalyticsService _analyticsService;
+        
+        [Service]
+        private static IAdvertisementService _advertisementService;
 
         private readonly bool _isNewGame;
         private WordsPacksConfigItem _wordsPacksConfigItem;
@@ -118,6 +122,7 @@ namespace Game.States
 
             var newRound = round + 1;
             StartRound(newRound).Forget();
+            _advertisementService.ShowInterstitialAd().Forget();
         }
 
         private async UniTask<bool> StartRoundScreen(int round)

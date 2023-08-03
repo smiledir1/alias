@@ -16,10 +16,10 @@ namespace Services.UserData
     public class UserDataService : Service, IUserDataService
     {
         private const int XorKey = 49;
-        
-        private readonly List<UserDataObject> _allData;
-        private Dictionary<Type, UserDataObject> _userDatCollection;
-        private readonly bool _isCrypt;
+
+        protected readonly List<UserDataObject> _allData;
+        protected Dictionary<Type, UserDataObject> _userDatCollection;
+        protected readonly bool _isCrypt;
 
         public UserDataService(List<UserDataObject> userDatCollection, bool isCrypt)
         {
@@ -33,7 +33,7 @@ namespace Services.UserData
             {
                 return data as T;
             }
-           
+
             Debug.LogError($"No Data: {typeof(T)}");
             return null;
         }
@@ -78,7 +78,7 @@ namespace Services.UserData
                 ClearConcreteData(data);
             }
         }
-        
+
         public void ClearData(UserDataObject userData)
         {
             var type = userData.GetType();
@@ -110,37 +110,37 @@ namespace Services.UserData
             return base.OnInitialize();
         }
 
-        private void LoadUserData()
+        protected virtual void LoadUserData()
         {
             _userDatCollection = new Dictionary<Type, UserDataObject>();
             foreach (var data in _allData)
             {
                 var dataType = data.GetType();
                 var dataName = data.DataName;
-                var path = Path.Combine(Application.persistentDataPath, dataName);
-                var hasUserData = File.Exists(path);
+                var hasUserData = HasUserData(dataName);
                 if (hasUserData)
                 {
                     try
                     {
-                        var userDataText = File.ReadAllText(path);
+                        var userDataText = GetUserDataText(dataName);
                         if (_isCrypt)
                         {
                             userDataText = Crypto(userDataText);
                         }
-                        
-                        if (JsonConvert.DeserializeObject(userDataText, dataType) is UserDataObject loadedData)
+
+                        if (JsonConvert.DeserializeObject(userDataText, dataType) 
+                            is UserDataObject loadedData)
                         {
                             _userDatCollection.Add(dataType, loadedData);
                         }
                         else
                         {
-                            Debug.LogError($"Loaded Data null: {path} Type: {dataType}");
+                            Debug.LogError($"Loaded Data null: {dataName} Type: {dataType}");
                         }
                     }
                     catch
                     {
-                        Debug.LogError($"Wrong read: {path} Type: {dataType}");
+                        Debug.LogError($"Wrong read: {dataName} Type: {dataType}");
                     }
                 }
                 else
@@ -150,14 +150,26 @@ namespace Services.UserData
             }
         }
 
-        private void ClearConcreteData(UserDataObject dataObject)
+        protected virtual bool HasUserData(string key)
+        {
+            var path = Path.Combine(Application.persistentDataPath, key);
+            return File.Exists(path);
+        }
+        
+        protected virtual string GetUserDataText(string key)
+        {
+            var path = Path.Combine(Application.persistentDataPath, key);
+            return File.ReadAllText(path);
+        }
+
+        protected virtual void ClearConcreteData(UserDataObject dataObject)
         {
             var dataName = dataObject.DataName;
             var path = Path.Combine(Application.persistentDataPath, dataName);
             File.Delete(path);
         }
 
-        private void SaveConcreteData(UserDataObject dataObject)
+        protected virtual void SaveConcreteData(UserDataObject dataObject)
         {
             var path = Path.Combine(Application.persistentDataPath, dataObject.DataName);
             var userDataString = JsonConvert.SerializeObject(dataObject);
@@ -165,10 +177,11 @@ namespace Services.UserData
             {
                 userDataString = Crypto(userDataString);
             }
+
             File.WriteAllText(path, userDataString);
         }
 
-        private string Crypto(string text)
+        protected string Crypto(string text)
         {
             var stringBuilder = new StringBuilder();
             for (var i = text.Length - 1; i >= 0; i--)
@@ -177,6 +190,7 @@ namespace Services.UserData
                 var cryptChar = (char) (t ^ XorKey);
                 stringBuilder.Append(cryptChar);
             }
+
             return stringBuilder.ToString();
         }
     }

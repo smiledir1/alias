@@ -12,7 +12,12 @@ namespace Game.Services.GameConfig
         [SerializeField]
         private bool _isDebug;
 
+        [SerializeField]
+        private int _frameRate;
+        
         public bool IsDebug => _isDebug;
+        public int FrameRate => _frameRate;
+        
         
 #if UNITY_EDITOR
 

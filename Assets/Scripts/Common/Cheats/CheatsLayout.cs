@@ -134,6 +134,8 @@ namespace Common.Cheats
                 }
             });
 
+            CreateCheatsLabel("UserData");
+            
         }
 
         #endregion

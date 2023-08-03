@@ -9,7 +9,7 @@ namespace Game.States
     {
         [Service]
         private static IAssetsService _assetsService;
-        
+
         protected override async UniTask OnEnterState()
         {
 #if DEV_ENV

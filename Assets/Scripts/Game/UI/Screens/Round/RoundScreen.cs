@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Game.Services.WordsPacks;
@@ -63,6 +64,7 @@ namespace Game.UI.Screens.Round
         private bool _waitLastWord;
         private bool _isPause;
         private string _wordInPackLocalize;
+        private CancellationTokenSource _gameTokenSource;
 
         [Service]
         private static IUserDataService _userData;
@@ -129,16 +131,16 @@ namespace Game.UI.Screens.Round
 
         // По-хорошему под это отдельный объект завести,
         // но тут не критично
-        private async UniTask StartGame()
+        private async UniTask StartGame(CancellationToken token)
         {
             _startButton.gameObject.SetActive(false);
             _gameFields.SetActive(true);
             LoadWords();
             ShowNewWord();
-            await UniTask.Yield();
+            await UniTask.Yield(token);
             while (_roundTimerSeconds > 0)
             {
-                await UniTask.Yield();
+                await UniTask.Yield(token);
                 if (_isPause) continue;
                 _roundTimerSeconds -= Time.deltaTime;
                 _roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
@@ -240,7 +242,9 @@ namespace Game.UI.Screens.Round
             }
             else
             {
-                StartGame().Forget();
+                _gameTokenSource?.Cancel();
+                _gameTokenSource = new CancellationTokenSource();
+                StartGame(_gameTokenSource.Token).Forget();
             }
         }
         

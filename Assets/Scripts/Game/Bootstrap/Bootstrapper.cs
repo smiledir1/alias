@@ -7,6 +7,7 @@ using Game.Services.Teams;
 using Game.Services.WordsPacks;
 using Game.States;
 using Game.UserData.Game;
+using Services.Advertisement;
 using Services.Analytics;
 using Services.Assets;
 using Services.Audio;
@@ -17,6 +18,7 @@ using Services.UI.PopupService;
 using Services.UI.ScreenService;
 using Services.UserData;
 using Services.Vibration;
+using Services.YandexAdvertisement;
 using Services.YandexGames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -89,10 +91,15 @@ namespace Game.Bootstrap
             var localizationService = new LocalizationService(assetsService);
             ServiceLocator.AddService<ILocalizationService>(localizationService);
 
-            var userDataService = new UserDataService(new List<UserDataObject>
+            var userDataObjects = new List<UserDataObject>
             {
                 new GameUserData()
-            }, false);
+            };
+#if UNITY_WEBGL && !UNITY_EDITOR
+            var userDataService = new WebGLUserDataService(userDataObjects, false);
+#else
+            var userDataService = new UserDataService(userDataObjects, false);
+#endif
             ServiceLocator.AddService<IUserDataService>(userDataService);
 
             var popupService = new PopupService(assetsService);
@@ -107,19 +114,12 @@ namespace Game.Bootstrap
             var analyticsService = new UniversalAnalyticsService(assetsService);
 #endif
             ServiceLocator.AddService<IAnalyticsService>(analyticsService);
-            
+
             var yandexService = new YandexGamesService(assetsService);
             ServiceLocator.AddService<IYandexGamesService>(yandexService);
-            yandexService.InitializePlayer(PlayerPhotoSize.Small).Forget();
             
-            // TODO: SceneLoader (Curtains?)
-            // TODO: HttpService? (Get, Post)
-            // TODO: InApps? (UnityServices)
-            // TODO: Analytics? (UnityServices)
-
-            // TODO: test audio, test http, test recycle, test pool
-            // TODO: Recycle list (https://github.com/MdIqubal/Recyclable-Scroll-Rect)
-            // TODO: Monobehaviour pool
+            var yandexAdvertisementService = new YandexAdvertisementService(yandexService);
+            ServiceLocator.AddService<IAdvertisementService>(yandexAdvertisementService);
 
             // Game
 
