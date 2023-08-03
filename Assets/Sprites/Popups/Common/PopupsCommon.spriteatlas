@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PopupsCommon
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c15c333328374c845967afededc9ff7a, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - ac3f7720d5f494c4ba4bb8e5104e1724: 21300000
+    - a9122eb0197d9914db9d7d2ce4931a8d: 21300000
+    - e2ce94f00fe55fe429dcade9e38e3019: 21300000
+    - 14074e32c3a5f124590b5e611b8474d1: 21300000
+    - a17efd0333a4404459426922e7de8b70: 21300000
+    - 0edf86c35ecdb4642befbbbe132c066a: 21300000
+    - a28c29346282cb24fb5a020b13be7ee5: 21300000
+    - fadee8b40e6e7e5448babf5daa7613b6: 21300000
+    - 03eb1ec4697587149b260ee0fd9dcd9c: 21300000
+    - efdafad5b3f40bd4e9edf16b56ea0d16: 21300000
+    - 5a09d2365b3390144aa798fa76befdbf: 21300000
+    - c9d0ab275e7f0bc42afddb13757bca8c: 21300000
+    - 1cebeb87db4cd3a439f4ec0543b22d74: 21300000
+    - 5c50fba7dc3a68b4eb687ecd049bfceb: 21300000
+    - c910d779a1191284dbab4fd21f09ccdc: 21300000
+    - 1e251b79ae624f1458b59171d01e306a: 21300000
+    - 6b230bcaf1f385141929500db1c1e691: 21300000
+    - 36968d3b87043074aaba7ea0e556ca80: 21300000
+    - 1425b94e413b98e4c9e30d428a66d733: 21300000
+    - 5eb8d95eba0ecb243a7288c9a283d357: 21300000
+    - 718b518e79f440045845141f8756dde3: 21300000
+    - f1a5b7cf8a4093c41aed933498bec8cc: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ac3f7720d5f494c4ba4bb8e5104e1724, type: 3}
+  - {fileID: 21300000, guid: a9122eb0197d9914db9d7d2ce4931a8d, type: 3}
+  - {fileID: 21300000, guid: e2ce94f00fe55fe429dcade9e38e3019, type: 3}
+  - {fileID: 21300000, guid: 14074e32c3a5f124590b5e611b8474d1, type: 3}
+  - {fileID: 21300000, guid: a17efd0333a4404459426922e7de8b70, type: 3}
+  - {fileID: 21300000, guid: 0edf86c35ecdb4642befbbbe132c066a, type: 3}
+  - {fileID: 21300000, guid: a28c29346282cb24fb5a020b13be7ee5, type: 3}
+  - {fileID: 21300000, guid: fadee8b40e6e7e5448babf5daa7613b6, type: 3}
+  - {fileID: 21300000, guid: 03eb1ec4697587149b260ee0fd9dcd9c, type: 3}
+  - {fileID: 21300000, guid: efdafad5b3f40bd4e9edf16b56ea0d16, type: 3}
+  - {fileID: 21300000, guid: 5a09d2365b3390144aa798fa76befdbf, type: 3}
+  - {fileID: 21300000, guid: c9d0ab275e7f0bc42afddb13757bca8c, type: 3}
+  - {fileID: 21300000, guid: 1cebeb87db4cd3a439f4ec0543b22d74, type: 3}
+  - {fileID: 21300000, guid: 5c50fba7dc3a68b4eb687ecd049bfceb, type: 3}
+  - {fileID: 21300000, guid: c910d779a1191284dbab4fd21f09ccdc, type: 3}
+  - {fileID: 21300000, guid: 1e251b79ae624f1458b59171d01e306a, type: 3}
+  - {fileID: 21300000, guid: 6b230bcaf1f385141929500db1c1e691, type: 3}
+  - {fileID: 21300000, guid: 36968d3b87043074aaba7ea0e556ca80, type: 3}
+  - {fileID: 21300000, guid: 1425b94e413b98e4c9e30d428a66d733, type: 3}
+  - {fileID: 21300000, guid: 5eb8d95eba0ecb243a7288c9a283d357, type: 3}
+  - {fileID: 21300000, guid: 718b518e79f440045845141f8756dde3, type: 3}
+  - {fileID: 21300000, guid: f1a5b7cf8a4093c41aed933498bec8cc, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Background_06
+  - Btn_MainButton_Orange
+  - Btn_MainButton_Blue
+  - Btn_MainButton_Green
+  - Popup_00_Glow_white
+  - Frame_BasicFrame_Square08
+  - Btn_MainButton_Sky
+  - Btn_MainButton_Red
+  - Btn_OtherButton_Square05
+  - Btn_MainButton_White
+  - Btn_MainButton_Gray
+  - Popup_Frame01_Navy
+  - Slider_Handle
+  - Icon_PictoIcon_Close01
+  - Toggle_CheckBox_On
+  - Toggle_CheckBox_Off
+  - Slider01_Fill
+  - Icon_PictoIcon_Back
+  - Btn_OtherButton_SideButton01_Left
+  - Btn_MainButton_Yellow
+  - Btn_MainButton_Purple
+  - Btn_MainButton_Dark
+  m_RenderDataMap: {}
+  m_Tag: PopupsCommon
+  m_IsVariant: 0
