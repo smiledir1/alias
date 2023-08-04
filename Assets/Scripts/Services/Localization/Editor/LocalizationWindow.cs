@@ -29,6 +29,7 @@ namespace Services.Localization.Editor
 
         private static GUIStyle _centeredLabel;
         private static GUIStyle _searchStyle;
+        private static GUIStyle _textAreaStyle;
         private static LocalizationData _localizationData;
 
         private bool _isGoogleTranslateOpen;
@@ -52,6 +53,11 @@ namespace Services.Localization.Editor
             };
 
             _searchStyle = new GUIStyle("SearchTextField");
+            
+            _textAreaStyle = new GUIStyle("TextArea")
+            {
+                wordWrap = true
+            };
 
             var guids = AssetDatabase.FindAssets(
                 $"t:{nameof(LocalizationData)}",
@@ -501,9 +507,9 @@ namespace Services.Localization.Editor
             EditorGUILayout.BeginHorizontal();
 
             var width = _window.position.width / 2;
-            _googleFromText = EditorGUILayout.TextArea(_googleFromText, 
+            _googleFromText = EditorGUILayout.TextArea(_googleFromText, _textAreaStyle,
                 GUILayout.Height(_googleTextHeight), GUILayout.Width(width));
-            _googleToText = EditorGUILayout.TextArea(_googleToText, 
+            _googleToText = EditorGUILayout.TextArea(_googleToText, _textAreaStyle,
                 GUILayout.Height(_googleTextHeight), GUILayout.Width(width));
             
             EditorGUILayout.EndHorizontal();
