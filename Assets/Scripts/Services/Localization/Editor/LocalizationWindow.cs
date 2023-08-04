@@ -32,14 +32,18 @@ namespace Services.Localization.Editor
         private static GUIStyle _textAreaStyle;
         private static LocalizationData _localizationData;
 
-        private bool _isGoogleTranslateOpen;
+        private bool _isHelpersOpen;
         private int _googleFromLanguage;
         private int _googleToLanguage;
         private string _googleFromText;
         private string _googleToText;
         private int _googleTextHeight = 20;
-        private static readonly string[] _googleTranslateLanguages = {"ru", "en", "de", "fi", "fr", "it", "ja", "ko",
+        private static readonly string[] _googleTranslateLanguages = {
+            "ru", "en", "de", "fi", "fr", "it", "ja", "ko",
             "zh", "es", "sv", "tr",};
+        private string _fromKeyConverter;
+        private string _toKeyConverter;
+
 
         [MenuItem("Tools/Localization Window")]
         private static void InitializeWindow()
@@ -59,6 +63,8 @@ namespace Services.Localization.Editor
                 wordWrap = true
             };
 
+            _spreadsheetUrl = "https://docs.google.com/spreadsheets/d/[SPREADSHEETHASH]/export?format=tsv";
+            
             var guids = AssetDatabase.FindAssets(
                 $"t:{nameof(LocalizationData)}",
                 new[] {PathToConfigs});
@@ -93,20 +99,6 @@ namespace Services.Localization.Editor
 
         private void DrawTopMenu()
         {
-            EditorGUILayout.BeginHorizontal();
-
-            if (GUILayout.Button("Import CSV"))
-            {
-                ImportCSV();
-            }
-
-            if (GUILayout.Button("Export CSV"))
-            {
-                ExportCSV();
-            }
-
-            EditorGUILayout.EndHorizontal();
-
             //TODO: 
             // EditorGUILayout.BeginHorizontal();
             //
@@ -467,8 +459,7 @@ namespace Services.Localization.Editor
         {
             EditorGUILayout.BeginHorizontal();
             var labelText =
-                "CSV URL example: " +
-                "https://docs.google.com/spreadsheets/d/[SPREADSHEETHASH]/export?format=tsv";
+                "CSV URL";
             EditorGUILayout.LabelField(labelText, GUI.tooltip);
 
             _spreadsheetUrl = EditorGUILayout.TextField(_spreadsheetUrl);
@@ -483,10 +474,11 @@ namespace Services.Localization.Editor
         
         private void DrawHelpersElements()
         {
-            var buttonOpenText = _isGoogleTranslateOpen ? "Close Helpers" : "Open Helpers";
-            if (GUILayout.Button(buttonOpenText)) _isGoogleTranslateOpen = !_isGoogleTranslateOpen;
-            if (!_isGoogleTranslateOpen) return;
+            var buttonOpenText = _isHelpersOpen ? "Close Helpers" : "Open Helpers";
+            if (GUILayout.Button(buttonOpenText)) _isHelpersOpen = !_isHelpersOpen;
+            if (!_isHelpersOpen) return;
 
+            DrawCsvMenu();
             DrawGoogleSpreadSheetDownload();
             DrawGoogleLocalization();
             DrawKeyConverter();
@@ -545,9 +537,6 @@ namespace Services.Localization.Editor
             }
         }
 
-        private string _fromKeyConverter;
-        private string _toKeyConverter;
-        
         private void DrawKeyConverter()
         {
             EditorGUILayout.BeginHorizontal();
@@ -558,6 +547,23 @@ namespace Services.Localization.Editor
                 _toKeyConverter = _fromKeyConverter.ToLower().Replace(" ", "_");
             }
             
+            EditorGUILayout.EndHorizontal();
+        }
+
+        private void DrawCsvMenu()
+        {
+            EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Import CSV"))
+            {
+                ImportCSV();
+            }
+
+            if (GUILayout.Button("Export CSV"))
+            {
+                ExportCSV();
+            }
+
             EditorGUILayout.EndHorizontal();
         }
     }
