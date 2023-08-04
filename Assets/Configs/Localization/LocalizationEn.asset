@@ -100,3 +100,9 @@ MonoBehaviour:
       first wins the game!
   - Key: rules
     Text: Rules
+  - Key: start_game_error
+    Text: Start Game Error
+  - Key: pack_not_selected
+    Text: Pack not selected
+  - Key: multiple_teams_must_participate
+    Text: Multiple teams must participate

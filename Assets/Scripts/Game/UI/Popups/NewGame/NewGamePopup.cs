@@ -117,12 +117,12 @@ namespace Game.UI.Popups.NewGame
 
         private bool CheckStartGame()
         {
-            //TODO: localize
             if (_choosePack == null)
             {
                 var messagePopupModel = new MessagePopupModel(
-                    "Start Game Error", 
-                    "_choosePack null");
+                    "start_game_error", 
+                    "pack_not_selected",
+                    true);
                 _popupService.ShowAsync<MessagePopup>(messagePopupModel);
                 return false;
             }
@@ -130,20 +130,21 @@ namespace Game.UI.Popups.NewGame
             if (_teams.Count < 2)
             {
                 var messagePopupModel = new MessagePopupModel(
-                    "Start Game Error", 
-                    "teams < 2");
+                    "start_game_error", 
+                    "multiple_teams_must_participate",
+                    true);
                 _popupService.ShowAsync<MessagePopup>(messagePopupModel);
                 return false;
             }
 
-            if (_roundTime.value < 5)
-            {
-                var messagePopupModel = new MessagePopupModel(
-                    "Start Game Error", 
-                    "round time < 5");
-                _popupService.ShowAsync<MessagePopup>(messagePopupModel);
-                return false;
-            }
+            // if (_roundTime.value < 5)
+            // {
+            //     var messagePopupModel = new MessagePopupModel(
+            //         "Start Game Error", 
+            //         "round time < 5");
+            //     _popupService.ShowAsync<MessagePopup>(messagePopupModel);
+            //     return false;
+            // }
             return true;
         }
 

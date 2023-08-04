@@ -80,7 +80,7 @@ namespace Services.Localization.Editor
 
             DrawButtonMenu();
 
-            DrawGoogleElements();
+            DrawHelpersElements();
 
             serializeWindowObject.ApplyModifiedProperties();
         }
@@ -475,14 +475,15 @@ namespace Services.Localization.Editor
             EditorGUILayout.EndHorizontal();
         }
         
-        private void DrawGoogleElements()
+        private void DrawHelpersElements()
         {
-            var buttonOpenText = _isGoogleTranslateOpen ? "Close Google" : "Open Google";
+            var buttonOpenText = _isGoogleTranslateOpen ? "Close Helpers" : "Open Helpers";
             if (GUILayout.Button(buttonOpenText)) _isGoogleTranslateOpen = !_isGoogleTranslateOpen;
             if (!_isGoogleTranslateOpen) return;
 
             DrawGoogleSpreadSheetDownload();
             DrawGoogleLocalization();
+            DrawKeyConverter();
         }
 
         private void DrawGoogleLocalization()
@@ -536,6 +537,22 @@ namespace Services.Localization.Editor
                                "translation for a while.  Please try again later. Do not translate the text " +
                                "too often, so that Google does not consider your actions as spam");
             }
+        }
+
+        private string _fromKeyConverter;
+        private string _toKeyConverter;
+        
+        private void DrawKeyConverter()
+        {
+            EditorGUILayout.BeginHorizontal();
+            _fromKeyConverter = EditorGUILayout.TextField(_fromKeyConverter);
+            _toKeyConverter = EditorGUILayout.TextField(_toKeyConverter);
+            if (GUILayout.Button("Convert to key"))
+            {
+                _toKeyConverter = _fromKeyConverter.ToLower().Replace(" ", "_");
+            }
+            
+            EditorGUILayout.EndHorizontal();
         }
     }
 }

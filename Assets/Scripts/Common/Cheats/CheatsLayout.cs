@@ -13,7 +13,8 @@ namespace Common.Cheats
 
         [SerializeField]
         private Button _mainCheatsButton;
-            
+        
+        [Header("Cheats Elements")]
         [SerializeField]
         private CheatsButton _cheatsButtonTemplate;
         
@@ -33,7 +34,7 @@ namespace Common.Cheats
         #endregion
 
         #region Cheats Layout
-        
+
         private void Awake()
         {
             InitializeCheats();
