@@ -529,6 +529,7 @@ GameObject:
   - component: {fileID: 5560653521156569318}
   - component: {fileID: 7817281450931439142}
   - component: {fileID: 1965477564340142921}
+  - component: {fileID: 8332138431743210839}
   m_Layer: 5
   m_Name: StartGameButton
   m_TagString: Untagged
@@ -639,6 +640,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8332138431743210839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724873628762240837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundKey: menu_button
 --- !u!1 &3896215817309221163
 GameObject:
   m_ObjectHideFlags: 0

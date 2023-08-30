@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 2264824328843046021}
   - component: {fileID: 283963451513512228}
   - component: {fileID: 6267626104990523190}
+  - component: {fileID: 6081239549346608399}
   m_Layer: 5
   m_Name: NextRoundButton
   m_TagString: Untagged
@@ -198,6 +199,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6081239549346608399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415417421276395132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundKey: menu_button
+  _multiSound: 0
 --- !u!1 &2103339438622456093
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +629,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 558e1d0ef6ee24fee80dbf641857e8dc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c910d779a1191284dbab4fd21f09ccdc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -903,7 +918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa09dddc7c5f24d0983e3a6958f80a1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e251b79ae624f1458b59171d01e306a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -5,6 +5,7 @@ using System.Threading;
 using Common.Extensions;
 using Common.UniTaskAnimations;
 using Common.UniTaskAnimations.SimpleTweens;
+using Common.Utils.ObjectCopy;
 using Cysharp.Threading.Tasks;
 using Game.UI.Popups.Confirm;
 using Game.UI.Popups.Message;
@@ -31,8 +32,12 @@ public class Test : MonoBehaviour, IHasServices
     public float number2 = 0;
     
     public float round = 0;
+    
+    public int width = 0;
+    public int height = 0;
 
-   
+   // public RectTransformCopy rectTransformCopyAza = new ();
+    public ObjectCopyValues objectCopyValuesAza2 = new ();
     
     public async UniTask TestAnimation()
     {
@@ -171,7 +176,22 @@ public class Test : MonoBehaviour, IHasServices
         //TestUserData();
        // CheckServices();
        //DebugDate();
+       //ResolutionTest();
     }
+    
+    private void ResolutionTest()
+    {
+        if (number != 6) return;
+        // Debug.Log( Camera.main.pixelRect);
+        // Camera.main.pixelRect = new Rect(0,0,width,height);
+        // Debug.Log( Camera.main.pixelRect);
+       // Screen.SetResolution(width, height, false);
+      // var gameWindow = UnityEditor.EditorWindow.GetWindow<PlayModeView>();
+       UnityEditor.PlayModeWindow.SetCustomRenderingResolution((uint)width, (uint)height, "NEWTESTRES");
+       
+        Debug.Log("set");
+    }
+
 
     private void DebugDate()
     {

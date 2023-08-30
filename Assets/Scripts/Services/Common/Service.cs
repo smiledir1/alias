@@ -12,12 +12,6 @@ namespace Services.Common
             State = ServiceState.Initialized;
         }
 
-        public async UniTask Start()
-        {
-            await OnStart();
-            State = ServiceState.Started;
-        }
-
         public async UniTask Dispose()
         {
             await OnDispose();
@@ -25,7 +19,6 @@ namespace Services.Common
         }
 
         protected virtual UniTask OnInitialize() => UniTask.CompletedTask;
-        protected virtual UniTask OnStart() => UniTask.CompletedTask;
         protected virtual UniTask OnDispose() => UniTask.CompletedTask;
 
         protected static async UniTask WaitForServiceInitialize(IService service)

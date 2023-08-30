@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6878238485681080864}
   - component: {fileID: 382591009293110728}
   - component: {fileID: 1148256385563379406}
+  - component: {fileID: 5345046027839659521}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -122,6 +123,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5345046027839659521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486698760110551386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundKey: menu_button
 --- !u!1 &1417387567482498182
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +450,7 @@ GameObject:
   - component: {fileID: 26084551675741923}
   - component: {fileID: 6408251287274205455}
   - component: {fileID: 904261847171825463}
+  - component: {fileID: 8549121928099514495}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -546,6 +561,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8549121928099514495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3086932072465805293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundKey: menu_button
 --- !u!1 &3167975798666301352
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +986,7 @@ GameObject:
   - component: {fileID: 4923680704384793145}
   - component: {fileID: 2805018837178425633}
   - component: {fileID: 3860682873457958695}
+  - component: {fileID: 5845856828540533073}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -1068,3 +1097,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5845856828540533073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566895971832674175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundKey: menu_button

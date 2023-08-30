@@ -55,7 +55,7 @@ namespace Services.Locator
             Services.Remove(typeof(T));
             if (service != null)
             {
-                await service.Dispose();
+                service.Dispose();
                 AllServices.Remove(service);
             }
         }
@@ -68,19 +68,6 @@ namespace Services.Locator
             {
                 if (service.State != ServiceState.Created) continue;
                 tasks.Add(service.Initialize());
-            }
-
-            await UniTask.WhenAll(tasks);
-        }
-
-        public static async UniTask StartServices()
-        {
-            var tasks = new List<UniTask>();
-
-            foreach (var service in AllServices)
-            {
-                if (service.State != ServiceState.Initialized) continue;
-                tasks.Add(service.Start());
             }
 
             await UniTask.WhenAll(tasks);
@@ -131,6 +118,19 @@ namespace Services.Locator
                     }
                 }
             }
+        }
+        
+        public static async UniTask DisposeServices()
+        {
+            var tasks = new List<UniTask>();
+
+            foreach (var service in AllServices)
+            {
+                if (service.State != ServiceState.Initialized) continue;
+                tasks.Add(service.Dispose());
+            }
+
+            await UniTask.WhenAll(tasks);
         }
     }
 }

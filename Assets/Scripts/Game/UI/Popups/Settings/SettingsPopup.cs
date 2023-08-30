@@ -66,6 +66,9 @@ namespace Game.UI.Popups.Settings
             
             _languageName.text = _localizationService.CurrentLanguageLocalizeName;
             _version.text = Application.version;
+
+            CheckSounds();
+            CheckMusic();
             return base.OnOpenAsync();
         }
 
@@ -77,17 +80,30 @@ namespace Game.UI.Popups.Settings
         private void OnSoundButton()
         {
             var isOn = _audioService.SfxVolume > 0.01f;
-            _soundsOn.SetActive(isOn);
-            _soundOff.SetActive(!isOn);
+            _soundsOn.SetActive(!isOn);
+            _soundOff.SetActive(isOn);
             _audioService.SfxVolume = isOn ? 0f : 1f;
         }
 
         private void OnMusicButton()
         {
             var isOn = _audioService.MusicVolume > 0.01f;
+            _musicsOn.SetActive(!isOn);
+            _musicOff.SetActive(isOn);
+            _audioService.MusicVolume = isOn ? 0f : 1f;
+        }
+
+        private void CheckSounds()
+        {
+            var isOn = _audioService.SfxVolume > 0.01f;
+            _soundsOn.SetActive(isOn);
+            _soundOff.SetActive(!isOn);
+        }
+        private void CheckMusic()
+        {
+            var isOn = _audioService.MusicVolume > 0.01f;
             _musicsOn.SetActive(isOn);
             _musicOff.SetActive(!isOn);
-            _audioService.MusicVolume = isOn ? 0f : 1f;
         }
 
         private async UniTask ChangeLanguage()

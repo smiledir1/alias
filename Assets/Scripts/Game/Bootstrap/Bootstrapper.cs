@@ -11,6 +11,7 @@ using Services.Advertisement;
 using Services.Analytics;
 using Services.Assets;
 using Services.Audio;
+using Services.Device;
 using Services.Localization;
 using Services.Locator;
 using Services.Logger;
@@ -21,7 +22,6 @@ using Services.Vibration;
 using Services.YandexAdvertisement;
 using Services.YandexGames;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Game.Bootstrap
 {
@@ -31,7 +31,7 @@ namespace Game.Bootstrap
         private static void Initialize()
         {
 #if DEV_ENV
-            if (SceneManager.GetActiveScene().buildIndex != 0) return;
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0) return;
 #endif
             InitializeAsync().SafeForget();
         }
@@ -45,10 +45,6 @@ namespace Game.Bootstrap
             RegisterServices();
             await ServiceLocator.InitializeServices();
 #if DEV_ENV
-            var servicesInitializeTime = Time.realtimeSinceStartup - devInitStartTime;
-#endif
-            await ServiceLocator.StartServices();
-#if DEV_ENV
             var servicesStartTime = Time.realtimeSinceStartup - devInitStartTime;
 #endif
             ServiceLocator.FillServices();
@@ -56,7 +52,7 @@ namespace Game.Bootstrap
 #if DEV_ENV
             var servicesTime = Time.realtimeSinceStartup - devInitStartTime;
 #endif
-
+            
             var entryGameState = new EntryGameState();
             await entryGameState.GoToState();
 
@@ -66,10 +62,11 @@ namespace Game.Bootstrap
 #if DEV_ENV
             var fullInitTime = Time.realtimeSinceStartup - devInitStartTime;
             Debug.Log($"InitializeTime: {fullInitTime}\n" +
-                      $"Service Initialize Time: {servicesInitializeTime}\n" +
+                      // $"Service Initialize Time: {servicesInitializeTime}\n" +
                       $"Service Start Time: {servicesStartTime}\n" +
                       $"Service Time: {servicesTime}");
 #endif
+            Application.quitting += () => { ServiceLocator.DisposeServices().Forget(); };
         }
 
         private static void RegisterServices()
@@ -115,12 +112,17 @@ namespace Game.Bootstrap
 #endif
             ServiceLocator.AddService<IAnalyticsService>(analyticsService);
 
+#if UNITY_WEBGL
             var yandexService = new YandexGamesService(assetsService);
             ServiceLocator.AddService<IYandexGamesService>(yandexService);
-            
-            var yandexAdvertisementService = new YandexAdvertisementService(yandexService);
-            ServiceLocator.AddService<IAdvertisementService>(yandexAdvertisementService);
 
+            var yandexAdvertisementService = new YandexAdvertisementService(yandexService, audioService);
+            ServiceLocator.AddService<IAdvertisementService>(yandexAdvertisementService);
+#endif
+
+            var deviceService = new DeviceService();
+            ServiceLocator.AddService<IDeviceService>(deviceService);
+            
             // Game
 
             var gameConfigService = new GameConfigService(assetsService);
@@ -133,4 +135,6 @@ namespace Game.Bootstrap
             ServiceLocator.AddService<ITeamsService>(teamsService);
         }
     }
+    
+    
 }

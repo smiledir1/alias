@@ -27,8 +27,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 338c84afbc391a44e8e516621aa08281
-    m_Address: Assets/Audio/click1.mp3
+  - m_GUID: 40a6022603247284b86903337a22406c
+    m_Address: Assets/Audio/time_end.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -184,6 +184,26 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9358a2d5bd1a209448d883c87ac25472
     m_Address: YandexGamesProxy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e4cf35731a4c4445af164b9aa1f7e93
+    m_Address: Assets/Audio/menu_button.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99f93911303f3474395fc60c6207cab4
+    m_Address: Assets/Audio/good_answer.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1b15bf3e1f802c48b8abef2238a9772
+    m_Address: Assets/Audio/wrong_answer.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df979bdf7b3456a4ab07f6760433db11
+    m_Address: Assets/Audio/main_music.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

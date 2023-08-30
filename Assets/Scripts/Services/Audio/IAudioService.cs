@@ -10,5 +10,7 @@ namespace Services.Audio
         UniTask PlayMusic(string id);
         UniTask StopMusic(string id);
         UniTask PlaySound(string id, bool multiSound = false);
+        void PauseMusic();
+        void ResumeMusic();
     }
 }

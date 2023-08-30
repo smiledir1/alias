@@ -4,7 +4,6 @@
     {
         Created,
         Initialized,
-        Started,
         Disposed
     }
 }

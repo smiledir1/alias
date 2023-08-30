@@ -167,6 +167,7 @@ namespace Game.UI.Screens.Round
             {
                 _generatedCount++;
                 _playedPackWordsHash.Add(_wordsPack.Words[indexes]);
+                _playedPackWordsIndexes.Add(indexes);
             }
         }
 
@@ -200,7 +201,7 @@ namespace Game.UI.Screens.Round
                 wordPos = Random.Range(0, wordsPackWordsCount);
                 word = _wordsPack.Words[wordPos];
             } while (_playedPackWordsHash.Contains(word));
-
+            
             _playedPackWordsIndexes.Add(wordPos);
             _playedPackWordsHash.Add(word);
             _generatedCount++;
@@ -214,6 +215,8 @@ namespace Game.UI.Screens.Round
             
             return word;
         }
+        
+        
 
         private void FinishRound()
         {

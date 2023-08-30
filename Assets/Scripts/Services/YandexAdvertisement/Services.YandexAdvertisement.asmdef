@@ -1,0 +1,23 @@
+{
+    "name": "Services.YandexAdvertisement",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6f68e653e2f5b73408647a53e621f73e",
+        "GUID:87d2bb41bf94587408f4561e0f7a03e8",
+        "GUID:15b7cb7079bb05840bc3f0c454f9c622",
+        "GUID:30050d980772b97498de1bcbfc601775"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WebGL"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

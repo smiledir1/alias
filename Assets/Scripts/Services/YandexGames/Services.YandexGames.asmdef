@@ -6,7 +6,11 @@
         "UniTask",
         "Services.Assets"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor",
+        "PS5",
+        "WebGL"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

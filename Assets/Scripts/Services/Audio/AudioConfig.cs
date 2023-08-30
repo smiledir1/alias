@@ -21,6 +21,13 @@ namespace Services.Audio
         
         public void AddSoundSettings(SoundSettings soundSettings)
         {
+            for (var i = _sounds.Count - 1; i >= 0; i--)
+            {
+                var sound = _sounds[i];
+                if (sound.ClipReference != null) continue;
+                _sounds.RemoveAt(i);
+            }
+
             if (_sounds.Exists(
                     s =>
                         s.ClipReference.editorAsset == soundSettings.ClipReference.editorAsset)) return;

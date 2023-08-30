@@ -95,9 +95,8 @@ MonoBehaviour:
   - Key: rules_text
     Text: In Alias, players form teams of two or more people. The goal of the game
       is to explain a word to another player using synonyms, antonyms, descriptions,
-      and various clues. Players cross out fields on the game sheet according to
-      the number of words correctly guessed. The team that reaches the finish line
-      first wins the game!
+      and various clues. The captains using the buttons choose correctly or not the
+      team answered. The team that reaches the finish line first wins the game!
   - Key: rules
     Text: Rules
   - Key: start_game_error

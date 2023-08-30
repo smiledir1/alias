@@ -15,6 +15,8 @@ namespace Services.Localization.Editor
     public class LocalizationWindow : EditorWindow
     {
         private const string PathToConfigs = "Assets/Configs";
+        private const string CurrentPagePref = "current_page_localization";
+        private const string WordsOnPagePref = "words_on_page_localization";
 
         private static LocalizationWindow _window;
 
@@ -38,12 +40,25 @@ namespace Services.Localization.Editor
         private string _googleFromText;
         private string _googleToText;
         private int _googleTextHeight = 20;
-        private static readonly string[] _googleTranslateLanguages = {
+
+        private static readonly string[] _googleTranslateLanguages =
+        {
             "ru", "en", "de", "fi", "fr", "it", "ja", "ko",
-            "zh", "es", "sv", "tr",};
+            "zh", "es", "sv", "tr",
+        };
+
         private string _fromKeyConverter;
         private string _toKeyConverter;
+        //private bool _showScrollView;
 
+        private static readonly Dictionary<int, bool> _showLanguages = new();
+        private bool _showChooseLanguages;
+
+        private static int _generatedWordsCount;
+        private static int _wordsCount;
+        private static int _elementsOnPage = 10;
+        private static int _currentPage;
+        private int _pagesCount;
 
         [MenuItem("Tools/Localization Window")]
         private static void InitializeWindow()
@@ -57,14 +72,14 @@ namespace Services.Localization.Editor
             };
 
             _searchStyle = new GUIStyle("SearchTextField");
-            
+
             _textAreaStyle = new GUIStyle("TextArea")
             {
                 wordWrap = true
             };
 
             _spreadsheetUrl = "https://docs.google.com/spreadsheets/d/[SPREADSHEETHASH]/export?format=tsv";
-            
+
             var guids = AssetDatabase.FindAssets(
                 $"t:{nameof(LocalizationData)}",
                 new[] {PathToConfigs});
@@ -81,6 +96,13 @@ namespace Services.Localization.Editor
 
         private void OnGUI()
         {
+            var e = Event.current;
+
+            if (e.type == EventType.MouseUp && e.button == 1)
+            {
+                Debug.Log("Right mouse button lifted");
+            }
+
             if (_window == null) InitializeWindow();
             var serializeWindowObject = new SerializedObject(this);
 
@@ -117,8 +139,10 @@ namespace Services.Localization.Editor
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Key", _centeredLabel);
-            foreach (var localizationDataItem in _localizationData.Languages)
+            for (var i = 0; i < _localizationData.Languages.Count; i++)
             {
+                if (!_showLanguages[i]) continue;
+                var localizationDataItem = _localizationData.Languages[i];
                 var currentLanguage = localizationDataItem.SystemLanguage.ToString();
                 EditorGUILayout.LabelField(
                     $"{currentLanguage} ({localizationDataItem.LanguageLocalizeName})",
@@ -141,6 +165,7 @@ namespace Services.Localization.Editor
             var localizationsCount = _localizationData.Languages.Count;
             _keys = new string[entryCount];
             _translations = new string[entryCount, localizationsCount];
+            _wordsCount = entryCount;
 
             for (var i = 0; i < firstEntries.Count; i++)
             {
@@ -151,6 +176,7 @@ namespace Services.Localization.Editor
             for (var i = 0; i < localizationsCount; i++)
             {
                 var entries = _localizationData.Languages[i].LanguageWords.editorAsset.Entries;
+                _showLanguages.TryAdd(i, EditorPrefs.GetBool($"show_in_window_language_{i}", true));
                 for (var j = 0; j < entries.Count; j++)
                 {
                     if (j >= entryCount) break;
@@ -165,6 +191,9 @@ namespace Services.Localization.Editor
                     }
                 }
             }
+
+            _currentPage = EditorPrefs.GetInt(CurrentPagePref, 1);
+            _elementsOnPage = EditorPrefs.GetInt(WordsOnPagePref, 10);
         }
 
         private void ImportCSV()
@@ -252,56 +281,89 @@ namespace Services.Localization.Editor
         {
             if (_localizationData.Languages.Count == 0) return;
 
-            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
+            // if (!_showScrollView)
+            // {
+            //     if (GUILayout.Button("Show Localization Entries"))
+            //     {
+            //         _showScrollView = true;
+            //     }
+            //
+            //     return;
+            // }
 
+            var startWord = _elementsOnPage * (_currentPage - 1);
+            var endWord = (_elementsOnPage * _currentPage) - 1;
+            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
+            _wordsCount = _keys.Length;
+            
+            var generated = -1;
             var languagesCount = _localizationData.Languages.Count;
             for (var i = 0; i < _keys.Length; i++)
             {
                 if (!HasCheckSearchStr(i, languagesCount)) continue;
+
+                generated++;
+                if (generated < startWord || generated > endWord) continue;
 
                 EditorGUILayout.BeginHorizontal();
 
                 _keys[i] = EditorGUILayout.TextField(_keys[i]);
                 for (var j = 0; j < languagesCount; j++)
                 {
+                    if (!_showLanguages[j]) continue;
                     _translations[i, j] = EditorGUILayout.TextField(_translations[i, j]);
                 }
 
                 EditorGUILayout.EndHorizontal();
             }
 
+            _generatedWordsCount = generated + 1;
             EditorGUILayout.EndScrollView();
         }
 
         private void DrawButtonMenu()
         {
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Add Key"))
+            if (GUILayout.Button("Add Key")) AddKey();
+            if (GUILayout.Button("Remove Last Key")) RemoveLastKey();
+            if (GUILayout.Button("Up")) Up();
+            if (GUILayout.Button("Down")) Down();
+            if (GUILayout.Button("Save")) Save();
+            EditorGUILayout.EndHorizontal();
+
+            var saveElementsOnPage = _elementsOnPage;
+            var saveCurrentPage = _currentPage;
+            
+            EditorGUILayout.BeginHorizontal();
+            _elementsOnPage = EditorGUILayout.IntSlider(_elementsOnPage, 10, 100);
+            _currentPage = EditorGUILayout.IntField(_currentPage);
+            _pagesCount = _generatedWordsCount / _elementsOnPage;
+            _pagesCount += _generatedWordsCount % _elementsOnPage == 0 ? 0 : 1;
+            
+            EditorGUILayout.LabelField($" / {_pagesCount}     (W:{_wordsCount} CW:{_generatedWordsCount})");
+            if (GUILayout.Button("<"))
             {
-                AddKey();
+                _currentPage--;
+                if (_currentPage < 1) _currentPage = 1;
             }
 
-            if (GUILayout.Button("Remove Last Key"))
+            if (GUILayout.Button(">"))
             {
-                RemoveLastKey();
-            }
-
-            if (GUILayout.Button("Up"))
-            {
-                Up();
-            }
-
-            if (GUILayout.Button("Down"))
-            {
-                Down();
-            }
-
-            if (GUILayout.Button("Save"))
-            {
-                Save();
+                _currentPage++;
+                if (_currentPage > _pagesCount) _currentPage = _pagesCount;
             }
 
             EditorGUILayout.EndHorizontal();
+
+            if (_currentPage != saveCurrentPage)
+            {
+                EditorPrefs.SetInt(CurrentPagePref, _currentPage);
+            }
+            
+            if (_elementsOnPage != saveElementsOnPage)
+            {
+                EditorPrefs.SetInt(WordsOnPagePref, _elementsOnPage);
+            }
         }
 
         private void AddKey()
@@ -471,7 +533,7 @@ namespace Services.Localization.Editor
 
             EditorGUILayout.EndHorizontal();
         }
-        
+
         private void DrawHelpersElements()
         {
             var buttonOpenText = _isHelpersOpen ? "Close Helpers" : "Open Helpers";
@@ -482,20 +544,21 @@ namespace Services.Localization.Editor
             DrawGoogleSpreadSheetDownload();
             DrawGoogleLocalization();
             DrawKeyConverter();
+            DrawChooseLanguages();
         }
 
         private void DrawGoogleLocalization()
         {
             _googleTextHeight = EditorGUILayout.IntSlider(
                 "Text Height", _googleTextHeight, 20, 500);
-            
+
             EditorGUILayout.BeginHorizontal();
 
             _googleFromLanguage = EditorGUILayout.Popup(_googleFromLanguage, _googleTranslateLanguages);
             _googleToLanguage = EditorGUILayout.Popup(_googleToLanguage, _googleTranslateLanguages);
-            
+
             EditorGUILayout.EndHorizontal();
-            
+
             EditorGUILayout.BeginHorizontal();
 
             var width = _window.position.width / 2;
@@ -503,9 +566,9 @@ namespace Services.Localization.Editor
                 GUILayout.Height(_googleTextHeight), GUILayout.Width(width));
             _googleToText = EditorGUILayout.TextArea(_googleToText, _textAreaStyle,
                 GUILayout.Height(_googleTextHeight), GUILayout.Width(width));
-            
+
             EditorGUILayout.EndHorizontal();
-            
+
             if (GUILayout.Button("Translate")) TranslateFromGoogle().Forget();
         }
 
@@ -546,7 +609,7 @@ namespace Services.Localization.Editor
             {
                 _toKeyConverter = _fromKeyConverter.ToLower().Replace(" ", "_");
             }
-            
+
             EditorGUILayout.EndHorizontal();
         }
 
@@ -565,6 +628,21 @@ namespace Services.Localization.Editor
             }
 
             EditorGUILayout.EndHorizontal();
+        }
+
+        private void DrawChooseLanguages()
+        {
+            var showChooseLanguagesText = _showChooseLanguages ? "Close Languages" : "Open Languages";
+            if (GUILayout.Button(showChooseLanguagesText)) _showChooseLanguages = !_showChooseLanguages;
+            if (!_showChooseLanguages) return;
+            var localizationsCount = _localizationData.Languages.Count;
+
+            for (var i = 0; i < localizationsCount; i++)
+            {
+                var language = _localizationData.Languages[i];
+                _showLanguages[i] = EditorGUILayout.Toggle(language.SystemLanguage.ToString(), _showLanguages[i]);
+                EditorPrefs.SetBool($"show_in_window_language_{i}", _showLanguages[i]);
+            }
         }
     }
 }

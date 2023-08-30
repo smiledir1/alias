@@ -58,7 +58,7 @@ namespace Services.YandexGames
         protected override async UniTask OnInitialize()
         {
             await WaitForServiceInitialize(_assetsService);
-
+            
             _yandexGamesProxy = await _assetsService.InstantiateAsync<YandexGamesProxy>();
             _yandexGamesProxy.name = "YandexGamesProxy";
 

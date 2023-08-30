@@ -59,6 +59,11 @@ namespace Services.Audio
         {
             _audio.volume = volume;
         }
+        
+        internal void Mute(bool mute)
+        {
+            _audio.mute = mute;
+        }
 
         private async UniTask Fade(float from, float to, float duration)
         {

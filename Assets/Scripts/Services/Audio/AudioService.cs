@@ -16,6 +16,7 @@ namespace Services.Audio
         #endregion
 
         private readonly IAssetsService _assetsService;
+        private readonly bool _pauseUnfocus;
 
         private GameObject _soundsRootGameObject;
         private AudioConfig _config;
@@ -24,10 +25,10 @@ namespace Services.Audio
         private float _sfxVolume = 1f;
         private float _musicVolume = 1f;
 
-
-        public AudioService(IAssetsService assetsService)
+        public AudioService(IAssetsService assetsService, bool pauseUnfocus = true)
         {
             _assetsService = assetsService;
+            _pauseUnfocus = pauseUnfocus;
         }
 
         #region Service
@@ -35,11 +36,19 @@ namespace Services.Audio
         protected override async UniTask OnInitialize()
         {
             await WaitForServiceInitialize(_assetsService);
-            
+
             _soundsRootGameObject = new GameObject("Audio");
             _config = await _assetsService.LoadAsset<AudioConfig>();
             _sfxVolume = PlayerPrefs.GetFloat(_sfxVolumeKey, _sfxVolume);
             _musicVolume = PlayerPrefs.GetFloat(_musicVolumeKey, _musicVolume);
+
+            if (_pauseUnfocus) Application.focusChanged += OnFocusChange;
+        }
+
+        protected override UniTask OnDispose()
+        {
+            if (_pauseUnfocus) Application.focusChanged -= OnFocusChange;
+            return base.OnDispose();
         }
 
         #endregion
@@ -102,6 +111,16 @@ namespace Services.Audio
             _currentMusicId = null;
         }
 
+        public void PauseMusic()
+        {
+            MuteMusic(true);
+        }
+
+        public void ResumeMusic()
+        {
+            MuteMusic(false);
+        }
+
         public async UniTask PlaySound(string id, bool multiSound = false)
         {
             var soundSource = GetSoundSource(id, multiSound);
@@ -149,6 +168,23 @@ namespace Services.Audio
             }
 
             return soundSource;
+        }
+
+        private void MuteMusic(bool mute)
+        {
+            foreach (var sourceList in _sources.Values)
+            {
+                foreach (var source in sourceList)
+                {
+                    if (source.Type != SoundType.Music) continue;
+                    source.Mute(mute);
+                }
+            }
+        }
+
+        private void OnFocusChange(bool focus)
+        {
+            MuteMusic(!focus);
         }
 
         #endregion
