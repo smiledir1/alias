@@ -1,0 +1,1 @@
+public static class AudioConstants {public const string wrong_answer_a = "wrong_answer"; public const string good_answer_a = "good_answer"; public const string menu_button_a = "menu_button"; public const string main_music_a = "main_music"; }

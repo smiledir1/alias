@@ -59,8 +59,37 @@ namespace Services.Localization.Editor
         private static int _elementsOnPage = 10;
         private static int _currentPage;
         private int _pagesCount;
+        
+        [MenuItem("Tools/Localization/Create Localization Constants")]
+        private static void CreateLocalizationConfigConstants()
+        {
+            var pathToScriptsDirectory = Path.Combine(Application.dataPath, "Scripts");
+            var pathToGameDirectory = Path.Combine(pathToScriptsDirectory, "Game");
+            var pathToConstantsDirectory = Path.Combine(pathToGameDirectory, "Constants");
+            var pathToFileConstants = Path.Combine(pathToConstantsDirectory, "LocalizationConstants.cs");
 
-        [MenuItem("Tools/Localization Window")]
+            var fileText = "public static class LocalizationConstants {";
+
+            var guids = AssetDatabase.FindAssets(
+                $"t:{nameof(LocalizationData)}",
+                new[] {PathToConfigs});
+            var path = AssetDatabase.GUIDToAssetPath(guids[0]);
+            _localizationData = AssetDatabase.LoadAssetAtPath<LocalizationData>(path);
+
+            foreach (var entry in _localizationData.Languages[0].LanguageWords.editorAsset.Entries)
+            {
+                fileText += $"public const string {entry.Key}_l = \"{entry.Key}\"; ";
+            }
+
+            fileText += "}";
+
+            Directory.CreateDirectory(pathToConstantsDirectory);
+            File.WriteAllText(pathToFileConstants, fileText);
+            AssetDatabase.Refresh();
+            Debug.Log("Constants Created");
+        }
+
+        [MenuItem("Tools/Localization/Localization Window")]
         private static void InitializeWindow()
         {
             _window = GetWindow<LocalizationWindow>();
