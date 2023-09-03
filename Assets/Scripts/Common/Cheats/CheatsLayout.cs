@@ -1,9 +1,12 @@
 using Common.Extensions;
 using Services.Helper;
-using Services.YandexGames;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
+#if YANDEX_PLATFORM
+using Services.YandexGames;
+#endif
 
 namespace Common.Cheats
 {
@@ -28,8 +31,10 @@ namespace Common.Cheats
 
         #region Services
 
+#if YANDEX_PLATFORM
         [Service]
         private static IYandexGamesService _yandexGamesService;
+#endif
 
         #endregion
 
@@ -99,6 +104,7 @@ namespace Common.Cheats
                 Debug.Log($"Test {text}");
             });
             
+#if YANDEX_PLATFORM
             CreateCheatsLabel("Yandex Block");
             CreateCheatsButton("GetEnvironment", async () =>
             {
@@ -134,6 +140,7 @@ namespace Common.Cheats
                     Debug.Log("Get Reward");
                 }
             });
+#endif
 
             CreateCheatsLabel("UserData");
             

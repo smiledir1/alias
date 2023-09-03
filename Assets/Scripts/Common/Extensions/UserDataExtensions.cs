@@ -5,23 +5,23 @@ namespace Common.Extensions
 {
     public static class UserDataExtensions
     {
-        private static UserDataService _userDataService;
+        private static FileUserDataService _fileUserDataService;
         
         public static void SaveData(this UserDataObject userData)
         {
             CheckService();
-            _userDataService.SaveUserData(userData);
+            _fileUserDataService.SaveUserData(userData);
         }
         
         public static void ClearData(this UserDataObject userData)
         {
             CheckService();
-            _userDataService.ClearData(userData);
+            _fileUserDataService.ClearData(userData);
         }
 
         private static void CheckService()
         {
-            _userDataService ??= ServiceLocator.GetService<UserDataService>();
+            _fileUserDataService ??= ServiceLocator.GetService<FileUserDataService>();
         }
     }
 }

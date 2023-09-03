@@ -21,21 +21,14 @@ namespace Services.Analytics
 
         private void OnValidate()
         {
-            UnityEditor.PlayerSettings.GetScriptingDefineSymbols(
-                UnityEditor.Build.NamedBuildTarget.Standalone,
-                out var projectDefines);
-            var addDefines = new List<string>(projectDefines);
-            
             if (_unityAnalytics)
             {
-                addDefines.Add(UnityAnalyticsDefine);
+                DefinesUtils.AddDefinesForDefaultTargets(new List<string>{UnityAnalyticsDefine});
             }
             else
             {
-                addDefines.Remove(UnityAnalyticsDefine);
+                DefinesUtils.RemoveDefinesForDefaultTargets(new List<string>{UnityAnalyticsDefine});
             }
-
-            DefinesUtils.SetDefinesForTargets(addDefines);
         }
 #endif
     }

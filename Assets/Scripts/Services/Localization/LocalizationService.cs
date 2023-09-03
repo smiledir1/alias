@@ -38,7 +38,21 @@ namespace Services.Localization
             await WaitForServiceInitialize(_assetsService);
             
             _localizationData = await _assetsService.LoadAsset<LocalizationData>();
-            var systemLanguage = Application.systemLanguage;
+
+            var systemLanguage = SystemLanguage.English;
+            if (!PlayerPrefs.HasKey(LanguageKey))
+            {
+                var applicationSystemLanguage = Application.systemLanguage;
+                foreach (var language in _localizationData.Languages)
+                {
+                    if (language.SystemLanguage != applicationSystemLanguage) continue;
+                    systemLanguage = applicationSystemLanguage;
+                    break;
+                }
+                PlayerPrefs.SetInt(LanguageKey, (int) systemLanguage);
+                PlayerPrefs.Save();
+            }
+
             _language = (SystemLanguage) PlayerPrefs.GetInt(LanguageKey, (int) systemLanguage);
             await FillLocalizationSet(_language);
         }

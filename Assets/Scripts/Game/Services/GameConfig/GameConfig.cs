@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-#if UNITY_EDITOR
-using Common.Utils.Defines;
-#endif
+﻿using UnityEngine;
 
 namespace Game.Services.GameConfig
 {
@@ -14,34 +10,21 @@ namespace Game.Services.GameConfig
 
         [SerializeField]
         private int _frameRate;
-        
+
+        [SerializeField]
+        private PlatformType _platformType;
+
         public bool IsDebug => _isDebug;
         public int FrameRate => _frameRate;
-        
-        
-#if UNITY_EDITOR
+        public PlatformType PlatformType => _platformType;
 
-        private const string DevDefine = "DEV_ENV";
+    }
 
-        private void OnValidate()
-        {
-            UnityEditor.PlayerSettings.GetScriptingDefineSymbols(
-                UnityEditor.Build.NamedBuildTarget.Standalone,
-                out var projectDefines);
-            var addDefines = new List<string>(projectDefines);
-            
-            if (_isDebug)
-            {
-                addDefines.Add(DevDefine);
-            }
-            else
-            {
-                addDefines.Remove(DevDefine);
-            }
-
-            DefinesUtils.SetDefinesForTargets(addDefines);
-        }
-        
-#endif
+    public enum PlatformType
+    {
+        None,
+        Yandex,
+        GooglePlay,
+        AppStore
     }
 }

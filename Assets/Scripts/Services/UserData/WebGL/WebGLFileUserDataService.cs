@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Services.UserData
 {
-    public class WebGLUserDataService : UserDataService
+    public class WebGLFileUserDataService : FileUserDataService
     {
         [DllImport("__Internal")]
         private static extern int HasKeyInLocalStorage(string key);
@@ -18,7 +18,7 @@ namespace Services.UserData
         [DllImport("__Internal")]
         private static extern void RemoveFromLocalStorage(string key);
 
-        public WebGLUserDataService(List<UserDataObject> userDatCollection, bool isCrypt) 
+        public WebGLFileUserDataService(List<UserDataObject> userDatCollection, bool isCrypt) 
             : base(userDatCollection, isCrypt)
         {
         }

@@ -19,9 +19,12 @@ using Services.UI.PopupService;
 using Services.UI.ScreenService;
 using Services.UserData;
 using Services.Vibration;
+using UnityEngine;
+
+#if YANDEX_PLATFORM
 using Services.YandexAdvertisement;
 using Services.YandexGames;
-using UnityEngine;
+#endif
 
 namespace Game.Bootstrap
 {
@@ -52,7 +55,7 @@ namespace Game.Bootstrap
 #if DEV_ENV
             var servicesTime = Time.realtimeSinceStartup - devInitStartTime;
 #endif
-            
+
             var entryGameState = new EntryGameState();
             await entryGameState.GoToState();
 
@@ -95,7 +98,7 @@ namespace Game.Bootstrap
 #if UNITY_WEBGL && !UNITY_EDITOR
             var userDataService = new WebGLUserDataService(userDataObjects, false);
 #else
-            var userDataService = new UserDataService(userDataObjects, false);
+            var userDataService = new FileUserDataService(userDataObjects, false);
 #endif
             ServiceLocator.AddService<IUserDataService>(userDataService);
 
@@ -112,7 +115,7 @@ namespace Game.Bootstrap
 #endif
             ServiceLocator.AddService<IAnalyticsService>(analyticsService);
 
-#if UNITY_WEBGL
+#if YANDEX_PLATFORM
             var yandexService = new YandexGamesService(assetsService);
             ServiceLocator.AddService<IYandexGamesService>(yandexService);
 
@@ -122,7 +125,7 @@ namespace Game.Bootstrap
 
             var deviceService = new DeviceService();
             ServiceLocator.AddService<IDeviceService>(deviceService);
-            
+
             // Game
 
             var gameConfigService = new GameConfigService(assetsService);
@@ -135,6 +138,4 @@ namespace Game.Bootstrap
             ServiceLocator.AddService<ITeamsService>(teamsService);
         }
     }
-    
-    
 }

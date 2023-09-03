@@ -1,12 +1,11 @@
 {
-    "name": "Services.YandexAdvertisement",
+    "name": "Services.UserData.WebGL",
     "rootNamespace": "",
     "references": [
+        "GUID:e91c62ad6c6181a4abfdd3c55a35171f",
+        "GUID:7e328c2bae3cf044f98b26e26dac49df",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:6f68e653e2f5b73408647a53e621f73e",
-        "GUID:87d2bb41bf94587408f4561e0f7a03e8",
-        "GUID:15b7cb7079bb05840bc3f0c454f9c622",
-        "GUID:30050d980772b97498de1bcbfc601775"
+        "GUID:6f68e653e2f5b73408647a53e621f73e"
     ],
     "includePlatforms": [
         "Editor",
@@ -17,9 +16,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [
-        "YANDEX_PLATFORM"
-    ],
+    "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
 }

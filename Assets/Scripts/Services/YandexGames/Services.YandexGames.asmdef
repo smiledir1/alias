@@ -8,7 +8,6 @@
     ],
     "includePlatforms": [
         "Editor",
-        "PS5",
         "WebGL"
     ],
     "excludePlatforms": [],
@@ -16,7 +15,9 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
+    "defineConstraints": [
+        "YANDEX_PLATFORM"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }

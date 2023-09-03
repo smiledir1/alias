@@ -13,7 +13,7 @@ namespace Services.UserData
     // TODO: Strong Crypt
     // SaveBytes
     // Crypt Settings?
-    public class UserDataService : Service, IUserDataService
+    public class FileUserDataService : Service, IUserDataService
     {
         private const int XorKey = 49;
 
@@ -21,7 +21,7 @@ namespace Services.UserData
         protected Dictionary<Type, UserDataObject> _userDatCollection;
         protected readonly bool _isCrypt;
 
-        public UserDataService(List<UserDataObject> userDatCollection, bool isCrypt)
+        public FileUserDataService(List<UserDataObject> userDatCollection, bool isCrypt)
         {
             _allData = userDatCollection;
             _isCrypt = isCrypt;
