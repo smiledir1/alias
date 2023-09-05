@@ -20,8 +20,11 @@ namespace Game.Services.GameConfig.Editor
         protected void OnEnable()
         {
             _gameConfig = target as GameConfig;
-            _prevPlatformType = _gameConfig.PlatformType;
-            _prevIsDebug = _gameConfig.IsDebug;
+            if (_gameConfig != null)
+            {
+                _prevPlatformType = _gameConfig.PlatformType;
+                _prevIsDebug = _gameConfig.IsDebug;
+            }
         }
 
         public override void OnInspectorGUI()
@@ -96,10 +99,8 @@ namespace Game.Services.GameConfig.Editor
             {PlatformType.AppStore, "APP_STORE_PLATFORM"}
         };
 
-        public static string GetDefineName(PlatformType platformType)
-        {
-            return PlatformTypeToDefine[platformType];
-        }
+        public static string GetDefineName(PlatformType platformType) => 
+            PlatformTypeToDefine[platformType];
 
         public static NamedBuildTarget GetBuildTarget(PlatformType platformType)
         {
@@ -111,10 +112,8 @@ namespace Game.Services.GameConfig.Editor
             };
         }
 
-        public static List<string> GetAllDefinesNames()
-        {
-            return new List<string>(PlatformTypeToDefine.Values);
-        }
+        public static List<string> GetAllDefinesNames() => 
+            new (PlatformTypeToDefine.Values);
     }
 }
 #endif

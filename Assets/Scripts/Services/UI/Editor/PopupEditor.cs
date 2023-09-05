@@ -1,9 +1,9 @@
 ﻿#if UNITY_EDITOR
-using Services.UI.Editor;
+using Services.UI.PopupService;
 using UnityEditor;
 using UnityEngine;
 
-namespace Services.UI.PopupService.Editor
+namespace Services.UI.Editor
 {
     [CustomEditor(typeof(Popup), true)]
     public class PopupEditor : UIObjectEditor
@@ -30,7 +30,10 @@ namespace Services.UI.PopupService.Editor
             for (var enterChildren = true; iterator.NextVisible(enterChildren); enterChildren = false)
             {
                 using (new EditorGUI.DisabledScope("m_Script" == iterator.propertyPath))
+                {
                     EditorGUILayout.PropertyField(iterator, true);
+                }
+
                 if (iterator.name == "_closeButton")
                 {
                     EditorGUILayout.Space();

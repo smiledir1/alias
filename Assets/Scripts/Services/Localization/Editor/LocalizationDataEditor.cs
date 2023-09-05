@@ -60,13 +60,13 @@ namespace Services.Localization.Editor
                 return;
             }
 
-            const char rowSeparator = ',';
-            const char columnSeparator = '\n';
+            const char RowSeparator = ',';
+            const char ColumnSeparator = '\n';
 
             var languageEntries = new List<LanguageEntry>();
             var languageEntriesPoses = new List<int>();
-            var lines = text.Split(columnSeparator);
-            var header = lines[0].Split(rowSeparator);
+            var lines = text.Split(ColumnSeparator);
+            var header = lines[0].Split(RowSeparator);
             for (var i = 1; i < header.Length; ++i)
             {
                 if (!Enum.TryParse(header[i], out SystemLanguage language)) continue;
@@ -80,7 +80,7 @@ namespace Services.Localization.Editor
 
             for (var i = 1; i < lines.Length; ++i)
             {
-                var items = lines[i].Split(rowSeparator);
+                var items = lines[i].Split(RowSeparator);
                 for (var j = 0; i < languageEntries.Count; j++)
                 {
                     var languageEntry = languageEntries[j];

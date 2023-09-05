@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -340,13 +339,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Vector3 b1,
             Vector3 b2,
             Vector3 b3,
-            float t)
-        {
-            return Mathf.Pow(1 - t, 3) * b0 +
-                   3 * Mathf.Pow(1 - t, 2) * t * b1 +
-                   3 * (1 - t) * Mathf.Pow(t, 2) * b2 +
-                   Mathf.Pow(t, 3) * b3;
-        }
+            float t) =>
+                Mathf.Pow(1 - t, 3) * b0 +
+                3 * Mathf.Pow(1 - t, 2) * t * b1 +
+                3 * (1 - t) * Mathf.Pow(t, 2) * b2 +
+                Mathf.Pow(t, 3) * b3;
 
         #endregion
 
@@ -412,13 +409,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Gizmos.DrawLineStrip(lines, false);
         }
 
-        private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position)
-        {
-            return new Vector3(
-                position.x * scale.x,
+        private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position) =>
+            new (position.x * scale.x,
                 position.y * scale.y,
                 position.z * scale.z);
-        }
 
         private static void DrawGlobalPosition(BezierPositionTween bezierPositionTween)
         {

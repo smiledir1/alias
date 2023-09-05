@@ -15,13 +15,12 @@ namespace Common.UniTaskAnimations
         [SerializeField]
         protected float _perObjectSecondsDelay;
 
-        [SerializeField]
         [SerializeReference]
-        protected ITween _tween;
+        protected ITween Tween;
         
         public Transform ParentObject => _parentObject;
         public float PerObjectSecondsDelay =>_perObjectSecondsDelay;
-        public ITween Tween => _tween;
+        public ITween CurTween => Tween;
 
         private List<ITween> _animations = new();
 
@@ -33,9 +32,10 @@ namespace Common.UniTaskAnimations
         
         public static MultiTween Clone(MultiTween tween, GameObject targetObject = null)
         {
-            var newTween = new MultiTween(targetObject.transform, tween.PerObjectSecondsDelay)
+            var targetTransform = targetObject == null ? null : targetObject.transform;
+            var newTween = new MultiTween(targetTransform, tween.PerObjectSecondsDelay)
             {
-                _tween = ITween.Clone(tween.Tween, targetObject)
+                Tween = ITween.Clone(tween.Tween, targetObject)
             };
 
             return newTween;
@@ -79,7 +79,7 @@ namespace Common.UniTaskAnimations
             for (var i = 0; i < _parentObject.childCount; i++)
             {
                 var child = _parentObject.GetChild(i);
-                var animation = ITween.Clone(_tween, child.gameObject);
+                var animation = ITween.Clone(Tween, child.gameObject);
                 _animations.Add(animation);
             }
         }

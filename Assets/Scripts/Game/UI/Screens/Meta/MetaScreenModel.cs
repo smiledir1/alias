@@ -2,8 +2,5 @@
 
 namespace Game.UI.Screens.Meta
 {
-    public record MetaScreenModel : UIModel
-    {
-        
-    }
+    public record MetaScreenModel : UIModel;
 }

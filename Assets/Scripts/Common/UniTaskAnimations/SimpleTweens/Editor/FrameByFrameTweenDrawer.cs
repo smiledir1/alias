@@ -19,12 +19,12 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             var x = propertyRect.x;
             var y = propertyRect.y;
             var width = propertyRect.width;
-            var height = _lineHeight;
+            var height = LineHeight;
             
             y += DrawTweenProperties(propertyRect, property);
 
             var calculateRect = new Rect(x, y, width, height);
-            y += DrawCalculate(calculateRect, property, label);
+            y += DrawCalculate(calculateRect, property);
             
             return y - propertyRect.y;
         }
@@ -34,7 +34,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             var x = propertyRect.x;
             var y = propertyRect.y;
             var width = propertyRect.width;
-            var height = _lineHeight;
+            var height = LineHeight;
 
             var labelRect = new Rect(x, y, width, height);
             EditorGUI.LabelField(labelRect, "Current Tween", EditorStyles.boldLabel);
@@ -55,18 +55,17 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
 
         private float DrawCalculate(
             Rect propertyRect, 
-            SerializedProperty property,
-            GUIContent label)
+            SerializedProperty property)
         {
             var width = propertyRect.width / 3;
             var x = propertyRect.x;
             var y = propertyRect.y;
 
-            var labelRect = new Rect(x, y, width, _lineHeight);
+            var labelRect = new Rect(x, y, width, LineHeight);
             GUI.Label(labelRect, "time to: frames in second (1 second)");
 
             x += width;
-            var textFieldRect = new Rect(x, y, width, _lineHeight);
+            var textFieldRect = new Rect(x, y, width, LineHeight);
             _textFieldValue = GUI.TextField(textFieldRect, _textFieldValue);
             if (!int.TryParse(_textFieldValue, out var value) ||
                 value < 1)
@@ -80,7 +79,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             }
 
             x += width;
-            var buttonRect = new Rect(x, y, width, _lineHeight);
+            var buttonRect = new Rect(x, y, width, LineHeight);
             if (GUI.Button(buttonRect, "Calculate"))
             {
                 if (property.managedReferenceValue is FrameByFrameTween currentTween)
@@ -97,7 +96,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
                 }
             }
 
-            return _lineHeight;
+            return LineHeight;
         }
     }
 }

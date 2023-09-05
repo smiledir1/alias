@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PgTowerDefence.View.Meta.UI
+namespace Common.UI.SafeArea
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(RectTransform))]
@@ -51,9 +51,8 @@ namespace PgTowerDefence.View.Meta.UI
         }
 
         #endregion
-
     }
-    
+
     public enum SafeAreaMode
     {
         Default,

@@ -64,23 +64,17 @@ namespace Services.Device
             }
         }
 
-        private ScreenSimpleOrientation GetSimpleOrientation()
-        {
-            return GetSimpleOrientation(_lastWidth, _lastHeight);
-        }
+        private ScreenSimpleOrientation GetSimpleOrientation() => 
+            GetSimpleOrientation(_lastWidth, _lastHeight);
 
-        private ScreenSizeType GetScreenSizeType()
-        {
-            return GetScreenSizeType(_lastWidth, _lastHeight);
-        }
-        
-        public static ScreenSimpleOrientation GetSimpleOrientation(float width, float height)
-        {
-            return width < height
+        private ScreenSizeType GetScreenSizeType() => 
+            GetScreenSizeType(_lastWidth, _lastHeight);
+
+        public static ScreenSimpleOrientation GetSimpleOrientation(float width, float height) =>
+            width < height
                 ? ScreenSimpleOrientation.Portrait
                 : ScreenSimpleOrientation.Landscape;
-        }
-        
+
         public static ScreenSizeType GetScreenSizeType(float width, float height)
         {
             // 2.1641 - LandscapeIphone

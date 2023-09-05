@@ -6,13 +6,13 @@ namespace Services.Vibration
 {
     public class VibrationService : Service, IVibrationService
     {
-        private const string _savePrefKey = "vibration";
+        private const string SavePrefKey = "vibration";
         public bool IsOn { get; private set; }
 
         protected override UniTask OnInitialize()
         {
             Vibration.Init();
-            var state = PlayerPrefs.GetInt(_savePrefKey, 1);
+            var state = PlayerPrefs.GetInt(SavePrefKey, 1);
             IsOn = state == 1;
             return base.OnInitialize();
         }
@@ -24,7 +24,7 @@ namespace Services.Vibration
         {
             IsOn = isOn;
             var state = isOn ? 1 : 0;
-            PlayerPrefs.SetInt(_savePrefKey, state);
+            PlayerPrefs.SetInt(SavePrefKey, state);
             PlayerPrefs.Save();
         }
 

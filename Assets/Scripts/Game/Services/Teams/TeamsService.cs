@@ -59,11 +59,8 @@ namespace Game.Services.Teams
             return teamList;
         }
         
-        public TeamData CreateDataFromTeam(Team team)
-        {
-            return new TeamData(team.Id, team.Score);
-        }
-        
+        public TeamData CreateDataFromTeam(Team team) => new(team.Id, team.Score);
+
         public List<TeamData> CreateDataFromTeams(List<Team> teams)
         {
             var teamList = new List<TeamData>();

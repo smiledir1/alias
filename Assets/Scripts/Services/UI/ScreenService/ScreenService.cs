@@ -21,9 +21,7 @@ namespace Services.UI.ScreenService
 
         public async UniTask<T> ShowAsync<T>(
             UIModel uiModel,
-            int group = default) where T : UIObject
-        {
-            return await base.ShowAsync<T>(uiModel, true, group);
-        }
+            int group = default) where T : UIObject =>
+            await base.ShowAsync<T>(uiModel, true, group);
     }
 }

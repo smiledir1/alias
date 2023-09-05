@@ -8,9 +8,9 @@ namespace Services.Audio.Editor
 {
     public static class AudioEditor
     {
-        private const string _pathToConfigs = "Assets/Configs";
+        private const string PathToConfigs = "Assets/Configs";
         private static readonly string AssetsFilter = $"t:{nameof(AudioConfig)}";
-        private static readonly string[] SearchFolder = {_pathToConfigs};
+        private static readonly string[] SearchFolder = {PathToConfigs};
 
         [MenuItem("Tools/Audio/Open AudioConfig")]
         private static void OpenAudioConfig()

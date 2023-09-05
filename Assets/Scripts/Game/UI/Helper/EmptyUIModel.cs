@@ -2,5 +2,5 @@
 
 namespace Game.UI.Helper
 {
-    public record EmptyUIModel() : UIModel;
+    public record EmptyUIModel : UIModel;
 }

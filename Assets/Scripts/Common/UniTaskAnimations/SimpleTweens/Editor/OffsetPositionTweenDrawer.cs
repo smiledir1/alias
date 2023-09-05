@@ -15,7 +15,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             var x = propertyRect.x;
             var y = propertyRect.y;
             var width = propertyRect.width;
-            var height = _lineHeight;
+            var height = LineHeight;
 
             var labelRect = new Rect(x, y, width, height);
             EditorGUI.LabelField(labelRect, "Current Tween", EditorStyles.boldLabel);

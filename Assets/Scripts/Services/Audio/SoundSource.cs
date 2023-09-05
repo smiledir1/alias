@@ -6,7 +6,7 @@ namespace Services.Audio
     // TODO: прокинуть IAssetService
     internal class SoundSource
     {
-        private const float _fadeDuration = 1f;
+        private const float FadeDuration = 1f;
 
         private readonly AudioSource _audio;
         private readonly SoundSettings _settings;
@@ -45,13 +45,13 @@ namespace Services.Audio
         {
             _audio.volume = 0f;
             await Play();
-            await Fade(0f, volume, _fadeDuration);
+            await Fade(0f, volume, FadeDuration);
         }
 
         internal async UniTask PlayFadeOut(float volume)
         {
             if (_audio == null || !_audio.isPlaying) return;
-            await Fade(volume, 0f, _fadeDuration);
+            await Fade(volume, 0f, FadeDuration);
             _audio.Stop();
         }
 

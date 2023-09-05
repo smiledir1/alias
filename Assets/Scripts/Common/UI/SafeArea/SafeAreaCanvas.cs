@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PgTowerDefence.View.Meta.UI
+namespace Common.UI.SafeArea
 {
     [RequireComponent(typeof(Canvas))]
     public class SafeAreaCanvas : MonoBehaviour

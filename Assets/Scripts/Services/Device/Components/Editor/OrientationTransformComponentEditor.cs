@@ -40,8 +40,10 @@ namespace Services.Device.Components.Editor
         
         private void DetectSize()
         {
+            var main = Camera.main;
+            if (main == null) return;
             var orientation = DeviceService.GetSimpleOrientation(
-                Camera.main.pixelWidth, Camera.main.pixelHeight);
+                main.pixelWidth, main.pixelHeight);
             MakeAll(orientation);
         }
         

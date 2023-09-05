@@ -70,12 +70,12 @@ namespace Services.Audio.Components.Editor
                 return;
             }
 
-            DrawUnContainsKey(componentKey);
+            DrawUnContainsKey();
         }
 
         private void DrawContainsKey(string componentKey)
         {
-            GUILayout.Label("Нажми, чтобы выбрать", EditorStyles.boldLabel);
+            GUILayout.Label("Click And Choose", EditorStyles.boldLabel);
 
             if (_findKeys.Count == 0)
             {
@@ -119,18 +119,18 @@ namespace Services.Audio.Components.Editor
             
             if (_findKeys.Count >= DrawCount)
             {
-                GUILayout.Label("Еще..");
+                GUILayout.Label("More..");
             }
 
             if (_notFoundKeys)
             {
-                GUILayout.Box("Не найдено");
+                GUILayout.Box("Not foundо");
             }
         }
 
-        private void DrawUnContainsKey(string componentKey)
+        private void DrawUnContainsKey()
         {
-            GUILayout.Label("Ключ есть в конфиге ключей", EditorStyles.boldLabel);
+            GUILayout.Label("Valid Key in config", EditorStyles.boldLabel);
         }
     }
 }

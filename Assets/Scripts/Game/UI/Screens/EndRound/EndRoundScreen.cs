@@ -75,13 +75,11 @@ namespace Game.UI.Screens.EndRound
             _scoreLabel.text = _currentScore.ToString();
         }
 
-        private int CountScore(bool isRightAnswered)
-        {
-            return isRightAnswered
+        private int CountScore(bool isRightAnswered) =>
+            isRightAnswered
                 ? 1
                 : Model.FreeSkip
                     ? 0
                     : -1;
-        }
     }
 }

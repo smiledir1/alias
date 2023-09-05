@@ -52,8 +52,10 @@ namespace Services.Device.Components.Editor
 
         private void DetectSize()
         {
+            var main = Camera.main;
+            if (main == null) return;
             var screenSize = DeviceService.GetScreenSizeType(
-                Camera.main.pixelWidth, Camera.main.pixelHeight);
+                main.pixelWidth, main.pixelHeight);
             MakeAll(screenSize);
         }
 

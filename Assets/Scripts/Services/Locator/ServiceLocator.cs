@@ -55,7 +55,7 @@ namespace Services.Locator
             Services.Remove(typeof(T));
             if (service != null)
             {
-                service.Dispose();
+                await service.Dispose();
                 AllServices.Remove(service);
             }
         }

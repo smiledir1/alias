@@ -238,13 +238,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Gizmos.DrawSphere(toPosition, 10f);
         }
 
-        private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position)
-        {
-            return new Vector3(
-                position.x * scale.x,
+        private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position) =>
+            new (position.x * scale.x,
                 position.y * scale.y,
                 position.z * scale.z);
-        }
 
         private static void DrawGlobalPosition(PositionTween positionTween)
         {

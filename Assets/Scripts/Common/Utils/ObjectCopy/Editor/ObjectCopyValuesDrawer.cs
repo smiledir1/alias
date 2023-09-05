@@ -9,7 +9,7 @@ namespace Common.Utils.ObjectCopy.Editor
     [CustomPropertyDrawer(typeof(ObjectCopyValues), true)]
     public class ObjectCopyValuesDrawer : PropertyDrawer
     {
-        private float _lineHeight = 20f;
+        private readonly float _lineHeight = 20f;
 
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
@@ -17,10 +17,8 @@ namespace Common.Utils.ObjectCopy.Editor
             EditorGUI.PropertyField(rect, property, label, true);
         }
 
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return EditorGUI.GetPropertyHeight(property, label);
-        }
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => 
+            EditorGUI.GetPropertyHeight(property, label);
 
         private void DrawElements(Rect propertyRect, SerializedProperty property)
         {

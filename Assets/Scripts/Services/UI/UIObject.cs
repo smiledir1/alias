@@ -12,18 +12,16 @@ namespace Services.UI
         #region View
 
         [Header("UIObject Main")]
-        [SerializeField]
         [SerializeReference]
-        protected ITween _openTween;
+        protected ITween OpenTween;
 
-        [SerializeField]
         [SerializeReference]
-        protected ITween _closeTween;
+        protected ITween CloseTween;
 
         #endregion
 
         #region Properties
-        
+
         public UIModel UIModel { get; private set; }
         public int Group { get; private set; }
         public UIObjectState State { get; private set; }
@@ -77,16 +75,17 @@ namespace Services.UI
             UIObjectOpen?.Invoke();
             await OnOpenAsync();
             State = UIObjectState.Opened;
-            if (_openTween != null)
+            if (OpenTween != null)
             {
                 var hasActiveAnimation = _animationTokenSource != null;
                 if (hasActiveAnimation)
                 {
                     _animationTokenSource.Cancel();
-                    _openTween.ResetValues();
+                    OpenTween.ResetValues();
                 }
+
                 _animationTokenSource = new CancellationTokenSource();
-                await _openTween.StartAnimation(false, false, _animationTokenSource.Token);
+                await OpenTween.StartAnimation(false, false, _animationTokenSource.Token);
                 _animationTokenSource = null;
             }
         }
@@ -96,18 +95,20 @@ namespace Services.UI
             UIObjectClose?.Invoke();
             await OnCloseAsync();
             State = UIObjectState.Loaded;
-            if (_closeTween != null)
+            if (CloseTween != null)
             {
                 var hasActiveAnimation = _animationTokenSource != null;
                 if (hasActiveAnimation)
                 {
                     _animationTokenSource.Cancel();
-                    _closeTween.ResetValues();
+                    CloseTween.ResetValues();
                 }
+
                 _animationTokenSource = new CancellationTokenSource();
-                await _closeTween.StartAnimation(false, false, _animationTokenSource.Token);
+                await CloseTween.StartAnimation(false, false, _animationTokenSource.Token);
                 _animationTokenSource = null;
             }
+
             UIModel?.Close();
         }
 
@@ -127,12 +128,12 @@ namespace Services.UI
 
         internal void SetOpenAnimation(ITween openTween)
         {
-            _openTween = openTween;
+            OpenTween = openTween;
         }
-       
+
         internal void SetCloseAnimation(ITween closeTween)
         {
-            _closeTween = closeTween;
+            CloseTween = closeTween;
         }
 
         #endregion /Internal Methods
@@ -176,7 +177,7 @@ namespace Services.UI
 
         #endregion /Protected Methods
     }
-    
+
     public abstract class UIObject<T> : UIObject where T : UIModel
     {
         protected T Model { get; private set; }

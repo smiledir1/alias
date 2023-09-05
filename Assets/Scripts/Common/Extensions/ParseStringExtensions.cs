@@ -15,10 +15,8 @@ namespace Common.Extensions
             throw new Exception("Can't parse: " + text + " to bool!");
         }
 
-        public static bool GetBoolSafe(this string text, bool defaultVal = false)
-        {
-            return bool.TryParse(text, out var value) ? value : defaultVal;
-        }
+        public static bool GetBoolSafe(this string text, bool defaultVal = false) => 
+            bool.TryParse(text, out var value) ? value : defaultVal;
 
         public static int GetInt(this string text)
         {
@@ -31,10 +29,8 @@ namespace Common.Extensions
             throw new Exception("Can't parse: " + text + " to int!");
         }
 
-        public static int GetIntSafe(this string text, int defaultVal = 0)
-        {
-            return int.TryParse(text, out var value) ? value : defaultVal;
-        }
+        public static int GetIntSafe(this string text, int defaultVal = 0) => 
+            int.TryParse(text, out var value) ? value : defaultVal;
 
         public static float GetFloat(this string text)
         {
@@ -72,9 +68,7 @@ namespace Common.Extensions
             return sb.ToString().ToLower();
         }
         
-        public static T GetEnumFromString<T>(this string value) where T : Enum
-        {
-            return (T) Enum.Parse(typeof(T), value, true);
-        }
+        public static T GetEnumFromString<T>(this string value) where T : Enum => 
+            (T) Enum.Parse(typeof(T), value, true);
     }
 }

@@ -77,16 +77,31 @@ namespace Services.Localization
             }
         }
 
-        public string GetText(string key)
-        {
-            return _localizationSet.TryGetValue(key, out var text) ? text : key;
-        }
-        
+        public string GetText(string key) => 
+            _localizationSet.TryGetValue(key, out var text) ? text : key;
+
+        #region Formatted Text
+
         public string GetFormattedText(string key, params object[] parameters)
         {
             var localizeText = _localizationSet.TryGetValue(key, out var text) ? text : key;
             return string.Format(localizeText, parameters);
         }
+        
+        public string GetFormattedText(string key, int parameter)
+        {
+            var localizeText = _localizationSet.TryGetValue(key, out var text) ? text : key;
+            return string.Format(localizeText, parameter);
+        }
+        
+        public string GetFormattedText(string key, string parameter)
+        {
+            var localizeText = _localizationSet.TryGetValue(key, out var text) ? text : key;
+            return string.Format(localizeText, parameter);
+        }
+
+        #endregion
+       
 
         public async UniTask ChangeLanguage(SystemLanguage language)
         {

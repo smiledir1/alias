@@ -8,10 +8,8 @@ namespace Common.Utils
 {
     public static class FileStorageUtils
     {
-        public static string FixFileName(this string fileName)
-        {
-            return fileName.Replace("\\", "/");
-        }
+        public static string FixFileName(this string fileName) => 
+            fileName.Replace("\\", "/");
 
         public static void DeletePersistentDirectory(string dirPath)
         {

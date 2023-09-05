@@ -22,7 +22,7 @@ namespace Services.UI.Editor
 
         private void DoDrawDefaultInspector(SerializedObject obj)
         {
-            if (GUILayout.Button("Create Addressable") 
+            if (GUILayout.Button("Create Addressable")
                 && !Application.isPlaying) CreateAddressable(_target);
 
             EditorGUI.BeginChangeCheck();
@@ -31,7 +31,10 @@ namespace Services.UI.Editor
             for (var enterChildren = true; iterator.NextVisible(enterChildren); enterChildren = false)
             {
                 using (new EditorGUI.DisabledScope("m_Script" == iterator.propertyPath))
+                {
                     EditorGUILayout.PropertyField(iterator, true);
+                }
+
                 if (iterator.name == "_closeTween")
                 {
                     EditorGUILayout.Space();
@@ -46,12 +49,12 @@ namespace Services.UI.Editor
         protected static void CreateAddressable(UIObject target)
         {
             var settings = AddressableAssetSettingsDefaultObject.Settings;
-            
+
             var assetPath = AssetDatabase.GetAssetPath(target);
             var assetGuid = AssetDatabase.AssetPathToGUID(assetPath);
             settings.CreateAssetReference(assetGuid);
             var entry = settings.FindAssetEntry(assetGuid);
-            if(entry == null) return;
+            if (entry == null) return;
             entry.address = target.GetType().Name;
         }
     }

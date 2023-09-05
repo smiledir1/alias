@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
+using Services.UserData.File;
 
-namespace Services.UserData
+namespace Services.UserData.WebGL
 {
     public class WebGLFileUserDataService : FileUserDataService
     {
@@ -26,7 +27,7 @@ namespace Services.UserData
         protected override void SaveConcreteData(UserDataObject dataObject)
         {
             var userDataString = JsonConvert.SerializeObject(dataObject);
-            if (_isCrypt)
+            if (IsCrypt)
             {
                 userDataString = Crypto(userDataString);
             }
@@ -38,14 +39,10 @@ namespace Services.UserData
             RemoveFromLocalStorage(dataObject.DataName);
         }
 
-        protected override bool HasUserData(string key)
-        {
-            return HasKeyInLocalStorage(key) == 1;
-        }
-        
-        protected override string GetUserDataText(string key)
-        {
-            return LoadFromLocalStorage(key);
-        }
+        protected override bool HasUserData(string key) => 
+            HasKeyInLocalStorage(key) == 1;
+
+        protected override string GetUserDataText(string key) => 
+            LoadFromLocalStorage(key);
     }
 }

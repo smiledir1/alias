@@ -6,9 +6,8 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Services.Common;
 using UnityEngine;
-using File = System.IO.File;
 
-namespace Services.UserData
+namespace Services.UserData.File
 {
     // TODO: Strong Crypt
     // SaveBytes
@@ -17,19 +16,19 @@ namespace Services.UserData
     {
         private const int XorKey = 49;
 
-        protected readonly List<UserDataObject> _allData;
-        protected Dictionary<Type, UserDataObject> _userDatCollection;
-        protected readonly bool _isCrypt;
+        protected readonly List<UserDataObject> AllData;
+        protected Dictionary<Type, UserDataObject> UserDatCollection;
+        protected readonly bool IsCrypt;
 
         public FileUserDataService(List<UserDataObject> userDatCollection, bool isCrypt)
         {
-            _allData = userDatCollection;
-            _isCrypt = isCrypt;
+            AllData = userDatCollection;
+            IsCrypt = isCrypt;
         }
 
         public T GetData<T>() where T : UserDataObject
         {
-            if (_userDatCollection.TryGetValue(typeof(T), out var data))
+            if (UserDatCollection.TryGetValue(typeof(T), out var data))
             {
                 return data as T;
             }
@@ -40,7 +39,7 @@ namespace Services.UserData
 
         public void SaveUserData()
         {
-            foreach (var data in _userDatCollection.Values)
+            foreach (var data in UserDatCollection.Values)
             {
                 SaveConcreteData(data);
             }
@@ -49,7 +48,7 @@ namespace Services.UserData
         public void SaveUserData(UserDataObject userData)
         {
             var type = userData.GetType();
-            if (_userDatCollection.TryGetValue(type, out var data))
+            if (UserDatCollection.TryGetValue(type, out var data))
             {
                 SaveConcreteData(data);
             }
@@ -61,7 +60,7 @@ namespace Services.UserData
 
         public void SaveUserData<T>() where T : UserDataObject
         {
-            if (_userDatCollection.TryGetValue(typeof(T), out var data))
+            if (UserDatCollection.TryGetValue(typeof(T), out var data))
             {
                 SaveConcreteData(data);
             }
@@ -73,7 +72,7 @@ namespace Services.UserData
 
         public void ClearData()
         {
-            foreach (var data in _userDatCollection.Values)
+            foreach (var data in UserDatCollection.Values)
             {
                 ClearConcreteData(data);
             }
@@ -82,7 +81,7 @@ namespace Services.UserData
         public void ClearData(UserDataObject userData)
         {
             var type = userData.GetType();
-            if (_userDatCollection.TryGetValue(type, out var data))
+            if (UserDatCollection.TryGetValue(type, out var data))
             {
                 ClearConcreteData(data);
             }
@@ -94,7 +93,7 @@ namespace Services.UserData
 
         public void ClearData<T>() where T : UserDataObject
         {
-            if (_userDatCollection.TryGetValue(typeof(T), out var data))
+            if (UserDatCollection.TryGetValue(typeof(T), out var data))
             {
                 ClearConcreteData(data);
             }
@@ -112,8 +111,8 @@ namespace Services.UserData
 
         protected virtual void LoadUserData()
         {
-            _userDatCollection = new Dictionary<Type, UserDataObject>();
-            foreach (var data in _allData)
+            UserDatCollection = new Dictionary<Type, UserDataObject>();
+            foreach (var data in AllData)
             {
                 var dataType = data.GetType();
                 var dataName = data.DataName;
@@ -123,7 +122,7 @@ namespace Services.UserData
                     try
                     {
                         var userDataText = GetUserDataText(dataName);
-                        if (_isCrypt)
+                        if (IsCrypt)
                         {
                             userDataText = Crypto(userDataText);
                         }
@@ -131,7 +130,7 @@ namespace Services.UserData
                         if (JsonConvert.DeserializeObject(userDataText, dataType) 
                             is UserDataObject loadedData)
                         {
-                            _userDatCollection.Add(dataType, loadedData);
+                            UserDatCollection.Add(dataType, loadedData);
                         }
                         else
                         {
@@ -145,7 +144,7 @@ namespace Services.UserData
                 }
                 else
                 {
-                    _userDatCollection.Add(dataType, data);
+                    UserDatCollection.Add(dataType, data);
                 }
             }
         }
@@ -153,32 +152,32 @@ namespace Services.UserData
         protected virtual bool HasUserData(string key)
         {
             var path = Path.Combine(Application.persistentDataPath, key);
-            return File.Exists(path);
+            return System.IO.File.Exists(path);
         }
         
         protected virtual string GetUserDataText(string key)
         {
             var path = Path.Combine(Application.persistentDataPath, key);
-            return File.ReadAllText(path);
+            return System.IO.File.ReadAllText(path);
         }
 
         protected virtual void ClearConcreteData(UserDataObject dataObject)
         {
             var dataName = dataObject.DataName;
             var path = Path.Combine(Application.persistentDataPath, dataName);
-            File.Delete(path);
+            System.IO.File.Delete(path);
         }
 
         protected virtual void SaveConcreteData(UserDataObject dataObject)
         {
             var path = Path.Combine(Application.persistentDataPath, dataObject.DataName);
             var userDataString = JsonConvert.SerializeObject(dataObject);
-            if (_isCrypt)
+            if (IsCrypt)
             {
                 userDataString = Crypto(userDataString);
             }
 
-            File.WriteAllText(path, userDataString);
+            System.IO.File.WriteAllText(path, userDataString);
         }
 
         protected string Crypto(string text)

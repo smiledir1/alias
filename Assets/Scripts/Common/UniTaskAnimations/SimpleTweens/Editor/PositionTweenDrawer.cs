@@ -15,7 +15,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             var x = propertyRect.x;
             var y = propertyRect.y;
             var width = propertyRect.width;
-            var height = _lineHeight;
+            var height = LineHeight;
 
             var vectorWidth = width * 2 / 3;
             var buttonWidth = width / 6;
@@ -26,7 +26,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             
             var positionTypeRect = new Rect(x, y, width, height);
             var positionTypeProperty = property.FindPropertyRelative("_positionType");
-            EditorGUI.PropertyField(positionTypeRect, positionTypeProperty);
+            EditorGUI.PropertyField(positionTypeRect, positionTypeProperty, label);
             y += height;
             
             var fromPositionRect = new Rect(x, y, vectorWidth, height);

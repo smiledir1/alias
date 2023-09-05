@@ -408,30 +408,26 @@ namespace Common.UniTaskAnimations.SimpleTweens
             float alpha)
         {
             // calculate knots
-            const float k0 = 0;
+            const float K0 = 0;
             var k1 = GetKnotInterval(p0, p1, alpha);
             var k2 = GetKnotInterval(p1, p2, alpha) + k1;
             var k3 = GetKnotInterval(p2, p3, alpha) + k2;
 
             // evaluate the point
             var u = Mathf.LerpUnclamped(k1, k2, t);
-            var a1 = Remap(k0, k1, p0, p1, u);
+            var a1 = Remap(K0, k1, p0, p1, u);
             var a2 = Remap(k1, k2, p1, p2, u);
             var a3 = Remap(k2, k3, p2, p3, u);
-            var b1 = Remap(k0, k2, a1, a2, u);
+            var b1 = Remap(K0, k2, a1, a2, u);
             var b2 = Remap(k1, k3, a2, a3, u);
             return Remap(k1, k2, b1, b2, u);
         }
 
-        private static Vector2 Remap(float a, float b, Vector2 c, Vector2 d, float u)
-        {
-            return Vector2.LerpUnclamped(c, d, (u - a) / (b - a));
-        }
+        private static Vector2 Remap(float a, float b, Vector2 c, Vector2 d, float u) => 
+            Vector2.LerpUnclamped(c, d, (u - a) / (b - a));
 
-        private float GetKnotInterval(Vector2 a, Vector2 b, float alpha)
-        {
-            return Mathf.Pow(Vector2.SqrMagnitude(a - b), 0.5f * alpha);
-        }
+        private float GetKnotInterval(Vector2 a, Vector2 b, float alpha) => 
+            Mathf.Pow(Vector2.SqrMagnitude(a - b), 0.5f * alpha);
 
         #endregion
 
@@ -493,13 +489,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Gizmos.DrawLineStrip(lines, false);
         }
 
-        private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position)
-        {
-            return new Vector3(
-                position.x * scale.x,
+        private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position) =>
+            new (position.x * scale.x,
                 position.y * scale.y,
                 position.z * scale.z);
-        }
 
         private static void DrawGlobalPosition(MultiPositionTween multiPositionTween)
         {

@@ -10,8 +10,8 @@ namespace Services.Audio
     {
         #region Consts
 
-        private const string _sfxVolumeKey = "SfxVolume";
-        private const string _musicVolumeKey = "MusicVolume";
+        private const string SfxVolumeKey = "SfxVolume";
+        private const string MusicVolumeKey = "MusicVolume";
 
         #endregion
 
@@ -39,8 +39,8 @@ namespace Services.Audio
 
             _soundsRootGameObject = new GameObject("Audio");
             _config = await _assetsService.LoadAsset<AudioConfig>();
-            _sfxVolume = PlayerPrefs.GetFloat(_sfxVolumeKey, _sfxVolume);
-            _musicVolume = PlayerPrefs.GetFloat(_musicVolumeKey, _musicVolume);
+            _sfxVolume = PlayerPrefs.GetFloat(SfxVolumeKey, _sfxVolume);
+            _musicVolume = PlayerPrefs.GetFloat(MusicVolumeKey, _musicVolume);
 
             if (_pauseUnfocus) Application.focusChanged += OnFocusChange;
         }
@@ -61,7 +61,7 @@ namespace Services.Audio
             set
             {
                 _sfxVolume = value;
-                PlayerPrefs.SetFloat(_sfxVolumeKey, value);
+                PlayerPrefs.SetFloat(SfxVolumeKey, value);
                 PlayerPrefs.Save();
                 foreach (var sourceList in _sources.Values)
                 {
@@ -80,7 +80,7 @@ namespace Services.Audio
             set
             {
                 _musicVolume = value;
-                PlayerPrefs.SetFloat(_musicVolumeKey, value);
+                PlayerPrefs.SetFloat(MusicVolumeKey, value);
                 PlayerPrefs.Save();
                 foreach (var sourceList in _sources.Values)
                 {

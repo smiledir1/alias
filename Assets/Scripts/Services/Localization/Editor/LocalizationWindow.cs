@@ -41,7 +41,7 @@ namespace Services.Localization.Editor
         private string _googleToText;
         private int _googleTextHeight = 20;
 
-        private static readonly string[] _googleTranslateLanguages =
+        private static readonly string[] GoogleTranslateLanguages =
         {
             "ru", "en", "de", "fi", "fr", "it", "ja", "ko",
             "zh", "es", "sv", "tr",
@@ -51,7 +51,7 @@ namespace Services.Localization.Editor
         private string _toKeyConverter;
         //private bool _showScrollView;
 
-        private static readonly Dictionary<int, bool> _showLanguages = new();
+        private static readonly Dictionary<int, bool> ShowLanguages = new();
         private bool _showChooseLanguages;
 
         private static int _generatedWordsCount;
@@ -170,7 +170,7 @@ namespace Services.Localization.Editor
             EditorGUILayout.LabelField("Key", _centeredLabel);
             for (var i = 0; i < _localizationData.Languages.Count; i++)
             {
-                if (!_showLanguages[i]) continue;
+                if (!ShowLanguages[i]) continue;
                 var localizationDataItem = _localizationData.Languages[i];
                 var currentLanguage = localizationDataItem.SystemLanguage.ToString();
                 EditorGUILayout.LabelField(
@@ -205,7 +205,7 @@ namespace Services.Localization.Editor
             for (var i = 0; i < localizationsCount; i++)
             {
                 var entries = _localizationData.Languages[i].LanguageWords.editorAsset.Entries;
-                _showLanguages.TryAdd(i, EditorPrefs.GetBool($"show_in_window_language_{i}", true));
+                ShowLanguages.TryAdd(i, EditorPrefs.GetBool($"show_in_window_language_{i}", true));
                 for (var j = 0; j < entries.Count; j++)
                 {
                     if (j >= entryCount) break;
@@ -225,7 +225,7 @@ namespace Services.Localization.Editor
             _elementsOnPage = EditorPrefs.GetInt(WordsOnPagePref, 10);
         }
 
-        private void ImportCSV()
+        private void ImportCsv()
         {
             var path = $"{Application.dataPath}/loc.csv";
             var text = File.ReadAllText(path, Encoding.UTF8);
@@ -259,7 +259,7 @@ namespace Services.Localization.Editor
             }
         }
 
-        private void ExportCSV()
+        private void ExportCsv()
         {
             const char RowSeparator = ';';
             const char ColumnSeparator = '\n';
@@ -339,7 +339,7 @@ namespace Services.Localization.Editor
                 _keys[i] = EditorGUILayout.TextField(_keys[i]);
                 for (var j = 0; j < languagesCount; j++)
                 {
-                    if (!_showLanguages[j]) continue;
+                    if (!ShowLanguages[j]) continue;
                     _translations[i, j] = EditorGUILayout.TextField(_translations[i, j]);
                 }
 
@@ -583,8 +583,8 @@ namespace Services.Localization.Editor
 
             EditorGUILayout.BeginHorizontal();
 
-            _googleFromLanguage = EditorGUILayout.Popup(_googleFromLanguage, _googleTranslateLanguages);
-            _googleToLanguage = EditorGUILayout.Popup(_googleToLanguage, _googleTranslateLanguages);
+            _googleFromLanguage = EditorGUILayout.Popup(_googleFromLanguage, GoogleTranslateLanguages);
+            _googleToLanguage = EditorGUILayout.Popup(_googleToLanguage, GoogleTranslateLanguages);
 
             EditorGUILayout.EndHorizontal();
 
@@ -603,8 +603,8 @@ namespace Services.Localization.Editor
 
         private async UniTask TranslateFromGoogle()
         {
-            var fromLanguage = _googleTranslateLanguages[_googleFromLanguage];
-            var toLanguage = _googleTranslateLanguages[_googleToLanguage];
+            var fromLanguage = GoogleTranslateLanguages[_googleFromLanguage];
+            var toLanguage = GoogleTranslateLanguages[_googleToLanguage];
             var translateText = WebUtility.UrlEncode(_googleFromText);
             var url =
                 $"https://translate.google.com/translate_a/single" +
@@ -617,7 +617,7 @@ namespace Services.Localization.Editor
                 var response = await webRequest.SendWebRequest();
                 var responseText = response.downloadHandler.text;
                 var jsonArray = JArray.Parse(responseText);
-                _googleToText = jsonArray[0][0][0].ToString();
+                _googleToText = jsonArray[0]![0]![0]!.ToString();
                 Debug.Log("Translate done");
             }
             catch
@@ -648,12 +648,12 @@ namespace Services.Localization.Editor
 
             if (GUILayout.Button("Import CSV"))
             {
-                ImportCSV();
+                ImportCsv();
             }
 
             if (GUILayout.Button("Export CSV"))
             {
-                ExportCSV();
+                ExportCsv();
             }
 
             EditorGUILayout.EndHorizontal();
@@ -669,8 +669,8 @@ namespace Services.Localization.Editor
             for (var i = 0; i < localizationsCount; i++)
             {
                 var language = _localizationData.Languages[i];
-                _showLanguages[i] = EditorGUILayout.Toggle(language.SystemLanguage.ToString(), _showLanguages[i]);
-                EditorPrefs.SetBool($"show_in_window_language_{i}", _showLanguages[i]);
+                ShowLanguages[i] = EditorGUILayout.Toggle(language.SystemLanguage.ToString(), ShowLanguages[i]);
+                EditorPrefs.SetBool($"show_in_window_language_{i}", ShowLanguages[i]);
             }
         }
     }

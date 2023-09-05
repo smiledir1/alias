@@ -29,10 +29,8 @@ namespace Common.UniTaskAnimations
 
         #region Main
 
-        public static SimpleTween CreateSimpleTween(System.Type type, GameObject tweenObject = null)
-        {
-            return CreateSimpleTween(type.Name, tweenObject);
-        }
+        public static SimpleTween CreateSimpleTween(System.Type type, GameObject tweenObject = null) => 
+            CreateSimpleTween(type.Name, tweenObject);
 
         public static SimpleTween CreateSimpleTween(string typeName, GameObject tweenObject = null)
         {
@@ -56,9 +54,8 @@ namespace Common.UniTaskAnimations
 
         #region Create Tweens
 
-        public static SimpleTween CreatePositionTween(GameObject tweenObject = null)
-        {
-            return new PositionTween(
+        public static SimpleTween CreatePositionTween(GameObject tweenObject = null) =>
+            new PositionTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
@@ -67,11 +64,9 @@ namespace Common.UniTaskAnimations
                 PositionType.Local,
                 Vector3.zero,
                 Vector3.zero);
-        }
 
-        public static SimpleTween CreateRotationTween(GameObject tweenObject = null)
-        {
-            return new RotationTween(
+        public static SimpleTween CreateRotationTween(GameObject tweenObject = null) =>
+            new RotationTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
@@ -79,11 +74,9 @@ namespace Common.UniTaskAnimations
                 AnimationCurve,
                 Vector3.zero,
                 Vector3.zero);
-        }
 
-        public static SimpleTween CreateScaleTween(GameObject tweenObject = null)
-        {
-            return new ScaleTween(
+        public static SimpleTween CreateScaleTween(GameObject tweenObject = null) =>
+            new ScaleTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
@@ -91,7 +84,6 @@ namespace Common.UniTaskAnimations
                 AnimationCurve,
                 Vector3.zero,
                 Vector3.one);
-        }
 
         public static SimpleTween CreateTransparencyCanvasGroupTween(GameObject tweenObject = null)
         {
@@ -113,9 +105,8 @@ namespace Common.UniTaskAnimations
                 1);
         }
 
-        public static SimpleTween CreateBezierPositionTween(GameObject tweenObject = null)
-        {
-            return new BezierPositionTween(
+        public static SimpleTween CreateBezierPositionTween(GameObject tweenObject = null) =>
+            new BezierPositionTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
@@ -126,8 +117,7 @@ namespace Common.UniTaskAnimations
                 Vector3.zero,
                 Vector3.zero,
                 Vector3.zero,
-                0.05f);
-        }
+                0.1f);
 
         public static SimpleTween CreateFillImageTween(GameObject tweenObject = null)
         {
@@ -189,9 +179,8 @@ namespace Common.UniTaskAnimations
                 sprites);
         }
         
-        public static SimpleTween CreateOffsetPositionTween(GameObject tweenObject = null)
-        {
-            return new OffsetPositionTween(
+        public static SimpleTween CreateOffsetPositionTween(GameObject tweenObject = null) =>
+            new OffsetPositionTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
@@ -199,11 +188,9 @@ namespace Common.UniTaskAnimations
                 AnimationCurve,
                 Vector3.zero,
                 Vector3.zero);
-        }
-        
-        public static SimpleTween CreateMultiPositionTween(GameObject tweenObject = null)
-        {
-            return new MultiPositionTween(
+
+        public static SimpleTween CreateMultiPositionTween(GameObject tweenObject = null) =>
+            new MultiPositionTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
@@ -212,8 +199,7 @@ namespace Common.UniTaskAnimations
                 PositionType.Local,
                 MultiLineType.Line,
                 new List<Vector3>(),
-                0.05f);
-        }
+                0.1f);
 
         #endregion
     }

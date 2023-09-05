@@ -290,14 +290,12 @@ namespace Services.YandexGames
         {
         }
 
-        public override string ToString()
-        {
-            return $"EnvironmentData:" +
-                   $"\nIsPlayerAuth: {IsPlayerAuth}" +
-                   $"\nPlayerName: {PlayerName} " +
-                   $"\nPlayerId: {PlayerId} " +
-                   $"\nPlayerPhotoUrl: {PlayerPhotoUrl} ";
-        }
+        public override string ToString() =>
+            $"EnvironmentData:" +
+            $"\nIsPlayerAuth: {IsPlayerAuth}" +
+            $"\nPlayerName: {PlayerName} " +
+            $"\nPlayerId: {PlayerId} " +
+            $"\nPlayerPhotoUrl: {PlayerPhotoUrl} ";
     }
 
     public record EnvironmentData(
@@ -327,22 +325,20 @@ namespace Services.YandexGames
         public bool PromptCanShow { get; } = PromptCanShow;
         public bool ReviewCanShow { get; } = ReviewCanShow;
 
-        public override string ToString()
-        {
-            return $"EnvironmentData:" +
-                   $"\nLanguage: {Language}" +
-                   $"\nDomain: {Domain} " +
-                   $"\nDeviceType: {DeviceType} " +
-                   $"\nIsMobile: {IsMobile} " +
-                   $"\n IsDesktop: {IsDesktop}" +
-                   $"\n IsTablet: {IsTablet}" +
-                   $"\n IsTV: {IsTV}" +
-                   $"\n AppID: {AppID}" +
-                   $"\n BrowserLang: {BrowserLang}" +
-                   $"\n Payload: {Payload}" +
-                   $"\n PromptCanShow: {PromptCanShow}" +
-                   $"\n ReviewCanShow: {ReviewCanShow}";
-        }
+        public override string ToString() =>
+            $"EnvironmentData:" +
+            $"\nLanguage: {Language}" +
+            $"\nDomain: {Domain} " +
+            $"\nDeviceType: {DeviceType} " +
+            $"\nIsMobile: {IsMobile} " +
+            $"\n IsDesktop: {IsDesktop}" +
+            $"\n IsTablet: {IsTablet}" +
+            $"\n IsTV: {IsTV}" +
+            $"\n AppID: {AppID}" +
+            $"\n BrowserLang: {BrowserLang}" +
+            $"\n Payload: {Payload}" +
+            $"\n PromptCanShow: {PromptCanShow}" +
+            $"\n ReviewCanShow: {ReviewCanShow}";
     }
 
     public enum PlayerPhotoSize

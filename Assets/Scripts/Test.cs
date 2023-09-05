@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Threading;
@@ -9,11 +10,14 @@ using Common.Utils.ObjectCopy;
 using Cysharp.Threading.Tasks;
 using Game.UI.Popups.Confirm;
 using Game.UI.Popups.Message;
+using Game.UI.Screens.EndRound;
 using Services.Assets;
 using Services.Helper;
 using Services.UI;
 using Services.UI.PopupService;
 using Services.UserData;
+using Services.UserData.File;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,32 +25,51 @@ using UnityEngine.UI;
 //Test Script for debug
 public class Test : MonoBehaviour, IHasServices
 {
+    [SerializeField]
+    private GameObject _god;
+
+    [SerializeField]
+    private TextMeshProUGUI _scoreLabel;
+
+    [SerializeField]
+    private WordElement _wordElementTemplate;
+
+    [SerializeField]
+    private Button _closeButton;
+    
+    [SerializeField]
+    private Button _button;
+
     [Service]
     private static IAssetsService _assetsService;
-    
+
     [Service]
     private static IPopupService _popupService;
-    
+
+    private int _currentScore;
+    private readonly List<WordElement> _wordElements = new();
+
     public int number = 0;
-    
+
     public float number2 = 0;
-    
+
     public float round = 0;
-    
+
     public int width = 0;
     public int height = 0;
 
-   // public RectTransformCopy rectTransformCopyAza = new ();
-    public ObjectCopyValues objectCopyValuesAza2 = new ();
-    
+    // public RectTransformCopy rectTransformCopyAza = new ();
+    public ObjectCopyValues objectCopyValuesAza2 = new();
+
     public async UniTask TestAnimation()
     {
         var positionAnim = TweenFactory.CreatePositionTween(gameObject);
-        
+
         var token = new CancellationTokenSource();
         await positionAnim.StartAnimation(cancellationToken: token.Token);
-       
+
         Debug.Log("complete");
+        var t = _god.name;
     }
 
     // public A SimpleA;
@@ -76,7 +99,7 @@ public class Test : MonoBehaviour, IHasServices
     //     public event Action TestAction;
     // }
     //
-    
+
     // [SerializeReference]
     // public AI SimpleARef;
     //
@@ -97,31 +120,28 @@ public class Test : MonoBehaviour, IHasServices
     // {
     //     public int Number = 5;
     // }
-    
+
     [SerializeReference]
     public IBaseTween SimpleA1Ref;
-    
+
     [SerializeReference]
-    public ITween SimpleA2Ref;   
-    
+    public ITween SimpleA2Ref;
+
     [SerializeReference]
     public ITween SimpleA3Ref = new GroupTween(false);
-    
+
     [SerializeReference]
     public ITween SimpleA4Ref = new PositionTween();
-    
+
     [SerializeField]
     private Button _closeUi;
-    
+
     public string DateFormat = "dd-mm-yy";
     public string Date = "";
 
     private void Awake()
     {
-        _closeUi.SetClickListener(() =>
-        {
-            _popupService.CloseCurrentUIObject();
-        });
+        _closeUi.SetClickListener(() => { _popupService.CloseCurrentUIObject(); });
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
@@ -132,10 +152,9 @@ public class Test : MonoBehaviour, IHasServices
 
     public void OpenMessagePopup()
     {
-        var messagePopupModel = new MessagePopupModel("message" ,"tttterfdgdf");
+        var messagePopupModel = new MessagePopupModel("message", "tttterfdgdf");
         _popupService.ShowAsync<MessagePopup>(messagePopupModel);
         WaitMessageClose(messagePopupModel).Forget();
-        
     }
 
     private async UniTask WaitMessageClose(UIModel messagePopupModel)
@@ -152,7 +171,6 @@ public class Test : MonoBehaviour, IHasServices
 
     private void OnValidate()
     {
-        
         // Vector3 zazaz = new Vector3();
         // zazaz.x = 34f;
         // if (number == 10)
@@ -174,21 +192,21 @@ public class Test : MonoBehaviour, IHasServices
         // }
 
         //TestUserData();
-       // CheckServices();
-       //DebugDate();
-       //ResolutionTest();
+        // CheckServices();
+        //DebugDate();
+        //ResolutionTest();
     }
-    
+
     private void ResolutionTest()
     {
         if (number != 6) return;
         // Debug.Log( Camera.main.pixelRect);
         // Camera.main.pixelRect = new Rect(0,0,width,height);
         // Debug.Log( Camera.main.pixelRect);
-       // Screen.SetResolution(width, height, false);
-      // var gameWindow = UnityEditor.EditorWindow.GetWindow<PlayModeView>();
-       UnityEditor.PlayModeWindow.SetCustomRenderingResolution((uint)width, (uint)height, "NEWTESTRES");
-       
+        // Screen.SetResolution(width, height, false);
+        // var gameWindow = UnityEditor.EditorWindow.GetWindow<PlayModeView>();
+        UnityEditor.PlayModeWindow.SetCustomRenderingResolution((uint) width, (uint) height, "NEWTESTRES");
+
         Debug.Log("set");
     }
 
@@ -208,14 +226,14 @@ public class Test : MonoBehaviour, IHasServices
 
     private void CheckServices()
     {
-        if(number < 5) return;
-        
+        if (number < 5) return;
+
         var time = Time.realtimeSinceStartup;
-        
+
         var iServices = typeof(IHasServices);
-            
+
         var attributeType = typeof(ServiceAttribute);
-            
+
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
         foreach (var assembly in assemblies)
         {
@@ -224,7 +242,7 @@ public class Test : MonoBehaviour, IHasServices
             {
                 if (!type.IsSubclassOf(typeof(MonoBehaviour)) ||
                     !type.IsSubclassOf(iServices)) continue;
-                  
+
                 var fields = type.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
                 foreach (var fieldInfo in fields)
                 {
@@ -235,7 +253,7 @@ public class Test : MonoBehaviour, IHasServices
                         isCustom = true;
                         break;
                     }
-                      
+
                     if (isCustom)
                     {
                         // var fieldType = fieldInfo.FieldType;
@@ -262,9 +280,9 @@ public class Test : MonoBehaviour, IHasServices
     }
 
     private FileUserDataService _fileUserDataService;
+
     private void TestUserData()
     {
-        
         // if (number == 5)
         // {
         //     _userDataService = new UserDataService(new List<UserDataObject>()
@@ -286,7 +304,7 @@ public class Test : MonoBehaviour, IHasServices
         //     Debug.Log($"vv: {settings.VibrationEnabled}");
         // }
     }
-    
+
     // private B _b;
     // private void TestActions()
     // {
@@ -461,7 +479,6 @@ public class Test : MonoBehaviour, IHasServices
                 }
             }
         }
-
     }
 
     private void TestAttributesAndProperties()

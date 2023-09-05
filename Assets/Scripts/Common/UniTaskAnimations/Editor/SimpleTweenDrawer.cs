@@ -14,7 +14,7 @@ namespace Common.UniTaskAnimations.Editor
     {
         #region Consts
 
-        private static readonly int _buttonsCount = 4;
+        private const int ButtonsCount = 4;
         private static string _cachedName = string.Empty;
 
         #endregion
@@ -39,10 +39,10 @@ namespace Common.UniTaskAnimations.Editor
             MakeTweenLabel(property, label);
 
             var propertyRect = new Rect(rect.x, rect.y, rect.width, rect.height);
-            var foldoutRect = new Rect(propertyRect.x, propertyRect.y, propertyRect.width, _lineHeight);
+            var foldoutRect = new Rect(propertyRect.x, propertyRect.y, propertyRect.width, LineHeight);
             property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label);
             var startHeight = propertyRect.y;
-            propertyRect.y += _lineHeight;
+            propertyRect.y += LineHeight;
 
             if (property.isExpanded)
             {
@@ -63,10 +63,7 @@ namespace Common.UniTaskAnimations.Editor
             if (_changedTween != null) ChangeTween(_changedTween, property);
         }
 
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return PropertyHeight;
-        }
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => PropertyHeight;
 
         private void MakeTweenLabel(SerializedProperty property, GUIContent label)
         {
@@ -99,18 +96,18 @@ namespace Common.UniTaskAnimations.Editor
 
         private float DrawSetTweenButtons(Rect propertyRect, SerializedProperty property)
         {
-            var buttonWidth = propertyRect.width / _buttonsCount;
+            var buttonWidth = propertyRect.width / ButtonsCount;
             var x = propertyRect.x;
             var y = propertyRect.yMin;
 
-            var buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
+            var buttonRect = new Rect(x, y, buttonWidth, LineHeight);
             if (GUI.Button(buttonRect, "Copy"))
             {
                 CachedTween = property.managedReferenceValue as IBaseTween;
             }
 
             x = propertyRect.x + buttonWidth;
-            buttonRect = new Rect(x, y, buttonWidth, _lineHeight);
+            buttonRect = new Rect(x, y, buttonWidth, LineHeight);
             if (GUI.Button(buttonRect, "Paste"))
             {
                 var currentTween = property.managedReferenceValue as SimpleTween;
@@ -124,7 +121,7 @@ namespace Common.UniTaskAnimations.Editor
                 _changedTween = IBaseTween.Clone(CachedTween, targetGo);
             }
 
-            return _lineHeight;
+            return LineHeight;
         }
 
         private class PopupTypes
@@ -181,28 +178,28 @@ namespace Common.UniTaskAnimations.Editor
             var y = propertyRect.yMin;
 
             var labelWidth = propertyRect.width * 7 / 32;
-            var labelRect = new Rect(x, y, labelWidth, _lineHeight);
+            var labelRect = new Rect(x, y, labelWidth, LineHeight);
             EditorGUI.LabelField(labelRect, "Tween:");
 
             var popupX = x + labelWidth;
             var popupWidth = propertyRect.width * 3 / 8;
-            var popupRect = new Rect(popupX, y, popupWidth, _lineHeight);
+            var popupRect = new Rect(popupX, y, popupWidth, LineHeight);
             _popupTweenIndex = EditorGUI.Popup(popupRect, _popupTweenIndex, _inheredTypes.Names);
 
             var spaceX = popupX + popupWidth;
             var spaceWidth = propertyRect.width / 32;
-            var spaceRect = new Rect(spaceX, y, spaceWidth, _lineHeight);
+            var spaceRect = new Rect(spaceX, y, spaceWidth, LineHeight);
             EditorGUI.LabelField(spaceRect, " ");
 
             var buttonX = spaceX + spaceWidth;
             var buttonWidth = propertyRect.width * 3 / 8;
-            var buttonRect = new Rect(buttonX, y, buttonWidth, _lineHeight);
+            var buttonRect = new Rect(buttonX, y, buttonWidth, LineHeight);
             if (GUI.Button(buttonRect, "Set"))
             {
                 _changedType = _inheredTypes[_popupTweenIndex];
             }
 
-            return _lineHeight;
+            return LineHeight;
         }
 
         private void ChangeType(string typeName, SerializedProperty property)
@@ -256,7 +253,7 @@ namespace Common.UniTaskAnimations.Editor
             var x = propertyRect.x;
             var y = propertyRect.y;
             var width = propertyRect.width;
-            var height = _lineHeight;
+            var height = LineHeight;
 
             var labelRect = new Rect(x, y, width, height);
 
@@ -294,10 +291,8 @@ namespace Common.UniTaskAnimations.Editor
         protected virtual float DrawTweenProperties(
             Rect propertyRect,
             SerializedProperty property,
-            GUIContent label)
-        {
-            return 0f;
-        }
+            GUIContent label) =>
+            0f;
     }
 }
 #endif
