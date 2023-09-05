@@ -106,9 +106,7 @@ namespace Common.UniTaskAnimations
             if (lastKeyIndex == -1 ||
                 Math.Abs(lastKey.time - 1) > 0.01 ||
                 Math.Abs(lastKey.value - 1) > 0.01)
-            {
                 Debug.LogError("Wrong Curve");
-            }
 
             if (ReverseCurve == null && reverse && AnimationCurve != null)
             {
@@ -116,9 +114,9 @@ namespace Common.UniTaskAnimations
                 foreach (var k in AnimationCurve.keys)
                 {
                     ReverseCurve.AddKey(new Keyframe(
-                        1 - k.time, 
+                        1 - k.time,
                         1 - k.value,
-                        k.inTangent, 
+                        k.inTangent,
                         k.outTangent));
                 }
             }
@@ -216,6 +214,7 @@ namespace Common.UniTaskAnimations
     {
         Local,
         Global,
+
         /// <summary>
         /// Only for UI elements
         /// </summary>

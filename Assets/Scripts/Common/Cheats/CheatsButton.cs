@@ -10,7 +10,7 @@ namespace Common.Cheats
     {
         [SerializeField]
         private TextMeshProUGUI _label;
-        
+
         [SerializeField]
         private Button _button;
 

@@ -12,9 +12,7 @@ namespace Common.UniTaskAnimations.Editor
             var propertyYAdd = 0f;
             if (property.managedReferenceId == -1 ||
                 property.managedReferenceValue == null)
-            {
                 property.isExpanded = true;
-            }
 
             if (property.isExpanded)
             {
@@ -24,11 +22,8 @@ namespace Common.UniTaskAnimations.Editor
 
             var propertyRect = new Rect(rect.x, rect.y + propertyYAdd, rect.width, rect.height);
             EditorGUI.PropertyField(propertyRect, property, label, true);
-            
-            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
-            {
-                OnGuiChange(baseTween).Forget();
-            }
+
+            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween) OnGuiChange(baseTween).Forget();
         }
     }
 }

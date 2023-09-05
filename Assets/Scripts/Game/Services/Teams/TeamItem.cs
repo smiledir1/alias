@@ -8,7 +8,7 @@ namespace Game.Services.Teams
     {
         [SerializeField]
         private string _id;
-            
+
         [SerializeField]
         private string _nameLocalizationKey;
 

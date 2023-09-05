@@ -31,7 +31,7 @@ namespace Game.UI.Screens.StartRound
 
             return base.OnOpenAsync();
         }
-        
+
         private void OnBackButton()
         {
             Close();

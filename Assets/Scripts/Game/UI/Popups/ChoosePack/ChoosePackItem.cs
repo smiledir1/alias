@@ -11,13 +11,13 @@ namespace Game.UI.Popups.ChoosePack
     {
         [SerializeField]
         private TextMeshProUGUI _packName;
-        
+
         [SerializeField]
         private TextMeshProUGUI _packDescription;
-        
+
         [SerializeField]
         private TextMeshProUGUI _packExampleWords;
-        
+
         [SerializeField]
         private TextMeshProUGUI _wordsCount;
 
@@ -27,7 +27,7 @@ namespace Game.UI.Popups.ChoosePack
         public event Action<WordsPacksConfigItem> ChoosePack;
 
         private WordsPacksConfigItem _wordsPack;
-        
+
         public void Initialize(WordsPacksConfigItem wordsPack)
         {
             _chooseButton.SetClickListener(OnChooseButton);

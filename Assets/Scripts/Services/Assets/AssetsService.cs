@@ -63,7 +63,6 @@ namespace Services.Assets
             return reference != null;
         }
 
-
         #endregion
 
         #region Private

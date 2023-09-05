@@ -18,6 +18,7 @@ namespace Services.Analytics
             {
                 eventParameters += $"{parameter.Name} {parameter.Value}\n";
             }
+
             Debug.Log($"Send Event: {eventName}\n {eventParameters}");
         }
 

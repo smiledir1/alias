@@ -10,10 +10,10 @@ namespace Common.Cheats
     {
         [SerializeField]
         private TextMeshProUGUI _label;
-        
+
         [SerializeField]
         private TMP_InputField _input;
-        
+
         [SerializeField]
         private Button _button;
 
@@ -21,12 +21,7 @@ namespace Common.Cheats
         {
             _label.text = labelText;
             _input.text = inputText;
-            _button.SetClickListener(() =>
-            {
-                onClick?.Invoke(_input.text);
-            });
+            _button.SetClickListener(() => { onClick?.Invoke(_input.text); });
         }
-        
-        
     }
 }

@@ -17,6 +17,7 @@ namespace Game.UI.Screens.Round
     public class RoundScreen : UIObject<RoundScreenModel>
     {
         private const string WordInPackKey = "in_pack_";
+
         [SerializeField]
         private TextMeshProUGUI _teamName;
 
@@ -40,16 +41,16 @@ namespace Game.UI.Screens.Round
 
         [SerializeField]
         private Button _wrongAnswer;
-        
+
         [SerializeField]
         private Button _startButton;
-        
+
         [SerializeField]
         private GameObject _gameFields;
-        
+
         [SerializeField]
         private Button _stopButton;
-        
+
         [SerializeField]
         private TextMeshProUGUI _wordInPack;
 
@@ -68,7 +69,7 @@ namespace Game.UI.Screens.Round
 
         [Service]
         private static IUserDataService _userData;
-        
+
         [Service]
         private static ILocalizationService _localizationService;
 
@@ -79,7 +80,7 @@ namespace Game.UI.Screens.Round
             _wrongAnswer.SetClickListener(OnWrongAnswerButton);
             _startButton.SetClickListener(OnStartButton);
             _stopButton.SetClickListener(OnStopButton);
-            
+
             InitializeElements();
 
             _wordsPack = Model.WordsPacksConfigItem.WordsPack.Asset as WordsPack;
@@ -154,9 +155,7 @@ namespace Game.UI.Screens.Round
                 _lastWord.SetActive(true);
             }
             else
-            {
                 FinishRound();
-            }
         }
 
         private void LoadWords()
@@ -201,22 +200,21 @@ namespace Game.UI.Screens.Round
                 wordPos = Random.Range(0, wordsPackWordsCount);
                 word = _wordsPack.Words[wordPos];
             } while (_playedPackWordsHash.Contains(word));
-            
+
             _playedPackWordsIndexes.Add(wordPos);
             _playedPackWordsHash.Add(word);
             _generatedCount++;
-            
+
             if (wordsPackWordsCount <= _generatedCount)
             {
                 _generatedCount = 0;
                 _playedPackWordsIndexes.Clear();
                 _playedPackWordsHash.Clear();
             }
-            
+
             return word;
         }
-        
-        
+
 
         private void FinishRound()
         {
@@ -228,21 +226,15 @@ namespace Game.UI.Screens.Round
         private void CheckLastWord()
         {
             if (_waitLastWord)
-            {
                 FinishRound();
-            }
             else
-            {
                 ShowNewWord();
-            }
         }
 
         private void OnStartButton()
         {
             if (_isPause)
-            {
                 ResumeGame();
-            }
             else
             {
                 _gameTokenSource?.Cancel();
@@ -250,7 +242,7 @@ namespace Game.UI.Screens.Round
                 StartGame(_gameTokenSource.Token).Forget();
             }
         }
-        
+
         private void OnStopButton()
         {
             PauseGame();

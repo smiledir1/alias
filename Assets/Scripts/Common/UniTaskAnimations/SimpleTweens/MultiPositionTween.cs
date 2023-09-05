@@ -75,10 +75,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 loop,
                 animationCurve)
         {
-            if (precision <= 0f)
-            {
-                throw new Exception("precision must be > 0");
-            }
+            if (precision <= 0f) throw new Exception("precision must be > 0");
 
             _positionType = positionType;
             _lineType = lineType;
@@ -423,10 +420,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
             return Remap(k1, k2, b1, b2, u);
         }
 
-        private static Vector2 Remap(float a, float b, Vector2 c, Vector2 d, float u) => 
+        private static Vector2 Remap(float a, float b, Vector2 c,
+            Vector2 d, float u) =>
             Vector2.LerpUnclamped(c, d, (u - a) / (b - a));
 
-        private float GetKnotInterval(Vector2 a, Vector2 b, float alpha) => 
+        private float GetKnotInterval(Vector2 a, Vector2 b, float alpha) =>
             Mathf.Pow(Vector2.SqrMagnitude(a - b), 0.5f * alpha);
 
         #endregion
@@ -490,7 +488,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position) =>
-            new (position.x * scale.x,
+            new(position.x * scale.x,
                 position.y * scale.y,
                 position.z * scale.z);
 

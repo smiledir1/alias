@@ -24,7 +24,7 @@ namespace Common.Utils
             {
                 await UniTask.Yield();
             }
-            
+
             Rebuild();
         }
 

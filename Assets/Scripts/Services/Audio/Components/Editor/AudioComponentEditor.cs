@@ -12,10 +12,10 @@ namespace Services.Audio.Components.Editor
     {
         private const string PathToConfigs = "Assets/Configs";
         private const int DrawCount = 10;
-        
+
         private AudioComponent _audioComponent;
         private AudioConfig _audioConfig;
-        
+
         private readonly HashSet<string> _entryKeys = new();
         private readonly List<string> _findKeys = new();
         private bool _notFoundKeys;
@@ -23,7 +23,7 @@ namespace Services.Audio.Components.Editor
         private void OnEnable()
         {
             _audioComponent = target as AudioComponent;
-            
+
             var assetsFilter = $"t:{nameof(AudioConfig)}";
             var searchFolder = new[] {PathToConfigs};
             var assets = AssetDatabase.FindAssets(assetsFilter, searchFolder);
@@ -32,7 +32,7 @@ namespace Services.Audio.Components.Editor
                 Debug.LogError($"Create {nameof(AudioConfig)} First");
                 return;
             }
-            
+
             var configGuid = assets[0];
             var configPath = AssetDatabase.GUIDToAssetPath(configGuid);
             _audioConfig = AssetDatabase.LoadAssetAtPath<AudioConfig>(configPath);
@@ -42,7 +42,7 @@ namespace Services.Audio.Components.Editor
                 _entryKeys.Add(sound.Id);
             }
         }
-        
+
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
@@ -54,16 +54,16 @@ namespace Services.Audio.Components.Editor
         {
             GUILayout.Space(10);
             GUILayout.Label("Helper");
-            
+
             var componentKey = _audioComponent.SoundKey;
             if (string.IsNullOrEmpty(componentKey)) return;
-            
+
             if (GUI.changed)
             {
                 _findKeys.Clear();
                 EditorUtility.SetDirty(_audioComponent);
             }
-            
+
             if (!_entryKeys.Contains(componentKey))
             {
                 DrawContainsKey(componentKey);
@@ -83,7 +83,7 @@ namespace Services.Audio.Components.Editor
                 foreach (var entryKey in _entryKeys)
                 {
                     var hasParameter = entryKey.Contains(componentKey, StringComparison.Ordinal);
-                   
+
                     if (hasParameter)
                     {
                         _findKeys.Add(entryKey);
@@ -96,12 +96,10 @@ namespace Services.Audio.Components.Editor
 
                         drawCount++;
                     }
-                    
-                    if (drawCount >= DrawCount)
-                    {
-                        break;
-                    }
+
+                    if (drawCount >= DrawCount) break;
                 }
+
                 _notFoundKeys = drawCount == 0;
             }
             else
@@ -116,16 +114,10 @@ namespace Services.Audio.Components.Editor
                     }
                 }
             }
-            
-            if (_findKeys.Count >= DrawCount)
-            {
-                GUILayout.Label("More..");
-            }
 
-            if (_notFoundKeys)
-            {
-                GUILayout.Box("Not foundо");
-            }
+            if (_findKeys.Count >= DrawCount) GUILayout.Label("More..");
+
+            if (_notFoundKeys) GUILayout.Box("Not foundо");
         }
 
         private void DrawUnContainsKey()

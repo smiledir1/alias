@@ -17,7 +17,7 @@ namespace Common.StateMachine
             }
 
             _isChangingState = true;
-            
+
             if (_currentGameState != null) await _currentGameState.StopState();
             await newGameState.EnterState();
 

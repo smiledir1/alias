@@ -20,7 +20,7 @@ namespace Game.UI.Popups.Teams
 
         private UnityAction<Team> _clickAction;
         private Team _team;
-        
+
         public void Initialize(Team team, UnityAction<Team> clickAction)
         {
             _team = team;

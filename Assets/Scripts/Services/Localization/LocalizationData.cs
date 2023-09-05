@@ -22,13 +22,13 @@ namespace Services.Localization
         {
             foreach (var language in Languages)
             {
-                if(language == null) continue;
+                if (language == null) continue;
                 language.SystemLanguage = language.LanguageWords.editorAsset.Language;
             }
         }
 #endif
     }
-    
+
     [Serializable]
     public class LocalizationDataItem
     {

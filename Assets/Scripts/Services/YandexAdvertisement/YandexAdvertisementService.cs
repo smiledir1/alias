@@ -11,7 +11,7 @@ namespace Services.YandexAdvertisement
     {
         private readonly IYandexGamesService _yandexGamesService;
         private readonly IAudioService _audioService;
-        
+
         public YandexAdvertisementService(
             IYandexGamesService yandexGamesService,
             IAudioService audioService)

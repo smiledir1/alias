@@ -72,7 +72,7 @@ namespace Common.Utils.Defines
                 if (string.IsNullOrEmpty(define)) continue;
                 if (addDefines.Contains(define)) continue;
                 addDefines.Add(define);
-            } 
+            }
 
             SetDefinesTargets(addDefines, new List<NamedBuildTarget> {target});
         }

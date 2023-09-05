@@ -40,10 +40,7 @@ namespace Common.UI.SafeArea
 
         private void Update()
         {
-            if (_safeArea == Screen.safeArea)
-            {
-                return;
-            }
+            if (_safeArea == Screen.safeArea) return;
 
             _safeArea = Screen.safeArea;
 

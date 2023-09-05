@@ -68,13 +68,9 @@ namespace Services.UI
 
                     var currentUIObject = ShowedListUIObjects[^1];
                     if (closePreviousUI)
-                    {
                         await CloseUIObject(currentUIObject);
-                    }
                     else
-                    {
                         await StopUIObject(currentUIObject);
-                    }
                 }
 
                 AddShowedObjectToList(uiObject);
@@ -160,15 +156,10 @@ namespace Services.UI
 
         public async UniTask<T> LoadUIObject<T>() where T : UIObject
         {
-            if (UIObjectsLoadCache.TryGetValue(typeof(T), out var tUIObject))
-            {
-                return (T) tUIObject;
-            }
+            if (UIObjectsLoadCache.TryGetValue(typeof(T), out var tUIObject)) return (T) tUIObject;
 
             if (!AssetsService.TryGetAssetReference<T>(out var reference))
-            {
                 throw new NullReferenceException($"IUIObject {typeof(T).Name} not found");
-            }
 
             var parentTransform = Canvas ? Canvas.transform : null;
             var uiGameObject = await reference.InstantiateAsync(parentTransform);

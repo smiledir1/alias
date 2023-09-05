@@ -24,7 +24,7 @@ namespace Services.YandexGames
         {
             DontDestroyOnLoad(this);
         }
-        
+
         #region Player
 
         public void OnPlayerInitialized(string data)
@@ -81,7 +81,7 @@ namespace Services.YandexGames
         #region Environment
 
         public void OnSetEnvironmentData(string data)
-        { 
+        {
             SetEnvironmentData?.Invoke(data);
         }
 
@@ -94,7 +94,7 @@ namespace Services.YandexGames
             var feedbackSentBool = feedbackSent == 1;
             ReviewSent?.Invoke(feedbackSentBool);
         }
-        
+
         public void OnReviewError(string reasonType)
         {
             ReviewError?.Invoke(reasonType);
@@ -113,7 +113,7 @@ namespace Services.YandexGames
         {
             PromptFail?.Invoke();
         }
-        
+
         public void OnPromptError()
         {
             PromptError?.Invoke();

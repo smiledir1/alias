@@ -76,7 +76,7 @@ namespace Services.Localization.Components.Editor
                 _findKeys.Clear();
                 _findTexts.Clear();
             }
-            
+
             if (!_localizationEntryKeys.Contains(componentKey))
             {
                 DrawContainsKey(componentKey);
@@ -120,10 +120,7 @@ namespace Services.Localization.Components.Editor
                         drawCount++;
                     }
 
-                    if (drawCount >= DrawCount)
-                    {
-                        break;
-                    }
+                    if (drawCount >= DrawCount) break;
                 }
 
                 _notFoundKeys = drawCount == 0;
@@ -141,15 +138,9 @@ namespace Services.Localization.Components.Editor
                 }
             }
 
-            if (_findKeys.Count >= DrawCount)
-            {
-                GUILayout.Label("Еще..");
-            }
+            if (_findKeys.Count >= DrawCount) GUILayout.Label("Еще..");
 
-            if (_notFoundKeys)
-            {
-                GUILayout.Box("Не найдено");
-            }
+            if (_notFoundKeys) GUILayout.Box("Не найдено");
         }
 
         private void DrawUnContainsKey(string componentKey)
@@ -204,9 +195,7 @@ namespace Services.Localization.Components.Editor
                     DrawLocalizationText(localizationEntry.Text, StripLanguage.ToString());
                 }
                 else
-                {
                     DrawLocalizationText(_findTexts[0], StripLanguage.ToString());
-                }
 
                 GUILayout.Space(5);
                 if (GUILayout.Button("Все языки"))

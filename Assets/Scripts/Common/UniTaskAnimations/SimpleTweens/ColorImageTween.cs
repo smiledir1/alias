@@ -10,34 +10,34 @@ namespace Common.UniTaskAnimations.SimpleTweens
     public class ColorImageTween : SimpleTween
     {
         #region View
-    
+
         [SerializeField]
         private Color _fromColor;
-    
+
         [SerializeField]
         private Color _toColor;
-    
+
         [SerializeField]
         private Graphic _tweenGraphic;
-        
+
         #endregion /View
-    
+
         #region Properties
-    
+
         public Color FromColor => _fromColor;
         public Color ToColor => _toColor;
         public Graphic TweenGraphic => _tweenGraphic;
-    
+
         #endregion
-    
+
         #region Constructor
-    
+
         public ColorImageTween()
         {
             _fromColor = Color.white;
             _toColor = Color.black;
         }
-    
+
         public ColorImageTween(
             GameObject tweenObject,
             float startDelay,
@@ -57,9 +57,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
             _toColor = toColor;
             _tweenGraphic = tweenGraphic;
         }
-    
+
         #endregion
-        
+
         #region Animation
 
         protected override async UniTask Tween(
@@ -72,7 +72,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 _tweenGraphic = _tweenObject.GetComponent<Graphic>();
                 if (_tweenGraphic == null) return;
             }
-            
+
             Color startColor;
             Color toColor;
             AnimationCurve animationCurve;
@@ -99,22 +99,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 var localColor = _tweenGraphic.color;
                 var t = 1f;
                 if (toColor.r - startColor.r != 0f)
-                {
                     t = (localColor.r - startColor.r) / (toColor.r - startColor.r);
-                }
                 else if (toColor.g - startColor.g != 0f)
-                {
                     t = (localColor.g - startColor.g) / (toColor.g - startColor.g);
-                }
                 else if (toColor.b - startColor.b != 0f)
-                {
                     t = (localColor.b - startColor.b) / (toColor.b - startColor.b);
-                }
-                
-                else if (toColor.a - startColor.a != 0f)
-                {
-                    t = (localColor.a - startColor.a) / (toColor.a - startColor.a);
-                }
+
+                else if (toColor.a - startColor.a != 0f) t = (localColor.a - startColor.a) / (toColor.a - startColor.a);
 
                 time = tweenTime * t;
             }
@@ -168,7 +159,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         #endregion /Animation
-        
+
         #region Static
 
         public static ColorImageTween Clone(
@@ -179,15 +170,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (targetObject != null)
             {
                 tweenImage = targetObject.GetComponent<Graphic>();
-                if (tweenImage == null)
-                {
-                    targetObject.AddComponent<Image>();
-                }
+                if (tweenImage == null) targetObject.AddComponent<Image>();
             }
-            
+
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
+
             return new ColorImageTween(
                 targetObject,
                 tween.StartDelay,

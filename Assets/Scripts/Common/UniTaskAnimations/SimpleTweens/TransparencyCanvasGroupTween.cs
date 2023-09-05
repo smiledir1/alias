@@ -164,15 +164,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (targetObject != null)
             {
                 canvasGroup = targetObject.GetComponent<CanvasGroup>();
-                if (canvasGroup == null)
-                {
-                    targetObject.AddComponent<CanvasGroup>();
-                }
+                if (canvasGroup == null) targetObject.AddComponent<CanvasGroup>();
             }
-            
+
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
+
             return new TransparencyCanvasGroupTween(
                 targetObject,
                 tween.StartDelay,

@@ -46,17 +46,14 @@ namespace Common.Components.Audio
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if (_uiObject == null)
-            {
-                _uiObject = GetComponent<UIObject>();
-            }
+            if (_uiObject == null) _uiObject = GetComponent<UIObject>();
         }
 #endif
 
         public enum UIObjectActionType
         {
             UIObjectStart,
-            UIObjectStop,
+            UIObjectStop
         }
     }
 }

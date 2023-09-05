@@ -16,14 +16,14 @@ namespace Common.Cheats
 
         [SerializeField]
         private Button _mainCheatsButton;
-        
+
         [Header("Cheats Elements")]
         [SerializeField]
         private CheatsButton _cheatsButtonTemplate;
-        
+
         [SerializeField]
         private CheatsInput _cheatsInputTemplate;
-        
+
         [SerializeField]
         private CheatsLabel _cheatsLabelTemplate;
 
@@ -66,9 +66,9 @@ namespace Common.Cheats
             newCheatsButton.Initialize(labelText, onClick);
             newCheatsButton.gameObject.SetActive(true);
         }
-        
+
         private void CreateCheatsInput(
-            string labelText, 
+            string labelText,
             string inputText,
             UnityAction<string> onClick)
         {
@@ -85,7 +85,7 @@ namespace Common.Cheats
             newCheatsButton.Initialize(labelText);
             newCheatsButton.gameObject.SetActive(true);
         }
-        
+
         #endregion
 
         #region Create Cheats
@@ -94,16 +94,10 @@ namespace Common.Cheats
         private void CreateCheats()
         {
             CreateCheatsLabel("Test Block");
-            CreateCheatsButton("Test Button", () =>
-            {
-                Debug.Log("Test");
-            });
-            
-            CreateCheatsInput("Test Button", "123Q", (text) =>
-            {
-                Debug.Log($"Test {text}");
-            });
-            
+            CreateCheatsButton("Test Button", () => { Debug.Log("Test"); });
+
+            CreateCheatsInput("Test Button", "123Q", (text) => { Debug.Log($"Test {text}"); });
+
 #if YANDEX_PLATFORM
             CreateCheatsLabel("Yandex Block");
             CreateCheatsButton("GetEnvironment", async () =>
@@ -111,25 +105,25 @@ namespace Common.Cheats
                 var environment = await _yandexGamesService.GetEnvironment();
                 Debug.Log(environment.ToString());
             });
-            
+
             CreateCheatsButton("InitializePlayer", async () =>
             {
                 var playerData = await _yandexGamesService.InitializePlayer(PlayerPhotoSize.Small);
                 Debug.Log(playerData.ToString());
             });
-            
+
             CreateCheatsButton("ShowReview", async () =>
             {
                 var reviewReason = await _yandexGamesService.ShowReview();
                 Debug.Log(reviewReason.ToString());
             });
-            
+
             CreateCheatsButton("ShowFullscreenAd", async () =>
             {
                 await _yandexGamesService.ShowFullscreenAd();
                 Debug.Log("ShowFullscreenAd showed");
             });
-            
+
             CreateCheatsButton("ShowRewardedVideoAd", async () =>
             {
                 await _yandexGamesService.ShowRewardedVideoAd(OnReward);
@@ -143,7 +137,6 @@ namespace Common.Cheats
 #endif
 
             CreateCheatsLabel("UserData");
-            
         }
 
         #endregion

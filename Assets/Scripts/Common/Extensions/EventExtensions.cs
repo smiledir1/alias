@@ -7,7 +7,7 @@ namespace Common.Extensions
     public static class EventExtensions
     {
         private static UniTaskCompletionSource _completionSource;
-        
+
         /// <summary>
         /// Использовать осторожно, не одновременно
         /// </summary>

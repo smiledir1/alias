@@ -11,10 +11,8 @@ namespace Services.Analytics
 
         public async UniTask Initialize()
         {
-            if (UnityServices.State == ServicesInitializationState.Uninitialized)
-            {
-                await UnityServices.InitializeAsync();
-            }
+            if (UnityServices.State == ServicesInitializationState.Uninitialized) await UnityServices.InitializeAsync();
+
             _analytics = Unity.Services.Analytics.AnalyticsService.Instance;
             _analytics.StartDataCollection();
         }

@@ -15,13 +15,9 @@ namespace Game.Services.WordsPacks
             {
                 var word = Words[i];
                 if (hash.Contains(word))
-                {
                     Debug.Log($"Const: {word} {i}");
-                }
                 else
-                {
                     hash.Add(word);
-                }
             }
         }
     }

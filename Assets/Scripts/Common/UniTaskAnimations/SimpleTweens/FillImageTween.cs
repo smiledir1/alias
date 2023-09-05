@@ -154,7 +154,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         #endregion /Animation
-        
+
         #region Static
 
         public static FillImageTween Clone(
@@ -165,15 +165,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (targetObject != null)
             {
                 tweenImage = targetObject.GetComponent<Image>();
-                if (tweenImage == null)
-                {
-                    targetObject.AddComponent<Image>();
-                }
+                if (tweenImage == null) targetObject.AddComponent<Image>();
             }
-            
+
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
+
             return new FillImageTween(
                 targetObject,
                 tween.StartDelay,

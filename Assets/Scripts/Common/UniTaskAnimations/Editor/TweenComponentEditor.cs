@@ -24,31 +24,16 @@ namespace Common.UniTaskAnimations.Editor
         private void DrawAnimationButtons()
         {
             EditorGUILayout.BeginHorizontal();
-            
-            if (GUILayout.Button("Start (Reset) %#Z"))
-            {
-                _target.Tween.StartAnimation().Forget();
-            }
 
-            if (GUILayout.Button("Start (Current)"))
-            {
-                _target.Tween.StartAnimation(false, true).Forget();
-            }
+            if (GUILayout.Button("Start (Reset) %#Z")) _target.Tween.StartAnimation().Forget();
 
-            if (GUILayout.Button("Start (Reverse)"))
-            {
-                _target.Tween.StartAnimation(true).Forget();
-            }
+            if (GUILayout.Button("Start (Current)")) _target.Tween.StartAnimation(false, true).Forget();
 
-            if (GUILayout.Button("Stop"))
-            {
-                _target.Tween.StopAnimation();
-            }
+            if (GUILayout.Button("Start (Reverse)")) _target.Tween.StartAnimation(true).Forget();
 
-            if (GUILayout.Button("Reset"))
-            {
-                _target.Tween.ResetValues();
-            }
+            if (GUILayout.Button("Stop")) _target.Tween.StopAnimation();
+
+            if (GUILayout.Button("Reset")) _target.Tween.ResetValues();
 
             EditorGUILayout.EndHorizontal();
 
@@ -84,7 +69,7 @@ namespace Common.UniTaskAnimations.Editor
         }
 
         [MenuItem("Tools/Tween Animations/Start (Reset) Last Animation %#z")]
-        private static void SpecialCommand() 
+        private static void SpecialCommand()
         {
             _target.Tween.StartAnimation().Forget();
         }

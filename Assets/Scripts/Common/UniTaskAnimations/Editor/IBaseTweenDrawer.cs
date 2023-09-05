@@ -19,9 +19,7 @@ namespace Common.UniTaskAnimations.Editor
             var propertyYAdd = 0f;
             if (property.managedReferenceId == -1 ||
                 property.managedReferenceValue == null)
-            {
                 property.isExpanded = true;
-            }
 
             if (property.isExpanded)
             {
@@ -31,11 +29,8 @@ namespace Common.UniTaskAnimations.Editor
 
             var propertyRect = new Rect(rect.x, rect.y + propertyYAdd, rect.width, rect.height);
             EditorGUI.PropertyField(propertyRect, property, label, true);
-            
-            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
-            {
-                OnGuiChange(baseTween).Forget();
-            }
+
+            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween) OnGuiChange(baseTween).Forget();
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) =>
@@ -56,41 +51,26 @@ namespace Common.UniTaskAnimations.Editor
             var y = propertyRect.yMin;
             var buttonRect = new Rect(x, y, buttonWidth, LineHeight);
 
-            if (GUI.Button(buttonRect, "Null"))
-            {
-                property.managedReferenceValue = null;
-            }
+            if (GUI.Button(buttonRect, "Null")) property.managedReferenceValue = null;
 
             x = buttonRect.x + buttonWidth;
             buttonRect = new Rect(x, y, buttonWidth, LineHeight);
-            if (GUI.Button(buttonRect, "Group"))
-            {
-                baseTween = new GroupTween(false);
-            }
+            if (GUI.Button(buttonRect, "Group")) baseTween = new GroupTween(false);
 
             if (hasMultiButton)
             {
                 x = buttonRect.x + buttonWidth;
                 buttonRect = new Rect(x, y, buttonWidth, LineHeight);
-                if (GUI.Button(buttonRect, "Multi"))
-                {
-                    baseTween = new MultiTween(null, 0.2f);
-                }
+                if (GUI.Button(buttonRect, "Multi")) baseTween = new MultiTween(null, 0.2f);
             }
 
             x = buttonRect.x + buttonWidth;
             buttonRect = new Rect(x, y, buttonWidth, LineHeight);
-            if (GUI.Button(buttonRect, "Simple"))
-            {
-                baseTween = new PositionTween();
-            }
+            if (GUI.Button(buttonRect, "Simple")) baseTween = new PositionTween();
 
             x = buttonRect.x + buttonWidth;
             buttonRect = new Rect(x, y, buttonWidth, LineHeight);
-            if (GUI.Button(buttonRect, "Copy"))
-            {
-                CachedTween = property.managedReferenceValue as IBaseTween;
-            }
+            if (GUI.Button(buttonRect, "Copy")) CachedTween = property.managedReferenceValue as IBaseTween;
 
             x = buttonRect.x + buttonWidth;
             buttonRect = new Rect(x, y, buttonWidth, LineHeight);
@@ -99,10 +79,7 @@ namespace Common.UniTaskAnimations.Editor
                 var currentTween = property.managedReferenceValue as IBaseTween;
 
                 GameObject targetGo = null;
-                if (currentTween is SimpleTween simpleTween)
-                {
-                    targetGo = simpleTween.TweenObject;
-                }
+                if (currentTween is SimpleTween simpleTween) targetGo = simpleTween.TweenObject;
 
                 if (targetGo == null)
                 {
@@ -117,16 +94,12 @@ namespace Common.UniTaskAnimations.Editor
             if (baseTween != null)
             {
                 if (property.managedReferenceId == -1)
-                {
                     Debug.Log("Shoud Be SerializeReference");
-                }
                 else
-                {
                     property.managedReferenceValue = baseTween;
-                }
             }
         }
-        
+
         protected async UniTask OnGuiChange(IBaseTween baseTween)
         {
             await UniTask.Yield();

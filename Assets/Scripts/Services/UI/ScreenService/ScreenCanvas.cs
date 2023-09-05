@@ -4,8 +4,8 @@
     {
         public override void EnableRaycast()
         {
-        } 
-        
+        }
+
         public override void DisableRaycast()
         {
         }

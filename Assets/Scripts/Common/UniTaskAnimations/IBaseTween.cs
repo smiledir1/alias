@@ -13,6 +13,7 @@ namespace Common.UniTaskAnimations
 
         void StopAnimation();
         void ResetValues();
+
         public static IBaseTween Clone(IBaseTween tween, GameObject targetObject = null)
         {
             IBaseTween newTween = tween switch
@@ -24,7 +25,7 @@ namespace Common.UniTaskAnimations
             };
             return newTween;
         }
-        
+
         #region Editor
 
 #if UNITY_EDITOR

@@ -20,10 +20,7 @@ namespace Services.Localization.Editor
 
         public override void OnInspectorGUI()
         {
-            if (GUILayout.Button("UpdateEntries"))
-            {
-                DownloadAndParseTable().Forget();
-            }
+            if (GUILayout.Button("UpdateEntries")) DownloadAndParseTable().Forget();
 
             base.OnInspectorGUI();
         }

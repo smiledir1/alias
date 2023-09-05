@@ -22,13 +22,9 @@ namespace Services.Analytics
         private void OnValidate()
         {
             if (_unityAnalytics)
-            {
-                DefinesUtils.AddDefinesForDefaultTargets(new List<string>{UnityAnalyticsDefine});
-            }
+                DefinesUtils.AddDefinesForDefaultTargets(new List<string> {UnityAnalyticsDefine});
             else
-            {
-                DefinesUtils.RemoveDefinesForDefaultTargets(new List<string>{UnityAnalyticsDefine});
-            }
+                DefinesUtils.RemoveDefinesForDefaultTargets(new List<string> {UnityAnalyticsDefine});
         }
 #endif
     }

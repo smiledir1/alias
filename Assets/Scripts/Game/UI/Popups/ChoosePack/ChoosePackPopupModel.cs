@@ -7,7 +7,7 @@ namespace Game.UI.Popups.ChoosePack
     public record ChoosePackPopupModel : UIModel
     {
         private UniTaskCompletionSource<WordsPacksConfigItem> _completionSource;
-        
+
         public UniTask<WordsPacksConfigItem> WaitForPackItem()
         {
             _completionSource = new UniTaskCompletionSource<WordsPacksConfigItem>();

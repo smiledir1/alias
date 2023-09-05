@@ -28,10 +28,7 @@ namespace Services.UserData.File
 
         public T GetData<T>() where T : UserDataObject
         {
-            if (UserDatCollection.TryGetValue(typeof(T), out var data))
-            {
-                return data as T;
-            }
+            if (UserDatCollection.TryGetValue(typeof(T), out var data)) return data as T;
 
             Debug.LogError($"No Data: {typeof(T)}");
             return null;
@@ -49,25 +46,17 @@ namespace Services.UserData.File
         {
             var type = userData.GetType();
             if (UserDatCollection.TryGetValue(type, out var data))
-            {
                 SaveConcreteData(data);
-            }
             else
-            {
                 Debug.LogError($"No Data: {type}");
-            }
         }
 
         public void SaveUserData<T>() where T : UserDataObject
         {
             if (UserDatCollection.TryGetValue(typeof(T), out var data))
-            {
                 SaveConcreteData(data);
-            }
             else
-            {
                 Debug.LogError($"No Data: {typeof(T)}");
-            }
         }
 
         public void ClearData()
@@ -82,25 +71,17 @@ namespace Services.UserData.File
         {
             var type = userData.GetType();
             if (UserDatCollection.TryGetValue(type, out var data))
-            {
                 ClearConcreteData(data);
-            }
             else
-            {
                 Debug.LogError($"No Data: {type}");
-            }
         }
 
         public void ClearData<T>() where T : UserDataObject
         {
             if (UserDatCollection.TryGetValue(typeof(T), out var data))
-            {
                 ClearConcreteData(data);
-            }
             else
-            {
                 Debug.LogError($"No Data: {typeof(T)}");
-            }
         }
 
         protected override UniTask OnInitialize()
@@ -122,20 +103,13 @@ namespace Services.UserData.File
                     try
                     {
                         var userDataText = GetUserDataText(dataName);
-                        if (IsCrypt)
-                        {
-                            userDataText = Crypto(userDataText);
-                        }
+                        if (IsCrypt) userDataText = Crypto(userDataText);
 
-                        if (JsonConvert.DeserializeObject(userDataText, dataType) 
+                        if (JsonConvert.DeserializeObject(userDataText, dataType)
                             is UserDataObject loadedData)
-                        {
                             UserDatCollection.Add(dataType, loadedData);
-                        }
                         else
-                        {
                             Debug.LogError($"Loaded Data null: {dataName} Type: {dataType}");
-                        }
                     }
                     catch
                     {
@@ -143,9 +117,7 @@ namespace Services.UserData.File
                     }
                 }
                 else
-                {
                     UserDatCollection.Add(dataType, data);
-                }
             }
         }
 
@@ -154,7 +126,7 @@ namespace Services.UserData.File
             var path = Path.Combine(Application.persistentDataPath, key);
             return System.IO.File.Exists(path);
         }
-        
+
         protected virtual string GetUserDataText(string key)
         {
             var path = Path.Combine(Application.persistentDataPath, key);
@@ -172,10 +144,7 @@ namespace Services.UserData.File
         {
             var path = Path.Combine(Application.persistentDataPath, dataObject.DataName);
             var userDataString = JsonConvert.SerializeObject(dataObject);
-            if (IsCrypt)
-            {
-                userDataString = Crypto(userDataString);
-            }
+            if (IsCrypt) userDataString = Crypto(userDataString);
 
             System.IO.File.WriteAllText(path, userDataString);
         }

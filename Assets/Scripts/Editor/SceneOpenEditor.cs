@@ -33,7 +33,7 @@ namespace Editor
         // {
         //     OpenScene(_metaSceneName);
         // }
-        
+
         [MenuItem("Tools/Scenes/TestScene %#&2", false, 1)]
         private static void OpenTestScene()
         {
@@ -70,10 +70,8 @@ namespace Editor
                     Debug.Log("Could not find Scene " + scenePath);
             }
             else
-            {
                 EditorSceneManager.playModeStartScene = null;
-            }
-            
+
             Menu.SetChecked("Tools/Scenes/AlwaysStartFromEntryScene",
                 _isAlwaysStartFromEntryScene);
         }

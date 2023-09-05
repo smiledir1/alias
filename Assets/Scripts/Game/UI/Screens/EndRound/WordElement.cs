@@ -15,7 +15,7 @@ namespace Game.UI.Screens.EndRound
         private Toggle _answeredToggle;
 
         public event Action<bool> AnsweredChange;
-        
+
         public void Initialize(RoundWord roundWord)
         {
             _wordLabel.text = roundWord.Word;

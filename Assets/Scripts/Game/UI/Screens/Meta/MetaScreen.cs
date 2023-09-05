@@ -30,7 +30,7 @@ namespace Game.UI.Screens.Meta
 
         [Service]
         private static IUserDataService _userData;
-        
+
         protected override UniTask OnOpenAsync()
         {
             var activeContinueButton = _userData.GetData<GameUserData>().CurrentRound != 0;

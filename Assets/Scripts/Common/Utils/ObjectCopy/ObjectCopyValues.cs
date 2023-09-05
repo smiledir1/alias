@@ -76,9 +76,7 @@ namespace Common.Utils.ObjectCopy
                     _fontSizeMin = text.fontSizeMin;
                 }
                 else
-                {
                     _fontSize = text.fontSize;
-                }
             }
 
             var image = rectTransform.GetComponent<Image>();
@@ -108,9 +106,7 @@ namespace Common.Utils.ObjectCopy
                     text.fontSizeMin = _fontSizeMin;
                 }
                 else
-                {
                     text.fontSize = _fontSize;
-                }
             }
 
             var image = rectTransform.GetComponent<Image>();

@@ -54,10 +54,7 @@ namespace Common.UniTaskAnimations.Editor
             }
 
             PropertyHeight = propertyRect.y - startHeight;
-            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween)
-            {
-                OnGuiChange(baseTween).Forget();
-            }
+            if (GUI.changed && property.managedReferenceValue is IBaseTween baseTween) OnGuiChange(baseTween).Forget();
 
             if (_changedType != null) ChangeType(_changedType, property);
             if (_changedTween != null) ChangeTween(_changedTween, property);
@@ -75,18 +72,14 @@ namespace Common.UniTaskAnimations.Editor
                 tweenName = "Null";
             }
             else
-            {
                 tweenName = property.managedReferenceValue.GetType().ToString();
-            }
 
             var lastIndexOfPoint = tweenName.LastIndexOf('.');
             var shortTweenNameLength = tweenName.Length - lastIndexOfPoint - 1;
             var shortTweenName = tweenName.Substring(lastIndexOfPoint + 1, shortTweenNameLength);
 
             if (string.Equals(_cachedName, shortTweenName, StringComparison.Ordinal))
-            {
                 label.text = _cachedName;
-            }
             else
             {
                 label.text += $" {shortTweenName}";
@@ -101,10 +94,7 @@ namespace Common.UniTaskAnimations.Editor
             var y = propertyRect.yMin;
 
             var buttonRect = new Rect(x, y, buttonWidth, LineHeight);
-            if (GUI.Button(buttonRect, "Copy"))
-            {
-                CachedTween = property.managedReferenceValue as IBaseTween;
-            }
+            if (GUI.Button(buttonRect, "Copy")) CachedTween = property.managedReferenceValue as IBaseTween;
 
             x = propertyRect.x + buttonWidth;
             buttonRect = new Rect(x, y, buttonWidth, LineHeight);
@@ -194,10 +184,7 @@ namespace Common.UniTaskAnimations.Editor
             var buttonX = spaceX + spaceWidth;
             var buttonWidth = propertyRect.width * 3 / 8;
             var buttonRect = new Rect(buttonX, y, buttonWidth, LineHeight);
-            if (GUI.Button(buttonRect, "Set"))
-            {
-                _changedType = _inheredTypes[_popupTweenIndex];
-            }
+            if (GUI.Button(buttonRect, "Set")) _changedType = _inheredTypes[_popupTweenIndex];
 
             return LineHeight;
         }
@@ -209,18 +196,12 @@ namespace Common.UniTaskAnimations.Editor
             if (tween != null)
             {
                 if (property.managedReferenceId == -1)
-                {
                     Debug.Log("Shoud Be SerializeReference");
-                }
                 else
-                {
                     property.managedReferenceValue = tween;
-                }
             }
             else
-            {
                 property.managedReferenceValue = null;
-            }
         }
 
         private void ChangeTween(IBaseTween baseTween, SerializedProperty property)
@@ -240,11 +221,8 @@ namespace Common.UniTaskAnimations.Editor
                     Component component => component.gameObject,
                     _ => TweenObject
                 };
-                
-                if (TargetTween != null)
-                {
-                    property.managedReferenceValue = SimpleTween.Clone(TargetTween, TweenObject);
-                }
+
+                if (TargetTween != null) property.managedReferenceValue = SimpleTween.Clone(TargetTween, TweenObject);
             }
         }
 

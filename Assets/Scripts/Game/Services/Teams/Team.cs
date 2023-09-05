@@ -9,7 +9,8 @@ namespace Game.Services.Teams
         public string Id { get; }
         public int Score;
 
-        internal Team(string name, string id, Sprite icon, int score)
+        internal Team(string name, string id, Sprite icon,
+            int score)
         {
             Name = name;
             Id = id;

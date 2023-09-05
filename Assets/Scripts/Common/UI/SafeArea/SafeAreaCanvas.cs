@@ -7,15 +7,15 @@ namespace Common.UI.SafeArea
     {
         [SerializeField]
         private RectTransform _safeAreaRect;
- 
+
         private Rect _lastSafeArea = Rect.zero;
         private Canvas _canvas;
- 
+
         private void Awake()
         {
             _canvas = GetComponent<Canvas>();
         }
- 
+
         private void Update()
         {
             if (_lastSafeArea != Screen.safeArea)
@@ -24,13 +24,13 @@ namespace Common.UI.SafeArea
                 ApplySafeArea();
             }
         }
-   
+
         private void Start()
         {
             _lastSafeArea = Screen.safeArea;
             ApplySafeArea();
         }
- 
+
         private void ApplySafeArea()
         {
             var safeArea = Screen.safeArea;
@@ -41,7 +41,7 @@ namespace Common.UI.SafeArea
             anchorMin.y /= pixelRect.height;
             anchorMax.x /= pixelRect.width;
             anchorMax.y /= pixelRect.height;
- 
+
             _safeAreaRect.anchorMin = anchorMin;
             _safeAreaRect.anchorMax = anchorMax;
         }

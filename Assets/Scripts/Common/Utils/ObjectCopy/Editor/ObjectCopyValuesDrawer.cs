@@ -17,12 +17,12 @@ namespace Common.Utils.ObjectCopy.Editor
             EditorGUI.PropertyField(rect, property, label, true);
         }
 
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => 
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) =>
             EditorGUI.GetPropertyHeight(property, label);
 
         private void DrawElements(Rect propertyRect, SerializedProperty property)
         {
-            var usePart = (propertyRect.width / 3);
+            var usePart = propertyRect.width / 3;
             var width = 2 * usePart / 3;
             var x = propertyRect.x + usePart;
             var y = propertyRect.yMin;

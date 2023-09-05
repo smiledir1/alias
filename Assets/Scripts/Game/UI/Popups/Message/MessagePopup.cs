@@ -11,13 +11,13 @@ namespace Game.UI.Popups.Message
     {
         [SerializeField]
         private TextMeshProUGUI _header;
-        
+
         [SerializeField]
         private TextMeshProUGUI _text;
 
         [Service]
         private static ILocalizationService _localizationService;
-        
+
         protected override UniTask OnOpenAsync()
         {
             if (Model.Localize)

@@ -186,10 +186,7 @@ namespace Services.UI
         {
             base.Initialize(uiModel, group);
             Model = (T) uiModel;
-            if (Model == null)
-            {
-                Debug.LogError($"Wrong Model {typeof(T)} in {GetType()}");
-            }
+            if (Model == null) Debug.LogError($"Wrong Model {typeof(T)} in {GetType()}");
         }
     }
 }

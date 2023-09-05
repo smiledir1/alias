@@ -27,7 +27,7 @@ namespace Services.Device.Components.Editor
             GUILayout.EndHorizontal();
             CreateButtons();
         }
-        
+
         private void CreateButtons()
         {
             GUILayout.BeginHorizontal();
@@ -37,15 +37,16 @@ namespace Services.Device.Components.Editor
             {
                 if (GUILayout.Button($"{value.ToString()}")) MakeAndResolution(value);
             }
+
             GUILayout.EndHorizontal();
         }
-        
+
         private void MakeAndResolution(ScreenSizeType sizeType)
         {
             var resolution = DeviceService.GetDefaultScreenSizeResolution(sizeType);
             PlayModeWindow.SetCustomRenderingResolution(
-                (uint)resolution.Item1, 
-                (uint)resolution.Item2, 
+                (uint) resolution.Item1,
+                (uint) resolution.Item2,
                 sizeType.ToString());
             MakeAll(sizeType);
         }
@@ -66,8 +67,8 @@ namespace Services.Device.Components.Editor
             {
                 findRoot = findRoot.parent;
             }
-            
-            var allScreenSizeTransforms = 
+
+            var allScreenSizeTransforms =
                 findRoot.GetComponentsInChildren<ScreenSizeTransformComponent>();
             foreach (var screenSizeTransform in allScreenSizeTransforms)
             {

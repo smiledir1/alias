@@ -61,7 +61,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             CancellationToken cancellationToken = default)
         {
             if (TweenObject == null) return;
-            
+
             var targetPosition = TweenObject.transform.localPosition;
 
             Vector3 startPosition;
@@ -90,17 +90,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 var localPosition = TweenObject.transform.localPosition;
                 var t = 1f;
                 if (toPosition.x - startPosition.x != 0f)
-                {
                     t = (localPosition.x - startPosition.x) / (toPosition.x - startPosition.x);
-                }
                 else if (toPosition.y - startPosition.y != 0f)
-                {
                     t = (localPosition.y - startPosition.y) / (toPosition.y - startPosition.y);
-                }
                 else if (toPosition.z - startPosition.z != 0f)
-                {
                     t = (localPosition.z - startPosition.z) / (toPosition.z - startPosition.z);
-                }
 
                 time = tweenTime * t;
             }

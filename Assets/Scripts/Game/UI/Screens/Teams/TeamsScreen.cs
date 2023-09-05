@@ -15,7 +15,7 @@ namespace Game.UI.Screens.Teams
 
         [SerializeField]
         private TextMeshProUGUI _roundSeconds;
-        
+
         [SerializeField]
         private TextMeshProUGUI _round;
 
@@ -28,7 +28,7 @@ namespace Game.UI.Screens.Teams
         [SerializeField]
         private Button _startGame;
 
-        private readonly List<TeamItem> _teamItems = new ();
+        private readonly List<TeamItem> _teamItems = new();
 
         protected override UniTask OnOpenAsync()
         {

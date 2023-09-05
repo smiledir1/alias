@@ -58,7 +58,7 @@ namespace Services.YandexGames
         protected override async UniTask OnInitialize()
         {
             await WaitForServiceInitialize(_assetsService);
-            
+
             _yandexGamesProxy = await _assetsService.InstantiateAsync<YandexGamesProxy>();
             _yandexGamesProxy.name = "YandexGamesProxy";
 
@@ -368,7 +368,7 @@ namespace Services.YandexGames
                 "small" => PlayerPhotoSize.Small,
                 "medium" => PlayerPhotoSize.Medium,
                 "large" => PlayerPhotoSize.Large,
-                _ => PlayerPhotoSize.Small,
+                _ => PlayerPhotoSize.Small
             };
         }
 
@@ -397,7 +397,7 @@ namespace Services.YandexGames
                 "UNKNOWN" => ReviewReason.Unknown,
                 "USER_RATE_ACCEPTED" => ReviewReason.UserRateAccepted,
                 "USER_RATE_CANCELLED" => ReviewReason.UserRateCancelled,
-                _ => ReviewReason.Unknown,
+                _ => ReviewReason.Unknown
             };
         }
 

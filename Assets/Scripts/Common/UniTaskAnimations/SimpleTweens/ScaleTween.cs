@@ -19,7 +19,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #endregion /View
 
         #region Properties
-        
+
         public Vector3 FromScale => _fromScale;
         public Vector3 ToScale => _toScale;
 
@@ -61,7 +61,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             CancellationToken cancellationToken = default)
         {
             if (TweenObject == null) return;
-            
+
             Vector3 startScale;
             Vector3 toScale;
             AnimationCurve animationCurve;
@@ -88,17 +88,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 var localScale = TweenObject.transform.localScale;
                 var t = 1f;
                 if (toScale.x - startScale.x != 0f)
-                {
                     t = (localScale.x - startScale.x) / (toScale.x - startScale.x);
-                }
                 else if (toScale.y - startScale.y != 0f)
-                {
                     t = (localScale.y - startScale.y) / (toScale.y - startScale.y);
-                }
-                else if (toScale.z - startScale.z != 0f)
-                {
-                    t = (localScale.z - startScale.z) / (toScale.z - startScale.z);
-                }
+                else if (toScale.z - startScale.z != 0f) t = (localScale.z - startScale.z) / (toScale.z - startScale.z);
 
                 time = tweenTime * t;
             }
@@ -151,7 +144,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         #endregion /Animation
-        
+
         #region Static
 
         public static ScaleTween Clone(
@@ -160,7 +153,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
+
             return new ScaleTween(
                 targetObject,
                 tween.StartDelay,

@@ -45,13 +45,9 @@ namespace Game.Services.GameConfig.Editor
             if (_prevIsDebug != _gameConfig.IsDebug)
             {
                 if (_gameConfig.IsDebug)
-                {
                     Common.Utils.Defines.DefinesUtils.AddDefinesForDefaultTargets(new List<string> {DevDefine});
-                }
                 else
-                {
                     Common.Utils.Defines.DefinesUtils.RemoveDefinesForDefaultTargets(new List<string> {DevDefine});
-                }
 
                 _prevIsDebug = _gameConfig.IsDebug;
             }
@@ -99,7 +95,7 @@ namespace Game.Services.GameConfig.Editor
             {PlatformType.AppStore, "APP_STORE_PLATFORM"}
         };
 
-        public static string GetDefineName(PlatformType platformType) => 
+        public static string GetDefineName(PlatformType platformType) =>
             PlatformTypeToDefine[platformType];
 
         public static NamedBuildTarget GetBuildTarget(PlatformType platformType)
@@ -112,8 +108,8 @@ namespace Game.Services.GameConfig.Editor
             };
         }
 
-        public static List<string> GetAllDefinesNames() => 
-            new (PlatformTypeToDefine.Values);
+        public static List<string> GetAllDefinesNames() =>
+            new(PlatformTypeToDefine.Values);
     }
 }
 #endif

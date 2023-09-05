@@ -7,7 +7,7 @@ namespace Common.Cheats
     {
         [SerializeField]
         private TextMeshProUGUI _label;
-        
+
         public void Initialize(string labelText)
         {
             _label.text = labelText;

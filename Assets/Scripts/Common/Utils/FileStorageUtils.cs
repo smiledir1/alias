@@ -8,17 +8,14 @@ namespace Common.Utils
 {
     public static class FileStorageUtils
     {
-        public static string FixFileName(this string fileName) => 
+        public static string FixFileName(this string fileName) =>
             fileName.Replace("\\", "/");
 
         public static void DeletePersistentDirectory(string dirPath)
         {
             var path = Path.Combine(Application.persistentDataPath, dirPath);
             var dir = new DirectoryInfo(path);
-            if (dir.Exists)
-            {
-                dir.Delete(true);
-            }
+            if (dir.Exists) dir.Delete(true);
         }
 
         public static void SaveFileToPersistent(string folder, string fileName, string data)
@@ -31,17 +28,14 @@ namespace Common.Utils
         private static string PrepareFolder(string folder)
         {
             var path = Path.Combine(Application.persistentDataPath, folder);
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 
             return path;
         }
 
         public static void SaveFileToPersistent(string folder, string fileName, byte[] bytes)
         {
-            string path = PrepareFolder(folder);
+            var path = PrepareFolder(folder);
             path = Path.Combine(path, fileName);
             File.WriteAllBytes(path, bytes);
         }
@@ -93,10 +87,7 @@ namespace Common.Utils
 
         public static string LoadTextFile(string path)
         {
-            if (File.Exists(path))
-            {
-                return File.ReadAllText(path);
-            }
+            if (File.Exists(path)) return File.ReadAllText(path);
 
             return null;
         }
@@ -109,10 +100,7 @@ namespace Common.Utils
             {
                 try
                 {
-                    if (fileInfo.Exists)
-                    {
-                        fileInfo.Delete();
-                    }
+                    if (fileInfo.Exists) fileInfo.Delete();
                 }
                 catch (Exception e)
                 {
@@ -124,10 +112,7 @@ namespace Common.Utils
             {
                 try
                 {
-                    if (directoryInfo.Exists)
-                    {
-                        directoryInfo.Delete(true);
-                    }
+                    if (directoryInfo.Exists) directoryInfo.Delete(true);
                 }
                 catch (Exception e)
                 {

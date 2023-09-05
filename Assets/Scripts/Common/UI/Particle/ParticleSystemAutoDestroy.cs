@@ -9,10 +9,7 @@ namespace Common.UI.Particle
 
         public void FixedUpdate()
         {
-            if (_particleSystem && !_particleSystem.IsAlive())
-            {
-                Destroy(gameObject);
-            }
+            if (_particleSystem && !_particleSystem.IsAlive()) Destroy(gameObject);
         }
 
         private void OnValidate()

@@ -18,7 +18,7 @@ namespace Services.Audio
 
 #if UNITY_EDITOR
         public List<SoundSettings> Sounds => _sounds;
-        
+
         public void AddSoundSettings(SoundSettings soundSettings)
         {
             for (var i = _sounds.Count - 1; i >= 0; i--)
@@ -41,9 +41,7 @@ namespace Services.Audio
                 if (string.IsNullOrEmpty(sound.Id) &&
                     sound.ClipReference != null &&
                     sound.ClipReference.editorAsset != null)
-                {
                     sound.TrySetId(sound.ClipReference.editorAsset.name);
-                }
             }
         }
 #endif

@@ -11,7 +11,7 @@ namespace Game.UI.Popups.NewGame
     {
         [SerializeField]
         private TextMeshProUGUI _name;
-        
+
         [SerializeField]
         private Image _image;
 

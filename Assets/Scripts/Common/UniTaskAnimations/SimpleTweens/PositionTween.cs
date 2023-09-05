@@ -102,17 +102,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 var currentPosition = GetCurrentPosition();
                 var t = 1f;
                 if (toPosition.x - startPosition.x != 0f)
-                {
                     t = (currentPosition.x - startPosition.x) / (toPosition.x - startPosition.x);
-                }
                 else if (toPosition.y - startPosition.y != 0f)
-                {
                     t = (currentPosition.y - startPosition.y) / (toPosition.y - startPosition.y);
-                }
                 else if (toPosition.z - startPosition.z != 0f)
-                {
                     t = (currentPosition.z - startPosition.z) / (toPosition.z - startPosition.z);
-                }
 
                 time = tweenTime * t;
             }
@@ -239,7 +233,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         private static Vector3 GetScaledPosition(Vector3 scale, Vector3 position) =>
-            new (position.x * scale.x,
+            new(position.x * scale.x,
                 position.y * scale.y,
                 position.z * scale.z);
 

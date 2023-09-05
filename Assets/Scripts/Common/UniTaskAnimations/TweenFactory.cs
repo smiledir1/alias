@@ -17,19 +17,21 @@ namespace Common.UniTaskAnimations
         {
             keys = new[] {new Keyframe(0, 0), new Keyframe(1, 1)}
         };
-        
+
         private static readonly AnimationCurve LinearAnimationCurve = new()
         {
-            keys = new[] {
-                new Keyframe(0, 0, 1, 1), 
-                new Keyframe(1, 1, 1, 1)}
+            keys = new[]
+            {
+                new Keyframe(0, 0, 1, 1),
+                new Keyframe(1, 1, 1, 1)
+            }
         };
 
         #endregion /Example Values
 
         #region Main
 
-        public static SimpleTween CreateSimpleTween(System.Type type, GameObject tweenObject = null) => 
+        public static SimpleTween CreateSimpleTween(System.Type type, GameObject tweenObject = null) =>
             CreateSimpleTween(type.Name, tweenObject);
 
         public static SimpleTween CreateSimpleTween(string typeName, GameObject tweenObject = null)
@@ -178,7 +180,7 @@ namespace Common.UniTaskAnimations
                 image,
                 sprites);
         }
-        
+
         public static SimpleTween CreateOffsetPositionTween(GameObject tweenObject = null) =>
             new OffsetPositionTween(
                 tweenObject,

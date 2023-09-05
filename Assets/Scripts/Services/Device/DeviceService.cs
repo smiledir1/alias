@@ -11,13 +11,13 @@ namespace Services.Device
         public event Action<ScreenSizeType> ScreenSizeTypeChange;
         public event Action<ScreenSimpleOrientation> OrientationChange;
         public event Action<int, int> OnSizeChange;
-        
+
         public ScreenSimpleOrientation CurrentScreenSimpleOrientation { get; private set; }
         public ScreenSizeType CurrentScreenSizeType { get; private set; }
 
         private int _lastWidth;
         private int _lastHeight;
-        
+
         protected override UniTask OnInitialize()
         {
             Update().Forget();
@@ -34,16 +34,17 @@ namespace Services.Device
                 var sizeChange = false;
                 var frameOrientationChange = false;
                 var screenSizeTypeChange = false;
-                
-                if (_lastWidth != Screen.width || 
+
+                if (_lastWidth != Screen.width ||
                     _lastHeight != Screen.height)
                 {
                     _lastWidth = Screen.width;
                     _lastHeight = Screen.height;
                     sizeChange = true;
                 }
+
                 if (!sizeChange) continue;
-                
+
                 var frameOrientation = GetSimpleOrientation();
                 if (frameOrientation != CurrentScreenSimpleOrientation)
                 {
@@ -57,17 +58,17 @@ namespace Services.Device
                     CurrentScreenSizeType = screenSizeType;
                     screenSizeTypeChange = true;
                 }
-                
+
                 OnSizeChange?.Invoke(_lastWidth, _lastHeight);
                 if (frameOrientationChange) OrientationChange?.Invoke(frameOrientation);
                 if (screenSizeTypeChange) ScreenSizeTypeChange?.Invoke(screenSizeType);
             }
         }
 
-        private ScreenSimpleOrientation GetSimpleOrientation() => 
+        private ScreenSimpleOrientation GetSimpleOrientation() =>
             GetSimpleOrientation(_lastWidth, _lastHeight);
 
-        private ScreenSizeType GetScreenSizeType() => 
+        private ScreenSizeType GetScreenSizeType() =>
             GetScreenSizeType(_lastWidth, _lastHeight);
 
         public static ScreenSimpleOrientation GetSimpleOrientation(float width, float height) =>
@@ -89,17 +90,17 @@ namespace Services.Device
             var aspect = width / height;
 
             if (aspect < 0.45f) return ScreenSizeType.ExtraThin;
-            
+
             if (aspect >= 0.45f && aspect < 0.55f) return ScreenSizeType.PortraitIphone;
-            
+
             if (aspect >= 0.55f && aspect < 0.73f) return ScreenSizeType.Portrait;
-            
+
             if (aspect >= 0.73f && aspect <= 1f) return ScreenSizeType.PortraitTablet;
-            
+
             if (aspect > 1f && aspect <= 1.35f) return ScreenSizeType.LandscapeTablet;
-            
+
             if (aspect > 1.35f && aspect <= 1.79f) return ScreenSizeType.Landscape;
-            
+
             if (aspect > 1.79f && aspect <= 2.18f) return ScreenSizeType.LandscapeIphone;
 
             if (aspect > 2.18f) return ScreenSizeType.ExtraLarge;
@@ -117,7 +118,7 @@ namespace Services.Device
                     nameof(orientation), orientation, null)
             };
         }
-        
+
         public static (int, int) GetDefaultScreenSizeResolution(ScreenSizeType orientation)
         {
             return orientation switch
@@ -141,7 +142,7 @@ namespace Services.Device
         Portrait,
         Landscape
     }
-    
+
     public enum ScreenSizeType
     {
         ExtraThin,

@@ -21,7 +21,7 @@ namespace Services.Locator
                 Debug.LogError($"Invalid type. {typeof(T).Name} should be an interface");
                 return;
             }
-            
+
             Services.Add(typeof(T), service);
             AllServices.Add(service);
         }
@@ -34,10 +34,7 @@ namespace Services.Locator
                 return default;
             }
 
-            if (Services.TryGetValue(typeof(T), out var service))
-            {
-                return (T)service;
-            }
+            if (Services.TryGetValue(typeof(T), out var service)) return (T) service;
 
             Debug.LogError($"Service of type \"{typeof(T).Name}\" is not found!");
             return default;
@@ -80,9 +77,9 @@ namespace Services.Locator
             var monoBehaviourType = typeof(MonoBehaviour);
             var stateType = typeof(GameState);
             var iServices = typeof(IHasServices);
-            
+
             var attributeType = typeof(ServiceAttribute);
-            
+
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in assemblies)
             {
@@ -92,7 +89,7 @@ namespace Services.Locator
                     if (!type.IsSubclassOf(monoBehaviourType) &&
                         !type.IsSubclassOf(stateType) &&
                         !type.IsSubclassOf(iServices)) continue;
-                    
+
                     var fields = type.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
                     foreach (var fieldInfo in fields)
                     {
@@ -103,7 +100,7 @@ namespace Services.Locator
                             isCustom = true;
                             break;
                         }
-                      
+
                         if (isCustom)
                         {
                             var fieldType = fieldInfo.FieldType;
@@ -112,14 +109,14 @@ namespace Services.Locator
                                 Debug.Log($"Not Added Service: {fieldType} on Type: {type}");
                                 continue;
                             }
-                           
+
                             fieldInfo.SetValue(null, service);
                         }
                     }
                 }
             }
         }
-        
+
         public static async UniTask DisposeServices()
         {
             var tasks = new List<UniTask>();

@@ -10,7 +10,7 @@ namespace Game.States
     {
         [Service]
         private static IAssetsService _assetsService;
-        
+
         [Service]
         private static IAudioService _audioService;
 

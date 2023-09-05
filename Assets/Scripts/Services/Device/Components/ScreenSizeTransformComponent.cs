@@ -39,10 +39,7 @@ namespace Services.Device.Components
 
         private void Awake()
         {
-            if (_initializeOnAwake)
-            {
-                Initialize();
-            }
+            if (_initializeOnAwake) Initialize();
         }
 
         private void OnDestroy()

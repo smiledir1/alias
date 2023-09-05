@@ -4,10 +4,10 @@ namespace Common.Utils
 {
     public static class TimeUtils
     {
-        public static int GetYears(this TimeSpan timespan) => 
+        public static int GetYears(this TimeSpan timespan) =>
             (int) (timespan.Days / 365.2425);
 
-        public static int GetMonths(this TimeSpan timespan) => 
+        public static int GetMonths(this TimeSpan timespan) =>
             (int) (timespan.Days / 30.436875);
 
         public static TimeSpan TimeToNextDay()
@@ -19,20 +19,11 @@ namespace Common.Utils
 
         public static string SecondsToDuration(TimeSpan timespan)
         {
-            if (timespan.Hours > 0)
-            {
-                return $"{timespan.Hours}:{timespan.Minutes}:{timespan.Seconds}";
-            }
-            
-            if (timespan.Minutes > 0)
-            {
-                return $"{timespan.Minutes}:{timespan.Seconds}";
-            }
-            
-            if (timespan.Seconds > 0)
-            {
-                return $"{timespan.Seconds}";    
-            }
+            if (timespan.Hours > 0) return $"{timespan.Hours}:{timespan.Minutes}:{timespan.Seconds}";
+
+            if (timespan.Minutes > 0) return $"{timespan.Minutes}:{timespan.Seconds}";
+
+            if (timespan.Seconds > 0) return $"{timespan.Seconds}";
 
             return string.Empty;
         }

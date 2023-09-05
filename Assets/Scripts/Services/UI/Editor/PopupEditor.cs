@@ -14,16 +14,16 @@ namespace Services.UI.Editor
         {
             _targetPopup = target as Popup;
         }
-        
+
         public override void OnInspectorGUI()
         {
             DoDrawDefaultInspector(serializedObject);
         }
-        
+
         private void DoDrawDefaultInspector(SerializedObject obj)
         {
             if (GUILayout.Button("Create Addressable")) CreateAddressable(_targetPopup);
-            
+
             EditorGUI.BeginChangeCheck();
             obj.UpdateIfRequiredOrScript();
             var iterator = obj.GetIterator();

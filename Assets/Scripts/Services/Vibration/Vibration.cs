@@ -186,7 +186,7 @@ namespace Services.Vibration
 #elif UNITY_IOS
             return _HasVibrator();
 #else
-        return false;
+            return false;
 #endif
         }
 

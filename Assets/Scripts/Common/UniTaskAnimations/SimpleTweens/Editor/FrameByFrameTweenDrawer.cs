@@ -12,20 +12,20 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
         private bool _expand;
 
         protected override float DrawTweenProperties(
-            Rect propertyRect, 
-            SerializedProperty property, 
+            Rect propertyRect,
+            SerializedProperty property,
             GUIContent label)
         {
             var x = propertyRect.x;
             var y = propertyRect.y;
             var width = propertyRect.width;
             var height = LineHeight;
-            
+
             y += DrawTweenProperties(propertyRect, property);
 
             var calculateRect = new Rect(x, y, width, height);
             y += DrawCalculate(calculateRect, property);
-            
+
             return y - propertyRect.y;
         }
 
@@ -39,22 +39,22 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             var labelRect = new Rect(x, y, width, height);
             EditorGUI.LabelField(labelRect, "Current Tween", EditorStyles.boldLabel);
             y += height;
-            
+
             var tweenImageRect = new Rect(x, y, width, height);
             var tweenImageProperty = property.FindPropertyRelative("_tweenImage");
             EditorGUI.PropertyField(tweenImageRect, tweenImageProperty);
             y += height;
-            
+
             var spritesRect = new Rect(x, y, width, height);
             var spritesProperty = property.FindPropertyRelative("_sprites");
             EditorGUI.PropertyField(spritesRect, spritesProperty);
             y += EditorGUI.GetPropertyHeight(spritesProperty);
-            
+
             return y - propertyRect.y;
         }
 
         private float DrawCalculate(
-            Rect propertyRect, 
+            Rect propertyRect,
             SerializedProperty property)
         {
             var width = propertyRect.width / 3;
@@ -74,9 +74,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
                 _framesCount = 1;
             }
             else
-            {
                 _framesCount = value;
-            }
 
             x += width;
             var buttonRect = new Rect(x, y, width, LineHeight);

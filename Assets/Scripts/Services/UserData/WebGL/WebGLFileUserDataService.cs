@@ -9,17 +9,17 @@ namespace Services.UserData.WebGL
     {
         [DllImport("__Internal")]
         private static extern int HasKeyInLocalStorage(string key);
-        
+
         [DllImport("__Internal")]
         private static extern string LoadFromLocalStorage(string key);
-        
+
         [DllImport("__Internal")]
         private static extern void SaveToLocalStorage(string key, string value);
-        
+
         [DllImport("__Internal")]
         private static extern void RemoveFromLocalStorage(string key);
 
-        public WebGLFileUserDataService(List<UserDataObject> userDatCollection, bool isCrypt) 
+        public WebGLFileUserDataService(List<UserDataObject> userDatCollection, bool isCrypt)
             : base(userDatCollection, isCrypt)
         {
         }
@@ -27,10 +27,8 @@ namespace Services.UserData.WebGL
         protected override void SaveConcreteData(UserDataObject dataObject)
         {
             var userDataString = JsonConvert.SerializeObject(dataObject);
-            if (IsCrypt)
-            {
-                userDataString = Crypto(userDataString);
-            }
+            if (IsCrypt) userDataString = Crypto(userDataString);
+
             SaveToLocalStorage(dataObject.DataName, userDataString);
         }
 
@@ -39,10 +37,10 @@ namespace Services.UserData.WebGL
             RemoveFromLocalStorage(dataObject.DataName);
         }
 
-        protected override bool HasUserData(string key) => 
+        protected override bool HasUserData(string key) =>
             HasKeyInLocalStorage(key) == 1;
 
-        protected override string GetUserDataText(string key) => 
+        protected override string GetUserDataText(string key) =>
             LoadFromLocalStorage(key);
     }
 }

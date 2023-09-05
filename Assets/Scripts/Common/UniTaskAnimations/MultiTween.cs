@@ -17,9 +17,9 @@ namespace Common.UniTaskAnimations
 
         [SerializeReference]
         protected ITween Tween;
-        
+
         public Transform ParentObject => _parentObject;
-        public float PerObjectSecondsDelay =>_perObjectSecondsDelay;
+        public float PerObjectSecondsDelay => _perObjectSecondsDelay;
         public ITween CurTween => Tween;
 
         private List<ITween> _animations = new();
@@ -29,7 +29,7 @@ namespace Common.UniTaskAnimations
             _parentObject = parentObject;
             _perObjectSecondsDelay = perObjectSecondsDelay;
         }
-        
+
         public static MultiTween Clone(MultiTween tween, GameObject targetObject = null)
         {
             var targetTransform = targetObject == null ? null : targetObject.transform;
@@ -89,7 +89,7 @@ namespace Common.UniTaskAnimations
             if (_animations == null) _animations = new List<ITween>();
             if (_animations.Count == 0) InitializeChildren();
         }
-        
+
 #if UNITY_EDITOR
         public virtual void OnGuiChange()
         {

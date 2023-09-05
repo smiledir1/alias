@@ -37,7 +37,7 @@ namespace Services.Device.Components.Editor
                 if (GUILayout.Button($"Make All {value.ToString()}")) MakeAndResolution(value);
             }
         }
-        
+
         private void DetectSize()
         {
             var main = Camera.main;
@@ -46,7 +46,7 @@ namespace Services.Device.Components.Editor
                 main.pixelWidth, main.pixelHeight);
             MakeAll(orientation);
         }
-        
+
         private void MakeAll(ScreenSimpleOrientation orientation)
         {
             var findRoot = _orientationTransform.transform.parent;
@@ -54,8 +54,8 @@ namespace Services.Device.Components.Editor
             {
                 findRoot = findRoot.parent;
             }
-            
-            var allOrientationTransforms = 
+
+            var allOrientationTransforms =
                 findRoot.GetComponentsInChildren<OrientationTransformComponent>();
             foreach (var orientationTransform in allOrientationTransforms)
             {
@@ -67,8 +67,8 @@ namespace Services.Device.Components.Editor
         {
             var resolution = DeviceService.GetDefaultOrientationResolution(orientation);
             PlayModeWindow.SetCustomRenderingResolution(
-                (uint)resolution.Item1, 
-                (uint)resolution.Item2, 
+                (uint) resolution.Item1,
+                (uint) resolution.Item2,
                 orientation.ToString());
             MakeAll(orientation);
         }

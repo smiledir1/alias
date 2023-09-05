@@ -36,7 +36,7 @@ namespace Services.Localization
         protected override async UniTask OnInitialize()
         {
             await WaitForServiceInitialize(_assetsService);
-            
+
             _localizationData = await _assetsService.LoadAsset<LocalizationData>();
 
             var systemLanguage = SystemLanguage.English;
@@ -49,6 +49,7 @@ namespace Services.Localization
                     systemLanguage = applicationSystemLanguage;
                     break;
                 }
+
                 PlayerPrefs.SetInt(LanguageKey, (int) systemLanguage);
                 PlayerPrefs.Save();
             }
@@ -77,7 +78,7 @@ namespace Services.Localization
             }
         }
 
-        public string GetText(string key) => 
+        public string GetText(string key) =>
             _localizationSet.TryGetValue(key, out var text) ? text : key;
 
         #region Formatted Text
@@ -87,13 +88,13 @@ namespace Services.Localization
             var localizeText = _localizationSet.TryGetValue(key, out var text) ? text : key;
             return string.Format(localizeText, parameters);
         }
-        
+
         public string GetFormattedText(string key, int parameter)
         {
             var localizeText = _localizationSet.TryGetValue(key, out var text) ? text : key;
             return string.Format(localizeText, parameter);
         }
-        
+
         public string GetFormattedText(string key, string parameter)
         {
             var localizeText = _localizationSet.TryGetValue(key, out var text) ? text : key;
@@ -101,7 +102,7 @@ namespace Services.Localization
         }
 
         #endregion
-       
+
 
         public async UniTask ChangeLanguage(SystemLanguage language)
         {

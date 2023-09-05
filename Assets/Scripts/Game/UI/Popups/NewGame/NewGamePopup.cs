@@ -29,7 +29,7 @@ namespace Game.UI.Popups.NewGame
 
         [SerializeField]
         private Toggle _isUnlimitedTimeForLastWord;
-        
+
         [SerializeField]
         private Toggle _freeSkipToggle;
 
@@ -120,7 +120,7 @@ namespace Game.UI.Popups.NewGame
             if (_choosePack == null)
             {
                 var messagePopupModel = new MessagePopupModel(
-                    "start_game_error", 
+                    "start_game_error",
                     "pack_not_selected",
                     true);
                 _popupService.ShowAsync<MessagePopup>(messagePopupModel);
@@ -130,7 +130,7 @@ namespace Game.UI.Popups.NewGame
             if (_teams.Count < 2)
             {
                 var messagePopupModel = new MessagePopupModel(
-                    "start_game_error", 
+                    "start_game_error",
                     "multiple_teams_must_participate",
                     true);
                 _popupService.ShowAsync<MessagePopup>(messagePopupModel);

@@ -10,8 +10,8 @@ namespace Common.CheckNetwork
         private const float ReachTimeout = 2f;
         private static bool _isOnline;
 
-        public static bool IsOnline() => 
-            _isOnline && 
+        public static bool IsOnline() =>
+            _isOnline &&
             Application.internetReachability != NetworkReachability.NotReachable;
 
         public static async UniTask<bool> CheckConnection()
@@ -28,13 +28,9 @@ namespace Common.CheckNetwork
             }
 
             if (unityWebRequest.result != UnityWebRequest.Result.Success || time > ReachTimeout)
-            {
                 _isOnline = false;
-            }
             else
-            {
                 _isOnline = true;
-            }
 
             return _isOnline;
         }

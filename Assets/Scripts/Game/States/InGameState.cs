@@ -31,7 +31,7 @@ namespace Game.States
 
         [Service]
         private static IAnalyticsService _analyticsService;
-        
+
         [Service]
         private static IAdvertisementService _advertisementService;
 
@@ -72,19 +72,14 @@ namespace Game.States
         {
             var currentRound = 1;
             if (!_isNewGame)
-            {
                 currentRound = LoadGame();
-            }
             else
             {
                 var gameUserData = _userData.GetData<GameUserData>();
                 gameUserData.PlayedWordsIndexes = new List<int>();
             }
 
-            if (_wordsPacksConfigItem.WordsPack.Asset == null)
-            {
-                await _wordsPacksConfigItem.WordsPack.LoadAssetAsync();
-            }
+            if (_wordsPacksConfigItem.WordsPack.Asset == null) await _wordsPacksConfigItem.WordsPack.LoadAssetAsync();
 
             StartRound(currentRound).Forget();
             SendGameEvent(
@@ -197,7 +192,7 @@ namespace Game.States
 
         private void SendGameEvent(
             string round,
-            string packName, 
+            string packName,
             string roundTime,
             string lastWord,
             string freeSkip,
@@ -210,7 +205,7 @@ namespace Game.States
                 new("round_time", roundTime),
                 new("last_word", lastWord),
                 new("free_skip", freeSkip),
-                new("teams_count", teamsCount),
+                new("teams_count", teamsCount)
             };
             _analyticsService.SendEvent("start_round", parameters);
         }
@@ -219,7 +214,7 @@ namespace Game.States
         {
             var parameters = new List<Parameter>
             {
-                new("round", round.ToString()),
+                new("round", round.ToString())
             };
             _analyticsService.SendEvent("start_round", parameters);
         }
@@ -229,7 +224,7 @@ namespace Game.States
             var parameters = new List<Parameter>
             {
                 new("round", round.ToString()),
-                new("player_words_count", playerWordsCount.ToString()),
+                new("player_words_count", playerWordsCount.ToString())
             };
             _analyticsService.SendEvent("start_round", parameters);
         }

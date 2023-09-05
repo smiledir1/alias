@@ -61,7 +61,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             CancellationToken cancellationToken = default)
         {
             if (TweenObject == null) return;
-            
+
             Vector3 startRotation;
             Vector3 toRotation;
             AnimationCurve animationCurve;
@@ -88,17 +88,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 var localRotation = TweenObject.transform.eulerAngles;
                 var t = 1f;
                 if (toRotation.x - startRotation.x != 0f)
-                {
                     t = (localRotation.x - startRotation.x) / (toRotation.x - startRotation.x);
-                }
                 else if (toRotation.y - startRotation.y != 0f)
-                {
                     t = (localRotation.y - startRotation.y) / (toRotation.y - startRotation.y);
-                }
                 else if (toRotation.z - startRotation.z != 0f)
-                {
                     t = (localRotation.z - startRotation.z) / (toRotation.z - startRotation.z);
-                }
 
                 time = tweenTime * t;
             }
@@ -151,7 +145,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         #endregion /Animation
-        
+
         #region Static
 
         public static RotationTween Clone(
@@ -160,7 +154,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-                    
+
             return new RotationTween(
                 targetObject,
                 tween.StartDelay,

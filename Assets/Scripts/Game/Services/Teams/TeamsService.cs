@@ -15,9 +15,9 @@ namespace Game.Services.Teams
         private readonly IAssetsService _assetsService;
 
         #endregion
-        
+
         public TeamsConfig TeamsConfig { get; private set; }
-        
+
         public TeamsService(
             IAssetsService assetsService,
             ILocalizationService localizationService)
@@ -25,12 +25,12 @@ namespace Game.Services.Teams
             _assetsService = assetsService;
             _localizationService = localizationService;
         }
-        
+
         protected override async UniTask OnInitialize()
         {
             await WaitForServiceInitialize(_assetsService);
             await WaitForServiceInitialize(_localizationService);
-            
+
             TeamsConfig = await _assetsService.LoadAsset<TeamsConfig>();
         }
 
@@ -39,14 +39,14 @@ namespace Game.Services.Teams
             var teamName = _localizationService.GetText(item.NameLocalizationKey);
             return new Team(teamName, item.Id, item.Icon, 0);
         }
-        
+
         public Team CreateTeamFromData(TeamData data)
         {
             var item = TeamsConfig.Teams.Find(t => t.Id == data.Id);
             var teamName = _localizationService.GetText(item.NameLocalizationKey);
             return new Team(teamName, item.Id, item.Icon, data.Score);
         }
-        
+
         public List<Team> CreateTeamsFromData(List<TeamData> data)
         {
             var teamList = new List<Team>();
@@ -58,7 +58,7 @@ namespace Game.Services.Teams
 
             return teamList;
         }
-        
+
         public TeamData CreateDataFromTeam(Team team) => new(team.Id, team.Score);
 
         public List<TeamData> CreateDataFromTeams(List<Team> teams)

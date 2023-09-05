@@ -27,38 +27,26 @@ namespace Services.UI.Editor
             _window = GetWindow<UIHelperWindow>();
             _window.Show();
         }
-        
+
         private void OnGUI()
         {
             if (_window == null) InitializeWindow();
             var serializeWindowObject = new SerializedObject(this);
 
             _prefabPathFolder = EditorGUILayout.TextField("Path To Prefab Folder", _prefabPathFolder);
-           
-            if (GUILayout.Button("Set Tween as open animation"))
-            {
-                MakeOpenAnimation();
-            }
 
-            if (GUILayout.Button("Set Tween as close animation"))
-            {
-                MakeCloseAnimation();
-            }
+            if (GUILayout.Button("Set Tween as open animation")) MakeOpenAnimation();
+
+            if (GUILayout.Button("Set Tween as close animation")) MakeCloseAnimation();
 
             EditorGUILayout.Space();
 
             EditorGUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("Check Close"))
-            {
-                CheckCloseButton();
-            }
+            if (GUILayout.Button("Check Close")) CheckCloseButton();
 
-            if (GUILayout.Button("Check Empty Fields"))
-            {
-                CheckEmptyFields();
-            }
-            
+            if (GUILayout.Button("Check Empty Fields")) CheckEmptyFields();
+
             //TODO: check addressables on object
             //TODO: check animations (object and null)
 
@@ -66,7 +54,7 @@ namespace Services.UI.Editor
 
             serializeWindowObject.ApplyModifiedProperties();
         }
-        
+
         private void MakeOpenAnimation()
         {
             var uiObjects = GetUIObjects<UIObject>();
@@ -145,17 +133,11 @@ namespace Services.UI.Editor
                 switch (propertiesIterator.propertyType)
                 {
                     case SerializedPropertyType.ManagedReference:
-                        if (propertiesIterator.managedReferenceId == -1)
-                        {
-                            isEmpty = true;
-                        }
+                        if (propertiesIterator.managedReferenceId == -1) isEmpty = true;
 
                         break;
                     case SerializedPropertyType.ObjectReference:
-                        if (propertiesIterator.objectReferenceInstanceIDValue == 0)
-                        {
-                            isEmpty = true;
-                        }
+                        if (propertiesIterator.objectReferenceInstanceIDValue == 0) isEmpty = true;
 
                         break;
                 }

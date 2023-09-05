@@ -14,19 +14,19 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         [SerializeField]
         private Image _tweenImage;
-        
+
         [SerializeField]
         private List<Sprite> _sprites;
 
         #endregion /View
-        
+
         #region Properties
 
         public Image TweenImage => _tweenImage;
         public List<Sprite> Sprites => _sprites;
 
         #endregion
-        
+
         #region Constructor
 
         public FrameByFrameTween()
@@ -55,6 +55,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #endregion /Constructor
 
         #region Animation
+
         protected override async UniTask Tween(
             bool reverse = false,
             bool startFromCurrentValue = false,
@@ -65,8 +66,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 _tweenImage = _tweenObject.GetComponent<Image>();
                 if (_tweenImage == null) return;
             }
-            
-            if(_sprites.Count == 0) return;
+
+            if (_sprites.Count == 0) return;
 
             int startSprite;
             int toSprite;
@@ -75,7 +76,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
             var loop = true;
-            
+
             if (reverse)
             {
                 startSprite = _sprites.Count - 1;
@@ -88,7 +89,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 toSprite = _sprites.Count - 1;
                 animationCurve = AnimationCurve;
             }
-            
+
             if (startFromCurrentValue)
             {
                 var currentPosition = GetImageSpritePosition();
@@ -99,7 +100,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             while (loop)
             {
                 _tweenImage.sprite = _sprites[startSprite];
-                
+
                 while (time < tweenTime)
                 {
                     time += GetDeltaTime();
@@ -109,15 +110,15 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     var lerpValue = Mathf.LerpUnclamped(startSprite, toSprite, lerpTime);
 
                     if (_tweenImage == null) return;
-                    var currentSpritePos = (int) (toSprite > startSprite 
-                        ? Mathf.Ceil(lerpValue) 
+                    var currentSpritePos = (int) (toSprite > startSprite
+                        ? Mathf.Ceil(lerpValue)
                         : Mathf.Floor(lerpValue));
                     _tweenImage.sprite = _sprites[currentSpritePos];
                     await UniTask.Yield(cancellationToken);
                 }
-                
+
                 _tweenImage.sprite = _sprites[toSprite];
-                
+
                 time -= tweenTime;
 
                 switch (Loop)
@@ -140,17 +141,17 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            if(_sprites == null || _sprites.Count == 0) return;
+            if (_sprites == null || _sprites.Count == 0) return;
             _tweenImage.sprite = _sprites[0];
         }
-        
+
         public void SetSprites(List<Sprite> sprites)
         {
             _sprites = sprites;
         }
 
         #endregion /Animation
-        
+
         #region Static
 
         public static FrameByFrameTween Clone(
@@ -161,15 +162,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (targetObject != null)
             {
                 tweenImage = targetObject.GetComponent<Image>();
-                if (tweenImage == null)
-                {
-                    targetObject.AddComponent<Image>();
-                }
+                if (tweenImage == null) targetObject.AddComponent<Image>();
             }
-            
+
             var animationCurve = new AnimationCurve();
             animationCurve.CopyFrom(tween.AnimationCurve);
-            
+
             return new FrameByFrameTween(
                 targetObject,
                 tween.StartDelay,

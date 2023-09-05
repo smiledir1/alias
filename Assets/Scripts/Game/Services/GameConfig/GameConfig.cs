@@ -17,7 +17,6 @@ namespace Game.Services.GameConfig
         public bool IsDebug => _isDebug;
         public int FrameRate => _frameRate;
         public PlatformType PlatformType => _platformType;
-
     }
 
     public enum PlatformType

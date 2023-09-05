@@ -15,22 +15,16 @@ namespace Services.UI.PopupService
             _raycastBlock.gameObject.SetActive(true);
             if (_raycastTween != null &&
                 _raycastTween.Tween != null)
-            {
                 _raycastTween.Tween.StartAnimation().Forget();
-            }
         }
 
         public override void DisableRaycast()
         {
             if (_raycastTween != null &&
                 _raycastTween.Tween != null)
-            {
                 DisableAsync().Forget();
-            }
             else
-            {
                 _raycastBlock.gameObject.SetActive(false);
-            }
         }
 
         private async UniTask DisableAsync()

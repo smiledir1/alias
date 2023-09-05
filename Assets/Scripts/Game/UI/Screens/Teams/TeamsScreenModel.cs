@@ -20,13 +20,13 @@ namespace Game.UI.Screens.Teams
         public int CurrentRound { get; } = CurrentRound;
 
         private UniTaskCompletionSource<bool> _completionSource;
-        
+
         public UniTask<bool> WaitForStart()
         {
             _completionSource = new UniTaskCompletionSource<bool>();
             return _completionSource.Task;
         }
-        
+
         public void StartRound()
         {
             _completionSource?.TrySetResult(true);

@@ -59,7 +59,7 @@ namespace Services.Audio
         {
             _audio.volume = volume;
         }
-        
+
         internal void Mute(bool mute)
         {
             _audio.mute = mute;
@@ -73,10 +73,7 @@ namespace Services.Audio
             while (progress < 1f)
             {
                 progress = (Time.time - timeStart) / duration;
-                if (_audio != null)
-                {
-                    _audio.volume = Mathf.Lerp(from, to, progress);
-                }
+                if (_audio != null) _audio.volume = Mathf.Lerp(from, to, progress);
 
                 await UniTask.Yield();
             }

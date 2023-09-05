@@ -27,7 +27,7 @@ namespace Game.UI.Screens.Round
             _completionSource = new UniTaskCompletionSource<List<RoundWord>>();
             return _completionSource.Task;
         }
-        
+
         public void EndRound(List<RoundWord> words)
         {
             _completionSource?.TrySetResult(words);

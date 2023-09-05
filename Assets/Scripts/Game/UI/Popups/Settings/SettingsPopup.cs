@@ -63,7 +63,7 @@ namespace Game.UI.Popups.Settings
             _soundButton.SetClickListener(OnSoundButton);
             _musicButton.SetClickListener(OnMusicButton);
             _rulesButton.SetClickListener(OnRulesButton);
-            
+
             _languageName.text = _localizationService.CurrentLanguageLocalizeName;
             _version.text = Application.version;
 
@@ -99,6 +99,7 @@ namespace Game.UI.Popups.Settings
             _soundsOn.SetActive(isOn);
             _soundOff.SetActive(!isOn);
         }
+
         private void CheckMusic()
         {
             var isOn = _audioService.MusicVolume > 0.01f;

@@ -44,7 +44,7 @@ namespace Services.Localization.Editor
         private static readonly string[] GoogleTranslateLanguages =
         {
             "ru", "en", "de", "fi", "fr", "it", "ja", "ko",
-            "zh", "es", "sv", "tr",
+            "zh", "es", "sv", "tr"
         };
 
         private string _fromKeyConverter;
@@ -59,7 +59,7 @@ namespace Services.Localization.Editor
         private static int _elementsOnPage = 10;
         private static int _currentPage;
         private int _pagesCount;
-        
+
         [MenuItem("Tools/Localization/Create Localization Constants")]
         private static void CreateLocalizationConfigConstants()
         {
@@ -112,10 +112,7 @@ namespace Services.Localization.Editor
             var guids = AssetDatabase.FindAssets(
                 $"t:{nameof(LocalizationData)}",
                 new[] {PathToConfigs});
-            if (guids.Length == 0)
-            {
-                CreateLocalizationData();
-            }
+            if (guids.Length == 0) CreateLocalizationData();
 
             var path = AssetDatabase.GUIDToAssetPath(guids[0]);
             _localizationData = AssetDatabase.LoadAssetAtPath<LocalizationData>(path);
@@ -127,10 +124,7 @@ namespace Services.Localization.Editor
         {
             var e = Event.current;
 
-            if (e.type == EventType.MouseUp && e.button == 1)
-            {
-                Debug.Log("Right mouse button lifted");
-            }
+            if (e.type == EventType.MouseUp && e.button == 1) Debug.Log("Right mouse button lifted");
 
             if (_window == null) InitializeWindow();
             var serializeWindowObject = new SerializedObject(this);
@@ -321,10 +315,10 @@ namespace Services.Localization.Editor
             // }
 
             var startWord = _elementsOnPage * (_currentPage - 1);
-            var endWord = (_elementsOnPage * _currentPage) - 1;
+            var endWord = _elementsOnPage * _currentPage - 1;
             _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
             _wordsCount = _keys.Length;
-            
+
             var generated = -1;
             var languagesCount = _localizationData.Languages.Count;
             for (var i = 0; i < _keys.Length; i++)
@@ -362,13 +356,13 @@ namespace Services.Localization.Editor
 
             var saveElementsOnPage = _elementsOnPage;
             var saveCurrentPage = _currentPage;
-            
+
             EditorGUILayout.BeginHorizontal();
             _elementsOnPage = EditorGUILayout.IntSlider(_elementsOnPage, 10, 100);
             _currentPage = EditorGUILayout.IntField(_currentPage);
             _pagesCount = _generatedWordsCount / _elementsOnPage;
             _pagesCount += _generatedWordsCount % _elementsOnPage == 0 ? 0 : 1;
-            
+
             EditorGUILayout.LabelField($" / {_pagesCount}     (W:{_wordsCount} CW:{_generatedWordsCount})");
             if (GUILayout.Button("<"))
             {
@@ -384,15 +378,9 @@ namespace Services.Localization.Editor
 
             EditorGUILayout.EndHorizontal();
 
-            if (_currentPage != saveCurrentPage)
-            {
-                EditorPrefs.SetInt(CurrentPagePref, _currentPage);
-            }
-            
-            if (_elementsOnPage != saveElementsOnPage)
-            {
-                EditorPrefs.SetInt(WordsOnPagePref, _elementsOnPage);
-            }
+            if (_currentPage != saveCurrentPage) EditorPrefs.SetInt(CurrentPagePref, _currentPage);
+
+            if (_elementsOnPage != saveElementsOnPage) EditorPrefs.SetInt(WordsOnPagePref, _elementsOnPage);
         }
 
         private void AddKey()
@@ -492,17 +480,11 @@ namespace Services.Localization.Editor
         {
             if (string.IsNullOrWhiteSpace(_searchText)) return true;
 
-            if (_keys[i].Contains(_searchText, StringComparison.Ordinal))
-            {
-                return true;
-            }
+            if (_keys[i].Contains(_searchText, StringComparison.Ordinal)) return true;
 
             for (var j = 0; j < languagesCount; j++)
             {
-                if (_translations[i, j].Contains(_searchText, StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
+                if (_translations[i, j].Contains(_searchText, StringComparison.OrdinalIgnoreCase)) return true;
             }
 
             return false;
@@ -555,10 +537,7 @@ namespace Services.Localization.Editor
 
             _spreadsheetUrl = EditorGUILayout.TextField(_spreadsheetUrl);
 
-            if (GUILayout.Button("Download CSV"))
-            {
-                DownloadCsv();
-            }
+            if (GUILayout.Button("Download CSV")) DownloadCsv();
 
             EditorGUILayout.EndHorizontal();
         }
@@ -634,10 +613,7 @@ namespace Services.Localization.Editor
             EditorGUILayout.BeginHorizontal();
             _fromKeyConverter = EditorGUILayout.TextField(_fromKeyConverter);
             _toKeyConverter = EditorGUILayout.TextField(_toKeyConverter);
-            if (GUILayout.Button("Convert to key"))
-            {
-                _toKeyConverter = _fromKeyConverter.ToLower().Replace(" ", "_");
-            }
+            if (GUILayout.Button("Convert to key")) _toKeyConverter = _fromKeyConverter.ToLower().Replace(" ", "_");
 
             EditorGUILayout.EndHorizontal();
         }
@@ -646,15 +622,9 @@ namespace Services.Localization.Editor
         {
             EditorGUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("Import CSV"))
-            {
-                ImportCsv();
-            }
+            if (GUILayout.Button("Import CSV")) ImportCsv();
 
-            if (GUILayout.Button("Export CSV"))
-            {
-                ExportCsv();
-            }
+            if (GUILayout.Button("Export CSV")) ExportCsv();
 
             EditorGUILayout.EndHorizontal();
         }

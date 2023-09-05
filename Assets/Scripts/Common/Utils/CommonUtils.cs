@@ -13,7 +13,8 @@ namespace Common.Utils
         /// <param name="y"></param>
         /// <param name="z"></param>
         /// <returns></returns>
-        public static Vector3 CreateFrom(this Vector3 vector, float? x = null, float? y = null, float? z = null)
+        public static Vector3 CreateFrom(this Vector3 vector, float? x = null, float? y = null,
+            float? z = null)
         {
             var newX = x ?? vector.x;
             var newY = y ?? vector.y;
@@ -55,10 +56,7 @@ namespace Common.Utils
 
             foreach (var e in arr)
             {
-                if (e == val)
-                {
-                    count++;
-                }
+                if (e == val) count++;
             }
 
             return count;
@@ -68,10 +66,7 @@ namespace Common.Utils
         {
             var rem = orig % f;
             var a = orig - rem;
-            if (Math.Abs(rem) > 0.0001)
-            {
-                a += f;
-            }
+            if (Math.Abs(rem) > 0.0001) a += f;
 
             return a;
         }

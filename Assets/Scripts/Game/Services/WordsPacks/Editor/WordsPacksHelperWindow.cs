@@ -29,13 +29,13 @@ namespace Game.Services.WordsPacks.Editor
             if (_window == null) InitializeWindow();
 
             EditorGUILayout.LabelField("Pack Info:");
-            
+
             EditorGUILayout.BeginHorizontal();
             _packLanguage = (SystemLanguage) EditorGUILayout.EnumPopup("Language", _packLanguage);
             if (GUILayout.Button("Russian")) _packLanguage = SystemLanguage.Russian;
             if (GUILayout.Button("English")) _packLanguage = SystemLanguage.English;
             EditorGUILayout.EndHorizontal();
-            
+
             _fileName = EditorGUILayout.TextField("File Name", _fileName);
             _name = EditorGUILayout.TextField("Name", _name);
 
@@ -45,10 +45,7 @@ namespace Game.Services.WordsPacks.Editor
             EditorGUILayout.LabelField("Words");
             _words = EditorGUILayout.TextArea(_words, GUILayout.Height(100));
 
-            if (GUILayout.Button("Create new pack"))
-            {
-                CreateNewPack();
-            }
+            if (GUILayout.Button("Create new pack")) CreateNewPack();
         }
 
         private void CreateNewPack()
@@ -63,12 +60,13 @@ namespace Game.Services.WordsPacks.Editor
                 var clearWord = word.Replace("  ", "");
                 clearWord = clearWord.Replace('\r', '\0');
                 clearWord = clearWord.Replace('\n', '\0');
-                if(wordsHash.Contains(clearWord)) continue;
+                if (wordsHash.Contains(clearWord)) continue;
                 wordsHash.Add(clearWord);
                 wordsList.Add(clearWord);
             }
+
             wordsPack.Words = wordsList;
-            
+
             var path = $"Assets/Configs/WordsPacks/{_fileName}.asset";
             AssetDatabase.CreateAsset(wordsPack, path);
             AssetDatabase.SaveAssets();
@@ -92,7 +90,6 @@ namespace Game.Services.WordsPacks.Editor
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
-        
     }
 }
 #endif

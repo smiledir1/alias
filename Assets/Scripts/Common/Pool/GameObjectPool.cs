@@ -13,12 +13,12 @@ namespace Common.Pool
 
         private readonly T _template;
         private readonly Transform _parent;
-        
+
         public GameObjectPool(T template, Transform poolParent, int cacheCount = 0)
         {
             _template = template;
             _parent = poolParent;
-            
+
             _activeObjects = new List<T>(cacheCount);
             _unActiveObjects = new Stack<T>(cacheCount);
             for (var i = 0; i < cacheCount; i++)
@@ -51,19 +51,17 @@ namespace Common.Pool
             poolObject.Initialize();
             return poolObject;
         }
-        
+
         public async UniTaskVoid ReturnAsync(T poolObject, float seconds = 0f)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(seconds));
             Return(poolObject);
         }
-        
+
         public void Return(T poolObject)
         {
-            if (!_activeObjects.Remove(poolObject))
-            {
-                throw new Exception("Not from this pool");
-            }
+            if (!_activeObjects.Remove(poolObject)) throw new Exception("Not from this pool");
+
             _unActiveObjects.Push(poolObject);
             poolObject.Dispose();
             poolObject.gameObject.SetActive(false);

@@ -22,7 +22,7 @@ namespace Game.Services.WordsPacks
         protected override async UniTask OnInitialize()
         {
             await WaitForServiceInitialize(_assetsService);
-            
+
             WordsPacksConfig = await _assetsService.LoadAsset<WordsPacksConfig>();
         }
     }
