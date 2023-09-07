@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fe8b80c7204f0686acab8de70571d2, type: 3}
   m_Name: RandomWordsRu
   m_EditorClassIdentifier: 
-  Words:
+  words:
   - "\u042F\u0431\u043B\u043E\u043A\u043E"
   - "\u0421\u0442\u0443\u043B"
   - "\u0421\u043E\u0431\u0430\u043A\u0430"
@@ -404,4 +404,3 @@ MonoBehaviour:
   - "\u0427\u0430\u0439"
   - "\u0413\u0430\u0437\u0438\u0440\u043E\u0432\u043A\u0430"
   - "\u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u044F "
-  - " \u041A\u0430\u043C\u0435\u0440\u0430"

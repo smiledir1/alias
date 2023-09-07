@@ -28,7 +28,7 @@ namespace Game.UI.Popups.Teams
             _teams.Clear();
 
             var parent = _templatePopupItem.transform.parent;
-            var teams = _teamsService.TeamsConfig.Teams;
+            var teams = _teamsService.TeamsConfig.teams;
             foreach (var teamItem in teams)
             {
                 var team = _teamsService.CreateTeamFromConfig(teamItem);

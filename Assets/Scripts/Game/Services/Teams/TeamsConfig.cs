@@ -6,6 +6,6 @@ namespace Game.Services.Teams
     [CreateAssetMenu(fileName = nameof(TeamsConfig), menuName = "Services/Teams/TeamsConfig")]
     public class TeamsConfig : ScriptableObject
     {
-        public List<TeamItem> Teams;
+        public List<TeamItem> teams;
     }
 }

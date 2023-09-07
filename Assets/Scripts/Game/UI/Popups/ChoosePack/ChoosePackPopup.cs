@@ -24,7 +24,7 @@ namespace Game.UI.Popups.ChoosePack
         protected override UniTask OnOpenAsync()
         {
             ClearItems();
-            CreateItems(_wordsPacksService.WordsPacksConfig.WordsPacksItems);
+            CreateItems(_wordsPacksService.WordsPacksConfig.wordsPacksItems);
             return base.OnOpenAsync();
         }
 

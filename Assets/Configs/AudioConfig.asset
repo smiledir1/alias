@@ -41,3 +41,32 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     _type: 1
     _id: main_music
+  sounds:
+  - _reference:
+      m_AssetGUID: b1b15bf3e1f802c48b8abef2238a9772
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _type: 0
+    _id: wrong_answer
+  - _reference:
+      m_AssetGUID: 99f93911303f3474395fc60c6207cab4
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _type: 0
+    _id: good_answer
+  - _reference:
+      m_AssetGUID: 5e4cf35731a4c4445af164b9aa1f7e93
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _type: 0
+    _id: menu_button
+  - _reference:
+      m_AssetGUID: df979bdf7b3456a4ab07f6760433db11
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _type: 1
+    _id: main_music

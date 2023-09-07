@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fe8b80c7204f0686acab8de70571d2, type: 3}
   m_Name: TravelRu
   m_EditorClassIdentifier: 
-  Words:
+  words:
   - "\u041F\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u0435"
   - "\u041F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435"
   - "\u041F\u043E\u0435\u0437\u0434\u043A\u0430"

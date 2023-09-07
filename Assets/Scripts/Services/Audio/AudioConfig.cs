@@ -8,35 +8,35 @@ namespace Services.Audio
     public class AudioConfig : ScriptableObject
     {
         [SerializeField]
-        private List<SoundSettings> _sounds;
-
+        private List<SoundSettings> sounds;
+        
         internal SoundSettings GetSoundSetting(string id)
         {
-            return _sounds.Find(sound =>
+            return sounds.Find(sound =>
                 string.Compare(sound.Id, id, StringComparison.OrdinalIgnoreCase) == 0);
         }
 
 #if UNITY_EDITOR
-        public List<SoundSettings> Sounds => _sounds;
+        public List<SoundSettings> Sounds => sounds;
 
         public void AddSoundSettings(SoundSettings soundSettings)
         {
-            for (var i = _sounds.Count - 1; i >= 0; i--)
+            for (var i = sounds.Count - 1; i >= 0; i--)
             {
-                var sound = _sounds[i];
+                var sound = sounds[i];
                 if (sound.ClipReference != null) continue;
-                _sounds.RemoveAt(i);
+                sounds.RemoveAt(i);
             }
 
-            if (_sounds.Exists(
+            if (sounds.Exists(
                     s =>
                         s.ClipReference.editorAsset == soundSettings.ClipReference.editorAsset)) return;
-            _sounds.Add(soundSettings);
+            sounds.Add(soundSettings);
         }
 
         private void OnValidate()
         {
-            foreach (var sound in _sounds)
+            foreach (var sound in sounds)
             {
                 if (string.IsNullOrEmpty(sound.Id) &&
                     sound.ClipReference != null &&

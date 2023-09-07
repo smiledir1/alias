@@ -167,7 +167,7 @@ namespace Game.UI.Screens.Round
             foreach (var indexes in gameUserData.PlayedWordsIndexes)
             {
                 _generatedCount++;
-                _playedPackWordsHash.Add(_wordsPack.Words[indexes]);
+                _playedPackWordsHash.Add(_wordsPack.words[indexes]);
                 _playedPackWordsIndexes.Add(indexes);
             }
         }
@@ -189,18 +189,18 @@ namespace Game.UI.Screens.Round
         {
             _currentWord = GetNewWord();
             _currentWordLabel.text = _currentWord;
-            _wordInPack.text = string.Format(_wordInPackLocalize, _wordsPack.Words.Count - _generatedCount);
+            _wordInPack.text = string.Format(_wordInPackLocalize, _wordsPack.words.Count - _generatedCount);
         }
 
         private string GetNewWord()
         {
             string word;
             int wordPos;
-            var wordsPackWordsCount = _wordsPack.Words.Count;
+            var wordsPackWordsCount = _wordsPack.words.Count;
             do
             {
                 wordPos = Random.Range(0, wordsPackWordsCount);
-                word = _wordsPack.Words[wordPos];
+                word = _wordsPack.words[wordPos];
             } while (_playedPackWordsHash.Contains(word));
 
             _playedPackWordsIndexes.Add(wordPos);

@@ -6,15 +6,20 @@ namespace Game.Services.WordsPacks
     [CreateAssetMenu(fileName = nameof(WordsPacksConfig), menuName = "WordsPacks/WordsPacksConfig")]
     public class WordsPacksConfig : ScriptableObject
     {
-        public List<WordsPacksConfigItem> WordsPacksItems;
-
+        public List<WordsPacksConfigItem> wordsPacksItems;
+        
+        private void OnEnable()
+        {
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+        
 #if UNITY_EDITOR
         private const int ExampleWords = 5;
 
         [NaughtyAttributes.Button]
         private void CalculateWords()
         {
-            foreach (var item in WordsPacksItems)
+            foreach (var item in wordsPacksItems)
             {
                 if (item.WordsPack == null)
                 {
@@ -23,14 +28,14 @@ namespace Game.Services.WordsPacks
                 }
 
                 item.ExampleWords = GetExampleWords(item.WordsPack.editorAsset);
-                item.WordsCount = item.WordsPack.editorAsset.Words.Count.ToString();
+                item.WordsCount = item.WordsPack.editorAsset.words.Count.ToString();
             }
         }
 
         public static string GetExampleWords(WordsPack wordsPack)
         {
             var usedIndexes = new HashSet<int>(ExampleWords);
-            var wordsList = wordsPack.Words;
+            var wordsList = wordsPack.words;
             var wordsCount = wordsList.Count > ExampleWords ? ExampleWords : wordsList.Count;
             var exampleWords = string.Empty;
             for (var i = 0; i < wordsCount; i++)

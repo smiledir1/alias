@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fe8b80c7204f0686acab8de70571d2, type: 3}
   m_Name: FamousLogosAndBrandsPackRu
   m_EditorClassIdentifier: 
-  Words:
+  words:
   - "Coca-Cola\r"
   - "Apple\r"
   - "Nike\r"

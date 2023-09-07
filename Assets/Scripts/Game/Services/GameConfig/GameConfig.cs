@@ -6,17 +6,17 @@ namespace Game.Services.GameConfig
     public class GameConfig : ScriptableObject
     {
         [SerializeField]
-        private bool _isDebug;
+        private bool isDebug;
 
         [SerializeField]
-        private int _frameRate;
+        private int frameRate;
 
         [SerializeField]
-        private PlatformType _platformType;
+        private PlatformType platformType;
 
-        public bool IsDebug => _isDebug;
-        public int FrameRate => _frameRate;
-        public PlatformType PlatformType => _platformType;
+        public bool IsDebug => isDebug;
+        public int FrameRate => frameRate;
+        public PlatformType PlatformType => platformType;
     }
 
     public enum PlatformType

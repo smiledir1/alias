@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fe8b80c7204f0686acab8de70571d2, type: 3}
   m_Name: EverydayTreasuresPackRu
   m_EditorClassIdentifier: 
-  Words:
+  words:
   - "\u0421\u0442\u043E\u043B\r"
   - "\u041A\u043D\u0438\u0433\u0430\r"
   - "\u0427\u0430\u0448\u043A\u0430\r"

@@ -65,7 +65,7 @@ namespace Game.Services.WordsPacks.Editor
                 wordsList.Add(clearWord);
             }
 
-            wordsPack.Words = wordsList;
+            wordsPack.words = wordsList;
 
             var path = $"Assets/Configs/WordsPacks/{_fileName}.asset";
             AssetDatabase.CreateAsset(wordsPack, path);
@@ -86,7 +86,7 @@ namespace Game.Services.WordsPacks.Editor
                 Language = _packLanguage,
                 WordsPack = new AssetReferenceT<WordsPack>(guid)
             };
-            wordsPacksConfig.WordsPacksItems.Add(newConfigItem);
+            wordsPacksConfig.wordsPacksItems.Add(newConfigItem);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }

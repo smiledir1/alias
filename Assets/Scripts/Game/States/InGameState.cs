@@ -182,7 +182,7 @@ namespace Game.States
         private int LoadGame()
         {
             var gameUserData = _userData.GetData<GameUserData>();
-            _wordsPacksConfigItem = _wordsPacksService.WordsPacksConfig.WordsPacksItems.Find(
+            _wordsPacksConfigItem = _wordsPacksService.WordsPacksConfig.wordsPacksItems.Find(
                 x => x.Name == gameUserData.WordsPacksConfigItemName);
             if (_wordsPacksConfigItem == null) return 0;
             _roundTimeSeconds = gameUserData.RoundTimeSeconds;
