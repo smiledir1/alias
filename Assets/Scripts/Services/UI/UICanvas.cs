@@ -5,16 +5,16 @@ namespace Services.UI
     public abstract class UICanvas : MonoBehaviour
     {
         [SerializeField]
-        protected GameObject _raycastBlock;
+        protected GameObject raycastBlock;
 
         public virtual void EnableRaycast()
         {
-            _raycastBlock.gameObject.SetActive(true);
+            raycastBlock.gameObject.SetActive(true);
         }
 
         public virtual void DisableRaycast()
         {
-            _raycastBlock.gameObject.SetActive(false);
+            raycastBlock.gameObject.SetActive(false);
         }
     }
 }

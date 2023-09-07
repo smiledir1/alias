@@ -19,31 +19,31 @@ namespace Game.UI.Popups.NewGame
     public class NewGamePopup : Popup<NewGamePopupModel>
     {
         [SerializeField]
-        private Button _choosePackButton;
+        private Button choosePackButton;
 
         [SerializeField]
-        private TextMeshProUGUI _packName;
+        private TextMeshProUGUI packName;
 
         [SerializeField]
-        private Slider _roundTime;
+        private Slider roundTime;
 
         [SerializeField]
-        private Toggle _isUnlimitedTimeForLastWord;
+        private Toggle isUnlimitedTimeForLastWord;
 
         [SerializeField]
-        private Toggle _freeSkipToggle;
+        private Toggle freeSkipToggle;
 
         [SerializeField]
-        private Button _addTeamButton;
+        private Button addTeamButton;
 
         [SerializeField]
-        private Button _removeTeamButton;
+        private Button removeTeamButton;
 
         [SerializeField]
-        private TeamItem _teamItemTemplate;
+        private TeamItem teamItemTemplate;
 
         [SerializeField]
-        private Button _startGameButton;
+        private Button startGameButton;
 
         [Service]
         private static IPopupService _popupService;
@@ -54,10 +54,10 @@ namespace Game.UI.Popups.NewGame
 
         protected override UniTask OnOpenAsync()
         {
-            _choosePackButton.SetClickListener(() => OnChoosePackButton().SafeForget());
-            _addTeamButton.SetClickListener(OnAddTeamButton);
-            _removeTeamButton.SetClickListener(OnRemoveTeamButton);
-            _startGameButton.SetClickListener(OnStartGameButton);
+            choosePackButton.SetClickListener(() => OnChoosePackButton().SafeForget());
+            addTeamButton.SetClickListener(OnAddTeamButton);
+            removeTeamButton.SetClickListener(OnRemoveTeamButton);
+            startGameButton.SetClickListener(OnStartGameButton);
             ClearAll();
             return base.OnOpenAsync();
         }
@@ -67,7 +67,7 @@ namespace Game.UI.Popups.NewGame
             var choosePackPopupModel = new ChoosePackPopupModel();
             _popupService.ShowAsync<ChoosePackPopup>(choosePackPopupModel).Forget();
             _choosePack = await choosePackPopupModel.WaitForPackItem();
-            _packName.text = _choosePack.Name;
+            packName.text = _choosePack.Name;
         }
 
         private void OnAddTeamButton()
@@ -102,9 +102,9 @@ namespace Game.UI.Popups.NewGame
         {
             if (!CheckStartGame()) return;
             Close();
-            var roundTimeSeconds = (int) _roundTime.value;
-            var isUnlimitedTimeForLastWord = _isUnlimitedTimeForLastWord.isOn;
-            var isFreeSkip = _freeSkipToggle.isOn;
+            var roundTimeSeconds = (int) roundTime.value;
+            var isUnlimitedTimeForLastWord = this.isUnlimitedTimeForLastWord.isOn;
+            var isFreeSkip = freeSkipToggle.isOn;
 
             var inGameState = new InGameState(
                 _choosePack,
@@ -150,8 +150,8 @@ namespace Game.UI.Popups.NewGame
 
         private void CreateTeamItem(Team team)
         {
-            var parent = _teamItemTemplate.transform.parent;
-            var teamItem = Instantiate(_teamItemTemplate, parent);
+            var parent = teamItemTemplate.transform.parent;
+            var teamItem = Instantiate(teamItemTemplate, parent);
             teamItem.Initialize(team, OnRemoveTeamItem);
             teamItem.gameObject.SetActive(true);
             _teamItems.Add(teamItem);
@@ -168,7 +168,7 @@ namespace Game.UI.Popups.NewGame
 
         private void ClearAll()
         {
-            _teamItemTemplate.gameObject.SetActive(false);
+            teamItemTemplate.gameObject.SetActive(false);
             foreach (var teamItem in _teamItems)
             {
                 Destroy(teamItem.gameObject);

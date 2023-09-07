@@ -9,21 +9,21 @@ namespace Services.Audio.Components
         protected static IAudioService AudioService;
 
         [SerializeField]
-        protected string _soundKey;
+        protected string soundKey;
 
         [SerializeField]
-        protected bool _multiSound;
+        protected bool multiSound;
 
         protected void PlaySound()
         {
-            AudioService.PlaySound(_soundKey, _multiSound);
+            AudioService.PlaySound(soundKey, multiSound);
         }
 
 #if UNITY_EDITOR
         public string SoundKey
         {
-            get => _soundKey;
-            set => _soundKey = value;
+            get => soundKey;
+            set => soundKey = value;
         }
 #endif
     }

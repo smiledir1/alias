@@ -13,13 +13,13 @@ namespace Game.UI.Popups.Confirm
     public class ConfirmPopup : Popup<ConfirmPopupModel>
     {
         [SerializeField]
-        private TextMeshProUGUI _header;
+        private TextMeshProUGUI header;
 
         [SerializeField]
-        private TextMeshProUGUI _text;
+        private TextMeshProUGUI text;
 
         [SerializeField]
-        private Button _confirmButton;
+        private Button confirmButton;
 
         [Service]
         private static ILocalizationService _localizationService;
@@ -30,16 +30,16 @@ namespace Game.UI.Popups.Confirm
         {
             if (Model.Localize)
             {
-                _header.text = _localizationService.GetText(Model.Title);
-                _text.text = _localizationService.GetText(Model.Message);
+                header.text = _localizationService.GetText(Model.Title);
+                text.text = _localizationService.GetText(Model.Message);
             }
             else
             {
-                _header.text = Model.Title;
-                _text.text = Model.Message;
+                header.text = Model.Title;
+                text.text = Model.Message;
             }
 
-            _confirmButton.SetClickListener(OnConfirmClick);
+            confirmButton.SetClickListener(OnConfirmClick);
             _closeButton.SetClickListener(OnCloseClick);
             return base.OnOpenAsync();
         }

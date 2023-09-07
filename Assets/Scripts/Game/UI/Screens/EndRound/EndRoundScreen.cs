@@ -12,20 +12,20 @@ namespace Game.UI.Screens.EndRound
     public class EndRoundScreen : UIObject<EndRoundScreenModel>
     {
         [SerializeField]
-        private TextMeshProUGUI _scoreLabel;
+        private TextMeshProUGUI scoreLabel;
 
         [SerializeField]
-        private WordElement _wordElementTemplate;
+        private WordElement wordElementTemplate;
 
         [SerializeField]
-        private Button _closeButton;
+        private Button closeButton;
 
         private int _currentScore;
         private readonly List<WordElement> _wordElements = new();
 
         protected override UniTask OnOpenAsync()
         {
-            _closeButton.SetClickListener(Close);
+            closeButton.SetClickListener(Close);
 
             ClearAll();
 
@@ -36,7 +36,7 @@ namespace Game.UI.Screens.EndRound
                 CreateWordElement(roundWord);
             }
 
-            _scoreLabel.text = _currentScore.ToString();
+            scoreLabel.text = _currentScore.ToString();
             return base.OnOpenAsync();
         }
 
@@ -49,7 +49,7 @@ namespace Game.UI.Screens.EndRound
 
         private void ClearAll()
         {
-            _wordElementTemplate.gameObject.SetActive(false);
+            wordElementTemplate.gameObject.SetActive(false);
             foreach (var wordElement in _wordElements)
             {
                 wordElement.AnsweredChange -= OnWordElementAnsweredChange;
@@ -61,8 +61,8 @@ namespace Game.UI.Screens.EndRound
 
         private void CreateWordElement(RoundWord roundWord)
         {
-            var wordElementParent = _wordElementTemplate.transform.parent;
-            var wordElement = Instantiate(_wordElementTemplate, wordElementParent);
+            var wordElementParent = wordElementTemplate.transform.parent;
+            var wordElement = Instantiate(wordElementTemplate, wordElementParent);
             wordElement.Initialize(roundWord);
             wordElement.AnsweredChange += OnWordElementAnsweredChange;
             wordElement.gameObject.SetActive(true);
@@ -72,7 +72,7 @@ namespace Game.UI.Screens.EndRound
         private void OnWordElementAnsweredChange(bool isOn)
         {
             _currentScore += isOn ? 1 : -1;
-            _scoreLabel.text = _currentScore.ToString();
+            scoreLabel.text = _currentScore.ToString();
         }
 
         private int CountScore(bool isRightAnswered) =>

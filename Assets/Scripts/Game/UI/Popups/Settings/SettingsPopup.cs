@@ -17,36 +17,36 @@ namespace Game.UI.Popups.Settings
     {
         [Header("Language")]
         [SerializeField]
-        private Button _languageButton;
+        private Button languageButton;
 
         [SerializeField]
-        private TextMeshProUGUI _languageName;
+        private TextMeshProUGUI languageName;
 
         [Header("Audio")]
         [SerializeField]
-        private Button _soundButton;
+        private Button soundButton;
 
         [SerializeField]
-        private GameObject _soundsOn;
+        private GameObject soundsOn;
 
         [SerializeField]
-        private GameObject _soundOff;
+        private GameObject soundOff;
 
         [SerializeField]
-        private Button _musicButton;
+        private Button musicButton;
 
         [SerializeField]
-        private GameObject _musicsOn;
+        private GameObject musicsOn;
 
         [SerializeField]
-        private GameObject _musicOff;
+        private GameObject musicOff;
 
         [Header("Other")]
         [SerializeField]
-        private TextMeshProUGUI _version;
+        private TextMeshProUGUI version;
 
         [SerializeField]
-        private Button _rulesButton;
+        private Button rulesButton;
 
         [Service]
         private static IAudioService _audioService;
@@ -59,13 +59,13 @@ namespace Game.UI.Popups.Settings
 
         protected override UniTask OnOpenAsync()
         {
-            _languageButton.SetClickListener(OnLanguageButton);
-            _soundButton.SetClickListener(OnSoundButton);
-            _musicButton.SetClickListener(OnMusicButton);
-            _rulesButton.SetClickListener(OnRulesButton);
+            languageButton.SetClickListener(OnLanguageButton);
+            soundButton.SetClickListener(OnSoundButton);
+            musicButton.SetClickListener(OnMusicButton);
+            rulesButton.SetClickListener(OnRulesButton);
 
-            _languageName.text = _localizationService.CurrentLanguageLocalizeName;
-            _version.text = Application.version;
+            languageName.text = _localizationService.CurrentLanguageLocalizeName;
+            version.text = Application.version;
 
             CheckSounds();
             CheckMusic();
@@ -80,38 +80,38 @@ namespace Game.UI.Popups.Settings
         private void OnSoundButton()
         {
             var isOn = _audioService.SfxVolume > 0.01f;
-            _soundsOn.SetActive(!isOn);
-            _soundOff.SetActive(isOn);
+            soundsOn.SetActive(!isOn);
+            soundOff.SetActive(isOn);
             _audioService.SfxVolume = isOn ? 0f : 1f;
         }
 
         private void OnMusicButton()
         {
             var isOn = _audioService.MusicVolume > 0.01f;
-            _musicsOn.SetActive(!isOn);
-            _musicOff.SetActive(isOn);
+            musicsOn.SetActive(!isOn);
+            musicOff.SetActive(isOn);
             _audioService.MusicVolume = isOn ? 0f : 1f;
         }
 
         private void CheckSounds()
         {
             var isOn = _audioService.SfxVolume > 0.01f;
-            _soundsOn.SetActive(isOn);
-            _soundOff.SetActive(!isOn);
+            soundsOn.SetActive(isOn);
+            soundOff.SetActive(!isOn);
         }
 
         private void CheckMusic()
         {
             var isOn = _audioService.MusicVolume > 0.01f;
-            _musicsOn.SetActive(isOn);
-            _musicOff.SetActive(!isOn);
+            musicsOn.SetActive(isOn);
+            musicOff.SetActive(!isOn);
         }
 
         private async UniTask ChangeLanguage()
         {
             await _localizationService.ChangeLanguage();
             var localizations = FindObjectsOfType<TMPLocalization>(true);
-            _languageName.text = _localizationService.CurrentLanguageLocalizeName;
+            languageName.text = _localizationService.CurrentLanguageLocalizeName;
             foreach (var localization in localizations)
             {
                 localization.Recalculate();

@@ -10,10 +10,10 @@ namespace Game.UI.Popups.Message
     public class MessagePopup : Popup<MessagePopupModel>
     {
         [SerializeField]
-        private TextMeshProUGUI _header;
+        private TextMeshProUGUI header;
 
         [SerializeField]
-        private TextMeshProUGUI _text;
+        private TextMeshProUGUI text;
 
         [Service]
         private static ILocalizationService _localizationService;
@@ -22,13 +22,13 @@ namespace Game.UI.Popups.Message
         {
             if (Model.Localize)
             {
-                _header.text = _localizationService.GetText(Model.Title);
-                _text.text = _localizationService.GetText(Model.Message);
+                header.text = _localizationService.GetText(Model.Title);
+                text.text = _localizationService.GetText(Model.Message);
             }
             else
             {
-                _header.text = Model.Title;
-                _text.text = Model.Message;
+                header.text = Model.Title;
+                text.text = Model.Message;
             }
 
             return base.OnOpenAsync();

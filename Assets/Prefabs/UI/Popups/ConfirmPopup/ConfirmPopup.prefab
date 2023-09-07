@@ -288,7 +288,7 @@ RectTransform:
   m_Children:
   - {fileID: 5501521846324328795}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -307,83 +307,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4093c24be6c7480c8924f9cd2d0c4baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openTween:
-    rid: 7359819798562996240
-  _closeTween:
-    rid: 7359819798562996243
+  OpenTween:
+    rid: -2
+  CloseTween:
+    rid: -2
   _closeButton: {fileID: 6561962015825104302}
-  _header: {fileID: 4770216977849346683}
-  _text: {fileID: 1554889974949884927}
-  _confirmButton: {fileID: 8478671288952824729}
+  header: {fileID: 4770216977849346683}
+  text: {fileID: 1554889974949884927}
+  confirmButton: {fileID: 8478671288952824729}
   references:
     version: 2
     RefIds:
-    - rid: 7359819798562996240
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 2858047245766361710}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromPosition: {x: -1000, y: 0, z: 0}
-        _toPosition: {x: 0, y: 0, z: 0}
-    - rid: 7359819798562996243
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 2858047245766361710}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromPosition: {x: 0, y: 0, z: 0}
-        _toPosition: {x: -1000, y: 0, z: 0}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &5234719165308262541
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,9 +625,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 5642563375715395506}
-  _recalculateOnEnable: 0
-  _key: close
+  text: {fileID: 5642563375715395506}
+  recalculateOnEnable: 1
+  key: close
 --- !u!1 &8099793124382504878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,6 +1033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 8478671289473212965}
-  _recalculateOnEnable: 0
-  _key: confirm
+  text: {fileID: 8478671289473212965}
+  recalculateOnEnable: 1
+  key: confirm

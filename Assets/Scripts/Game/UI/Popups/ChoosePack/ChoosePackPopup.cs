@@ -11,7 +11,7 @@ namespace Game.UI.Popups.ChoosePack
     public class ChoosePackPopup : Popup<ChoosePackPopupModel>
     {
         [SerializeField]
-        private ChoosePackItem _choosePackItemTemplate;
+        private ChoosePackItem choosePackItemTemplate;
 
         [Service]
         private static IWordsPacksService _wordsPacksService;
@@ -37,11 +37,11 @@ namespace Game.UI.Popups.ChoosePack
         private void CreateItems(List<WordsPacksConfigItem> configItems)
         {
             var language = _localizationService.CurrentLanguage;
-            var parentTransform = _choosePackItemTemplate.transform.parent;
+            var parentTransform = choosePackItemTemplate.transform.parent;
             foreach (var configItem in configItems)
             {
                 if (configItem.Language != language) continue;
-                var packItem = Instantiate(_choosePackItemTemplate, parentTransform);
+                var packItem = Instantiate(choosePackItemTemplate, parentTransform);
                 packItem.Initialize(configItem);
                 packItem.ChoosePack += OnPackChoose;
                 _createdItems.Add(packItem);
@@ -51,7 +51,7 @@ namespace Game.UI.Popups.ChoosePack
 
         private void ClearItems()
         {
-            _choosePackItemTemplate.gameObject.SetActive(false);
+            choosePackItemTemplate.gameObject.SetActive(false);
             foreach (var item in _createdItems)
             {
                 item.ChoosePack -= OnPackChoose;

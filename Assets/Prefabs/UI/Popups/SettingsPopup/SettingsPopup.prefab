@@ -224,9 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 2955539280334615411}
-  _recalculateOnEnable: 0
-  _key: settings
+  text: {fileID: 2955539280334615411}
+  recalculateOnEnable: 1
+  key: settings
 --- !u!1 &2477970997939518498
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,92 +560,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b96b11db55846efb46291eb4ace2a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openTween:
-    rid: 7359819912730902528
-  _closeTween:
-    rid: 7359819912730902529
+  OpenTween:
+    rid: -2
+  CloseTween:
+    rid: -2
   _closeButton: {fileID: 1000513246552110039}
-  _languageButton: {fileID: 16684330106025845}
-  _languageName: {fileID: 208424611739030898}
-  _soundButton: {fileID: 3876554025513976353}
-  _soundsOn: {fileID: 8481552660963435217}
-  _soundOff: {fileID: 8350558788761020959}
-  _musicButton: {fileID: 6288856590252220212}
-  _musicsOn: {fileID: 696817327783889804}
-  _musicOff: {fileID: 2529743938975997703}
-  _version: {fileID: 6614983716607730490}
-  _rulesButton: {fileID: 7166550615633398031}
+  languageButton: {fileID: 16684330106025845}
+  languageName: {fileID: 208424611739030898}
+  soundButton: {fileID: 3876554025513976353}
+  soundsOn: {fileID: 8481552660963435217}
+  soundOff: {fileID: 8350558788761020959}
+  musicButton: {fileID: 6288856590252220212}
+  musicsOn: {fileID: 696817327783889804}
+  musicOff: {fileID: 2529743938975997703}
+  version: {fileID: 6614983716607730490}
+  rulesButton: {fileID: 7166550615633398031}
   references:
     version: 2
     RefIds:
-    - rid: 7359819912730902528
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 3082652173435720283}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: -1000, y: 0, z: 0}
-        _toPosition: {x: 0, y: 0, z: 0}
-    - rid: 7359819912730902529
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 3082652173435720283}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 0, y: 0, z: 0}
-        _toPosition: {x: -1000, y: 0, z: 0}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &3628342694004112932
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,9 +926,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 8391579707038807549}
-  _recalculateOnEnable: 1
-  _key: rules
+  text: {fileID: 8391579707038807549}
+  recalculateOnEnable: 1
+  key: rules
 --- !u!1 &4421037147394133317
 GameObject:
   m_ObjectHideFlags: 0

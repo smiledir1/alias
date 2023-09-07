@@ -10,13 +10,13 @@ namespace Game.UI.Popups.Teams
     public class TeamPopupItem : MonoBehaviour
     {
         [SerializeField]
-        private Image _image;
+        private Image image;
 
         [SerializeField]
-        private TextMeshProUGUI _name;
+        private TextMeshProUGUI teamName;
 
         [SerializeField]
-        private Button _mainButton;
+        private Button mainButton;
 
         private UnityAction<Team> _clickAction;
         private Team _team;
@@ -25,9 +25,9 @@ namespace Game.UI.Popups.Teams
         {
             _team = team;
             _clickAction = clickAction;
-            _mainButton.SetClickListener(OnClick);
-            _image.sprite = team.Icon;
-            _name.text = team.Name;
+            mainButton.SetClickListener(OnClick);
+            image.sprite = team.Icon;
+            teamName.text = team.Name;
         }
 
         private void OnClick()

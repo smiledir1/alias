@@ -10,22 +10,22 @@ namespace Game.UI.Popups.NewGame
     public class TeamItem : MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _name;
+        private TextMeshProUGUI teamName;
 
         [SerializeField]
-        private Image _image;
+        private Image image;
 
         [SerializeField]
-        private Button _removeButton;
+        private Button removeButton;
 
         private UnityAction<TeamItem> _removeAction;
 
         public void Initialize(Team team, UnityAction<TeamItem> removeAction)
         {
             _removeAction = removeAction;
-            _removeButton.SetClickListener(OnRemoveButtonClick);
-            _name.text = team.Name;
-            _image.sprite = team.Icon;
+            removeButton.SetClickListener(OnRemoveButtonClick);
+            teamName.text = team.Name;
+            image.sprite = team.Icon;
         }
 
         private void OnRemoveButtonClick()

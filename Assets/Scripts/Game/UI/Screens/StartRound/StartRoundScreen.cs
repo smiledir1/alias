@@ -10,24 +10,24 @@ namespace Game.UI.Screens.StartRound
     public class StartRoundScreen : UIObject<StartRoundScreenModel>
     {
         [SerializeField]
-        private TextMeshProUGUI _teamName;
+        private TextMeshProUGUI teamName;
 
         [SerializeField]
-        private TextMeshProUGUI _teamScore;
+        private TextMeshProUGUI teamScore;
 
         [SerializeField]
-        private Button _backButton;
+        private Button backButton;
 
         [SerializeField]
-        private Button _startGame;
+        private Button startGame;
 
         protected override UniTask OnOpenAsync()
         {
-            _backButton.SetClickListener(OnBackButton);
-            _startGame.SetClickListener(OnStartGameButton);
+            backButton.SetClickListener(OnBackButton);
+            startGame.SetClickListener(OnStartGameButton);
 
-            _teamName.text = Model.RoundTeam.Name;
-            _teamScore.text = Model.RoundTeam.Score.ToString();
+            teamName.text = Model.RoundTeam.Name;
+            teamScore.text = Model.RoundTeam.Score.ToString();
 
             return base.OnOpenAsync();
         }

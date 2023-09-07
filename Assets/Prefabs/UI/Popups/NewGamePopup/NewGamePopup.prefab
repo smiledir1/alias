@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 1436424158284499988}
-  _recalculateOnEnable: 0
-  _key: free_skip
+  text: {fileID: 1436424158284499988}
+  recalculateOnEnable: 1
+  key: free_skip
 --- !u!1 &496373838075060089
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,91 +201,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27c4245c2c34810ba30ea38bf477521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openTween:
-    rid: 7359819798562996242
-  _closeTween:
-    rid: 7359819798562996245
+  OpenTween:
+    rid: -2
+  CloseTween:
+    rid: -2
   _closeButton: {fileID: 9058932088638181515}
-  _choosePackButton: {fileID: 4640930837629460398}
-  _packName: {fileID: 4640930837427146910}
-  _roundTime: {fileID: 4640930839157343075}
-  _isUnlimitedTimeForLastWord: {fileID: 4640930838163855503}
-  _freeSkipToggle: {fileID: 945786344681347660}
-  _addTeamButton: {fileID: 4640930839122210047}
-  _removeTeamButton: {fileID: 4640930839130645541}
-  _teamItemTemplate: {fileID: 4640930837365487482}
-  _startGameButton: {fileID: 4640930838192723440}
+  choosePackButton: {fileID: 4640930837629460398}
+  packName: {fileID: 4640930837427146910}
+  roundTime: {fileID: 4640930839157343075}
+  isUnlimitedTimeForLastWord: {fileID: 4640930838163855503}
+  freeSkipToggle: {fileID: 945786344681347660}
+  addTeamButton: {fileID: 4640930839122210047}
+  removeTeamButton: {fileID: 5444282487833755975}
+  teamItemTemplate: {fileID: 4640930837365487482}
+  startGameButton: {fileID: 4640930838192723440}
   references:
     version: 2
     RefIds:
-    - rid: 7359819798562996242
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 496373838075060089}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: -1000, y: 0, z: 0}
-        _toPosition: {x: 0, y: 0, z: 0}
-    - rid: 7359819798562996245
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 496373838075060089}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 0, y: 0, z: 0}
-        _toPosition: {x: -1000, y: 0, z: 0}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &1650140388980119316
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,9 +712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88709f8019934ddd8ee8cabf3a029366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: {fileID: 4640930839297589894}
-  _image: {fileID: 8148830264345996859}
-  _removeButton: {fileID: 5444282487833755975}
+  teamName: {fileID: 4640930839297589894}
+  image: {fileID: 8148830264345996859}
+  removeButton: {fileID: 5444282487833755975}
 --- !u!1 &4640930837418525611
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,9 +766,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43aedc9c7f1c49839362c7e564cd8d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _number: {fileID: 4640930838901099692}
-  _slider: {fileID: 4640930839157343075}
-  _roundDigits: 0
+  number: {fileID: 4640930838901099692}
+  slider: {fileID: 4640930839157343075}
+  roundDigits: 0
 --- !u!1 &4640930837427146905
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,9 +917,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 4640930837427146910}
-  _recalculateOnEnable: 0
-  _key: pack_name
+  text: {fileID: 4640930837427146910}
+  recalculateOnEnable: 1
+  key: pack_name
 --- !u!1 &4640930837434757202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,9 +1068,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 4640930837434757207}
-  _recalculateOnEnable: 0
-  _key: round_time
+  text: {fileID: 4640930837434757207}
+  recalculateOnEnable: 1
+  key: round_time
 --- !u!1 &4640930837468491649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,9 +1219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 4640930837468491654}
-  _recalculateOnEnable: 0
-  _key: add_team
+  text: {fileID: 4640930837468491654}
+  recalculateOnEnable: 1
+  key: add_team
 --- !u!1 &4640930837589754000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,9 +1711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 4640930838100957125}
-  _recalculateOnEnable: 0
-  _key: remove_team
+  text: {fileID: 4640930838100957125}
+  recalculateOnEnable: 1
+  key: remove_team
 --- !u!1 &4640930838163855497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,8 +1975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundKey: menu_button
-  _multiSound: 0
+  soundKey: menu_button
+  multiSound: 0
 --- !u!1 &4640930838234345863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,9 +2125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 4640930838234345860}
-  _recalculateOnEnable: 0
-  _key: pick
+  text: {fileID: 4640930838234345860}
+  recalculateOnEnable: 1
+  key: pick
 --- !u!1 &4640930838282467125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,9 +2355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 4640930838586860493}
-  _recalculateOnEnable: 0
-  _key: start_new_game
+  text: {fileID: 4640930838586860493}
+  recalculateOnEnable: 1
+  key: start_new_game
 --- !u!1 &4640930838763217576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,9 +3380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 4640930839312027588}
-  _recalculateOnEnable: 0
-  _key: last_word
+  text: {fileID: 4640930839312027588}
+  recalculateOnEnable: 1
+  key: last_word
 --- !u!1 &4640930839378638130
 GameObject:
   m_ObjectHideFlags: 0
@@ -3837,9 +3771,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 2540723698943294968}
-  _recalculateOnEnable: 0
-  _key: start_new_game
+  text: {fileID: 2540723698943294968}
+  recalculateOnEnable: 1
+  key: start_new_game
 --- !u!1 &6512747796588295427
 GameObject:
   m_ObjectHideFlags: 0

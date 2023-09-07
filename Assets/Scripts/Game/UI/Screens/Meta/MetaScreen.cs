@@ -17,13 +17,13 @@ namespace Game.UI.Screens.Meta
     public class MetaScreen : UIObject<MetaScreenModel>
     {
         [SerializeField]
-        private Button _continueGameButton;
+        private Button continueGameButton;
 
         [SerializeField]
-        private Button _newGameButton;
+        private Button newGameButton;
 
         [SerializeField]
-        private Button _settingsButton;
+        private Button settingsButton;
 
         [Service]
         private static IPopupService _popupService;
@@ -34,11 +34,11 @@ namespace Game.UI.Screens.Meta
         protected override UniTask OnOpenAsync()
         {
             var activeContinueButton = _userData.GetData<GameUserData>().CurrentRound != 0;
-            _continueGameButton.gameObject.SetActive(activeContinueButton);
+            continueGameButton.gameObject.SetActive(activeContinueButton);
 
-            _continueGameButton.SetClickListener(OnContinueGameButton);
-            _newGameButton.SetClickListener(OnNewGameButton);
-            _settingsButton.SetClickListener(OnSettingsButton);
+            continueGameButton.SetClickListener(OnContinueGameButton);
+            newGameButton.SetClickListener(OnNewGameButton);
+            settingsButton.SetClickListener(OnSettingsButton);
             return base.OnStartAsync();
         }
 

@@ -8,23 +8,23 @@ namespace Game.UI.Screens.Teams
     public class TeamItem : MonoBehaviour
     {
         [SerializeField]
-        private Image _icon;
+        private Image icon;
 
         [SerializeField]
-        private TextMeshProUGUI _name;
+        private TextMeshProUGUI teamName;
 
         [SerializeField]
-        private TextMeshProUGUI _score;
+        private TextMeshProUGUI score;
 
         [SerializeField]
-        private GameObject _roundTeamMark;
+        private GameObject roundTeamMark;
 
         public void Initialize(Team team, bool isRoundTeam)
         {
-            _name.text = team.Name;
-            _score.text = team.Score.ToString();
-            _roundTeamMark.SetActive(isRoundTeam);
-            _icon.sprite = team.Icon;
+            teamName.text = team.Name;
+            score.text = team.Score.ToString();
+            roundTeamMark.SetActive(isRoundTeam);
+            icon.sprite = team.Icon;
         }
     }
 }

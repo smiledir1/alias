@@ -10,19 +10,19 @@ namespace Game.UI.Popups.ChoosePack
     public class ChoosePackItem : MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _packName;
+        private TextMeshProUGUI packName;
 
         [SerializeField]
-        private TextMeshProUGUI _packDescription;
+        private TextMeshProUGUI packDescription;
 
         [SerializeField]
-        private TextMeshProUGUI _packExampleWords;
+        private TextMeshProUGUI packExampleWords;
 
         [SerializeField]
-        private TextMeshProUGUI _wordsCount;
+        private TextMeshProUGUI wordsCount;
 
         [SerializeField]
-        private Button _chooseButton;
+        private Button chooseButton;
 
         public event Action<WordsPacksConfigItem> ChoosePack;
 
@@ -30,13 +30,13 @@ namespace Game.UI.Popups.ChoosePack
 
         public void Initialize(WordsPacksConfigItem wordsPack)
         {
-            _chooseButton.SetClickListener(OnChooseButton);
+            chooseButton.SetClickListener(OnChooseButton);
             _wordsPack = wordsPack;
 
-            _packName.text = wordsPack.Name;
-            _packDescription.text = wordsPack.Description;
-            _packExampleWords.text = wordsPack.ExampleWords;
-            _wordsCount.text = wordsPack.WordsCount;
+            packName.text = wordsPack.Name;
+            packDescription.text = wordsPack.Description;
+            packExampleWords.text = wordsPack.ExampleWords;
+            wordsCount.text = wordsPack.WordsCount;
         }
 
         private void OnChooseButton()

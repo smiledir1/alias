@@ -10,7 +10,7 @@ namespace Game.UI.Popups.Teams
     public class TeamsPopup : Popup<TeamsPopupModel>
     {
         [SerializeField]
-        private TeamPopupItem _templatePopupItem;
+        private TeamPopupItem templatePopupItem;
 
         [Service]
         private static ITeamsService _teamsService;
@@ -19,7 +19,7 @@ namespace Game.UI.Popups.Teams
 
         protected override UniTask OnOpenAsync()
         {
-            _templatePopupItem.gameObject.SetActive(false);
+            templatePopupItem.gameObject.SetActive(false);
             foreach (var teamPopupItem in _teams)
             {
                 Destroy(teamPopupItem.gameObject);
@@ -27,13 +27,13 @@ namespace Game.UI.Popups.Teams
 
             _teams.Clear();
 
-            var parent = _templatePopupItem.transform.parent;
+            var parent = templatePopupItem.transform.parent;
             var teams = _teamsService.TeamsConfig.teams;
             foreach (var teamItem in teams)
             {
                 var team = _teamsService.CreateTeamFromConfig(teamItem);
                 if (Model.Teams.Exists(t => t.Name == team.Name)) continue;
-                var teamPopupItem = Instantiate(_templatePopupItem, parent);
+                var teamPopupItem = Instantiate(templatePopupItem, parent);
                 teamPopupItem.Initialize(team, OnTeamPopupItemClick);
                 _teams.Add(teamPopupItem);
                 teamPopupItem.gameObject.SetActive(true);

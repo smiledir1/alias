@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundKey: menu_button
+  soundKey: menu_button
+  multiSound: 0
 --- !u!1 &1417387567482498182
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,9 +285,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 8226207063505775292}
-  _recalculateOnEnable: 0
-  _key: new_game
+  text: {fileID: 8226207063505775292}
+  recalculateOnEnable: 1
+  key: new_game
 --- !u!1 &2901493463861274339
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,9 +436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 6460550504545154734}
-  _recalculateOnEnable: 0
-  _key: settings
+  text: {fileID: 6460550504545154734}
+  recalculateOnEnable: 1
+  key: settings
 --- !u!1 &3086932072465805293
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundKey: menu_button
+  soundKey: menu_button
+  multiSound: 0
 --- !u!1 &3167975798666301352
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,84 +629,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67e99fbe3844ae49ee78765470e063e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openTween:
-    rid: 7359819798562996229
-  _closeTween:
-    rid: 7359819798562996233
-  _continueGameButton: {fileID: 904261847171825463}
-  _newGameButton: {fileID: 3860682873457958695}
-  _settingsButton: {fileID: 1148256385563379406}
+  OpenTween:
+    rid: -2
+  CloseTween:
+    rid: -2
+  continueGameButton: {fileID: 904261847171825463}
+  newGameButton: {fileID: 3860682873457958695}
+  settingsButton: {fileID: 1148256385563379406}
   references:
     version: 2
     RefIds:
-    - rid: 7359819798562996229
-      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 3167975798666301352}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromOpacity: 0
-        _toOpacity: 1
-        _tweenObjectRenderer: {fileID: 9105515841119511514}
-    - rid: 7359819798562996233
-      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 3167975798666301352}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromOpacity: 1
-        _toOpacity: 0
-        _tweenObjectRenderer: {fileID: 9105515841119511514}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!223 &6101067486117425831
 Canvas:
   m_ObjectHideFlags: 0
@@ -971,9 +907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 1722023157099037812}
-  _recalculateOnEnable: 0
-  _key: continue
+  text: {fileID: 1722023157099037812}
+  recalculateOnEnable: 1
+  key: continue
 --- !u!1 &7566895971832674175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,4 +1045,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundKey: menu_button
+  soundKey: menu_button
+  multiSound: 0

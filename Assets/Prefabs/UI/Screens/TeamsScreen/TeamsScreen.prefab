@@ -360,87 +360,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1856a66af884fac80ee37d0e52cc704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openTween:
-    rid: 7359819798562996232
-  _closeTween:
-    rid: 7359819798562996236
-  _packName: {fileID: 3948691839797788860}
-  _roundSeconds: {fileID: 839965665238144025}
-  _round: {fileID: 3895870992289073004}
-  _teamItemTemplate: {fileID: 2962982345995416030}
-  _backButton: {fileID: 5347402312904625367}
-  _startGame: {fileID: 7510370603707752366}
+  OpenTween:
+    rid: -2
+  CloseTween:
+    rid: -2
+  packName: {fileID: 3948691839797788860}
+  roundSeconds: {fileID: 839965665238144025}
+  round: {fileID: 3895870992289073004}
+  teamItemTemplate: {fileID: 2962982345995416030}
+  backButton: {fileID: 5347402312904625367}
+  startGame: {fileID: 7510370603707752366}
   references:
     version: 2
     RefIds:
-    - rid: 7359819798562996232
-      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 394194474674383403}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromOpacity: 0
-        _toOpacity: 1
-        _tweenObjectRenderer: {fileID: -868650593548980201}
-    - rid: 7359819798562996236
-      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 394194474674383403}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromOpacity: 1
-        _toOpacity: 0
-        _tweenObjectRenderer: {fileID: -868650593548980201}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!225 &-868650593548980201
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -737,9 +671,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 1072340856179426467}
-  _recalculateOnEnable: 0
-  _key: round
+  text: {fileID: 1072340856179426467}
+  recalculateOnEnable: 1
+  key: round
 --- !u!1 &2482563927671662740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundKey: menu_button
+  soundKey: menu_button
+  multiSound: 0
 --- !u!1 &4224604358955306736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,9 +1616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 6379846415762294540}
-  _recalculateOnEnable: 0
-  _key: pack_name
+  text: {fileID: 6379846415762294540}
+  recalculateOnEnable: 1
+  key: pack_name
 --- !u!1 &4992091800810727768
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,9 +1902,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 7652976707539159491}
-  _recalculateOnEnable: 0
-  _key: start_round
+  text: {fileID: 7652976707539159491}
+  recalculateOnEnable: 1
+  key: start_round
 --- !u!1 &5500477948745130939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,9 +2054,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 5349346718534202812}
-  _recalculateOnEnable: 0
-  _key: round_time
+  text: {fileID: 5349346718534202812}
+  recalculateOnEnable: 1
+  key: round_time
 --- !u!1 &6384107639663802312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,9 +2205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 797644560486284747}
-  _recalculateOnEnable: 0
-  _key: start_round
+  text: {fileID: 797644560486284747}
+  recalculateOnEnable: 1
+  key: teams
 --- !u!1 &7506577706280397834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,10 +2396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48950c4aba9343988cbfb8108dcf919f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 5117937972265627765}
-  _name: {fileID: 6735844481644592276}
-  _score: {fileID: 5990072409294738803}
-  _roundTeamMark: {fileID: 2818410181792681715}
+  icon: {fileID: 5117937972265627765}
+  teamName: {fileID: 6735844481644592276}
+  score: {fileID: 5990072409294738803}
+  roundTeamMark: {fileID: 2818410181792681715}
 --- !u!1 &8927350981088334376
 GameObject:
   m_ObjectHideFlags: 0

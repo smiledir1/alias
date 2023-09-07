@@ -7,24 +7,24 @@ namespace Game.UI.Elements
     public class SliderWithNumber : MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _number;
+        private TextMeshProUGUI number;
 
         [SerializeField]
-        private Slider _slider;
+        private Slider slider;
 
         [SerializeField]
-        private int _roundDigits;
+        private int roundDigits;
 
         private void Awake()
         {
-            OnValueChanged(_slider.value);
-            _slider.onValueChanged.RemoveAllListeners();
-            _slider.onValueChanged.AddListener(OnValueChanged);
+            OnValueChanged(slider.value);
+            slider.onValueChanged.RemoveAllListeners();
+            slider.onValueChanged.AddListener(OnValueChanged);
         }
 
         private void OnValueChanged(float value)
         {
-            _number.text = value.ToString($"F{_roundDigits}");
+            number.text = value.ToString($"F{roundDigits}");
         }
     }
 }

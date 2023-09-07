@@ -8,47 +8,47 @@ namespace Services.Localization.Components
     public class TMPLocalization : MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _text;
+        private TextMeshProUGUI text;
 
         [SerializeField]
-        private bool _recalculateOnEnable = true;
+        private bool recalculateOnEnable = true;
 
         [SerializeField]
-        private string _key;
+        private string key;
 
         [Service]
         private static ILocalizationService _localizationService;
 
         private void Awake()
         {
-            if (_recalculateOnEnable) return;
+            if (recalculateOnEnable) return;
             Recalculate();
         }
 
         private void OnEnable()
         {
-            if (!_recalculateOnEnable) return;
+            if (!recalculateOnEnable) return;
             Recalculate();
         }
 
         public void Recalculate()
         {
-            if (_text == null) return;
-            _text.text = _localizationService?.GetText(_key);
+            if (text == null) return;
+            text.text = _localizationService?.GetText(key);
         }
 
 #if UNITY_EDITOR
-        public TextMeshProUGUI Text => _text;
+        public TextMeshProUGUI Text => text;
 
         public string Key
         {
-            get => _key;
-            set => _key = value;
+            get => key;
+            set => key = value;
         }
 
         private void OnValidate()
         {
-            if (_text == null) _text = GetComponent<TextMeshProUGUI>();
+            if (text == null) text = GetComponent<TextMeshProUGUI>();
         }
 #endif
     }

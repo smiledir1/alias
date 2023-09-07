@@ -11,33 +11,33 @@ namespace Game.UI.Screens.Teams
     public class TeamsScreen : UIObject<TeamsScreenModel>
     {
         [SerializeField]
-        private TextMeshProUGUI _packName;
+        private TextMeshProUGUI packName;
 
         [SerializeField]
-        private TextMeshProUGUI _roundSeconds;
+        private TextMeshProUGUI roundSeconds;
 
         [SerializeField]
-        private TextMeshProUGUI _round;
+        private TextMeshProUGUI round;
 
         [SerializeField]
-        private TeamItem _teamItemTemplate;
+        private TeamItem teamItemTemplate;
 
         [SerializeField]
-        private Button _backButton;
+        private Button backButton;
 
         [SerializeField]
-        private Button _startGame;
+        private Button startGame;
 
         private readonly List<TeamItem> _teamItems = new();
 
         protected override UniTask OnOpenAsync()
         {
-            _backButton.SetClickListener(OnBackButton);
-            _startGame.SetClickListener(OnStartGameButton);
+            backButton.SetClickListener(OnBackButton);
+            startGame.SetClickListener(OnStartGameButton);
 
-            _packName.text = Model.WordsPacksConfigItem.Name;
-            _roundSeconds.text = Model.RoundTimeSeconds.ToString();
-            _round.text = Model.CurrentRound.ToString();
+            packName.text = Model.WordsPacksConfigItem.Name;
+            roundSeconds.text = Model.RoundTimeSeconds.ToString();
+            round.text = Model.CurrentRound.ToString();
 
             CreateTeamItems();
             return base.OnOpenAsync();
@@ -45,7 +45,7 @@ namespace Game.UI.Screens.Teams
 
         private void CreateTeamItems()
         {
-            _teamItemTemplate.gameObject.SetActive(false);
+            teamItemTemplate.gameObject.SetActive(false);
             foreach (var teamItem in _teamItems)
             {
                 Destroy(teamItem.gameObject);
@@ -53,7 +53,7 @@ namespace Game.UI.Screens.Teams
 
             _teamItems.Clear();
 
-            var parent = _teamItemTemplate.transform.parent;
+            var parent = teamItemTemplate.transform.parent;
             var currentRound = Model.CurrentRound - 1;
             var teamsCount = Model.Teams.Count;
             var roundTeam = currentRound % teamsCount;
@@ -61,7 +61,7 @@ namespace Game.UI.Screens.Teams
             {
                 var team = Model.Teams[i];
                 var isRoundTeam = i == roundTeam;
-                var teamItem = Instantiate(_teamItemTemplate, parent);
+                var teamItem = Instantiate(teamItemTemplate, parent);
                 teamItem.Initialize(team, isRoundTeam);
                 teamItem.gameObject.SetActive(true);
                 _teamItems.Add(teamItem);

@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundKey: menu_button
-  _multiSound: 0
+  soundKey: menu_button
+  multiSound: 0
 --- !u!1 &2103339438622456093
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,9 +361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 5201259070688354921}
-  _recalculateOnEnable: 0
-  _key: next_round
+  text: {fileID: 5201259070688354921}
+  recalculateOnEnable: 1
+  key: next_round
 --- !u!1 &2834817742238284336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,84 +1208,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6d2fde27c64260a71877989e97a880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openTween:
-    rid: 7359819798562996227
-  _closeTween:
-    rid: 7359819798562996226
-  _scoreLabel: {fileID: 4963415324808652685}
-  _wordElementTemplate: {fileID: 7169795045821734072}
-  _closeButton: {fileID: 6267626104990523190}
+  OpenTween:
+    rid: -2
+  CloseTween:
+    rid: -2
+  scoreLabel: {fileID: 4963415324808652685}
+  wordElementTemplate: {fileID: 7169795045821734072}
+  closeButton: {fileID: 6267626104990523190}
   references:
     version: 2
     RefIds:
-    - rid: 7359819798562996226
-      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 5779089991699389972}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromOpacity: 1
-        _toOpacity: 0
-        _tweenObjectRenderer: {fileID: 8175785375452155507}
-    - rid: 7359819798562996227
-      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 5779089991699389972}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _fromOpacity: 0
-        _toOpacity: 1
-        _tweenObjectRenderer: {fileID: 8175785375452155507}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &6776678541784298084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,8 +1272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e0485ad25f487a8155b18fa7ee4233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wordLabel: {fileID: 8827277245792661504}
-  _answeredToggle: {fileID: 4457715239310521808}
+  wordLabel: {fileID: 8827277245792661504}
+  answeredToggle: {fileID: 4457715239310521808}
 --- !u!1 &6981162669976640414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,9 +1577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 5099950396340036422}
-  _recalculateOnEnable: 0
-  _key: end_round
+  text: {fileID: 5099950396340036422}
+  recalculateOnEnable: 1
+  key: end_round
 --- !u!1 &8172379090064742569
 GameObject:
   m_ObjectHideFlags: 0

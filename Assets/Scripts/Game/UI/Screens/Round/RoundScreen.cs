@@ -19,40 +19,40 @@ namespace Game.UI.Screens.Round
         private const string WordInPackKey = "in_pack_";
 
         [SerializeField]
-        private TextMeshProUGUI _teamName;
+        private TextMeshProUGUI teamName;
 
         [SerializeField]
-        private TextMeshProUGUI _roundScoreLabel;
+        private TextMeshProUGUI roundScoreLabel;
 
         [SerializeField]
-        private TextMeshProUGUI _roundTimerSecondsLabel;
+        private TextMeshProUGUI roundTimerSecondsLabel;
 
         [SerializeField]
-        private TextMeshProUGUI _currentWordLabel;
+        private TextMeshProUGUI currentWordLabel;
 
         [SerializeField]
-        private GameObject _lastWord;
+        private GameObject lastWord;
 
         [SerializeField]
-        private Button _backButton;
+        private Button backButton;
 
         [SerializeField]
-        private Button _rightAnswer;
+        private Button rightAnswer;
 
         [SerializeField]
-        private Button _wrongAnswer;
+        private Button wrongAnswer;
 
         [SerializeField]
-        private Button _startButton;
+        private Button startButton;
 
         [SerializeField]
-        private GameObject _gameFields;
+        private GameObject gameFields;
 
         [SerializeField]
-        private Button _stopButton;
+        private Button stopButton;
 
         [SerializeField]
-        private TextMeshProUGUI _wordInPack;
+        private TextMeshProUGUI wordInPack;
 
         private int _roundScore;
         private float _roundTimerSeconds;
@@ -75,11 +75,11 @@ namespace Game.UI.Screens.Round
 
         protected override UniTask OnOpenAsync()
         {
-            _backButton.SetClickListener(OnBackButton);
-            _rightAnswer.SetClickListener(OnRightAnswerButton);
-            _wrongAnswer.SetClickListener(OnWrongAnswerButton);
-            _startButton.SetClickListener(OnStartButton);
-            _stopButton.SetClickListener(OnStopButton);
+            backButton.SetClickListener(OnBackButton);
+            rightAnswer.SetClickListener(OnRightAnswerButton);
+            wrongAnswer.SetClickListener(OnWrongAnswerButton);
+            startButton.SetClickListener(OnStartButton);
+            stopButton.SetClickListener(OnStopButton);
 
             InitializeElements();
 
@@ -98,24 +98,24 @@ namespace Game.UI.Screens.Round
         {
             _roundScore = 0;
             _waitLastWord = false;
-            _teamName.text = Model.RoundTeam.Name;
-            _roundScoreLabel.text = "0";
+            teamName.text = Model.RoundTeam.Name;
+            roundScoreLabel.text = "0";
             _roundTimerSeconds = Model.RoundTimeSeconds;
-            _roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
+            roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
             _generatedCount = 0;
             _playedPackWordsHash.Clear();
             _playedPackWordsIndexes.Clear();
             _playedRoundWords.Clear();
-            _lastWord.SetActive(false);
-            _startButton.gameObject.SetActive(true);
-            _gameFields.SetActive(false);
+            lastWord.SetActive(false);
+            startButton.gameObject.SetActive(true);
+            gameFields.SetActive(false);
             _wordInPackLocalize = _localizationService.GetText(WordInPackKey);
         }
 
         private void OnRightAnswerButton()
         {
             _roundScore++;
-            _roundScoreLabel.text = _roundScore.ToString();
+            roundScoreLabel.text = _roundScore.ToString();
             var newRoundWord = new RoundWord(_currentWord, true);
             _playedRoundWords.Add(newRoundWord);
             CheckLastWord();
@@ -124,7 +124,7 @@ namespace Game.UI.Screens.Round
         private void OnWrongAnswerButton()
         {
             if (!Model.FreeSkip) _roundScore--;
-            _roundScoreLabel.text = _roundScore.ToString();
+            roundScoreLabel.text = _roundScore.ToString();
             var newRoundWord = new RoundWord(_currentWord, false);
             _playedRoundWords.Add(newRoundWord);
             CheckLastWord();
@@ -134,8 +134,8 @@ namespace Game.UI.Screens.Round
         // но тут не критично
         private async UniTask StartGame(CancellationToken token)
         {
-            _startButton.gameObject.SetActive(false);
-            _gameFields.SetActive(true);
+            startButton.gameObject.SetActive(false);
+            gameFields.SetActive(true);
             LoadWords();
             ShowNewWord();
             await UniTask.Yield(token);
@@ -144,7 +144,7 @@ namespace Game.UI.Screens.Round
                 await UniTask.Yield(token);
                 if (_isPause) continue;
                 _roundTimerSeconds -= Time.deltaTime;
-                _roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
+                roundTimerSecondsLabel.text = _roundTimerSeconds.ToString("F0");
             }
 
             // end Game
@@ -152,7 +152,7 @@ namespace Game.UI.Screens.Round
             if (Model.IsUnlimitedTimeForLastWord)
             {
                 _waitLastWord = true;
-                _lastWord.SetActive(true);
+                lastWord.SetActive(true);
             }
             else
             {
@@ -188,8 +188,8 @@ namespace Game.UI.Screens.Round
         private void ShowNewWord()
         {
             _currentWord = GetNewWord();
-            _currentWordLabel.text = _currentWord;
-            _wordInPack.text = string.Format(_wordInPackLocalize, _wordsPack.words.Count - _generatedCount);
+            currentWordLabel.text = _currentWord;
+            wordInPack.text = string.Format(_wordInPackLocalize, _wordsPack.words.Count - _generatedCount);
         }
 
         private string GetNewWord()
@@ -254,15 +254,15 @@ namespace Game.UI.Screens.Round
 
         private void PauseGame()
         {
-            _startButton.gameObject.SetActive(true);
-            _gameFields.SetActive(false);
+            startButton.gameObject.SetActive(true);
+            gameFields.SetActive(false);
             _isPause = true;
         }
 
         private void ResumeGame()
         {
-            _startButton.gameObject.SetActive(false);
-            _gameFields.SetActive(true);
+            startButton.gameObject.SetActive(false);
+            gameFields.SetActive(true);
             _isPause = false;
         }
     }

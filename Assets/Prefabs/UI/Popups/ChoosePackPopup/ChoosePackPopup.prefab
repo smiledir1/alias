@@ -329,83 +329,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640763e467c34f0a800145bbe3915dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openTween:
-    rid: 7359819798562996238
-  _closeTween:
-    rid: 7359819798562996239
+  OpenTween:
+    rid: -2
+  CloseTween:
+    rid: -2
   _closeButton: {fileID: 4730833508465318038}
-  _choosePackItemTemplate: {fileID: 8968743549996698072}
+  choosePackItemTemplate: {fileID: 8968743549996698072}
   references:
     version: 2
     RefIds:
-    - rid: 7359819798562996238
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 4248020211053057892}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: -1000, y: 0, z: 0}
-        _toPosition: {x: 0, y: 0, z: 0}
-    - rid: 7359819798562996239
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 4248020211053057892}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 0, y: 0, z: 0}
-        _toPosition: {x: -1000, y: 0, z: 0}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &5770558078166083944
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,9 +775,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 2257130254173992421}
-  _recalculateOnEnable: 0
-  _key: packs
+  text: {fileID: 2257130254173992421}
+  recalculateOnEnable: 1
+  key: packs
 --- !u!1 &8968743549996698074
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,11 +832,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a8c3cbf72a40afa553f93548cf3db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _packName: {fileID: 8968743551955469031}
-  _packDescription: {fileID: 8968743551089149828}
-  _packExampleWords: {fileID: 8968743551128886731}
-  _wordsCount: {fileID: 6975205047633471116}
-  _chooseButton: {fileID: 8968743551351319163}
+  packName: {fileID: 8968743551955469031}
+  packDescription: {fileID: 8968743551089149828}
+  packExampleWords: {fileID: 8968743551128886731}
+  wordsCount: {fileID: 6975205047633471116}
+  chooseButton: {fileID: 8968743551351319163}
 --- !u!1 &8968743550474693301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,9 +1586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 8968743551767651808}
-  _recalculateOnEnable: 0
-  _key: pick
+  text: {fileID: 8968743551767651808}
+  recalculateOnEnable: 1
+  key: pick
 --- !u!1 &8968743551869845288
 GameObject:
   m_ObjectHideFlags: 0

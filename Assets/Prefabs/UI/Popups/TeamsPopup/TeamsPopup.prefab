@@ -454,7 +454,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4477412654791136946}
-  - component: {fileID: 2370928561373499877}
   - component: {fileID: 404681119856738855}
   m_Layer: 5
   m_Name: TeamItem
@@ -486,21 +485,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2370928561373499877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2754691980943359813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88709f8019934ddd8ee8cabf3a029366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: {fileID: 8170218374633206201}
-  _image: {fileID: 6321895553032178984}
-  _removeButton: {fileID: 1843543291016475953}
 --- !u!114 &404681119856738855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,9 +497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5f442d099e42c3955eb97623ab8c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 6321895553032178984}
-  _name: {fileID: 8170218374633206201}
-  _mainButton: {fileID: 1843543291016475953}
+  image: {fileID: 6321895553032178984}
+  teamName: {fileID: 8170218374633206201}
+  mainButton: {fileID: 1843543291016475953}
 --- !u!1 &3195440203092084744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,83 +994,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7501798f9a41b48548bb036d6bf7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openTween:
-    rid: 7359819953496129537
-  _closeTween:
-    rid: 7359819953496129538
+  OpenTween:
+    rid: -2
+  CloseTween:
+    rid: -2
   _closeButton: {fileID: 128612604343967752}
-  _templatePopupItem: {fileID: 404681119856738855}
+  templatePopupItem: {fileID: 404681119856738855}
   references:
     version: 2
     RefIds:
-    - rid: 7359819953496129537
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 7765504345028656721}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: -1000, y: 0, z: 0}
-        _toPosition: {x: 0, y: 0, z: 0}
-    - rid: 7359819953496129538
-      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
-      data:
-        _tweenObject: {fileID: 7765504345028656721}
-        _startDelay: 0
-        _tweenTime: 0.3
-        _loop: 0
-        _animationCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 0, y: 0, z: 0}
-        _toPosition: {x: -1000, y: 0, z: 0}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &7838454442716206683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,9 +1229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 4469393654029393092}
-  _recalculateOnEnable: 0
-  _key: teams
+  text: {fileID: 4469393654029393092}
+  recalculateOnEnable: 1
+  key: teams
 --- !u!1 &8500788559318363483
 GameObject:
   m_ObjectHideFlags: 0
