@@ -7,33 +7,33 @@ namespace Common.Components.Audio
     public class UIObjectAudio : AudioComponent
     {
         [SerializeField]
-        private UIObject _uiObject;
+        private UIObject uiObject;
 
         [SerializeField]
-        private UIObjectActionType _actionTypeType;
+        private UIObjectActionType actionTypeType;
 
         private void Awake()
         {
-            switch (_actionTypeType)
+            switch (actionTypeType)
             {
                 case UIObjectActionType.UIObjectStart:
-                    _uiObject.UIObjectStart += OnUIObjectAction;
+                    uiObject.UIObjectStart += OnUIObjectAction;
                     break;
                 case UIObjectActionType.UIObjectStop:
-                    _uiObject.UIObjectStop += OnUIObjectAction;
+                    uiObject.UIObjectStop += OnUIObjectAction;
                     break;
             }
         }
 
         private void OnDestroy()
         {
-            switch (_actionTypeType)
+            switch (actionTypeType)
             {
                 case UIObjectActionType.UIObjectStart:
-                    _uiObject.UIObjectStart -= OnUIObjectAction;
+                    uiObject.UIObjectStart -= OnUIObjectAction;
                     break;
                 case UIObjectActionType.UIObjectStop:
-                    _uiObject.UIObjectStop -= OnUIObjectAction;
+                    uiObject.UIObjectStop -= OnUIObjectAction;
                     break;
             }
         }
@@ -46,7 +46,7 @@ namespace Common.Components.Audio
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if (_uiObject == null) _uiObject = GetComponent<UIObject>();
+            if (uiObject == null) uiObject = GetComponent<UIObject>();
         }
 #endif
 

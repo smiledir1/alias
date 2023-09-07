@@ -41,12 +41,12 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var tweenImageRect = new Rect(x, y, width, height);
-            var tweenImageProperty = property.FindPropertyRelative("_tweenImage");
+            var tweenImageProperty = property.FindPropertyRelative("tweenImage");
             EditorGUI.PropertyField(tweenImageRect, tweenImageProperty);
             y += height;
 
             var spritesRect = new Rect(x, y, width, height);
-            var spritesProperty = property.FindPropertyRelative("_sprites");
+            var spritesProperty = property.FindPropertyRelative("sprites");
             EditorGUI.PropertyField(spritesRect, spritesProperty);
             y += EditorGUI.GetPropertyHeight(spritesProperty);
 

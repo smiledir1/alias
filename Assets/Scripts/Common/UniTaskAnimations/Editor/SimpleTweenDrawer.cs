@@ -245,27 +245,27 @@ namespace Common.UniTaskAnimations.Editor
             y += height;
 
             var tweenObjectRect = new Rect(x, y, width, height);
-            var tweenObjectProperty = property.FindPropertyRelative("_tweenObject");
+            var tweenObjectProperty = property.FindPropertyRelative("tweenObject");
             EditorGUI.PropertyField(tweenObjectRect, tweenObjectProperty);
             y += height;
 
             var startDelayRect = new Rect(x, y, width, height);
-            var startDelayProperty = property.FindPropertyRelative("_startDelay");
+            var startDelayProperty = property.FindPropertyRelative("startDelay");
             EditorGUI.PropertyField(startDelayRect, startDelayProperty);
             y += height;
 
             var tweenTimeRect = new Rect(x, y, width, height);
-            var tweenTimeProperty = property.FindPropertyRelative("_tweenTime");
+            var tweenTimeProperty = property.FindPropertyRelative("tweenTime");
             EditorGUI.PropertyField(tweenTimeRect, tweenTimeProperty);
             y += height;
 
             var loopRect = new Rect(x, y, width, height);
-            var loopProperty = property.FindPropertyRelative("_loop");
+            var loopProperty = property.FindPropertyRelative("loop");
             EditorGUI.PropertyField(loopRect, loopProperty);
             y += height;
 
             var animationCurveRect = new Rect(x, y, width, height);
-            var animationCurveProperty = property.FindPropertyRelative("_animationCurve");
+            var animationCurveProperty = property.FindPropertyRelative("animationCurve");
             EditorGUI.PropertyField(animationCurveRect, animationCurveProperty);
             y += height;
 

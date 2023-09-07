@@ -43,7 +43,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var toPositionRect = new Rect(x, y, vectorWidth, height);
-            var toPositionProperty = property.FindPropertyRelative("_toPosition");
+            var toPositionProperty = property.FindPropertyRelative("toPosition");
             EditorGUI.PropertyField(toPositionRect, toPositionProperty);
 
             var toGoToButtonRect = new Rect(buttonX, y, buttonWidth, height);
@@ -54,7 +54,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var bezier1OffsetRect = new Rect(x, y, vectorWidth, height);
-            var bezier1OffsetProperty = property.FindPropertyRelative("_bezier1Offset");
+            var bezier1OffsetProperty = property.FindPropertyRelative("bezier1Offset");
             EditorGUI.PropertyField(bezier1OffsetRect, bezier1OffsetProperty);
 
             var bezier1OffsetGoToButtonRect = new Rect(buttonX, y, buttonWidth, height);
@@ -65,7 +65,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var bezier2OffsetRect = new Rect(x, y, vectorWidth, height);
-            var bezier2OffsetProperty = property.FindPropertyRelative("_bezier2Offset");
+            var bezier2OffsetProperty = property.FindPropertyRelative("bezier2Offset");
             EditorGUI.PropertyField(bezier2OffsetRect, bezier2OffsetProperty);
 
             var bezier2OffsetGoToButtonRect = new Rect(buttonX, y, buttonWidth, height);
@@ -76,7 +76,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var precisionRect = new Rect(x, y, vectorWidth, height);
-            var precisionProperty = property.FindPropertyRelative("_precision");
+            var precisionProperty = property.FindPropertyRelative("precision");
             EditorGUI.PropertyField(precisionRect, precisionProperty);
             y += height;
 

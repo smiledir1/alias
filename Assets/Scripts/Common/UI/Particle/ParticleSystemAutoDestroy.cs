@@ -5,16 +5,16 @@ namespace Common.UI.Particle
     public class ParticleSystemAutoDestroy : MonoBehaviour
     {
         [SerializeField]
-        private ParticleSystem _particleSystem;
+        private ParticleSystem curParticleSystem;
 
         public void FixedUpdate()
         {
-            if (_particleSystem && !_particleSystem.IsAlive()) Destroy(gameObject);
+            if (curParticleSystem && !curParticleSystem.IsAlive()) Destroy(gameObject);
         }
 
         private void OnValidate()
         {
-            if (_particleSystem == null) _particleSystem = GetComponent<ParticleSystem>();
+            if (curParticleSystem == null) curParticleSystem = GetComponent<ParticleSystem>();
         }
     }
 }

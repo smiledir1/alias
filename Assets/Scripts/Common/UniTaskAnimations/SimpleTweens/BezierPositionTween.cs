@@ -11,34 +11,34 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #region View
 
         [SerializeField]
-        private PositionType _positionType;
+        private PositionType positionType;
 
         [SerializeField]
-        private Vector3 _fromPosition;
+        private Vector3 fromPosition;
 
         [SerializeField]
-        private Vector3 _toPosition;
+        private Vector3 toPosition;
 
         [SerializeField]
-        private Vector3 _bezier1Offset;
+        private Vector3 bezier1Offset;
 
         [SerializeField]
-        private Vector3 _bezier2Offset;
+        private Vector3 bezier2Offset;
 
         [SerializeField]
         [Range(0.001f, 0.5f)]
-        private float _precision = 0.05f;
+        private float precision = 0.05f;
 
         #endregion /View
 
         #region Properties
 
-        public PositionType PositionType => _positionType;
-        public Vector3 FromPosition => _fromPosition;
-        public Vector3 ToPosition => _toPosition;
-        public Vector3 Bezier1Offset => _bezier1Offset;
-        public Vector3 Bezier2Offset => _bezier2Offset;
-        public float Precision => _precision;
+        public PositionType PositionType => positionType;
+        public Vector3 FromPosition => fromPosition;
+        public Vector3 ToPosition => toPosition;
+        public Vector3 Bezier1Offset => bezier1Offset;
+        public Vector3 Bezier2Offset => bezier2Offset;
+        public float Precision => precision;
 
         #endregion
 
@@ -54,12 +54,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public BezierPositionTween()
         {
-            _positionType = PositionType.Local;
-            _fromPosition = Vector3.zero;
-            _toPosition = Vector3.zero;
-            _bezier1Offset = Vector3.zero;
-            _bezier2Offset = Vector3.zero;
-            _precision = 0.05f;
+            positionType = PositionType.Local;
+            fromPosition = Vector3.zero;
+            toPosition = Vector3.zero;
+            bezier1Offset = Vector3.zero;
+            bezier2Offset = Vector3.zero;
+            precision = 0.05f;
             CreatePoints();
         }
 
@@ -83,12 +83,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (precision <= 0f) throw new Exception("precision must be > 0");
 
-            _positionType = positionType;
-            _fromPosition = fromPosition;
-            _toPosition = toPosition;
-            _bezier1Offset = bezier1Offset;
-            _bezier2Offset = bezier2Offset;
-            _precision = precision;
+            this.positionType = positionType;
+            this.fromPosition = fromPosition;
+            this.toPosition = toPosition;
+            this.bezier1Offset = bezier1Offset;
+            this.bezier2Offset = bezier2Offset;
+            this.precision = precision;
 
             CreatePoints();
         }
@@ -104,25 +104,25 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (TweenObject == null) return;
 
-            _rectTransform = _tweenObject.transform as RectTransform;
+            _rectTransform = tweenObject.transform as RectTransform;
             Vector3 startPosition;
             Vector3 toPosition;
             AnimationCurve animationCurve;
-            var tweenTime = _tweenTime;
+            var tweenTime = base.tweenTime;
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
             var loop = true;
 
             if (reverse)
             {
-                startPosition = _toPosition;
-                toPosition = _fromPosition;
+                startPosition = this.toPosition;
+                toPosition = fromPosition;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startPosition = _fromPosition;
-                toPosition = _toPosition;
+                startPosition = fromPosition;
+                toPosition = this.toPosition;
                 animationCurve = AnimationCurve;
             }
 
@@ -241,7 +241,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            GoToPosition(_fromPosition);
+            GoToPosition(fromPosition);
         }
 
         public void SetPositions(
@@ -251,19 +251,19 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Vector3 bezier1Offset,
             Vector3 bezier2Offset)
         {
-            _positionType = positionType;
-            _fromPosition = from;
-            _toPosition = to;
-            _bezier1Offset = bezier1Offset;
-            _bezier2Offset = bezier2Offset;
+            this.positionType = positionType;
+            fromPosition = from;
+            toPosition = to;
+            this.bezier1Offset = bezier1Offset;
+            this.bezier2Offset = bezier2Offset;
         }
 
         internal Vector3 GetCurrentPosition()
         {
-            return _positionType switch
+            return positionType switch
             {
-                PositionType.Local => _tweenObject.transform.localPosition,
-                PositionType.Global => _tweenObject.transform.position,
+                PositionType.Local => tweenObject.transform.localPosition,
+                PositionType.Global => tweenObject.transform.position,
                 PositionType.Anchored => _rectTransform.anchoredPosition,
                 _ => Vector3.zero
             };
@@ -271,13 +271,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         internal void GoToPosition(Vector3 position)
         {
-            switch (_positionType)
+            switch (positionType)
             {
                 case PositionType.Local:
-                    _tweenObject.transform.localPosition = position;
+                    tweenObject.transform.localPosition = position;
                     return;
                 case PositionType.Global:
-                    _tweenObject.transform.position = position;
+                    tweenObject.transform.position = position;
                     return;
                 case PositionType.Anchored:
                     _rectTransform.anchoredPosition = position;
@@ -291,14 +291,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         private void CreatePoints()
         {
-            var b0 = _fromPosition;
-            var b3 = _toPosition;
+            var b0 = fromPosition;
+            var b3 = toPosition;
 
-            var b1 = b0 + _bezier1Offset;
-            var b2 = b3 + _bezier2Offset;
+            var b1 = b0 + bezier1Offset;
+            var b2 = b3 + bezier2Offset;
 
             var min = 0.0001f;
-            var count = (int) ((1f - min) / _precision) + 2;
+            var count = (int) ((1f - min) / precision) + 2;
 
             _bezierPoints = new Vector3[count];
             _bezierLens = new float[count];
@@ -311,7 +311,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             float len;
             for (var i = 1; i < lastPos; i++)
             {
-                var t = i * _precision;
+                var t = i * precision;
                 _bezierPoints[i] = CalculatePointPosition(b0, b1, b2, b3, t);
 
                 len = (_bezierPoints[i] - _bezierPoints[i - 1]).magnitude;
@@ -470,7 +470,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void OnGuiChange()
         {
-            if (_tweenObject != null) _rectTransform = _tweenObject.transform as RectTransform;
+            if (tweenObject != null) _rectTransform = tweenObject.transform as RectTransform;
             CreatePoints();
             base.OnGuiChange();
         }

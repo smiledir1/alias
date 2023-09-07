@@ -1811,9 +1811,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenTween:
-    rid: -2
+    rid: 8411132184805769231
   CloseTween:
-    rid: -2
+    rid: 8411132184805769242
   teamName: {fileID: 6038252156794043843}
   roundScoreLabel: {fileID: 6326816840890209543}
   roundTimerSecondsLabel: {fileID: 3840291886115042126}
@@ -1829,8 +1829,74 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 8411132184805769231
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        tweenObject: {fileID: 5590386966689830896}
+        startDelay: 0
+        tweenTime: 0.3
+        loop: 0
+        animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        fromOpacity: 0
+        toOpacity: 1
+        tweenObjectRenderer: {fileID: 7345138258335518968}
+    - rid: 8411132184805769242
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        tweenObject: {fileID: 5590386966689830896}
+        startDelay: 0
+        tweenTime: 0.3
+        loop: 0
+        animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        fromOpacity: 1
+        toOpacity: 0
+        tweenObjectRenderer: {fileID: 7345138258335518968}
 --- !u!225 &7345138258335518968
 CanvasGroup:
   m_ObjectHideFlags: 0

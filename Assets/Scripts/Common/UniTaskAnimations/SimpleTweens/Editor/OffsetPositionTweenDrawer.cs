@@ -22,12 +22,12 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var fromPositionRect = new Rect(x, y, width, height);
-            var fromPositionProperty = property.FindPropertyRelative("_fromPosition");
+            var fromPositionProperty = property.FindPropertyRelative("fromPosition");
             EditorGUI.PropertyField(fromPositionRect, fromPositionProperty);
             y += height;
 
             var toPositionRect = new Rect(x, y, width, height);
-            var toPositionProperty = property.FindPropertyRelative("_toPosition");
+            var toPositionProperty = property.FindPropertyRelative("toPosition");
             EditorGUI.PropertyField(toPositionRect, toPositionProperty);
             y += height;
 

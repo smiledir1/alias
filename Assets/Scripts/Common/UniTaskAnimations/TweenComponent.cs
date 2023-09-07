@@ -7,7 +7,7 @@ namespace Common.UniTaskAnimations
     {
         [Header("Component")]
         [SerializeField]
-        private bool _startOnAwake;
+        private bool startOnAwake;
 
         [SerializeField]
         [SerializeReference]
@@ -24,7 +24,7 @@ namespace Common.UniTaskAnimations
 
         protected void Start()
         {
-            if (_startOnAwake) _tween.StartAnimation().Forget();
+            if (startOnAwake) _tween.StartAnimation().Forget();
         }
 
         #endregion /Unity Life Cycle

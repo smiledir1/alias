@@ -947,6 +947,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1320809274759300866}
   - component: {fileID: 3246487363572737329}
+  - component: {fileID: -5811153400343749860}
   m_Layer: 5
   m_Name: RulesPopup
   m_TagString: Untagged
@@ -988,12 +989,90 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenTween:
-    rid: -2
+    rid: 8411132184805769226
   CloseTween:
-    rid: -2
+    rid: 8411132184805769237
   _closeButton: {fileID: 5287433642051929974}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 8411132184805769226
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        tweenObject: {fileID: 8644888089463994702}
+        startDelay: 0
+        tweenTime: 0.3
+        loop: 0
+        animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        fromOpacity: 0
+        toOpacity: 1
+        tweenObjectRenderer: {fileID: 0}
+    - rid: 8411132184805769237
+      type: {class: TransparencyCanvasGroupTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        tweenObject: {fileID: 8644888089463994702}
+        startDelay: 0
+        tweenTime: 0.3
+        loop: 0
+        animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        fromOpacity: 1
+        toOpacity: 0
+        tweenObjectRenderer: {fileID: -5811153400343749860}
+--- !u!225 &-5811153400343749860
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8644888089463994702}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

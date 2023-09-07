@@ -50,11 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9291ef4fefdbd944b7994ec52ffb412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainCheatsButton: {fileID: 8618564772275150048}
-  _tabButton: {fileID: 0}
-  _cheatsButtonTemplate: {fileID: 6354661573614950562}
-  _cheatsInputTemplate: {fileID: 8491242215550659282}
-  _cheatsLabelTemplate: {fileID: 7247201234235284389}
+  mainCheatsButton: {fileID: 8618564772275150048}
+  cheatsButtonTemplate: {fileID: 6354661573614950562}
+  cheatsInputTemplate: {fileID: 8491242215550659282}
+  cheatsLabelTemplate: {fileID: 7247201234235284389}
 --- !u!1 &1046460789697804166
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,9 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615abe1c274c4d6f8efd566f818dbe14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _label: {fileID: 139789434049557720}
-  _input: {fileID: 4596810741146414550}
-  _button: {fileID: 1851703273993453860}
+  label: {fileID: 139789434049557720}
+  input: {fileID: 4596810741146414550}
+  button: {fileID: 1851703273993453860}
 --- !u!1 &1118784025176005346
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94f3179118c497bb90ec15a8b86cc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _label: {fileID: 1974881055034140950}
+  label: {fileID: 1974881055034140950}
 --- !u!1 &3267314057628989809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,8 +2233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f93af5ffc584d2b86156ec21428f052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _label: {fileID: 2103571096692417154}
-  _button: {fileID: 8398396818586932985}
+  label: {fileID: 2103571096692417154}
+  button: {fileID: 8398396818586932985}
 --- !u!1 &9160280940875737875
 GameObject:
   m_ObjectHideFlags: 0

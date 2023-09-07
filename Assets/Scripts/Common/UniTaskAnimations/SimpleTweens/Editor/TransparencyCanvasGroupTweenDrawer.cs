@@ -25,7 +25,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var fromOpacityRect = new Rect(x, y, partWidth, height);
-            var fromOpacityProperty = property.FindPropertyRelative("_fromOpacity");
+            var fromOpacityProperty = property.FindPropertyRelative("fromOpacity");
             EditorGUI.PropertyField(fromOpacityRect, fromOpacityProperty);
 
             var buttonX = x + partWidth;
@@ -38,7 +38,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var toOpacityRect = new Rect(x, y, partWidth, height);
-            var toOpacityProperty = property.FindPropertyRelative("_toOpacity");
+            var toOpacityProperty = property.FindPropertyRelative("toOpacity");
             EditorGUI.PropertyField(toOpacityRect, toOpacityProperty);
 
             var toGoToButtonRect = new Rect(buttonX, y, buttonWidth, height);
@@ -49,7 +49,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var tweenGraphicRect = new Rect(x, y, width, height);
-            var tweenGraphicProperty = property.FindPropertyRelative("_tweenObjectRenderer");
+            var tweenGraphicProperty = property.FindPropertyRelative("tweenObjectRenderer");
             EditorGUI.PropertyField(tweenGraphicRect, tweenGraphicProperty);
             y += height;
 

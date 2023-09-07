@@ -6,11 +6,11 @@ namespace Common.Cheats
     public class CheatsLabel : MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _label;
+        private TextMeshProUGUI label;
 
         public void Initialize(string labelText)
         {
-            _label.text = labelText;
+            label.text = labelText;
         }
     }
 }

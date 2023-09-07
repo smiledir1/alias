@@ -10,20 +10,19 @@ namespace Common.UniTaskAnimations
     public class GroupTween : ITween
     {
         [SerializeField]
-        private bool _synchronously;
+        private bool synchronously;
 
-        [SerializeField]
         [SerializeReference]
         private List<ITween> _tweens = new();
 
-        public bool Synchronously => _synchronously;
+        public bool Synchronously => synchronously;
         public List<ITween> Tweens => _tweens;
 
         private CancellationTokenSource _currentToken;
 
         public GroupTween(bool synchronously)
         {
-            _synchronously = synchronously;
+            this.synchronously = synchronously;
         }
 
         public async UniTask StartAnimation(
@@ -32,7 +31,7 @@ namespace Common.UniTaskAnimations
             CancellationToken cancellationToken = default)
         {
             _currentToken = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            if (_synchronously)
+            if (synchronously)
             {
                 foreach (var tween in _tweens)
                 {

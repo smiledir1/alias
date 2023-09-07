@@ -6,7 +6,7 @@ namespace Common.UI.SafeArea
     public class SafeAreaCanvas : MonoBehaviour
     {
         [SerializeField]
-        private RectTransform _safeAreaRect;
+        private RectTransform safeAreaRect;
 
         private Rect _lastSafeArea = Rect.zero;
         private Canvas _canvas;
@@ -42,8 +42,8 @@ namespace Common.UI.SafeArea
             anchorMax.x /= pixelRect.width;
             anchorMax.y /= pixelRect.height;
 
-            _safeAreaRect.anchorMin = anchorMin;
-            _safeAreaRect.anchorMax = anchorMax;
+            safeAreaRect.anchorMin = anchorMin;
+            safeAreaRect.anchorMax = anchorMax;
         }
     }
 }

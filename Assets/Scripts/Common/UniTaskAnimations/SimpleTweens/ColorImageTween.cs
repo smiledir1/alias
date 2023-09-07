@@ -12,21 +12,21 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #region View
 
         [SerializeField]
-        private Color _fromColor;
+        private Color fromColor;
 
         [SerializeField]
-        private Color _toColor;
+        private Color toColor;
 
         [SerializeField]
-        private Graphic _tweenGraphic;
+        private Graphic tweenGraphic;
 
         #endregion /View
 
         #region Properties
 
-        public Color FromColor => _fromColor;
-        public Color ToColor => _toColor;
-        public Graphic TweenGraphic => _tweenGraphic;
+        public Color FromColor => fromColor;
+        public Color ToColor => toColor;
+        public Graphic TweenGraphic => tweenGraphic;
 
         #endregion
 
@@ -34,8 +34,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public ColorImageTween()
         {
-            _fromColor = Color.white;
-            _toColor = Color.black;
+            fromColor = Color.white;
+            toColor = Color.black;
         }
 
         public ColorImageTween(
@@ -53,9 +53,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 loop,
                 animationCurve)
         {
-            _fromColor = fromColor;
-            _toColor = toColor;
-            _tweenGraphic = tweenGraphic;
+            this.fromColor = fromColor;
+            this.toColor = toColor;
+            this.tweenGraphic = tweenGraphic;
         }
 
         #endregion
@@ -67,10 +67,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
             bool startFromCurrentValue = false,
             CancellationToken cancellationToken = default)
         {
-            if (_tweenGraphic == null)
+            if (tweenGraphic == null)
             {
-                _tweenGraphic = _tweenObject.GetComponent<Graphic>();
-                if (_tweenGraphic == null) return;
+                tweenGraphic = tweenObject.GetComponent<Graphic>();
+                if (tweenGraphic == null) return;
             }
 
             Color startColor;
@@ -83,20 +83,20 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startColor = _toColor;
-                toColor = _fromColor;
+                startColor = this.toColor;
+                toColor = fromColor;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startColor = _fromColor;
-                toColor = _toColor;
+                startColor = fromColor;
+                toColor = this.toColor;
                 animationCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
-                var localColor = _tweenGraphic.color;
+                var localColor = tweenGraphic.color;
                 var t = 1f;
                 if (toColor.r - startColor.r != 0f)
                     t = (localColor.r - startColor.r) / (toColor.r - startColor.r);
@@ -112,7 +112,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             while (loop)
             {
-                _tweenGraphic.color = startColor;
+                tweenGraphic.color = startColor;
 
                 while (time < tweenTime)
                 {
@@ -122,11 +122,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
                     var lerpValue = Color.LerpUnclamped(startColor, toColor, lerpTime);
 
-                    _tweenGraphic.color = lerpValue;
+                    tweenGraphic.color = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                _tweenGraphic.color = toColor;
+                tweenGraphic.color = toColor;
                 time -= TweenTime;
 
                 switch (Loop)
@@ -140,7 +140,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
                     case LoopType.PingPong:
                         toColor = startColor;
-                        startColor = _tweenGraphic.color;
+                        startColor = tweenGraphic.color;
                         break;
                 }
             }
@@ -148,14 +148,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            if (_tweenGraphic == null) _tweenGraphic = TweenObject.GetComponent<Graphic>();
-            _tweenGraphic.color = _fromColor;
+            if (tweenGraphic == null) tweenGraphic = TweenObject.GetComponent<Graphic>();
+            tweenGraphic.color = fromColor;
         }
 
         public void SetColor(Color from, Color to)
         {
-            _fromColor = from;
-            _toColor = to;
+            fromColor = from;
+            toColor = to;
         }
 
         #endregion /Animation

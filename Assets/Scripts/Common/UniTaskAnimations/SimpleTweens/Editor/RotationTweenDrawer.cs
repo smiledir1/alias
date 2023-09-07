@@ -25,7 +25,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var fromRotationRect = new Rect(x, y, partWidth, height);
-            var fromRotationProperty = property.FindPropertyRelative("_fromRotation");
+            var fromRotationProperty = property.FindPropertyRelative("fromRotation");
             EditorGUI.PropertyField(fromRotationRect, fromRotationProperty);
 
             var buttonX = x + partWidth;
@@ -38,7 +38,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var toRotationRect = new Rect(x, y, partWidth, height);
-            var toRotationProperty = property.FindPropertyRelative("_toRotation");
+            var toRotationProperty = property.FindPropertyRelative("toRotation");
             EditorGUI.PropertyField(toRotationRect, toRotationProperty);
 
             var toGoToButtonRect = new Rect(buttonX, y, buttonWidth, height);

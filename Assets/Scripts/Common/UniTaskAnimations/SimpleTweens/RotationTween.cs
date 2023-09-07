@@ -11,17 +11,17 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #region View
 
         [SerializeField]
-        private Vector3 _fromRotation;
+        private Vector3 fromRotation;
 
         [SerializeField]
-        private Vector3 _toRotation;
+        private Vector3 toRotation;
 
         #endregion /View
 
         #region Properties
 
-        public Vector3 FromRotation => _fromRotation;
-        public Vector3 ToRotation => _toRotation;
+        public Vector3 FromRotation => fromRotation;
+        public Vector3 ToRotation => toRotation;
 
         #endregion
 
@@ -29,8 +29,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public RotationTween()
         {
-            _fromRotation = Vector3.zero;
-            _toRotation = Vector3.zero;
+            fromRotation = Vector3.zero;
+            toRotation = Vector3.zero;
         }
 
         public RotationTween(
@@ -47,8 +47,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 loop,
                 animationCurve)
         {
-            _fromRotation = fromRotation;
-            _toRotation = toRotation;
+            this.fromRotation = fromRotation;
+            this.toRotation = toRotation;
         }
 
         #endregion /Constructor
@@ -72,14 +72,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startRotation = _toRotation;
-                toRotation = _fromRotation;
+                startRotation = this.toRotation;
+                toRotation = fromRotation;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startRotation = _fromRotation;
-                toRotation = _toRotation;
+                startRotation = fromRotation;
+                toRotation = this.toRotation;
                 animationCurve = AnimationCurve;
             }
 
@@ -135,13 +135,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            TweenObject.transform.eulerAngles = _fromRotation;
+            TweenObject.transform.eulerAngles = fromRotation;
         }
 
         public void SetRotation(Vector3 from, Vector3 to)
         {
-            _fromRotation = from;
-            _toRotation = to;
+            fromRotation = from;
+            toRotation = to;
         }
 
         #endregion /Animation

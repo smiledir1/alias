@@ -25,7 +25,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var fromFillRect = new Rect(x, y, partWidth, height);
-            var fromFillProperty = property.FindPropertyRelative("_fromFill");
+            var fromFillProperty = property.FindPropertyRelative("fromFill");
             EditorGUI.PropertyField(fromFillRect, fromFillProperty);
 
             var buttonX = x + partWidth;
@@ -38,7 +38,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var toFillRect = new Rect(x, y, partWidth, height);
-            var toFillProperty = property.FindPropertyRelative("_toFill");
+            var toFillProperty = property.FindPropertyRelative("toFill");
             EditorGUI.PropertyField(toFillRect, toFillProperty);
 
             var toGoToButtonRect = new Rect(buttonX, y, buttonWidth, height);
@@ -49,7 +49,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var tweenGraphicRect = new Rect(x, y, width, height);
-            var tweenGraphicProperty = property.FindPropertyRelative("_tweenImage");
+            var tweenGraphicProperty = property.FindPropertyRelative("tweenImage");
             EditorGUI.PropertyField(tweenGraphicRect, tweenGraphicProperty);
             y += height;
 

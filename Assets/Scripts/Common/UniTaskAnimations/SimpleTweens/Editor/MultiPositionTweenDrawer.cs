@@ -19,17 +19,17 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             var height = LineHeight;
 
             var positionTypeRect = new Rect(x, y, width, height);
-            var positionTypeProperty = property.FindPropertyRelative("_positionType");
+            var positionTypeProperty = property.FindPropertyRelative("positionType");
             EditorGUI.PropertyField(positionTypeRect, positionTypeProperty);
             y += height;
 
             var lineTypeRect = new Rect(x, y, width, height);
-            var lineTypeProperty = property.FindPropertyRelative("_lineType");
+            var lineTypeProperty = property.FindPropertyRelative("lineType");
             EditorGUI.PropertyField(lineTypeRect, lineTypeProperty);
             y += height;
 
             var positionsRect = new Rect(x, y, width, height);
-            var positionsProperty = property.FindPropertyRelative("_positions");
+            var positionsProperty = property.FindPropertyRelative("positions");
             EditorGUI.PropertyField(positionsRect, positionsProperty);
             y += EditorGUI.GetPropertyHeight(positionsProperty);
 
@@ -42,12 +42,12 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
                 multiPositionTween.LineType != MultiLineType.Line)
             {
                 var precisionRect = new Rect(x, y, width, height);
-                var precisionProperty = property.FindPropertyRelative("_precision");
+                var precisionProperty = property.FindPropertyRelative("precision");
                 EditorGUI.PropertyField(precisionRect, precisionProperty);
                 y += height;
 
                 var alphaRect = new Rect(x, y, width, height);
-                var alphaProperty = property.FindPropertyRelative("_alpha");
+                var alphaProperty = property.FindPropertyRelative("alpha");
                 EditorGUI.PropertyField(alphaRect, alphaProperty);
                 y += height;
             }

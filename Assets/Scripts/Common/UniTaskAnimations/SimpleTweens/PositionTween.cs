@@ -11,21 +11,21 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #region View
 
         [SerializeField]
-        private PositionType _positionType;
+        private PositionType positionType;
 
         [SerializeField]
-        private Vector3 _fromPosition;
+        private Vector3 fromPosition;
 
         [SerializeField]
-        private Vector3 _toPosition;
+        private Vector3 toPosition;
 
         #endregion /View
 
         #region Properties
 
-        public PositionType PositionType => _positionType;
-        public Vector3 FromPosition => _fromPosition;
-        public Vector3 ToPosition => _toPosition;
+        public PositionType PositionType => positionType;
+        public Vector3 FromPosition => fromPosition;
+        public Vector3 ToPosition => toPosition;
 
         #endregion
 
@@ -39,9 +39,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public PositionTween()
         {
-            _positionType = PositionType.Local;
-            _fromPosition = Vector3.zero;
-            _toPosition = Vector3.zero;
+            positionType = PositionType.Local;
+            fromPosition = Vector3.zero;
+            toPosition = Vector3.zero;
         }
 
         public PositionTween(
@@ -59,9 +59,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 loop,
                 animationCurve)
         {
-            _positionType = positionType;
-            _fromPosition = fromPosition;
-            _toPosition = toPosition;
+            this.positionType = positionType;
+            this.fromPosition = fromPosition;
+            this.toPosition = toPosition;
         }
 
         #endregion /Constructor
@@ -73,28 +73,28 @@ namespace Common.UniTaskAnimations.SimpleTweens
             bool startFromCurrentValue = false,
             CancellationToken cancellationToken = default)
         {
-            if (_tweenObject == null) return;
+            if (tweenObject == null) return;
 
-            _rectTransform = _tweenObject.transform as RectTransform;
+            _rectTransform = tweenObject.transform as RectTransform;
             Vector3 startPosition;
             Vector3 toPosition;
             AnimationCurve animationCurve;
-            var tweenTime = _tweenTime;
+            var tweenTime = base.tweenTime;
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
             var loop = true;
 
             if (reverse)
             {
-                startPosition = _toPosition;
-                toPosition = _fromPosition;
+                startPosition = this.toPosition;
+                toPosition = fromPosition;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startPosition = _fromPosition;
-                toPosition = _toPosition;
-                animationCurve = _animationCurve;
+                startPosition = fromPosition;
+                toPosition = this.toPosition;
+                animationCurve = base.animationCurve;
             }
 
             if (startFromCurrentValue)
@@ -149,22 +149,22 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            GoToPosition(_fromPosition);
+            GoToPosition(fromPosition);
         }
 
         public void SetPositions(Vector3 from, Vector3 to, PositionType positionType)
         {
-            _positionType = positionType;
-            _fromPosition = from;
-            _toPosition = to;
+            this.positionType = positionType;
+            fromPosition = from;
+            toPosition = to;
         }
 
         internal Vector3 GetCurrentPosition()
         {
-            return _positionType switch
+            return positionType switch
             {
-                PositionType.Local => _tweenObject.transform.localPosition,
-                PositionType.Global => _tweenObject.transform.position,
+                PositionType.Local => tweenObject.transform.localPosition,
+                PositionType.Global => tweenObject.transform.position,
                 PositionType.Anchored => _rectTransform.anchoredPosition,
                 _ => Vector3.zero
             };
@@ -172,13 +172,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         internal void GoToPosition(Vector3 position)
         {
-            switch (_positionType)
+            switch (positionType)
             {
                 case PositionType.Local:
-                    _tweenObject.transform.localPosition = position;
+                    tweenObject.transform.localPosition = position;
                     return;
                 case PositionType.Global:
-                    _tweenObject.transform.position = position;
+                    tweenObject.transform.position = position;
                     return;
                 case PositionType.Anchored:
                     _rectTransform.anchoredPosition = position;
@@ -274,7 +274,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void OnGuiChange()
         {
-            if (_tweenObject != null) _rectTransform = _tweenObject.transform as RectTransform;
+            if (tweenObject != null) _rectTransform = tweenObject.transform as RectTransform;
             base.OnGuiChange();
         }
 #endif

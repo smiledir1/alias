@@ -25,12 +25,12 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var positionTypeRect = new Rect(x, y, width, height);
-            var positionTypeProperty = property.FindPropertyRelative("_positionType");
+            var positionTypeProperty = property.FindPropertyRelative("positionType");
             EditorGUI.PropertyField(positionTypeRect, positionTypeProperty, label);
             y += height;
 
             var fromPositionRect = new Rect(x, y, vectorWidth, height);
-            var fromPositionProperty = property.FindPropertyRelative("_fromPosition");
+            var fromPositionProperty = property.FindPropertyRelative("fromPosition");
             EditorGUI.PropertyField(fromPositionRect, fromPositionProperty);
 
             var buttonX = x + vectorWidth;
@@ -43,7 +43,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var toPositionRect = new Rect(x, y, vectorWidth, height);
-            var toPositionProperty = property.FindPropertyRelative("_toPosition");
+            var toPositionProperty = property.FindPropertyRelative("toPosition");
             EditorGUI.PropertyField(toPositionRect, toPositionProperty);
 
             var toGoToButtonRect = new Rect(buttonX, y, buttonWidth, height);

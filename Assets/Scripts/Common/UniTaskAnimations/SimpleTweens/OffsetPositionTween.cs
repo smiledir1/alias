@@ -11,17 +11,17 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #region View
 
         [SerializeField]
-        private Vector3 _fromPosition;
+        private Vector3 fromPosition;
 
         [SerializeField]
-        private Vector3 _toPosition;
+        private Vector3 toPosition;
 
         #endregion /View
 
         #region Properties
 
-        public Vector3 FromPosition => _fromPosition;
-        public Vector3 ToPosition => _toPosition;
+        public Vector3 FromPosition => fromPosition;
+        public Vector3 ToPosition => toPosition;
 
         #endregion
 
@@ -29,8 +29,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public OffsetPositionTween()
         {
-            _fromPosition = Vector3.zero;
-            _toPosition = Vector3.zero;
+            fromPosition = Vector3.zero;
+            toPosition = Vector3.zero;
         }
 
         public OffsetPositionTween(
@@ -47,8 +47,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 loop,
                 animationCurve)
         {
-            _fromPosition = fromPosition;
-            _toPosition = toPosition;
+            this.fromPosition = fromPosition;
+            this.toPosition = toPosition;
         }
 
         #endregion /Constructor
@@ -74,14 +74,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startPosition = targetPosition + _toPosition;
-                toPosition = targetPosition + _fromPosition;
+                startPosition = targetPosition + this.toPosition;
+                toPosition = targetPosition + fromPosition;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startPosition = targetPosition + _fromPosition;
-                toPosition = targetPosition + _toPosition;
+                startPosition = targetPosition + fromPosition;
+                toPosition = targetPosition + this.toPosition;
                 animationCurve = AnimationCurve;
             }
 
@@ -141,8 +141,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public void SetPositions(Vector3 from, Vector3 to)
         {
-            _fromPosition = from;
-            _toPosition = to;
+            fromPosition = from;
+            toPosition = to;
         }
 
         #endregion /Animation

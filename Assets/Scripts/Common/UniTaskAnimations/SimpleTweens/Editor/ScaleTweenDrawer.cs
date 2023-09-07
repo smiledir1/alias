@@ -25,7 +25,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var fromScaleRect = new Rect(x, y, partWidth, height);
-            var fromScaleProperty = property.FindPropertyRelative("_fromScale");
+            var fromScaleProperty = property.FindPropertyRelative("fromScale");
             EditorGUI.PropertyField(fromScaleRect, fromScaleProperty);
 
             var buttonX = x + partWidth;
@@ -38,7 +38,7 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
             y += height;
 
             var toScaleRect = new Rect(x, y, partWidth, height);
-            var toScaleProperty = property.FindPropertyRelative("_toScale");
+            var toScaleProperty = property.FindPropertyRelative("toScale");
             EditorGUI.PropertyField(toScaleRect, toScaleProperty);
 
             var toGoToButtonRect = new Rect(buttonX, y, buttonWidth, height);

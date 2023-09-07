@@ -7,18 +7,18 @@ namespace Common.UI.SafeArea
     public sealed class SafeArea : MonoBehaviour
     {
         [SerializeField]
-        private SafeAreaMode _mode;
+        private SafeAreaMode mode;
 
         private Rect _safeArea;
 
         private void UpdateRectTransform()
         {
             var rectTransform = (RectTransform) transform;
-            var xMin = _mode == SafeAreaMode.VerticalSafe ? 0f : _safeArea.xMin / Screen.width;
-            var xMax = _mode == SafeAreaMode.VerticalSafe ? 1f : _safeArea.xMax / Screen.width;
+            var xMin = mode == SafeAreaMode.VerticalSafe ? 0f : _safeArea.xMin / Screen.width;
+            var xMax = mode == SafeAreaMode.VerticalSafe ? 1f : _safeArea.xMax / Screen.width;
 
-            var yMin = _mode == SafeAreaMode.HorizontalSafe ? 0f : _safeArea.yMin / Screen.height;
-            var yMax = _mode == SafeAreaMode.HorizontalSafe ? 1f : _safeArea.yMax / Screen.height;
+            var yMin = mode == SafeAreaMode.HorizontalSafe ? 0f : _safeArea.yMin / Screen.height;
+            var yMax = mode == SafeAreaMode.HorizontalSafe ? 1f : _safeArea.yMax / Screen.height;
 
             rectTransform.anchorMin = new Vector2(xMin, yMin);
             rectTransform.anchorMax = new Vector2(xMax, yMax);

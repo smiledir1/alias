@@ -15,17 +15,17 @@ namespace Common.Cheats
         #region View
 
         [SerializeField]
-        private Button _mainCheatsButton;
+        private Button mainCheatsButton;
 
         [Header("Cheats Elements")]
         [SerializeField]
-        private CheatsButton _cheatsButtonTemplate;
+        private CheatsButton cheatsButtonTemplate;
 
         [SerializeField]
-        private CheatsInput _cheatsInputTemplate;
+        private CheatsInput cheatsInputTemplate;
 
         [SerializeField]
-        private CheatsLabel _cheatsLabelTemplate;
+        private CheatsLabel cheatsLabelTemplate;
 
         #endregion
 
@@ -49,9 +49,9 @@ namespace Common.Cheats
         private void InitializeCheats()
         {
             gameObject.SetActive(false);
-            _mainCheatsButton.SetClickListener(OnMainCheatsButton);
-            _cheatsButtonTemplate.gameObject.SetActive(false);
-            _cheatsInputTemplate.gameObject.SetActive(false);
+            mainCheatsButton.SetClickListener(OnMainCheatsButton);
+            cheatsButtonTemplate.gameObject.SetActive(false);
+            cheatsInputTemplate.gameObject.SetActive(false);
         }
 
         private void OnMainCheatsButton()
@@ -61,8 +61,8 @@ namespace Common.Cheats
 
         private void CreateCheatsButton(string labelText, UnityAction onClick)
         {
-            var parent = _cheatsButtonTemplate.transform.parent;
-            var newCheatsButton = Instantiate(_cheatsButtonTemplate, parent);
+            var parent = cheatsButtonTemplate.transform.parent;
+            var newCheatsButton = Instantiate(cheatsButtonTemplate, parent);
             newCheatsButton.Initialize(labelText, onClick);
             newCheatsButton.gameObject.SetActive(true);
         }
@@ -72,16 +72,16 @@ namespace Common.Cheats
             string inputText,
             UnityAction<string> onClick)
         {
-            var parent = _cheatsInputTemplate.transform.parent;
-            var newCheatsButton = Instantiate(_cheatsInputTemplate, parent);
+            var parent = cheatsInputTemplate.transform.parent;
+            var newCheatsButton = Instantiate(cheatsInputTemplate, parent);
             newCheatsButton.Initialize(labelText, inputText, onClick);
             newCheatsButton.gameObject.SetActive(true);
         }
 
         private void CreateCheatsLabel(string labelText)
         {
-            var parent = _cheatsInputTemplate.transform.parent;
-            var newCheatsButton = Instantiate(_cheatsLabelTemplate, parent);
+            var parent = cheatsInputTemplate.transform.parent;
+            var newCheatsButton = Instantiate(cheatsLabelTemplate, parent);
             newCheatsButton.Initialize(labelText);
             newCheatsButton.gameObject.SetActive(true);
         }

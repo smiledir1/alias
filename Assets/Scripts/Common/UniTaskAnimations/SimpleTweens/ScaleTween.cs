@@ -11,17 +11,17 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #region View
 
         [SerializeField]
-        private Vector3 _fromScale;
+        private Vector3 fromScale;
 
         [SerializeField]
-        private Vector3 _toScale;
+        private Vector3 toScale;
 
         #endregion /View
 
         #region Properties
 
-        public Vector3 FromScale => _fromScale;
-        public Vector3 ToScale => _toScale;
+        public Vector3 FromScale => fromScale;
+        public Vector3 ToScale => toScale;
 
         #endregion
 
@@ -29,8 +29,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public ScaleTween()
         {
-            _fromScale = Vector3.zero;
-            _toScale = Vector3.one;
+            fromScale = Vector3.zero;
+            toScale = Vector3.one;
         }
 
         public ScaleTween(
@@ -47,8 +47,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 loop,
                 animationCurve)
         {
-            _fromScale = fromScale;
-            _toScale = toScale;
+            this.fromScale = fromScale;
+            this.toScale = toScale;
         }
 
         #endregion /Constructor
@@ -72,14 +72,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startScale = _toScale;
-                toScale = _fromScale;
+                startScale = this.toScale;
+                toScale = fromScale;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startScale = _fromScale;
-                toScale = _toScale;
+                startScale = fromScale;
+                toScale = this.toScale;
                 animationCurve = AnimationCurve;
             }
 
@@ -134,13 +134,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            TweenObject.transform.localScale = _fromScale;
+            TweenObject.transform.localScale = fromScale;
         }
 
         public void SetScale(Vector3 from, Vector3 to)
         {
-            _fromScale = from;
-            _toScale = to;
+            fromScale = from;
+            toScale = to;
         }
 
         #endregion /Animation

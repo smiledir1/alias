@@ -12,19 +12,19 @@ namespace Common.UniTaskAnimations
         #region View
 
         [SerializeField]
-        protected GameObject _tweenObject;
+        protected GameObject tweenObject;
 
         [SerializeField]
-        protected float _startDelay;
+        protected float startDelay;
 
         [SerializeField]
-        protected float _tweenTime;
+        protected float tweenTime;
 
         [SerializeField]
-        protected LoopType _loop;
+        protected LoopType loop;
 
         [SerializeField]
-        protected AnimationCurve _animationCurve;
+        protected AnimationCurve animationCurve;
 
         #endregion /View
 
@@ -53,11 +53,11 @@ namespace Common.UniTaskAnimations
 
         protected SimpleTween()
         {
-            _tweenObject = null;
-            _startDelay = 0f;
-            _tweenTime = 1f;
-            _loop = LoopType.Once;
-            _animationCurve = new AnimationCurve
+            tweenObject = null;
+            startDelay = 0f;
+            tweenTime = 1f;
+            loop = LoopType.Once;
+            animationCurve = new AnimationCurve
             {
                 keys = new[] {new Keyframe(0, 0), new Keyframe(1, 1)}
             };
@@ -70,11 +70,11 @@ namespace Common.UniTaskAnimations
             LoopType loop,
             AnimationCurve animationCurve)
         {
-            _tweenObject = tweenObject;
-            _startDelay = startDelay;
-            _tweenTime = tweenTime;
-            _loop = loop;
-            _animationCurve = animationCurve;
+            this.tweenObject = tweenObject;
+            this.startDelay = startDelay;
+            this.tweenTime = tweenTime;
+            this.loop = loop;
+            this.animationCurve = animationCurve;
         }
 
         #endregion /Constructor
@@ -83,15 +83,15 @@ namespace Common.UniTaskAnimations
 
         public bool IsActiveAnimation => CancellationTokenSource != null;
 
-        public GameObject TweenObject => _tweenObject;
+        public GameObject TweenObject => tweenObject;
 
-        public float StartDelay => _startDelay;
+        public float StartDelay => startDelay;
 
-        public float TweenTime => _tweenTime;
+        public float TweenTime => tweenTime;
 
-        public LoopType Loop => _loop;
+        public LoopType Loop => loop;
 
-        public AnimationCurve AnimationCurve => _animationCurve;
+        public AnimationCurve AnimationCurve => animationCurve;
 
         public async UniTask StartAnimation(
             bool reverse = false,

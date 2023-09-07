@@ -12,31 +12,31 @@ namespace Common.UniTaskAnimations.SimpleTweens
         #region View
 
         [SerializeField]
-        private PositionType _positionType;
+        private PositionType positionType;
 
         [SerializeField]
-        private MultiLineType _lineType;
+        private MultiLineType lineType;
 
         [SerializeField]
-        private List<Vector3> _positions;
+        private List<Vector3> positions;
 
         [SerializeField]
         [Range(0.001f, 0.5f)]
-        private float _precision = 0.05f;
+        private float precision = 0.05f;
 
         [SerializeField]
         [Range(0f, 1f)]
-        private float _alpha = 1f;
+        private float alpha = 1f;
 
         #endregion /View
 
         #region Properties
 
-        public PositionType PositionType => _positionType;
-        public MultiLineType LineType => _lineType;
-        public IReadOnlyList<Vector3> Positions => _positions;
-        public float Precision => _precision;
-        internal List<Vector3> PointsPositions => _positions;
+        public PositionType PositionType => positionType;
+        public MultiLineType LineType => lineType;
+        public IReadOnlyList<Vector3> Positions => positions;
+        public float Precision => precision;
+        internal List<Vector3> PointsPositions => positions;
 
         #endregion
 
@@ -52,10 +52,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public MultiPositionTween()
         {
-            _positionType = PositionType.Local;
-            _lineType = MultiLineType.Line;
-            _positions = new List<Vector3>();
-            _precision = 0.05f;
+            positionType = PositionType.Local;
+            lineType = MultiLineType.Line;
+            positions = new List<Vector3>();
+            precision = 0.05f;
             CreatePoints();
         }
 
@@ -77,10 +77,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (precision <= 0f) throw new Exception("precision must be > 0");
 
-            _positionType = positionType;
-            _lineType = lineType;
-            _positions = positions;
-            _precision = precision;
+            this.positionType = positionType;
+            this.lineType = lineType;
+            this.positions = positions;
+            this.precision = precision;
 
             CreatePoints();
         }
@@ -96,11 +96,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
         {
             if (TweenObject == null) return;
 
-            _rectTransform = _tweenObject.transform as RectTransform;
+            _rectTransform = tweenObject.transform as RectTransform;
             Vector3 startPosition;
             Vector3 toPosition;
             AnimationCurve animationCurve;
-            var tweenTime = _tweenTime;
+            var tweenTime = base.tweenTime;
             if (Loop == LoopType.PingPong) tweenTime /= 2;
             var time = 0f;
             var loop = true;
@@ -233,8 +233,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            if (_positions.Count < 2) return;
-            GoToPosition(_positions[0]);
+            if (positions.Count < 2) return;
+            GoToPosition(positions[0]);
         }
 
         public void SetPositions(
@@ -243,18 +243,18 @@ namespace Common.UniTaskAnimations.SimpleTweens
             List<Vector3> positions,
             float precision)
         {
-            _positionType = positionType;
-            _lineType = lineType;
-            _positions = positions;
-            _precision = precision;
+            this.positionType = positionType;
+            this.lineType = lineType;
+            this.positions = positions;
+            this.precision = precision;
         }
 
         internal Vector3 GetCurrentPosition()
         {
-            return _positionType switch
+            return positionType switch
             {
-                PositionType.Local => _tweenObject.transform.localPosition,
-                PositionType.Global => _tweenObject.transform.position,
+                PositionType.Local => tweenObject.transform.localPosition,
+                PositionType.Global => tweenObject.transform.position,
                 PositionType.Anchored => _rectTransform.anchoredPosition,
                 _ => Vector3.zero
             };
@@ -262,13 +262,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         internal void GoToPosition(Vector3 position)
         {
-            switch (_positionType)
+            switch (positionType)
             {
                 case PositionType.Local:
-                    _tweenObject.transform.localPosition = position;
+                    tweenObject.transform.localPosition = position;
                     return;
                 case PositionType.Global:
-                    _tweenObject.transform.position = position;
+                    tweenObject.transform.position = position;
                     return;
                 case PositionType.Anchored:
                     _rectTransform.anchoredPosition = position;
@@ -282,7 +282,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         private void CreatePoints()
         {
-            switch (_lineType)
+            switch (lineType)
             {
                 case MultiLineType.Line:
                     CreateLinePoints();
@@ -295,19 +295,19 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         private void CreateLinePoints()
         {
-            var count = _positions.Count;
+            var count = positions.Count;
             if (count < 2) return;
 
             _curvePoints = new Vector3[count];
             _linesLens = new float[count];
 
             var fullSqrPath = 0f;
-            _curvePoints[0] = _positions[0];
+            _curvePoints[0] = positions[0];
             _linesLens[0] = 0f;
 
             for (var i = 1; i < count; i++)
             {
-                _curvePoints[i] = _positions[i];
+                _curvePoints[i] = positions[i];
                 var len = (_curvePoints[i] - _curvePoints[i - 1]).magnitude;
                 _linesLens[i] = fullSqrPath + len;
                 fullSqrPath += len;
@@ -321,12 +321,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         private void CreateCatmullRomPoints()
         {
-            var positionsCount = _positions.Count;
+            var positionsCount = positions.Count;
             if (positionsCount < 2) return;
 
             var min = 0.0001f;
-            var count = (int) ((1f - min) / _precision) + 2;
-            var alpha = _alpha;
+            var count = (int) ((1f - min) / precision) + 2;
+            var alpha = this.alpha;
 
             var fullCount = (positionsCount - 1) * count;
             _curvePoints = new Vector3[fullCount];
@@ -334,32 +334,32 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             var lastPos = positionsCount - 1;
             var fullSqrPath = 0f;
-            _curvePoints[0] = _positions[0];
+            _curvePoints[0] = positions[0];
             _linesLens[0] = 0f;
 
-            var p0 = _positions[0] - _positions[1];
-            var p1 = _positions[0];
-            var p2 = _positions[1];
-            var p3 = _positions[2];
+            var p0 = positions[0] - positions[1];
+            var p1 = positions[0];
+            var p2 = positions[1];
+            var p3 = positions[2];
 
             fullSqrPath = CountPoints(p0, p1, p2, p3,
                 alpha, 1, count, fullSqrPath, 1);
 
             for (var i = 2; i < lastPos; i++)
             {
-                p0 = _positions[i - 2];
-                p1 = _positions[i - 1];
-                p2 = _positions[i];
-                p3 = _positions[i + 1];
+                p0 = positions[i - 2];
+                p1 = positions[i - 1];
+                p2 = positions[i];
+                p3 = positions[i + 1];
 
                 fullSqrPath = CountPoints(p0, p1, p2, p3,
                     alpha, i, count, fullSqrPath, 0);
             }
 
-            p0 = _positions[lastPos - 2];
-            p1 = _positions[lastPos - 1];
-            p2 = _positions[lastPos];
-            p3 = _positions[lastPos] + p2;
+            p0 = positions[lastPos - 2];
+            p1 = positions[lastPos - 1];
+            p2 = positions[lastPos];
+            p3 = positions[lastPos] + p2;
 
             fullSqrPath = CountPoints(p0, p1, p2, p3,
                 alpha, lastPos, count, fullSqrPath, 0);
@@ -384,7 +384,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             for (var j = startArrayPos; j < count; j++)
             {
                 var arrayPos = count * (pointPos - 1) + j;
-                var t = j * _precision;
+                var t = j * precision;
                 t = t > 1 ? 1 : t;
                 _curvePoints[arrayPos] = GetPoint(
                     p0, p1, p2, p3, t, alpha);
@@ -544,7 +544,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void OnGuiChange()
         {
-            if (_tweenObject != null) _rectTransform = _tweenObject.transform as RectTransform;
+            if (tweenObject != null) _rectTransform = tweenObject.transform as RectTransform;
             CreatePoints();
             base.OnGuiChange();
         }

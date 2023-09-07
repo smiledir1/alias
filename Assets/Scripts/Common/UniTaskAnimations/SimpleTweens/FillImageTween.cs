@@ -13,22 +13,22 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         [SerializeField]
         [Range(0, 1)]
-        private float _fromFill;
+        private float fromFill;
 
         [SerializeField]
         [Range(0, 1)]
-        private float _toFill;
+        private float toFill;
 
         [SerializeField]
-        private Image _tweenImage;
+        private Image tweenImage;
 
         #endregion /View
 
         #region Properties
 
-        public float FromFill => _fromFill;
-        public float ToFill => _toFill;
-        public Image TweenImage => _tweenImage;
+        public float FromFill => fromFill;
+        public float ToFill => toFill;
+        public Image TweenImage => tweenImage;
 
         #endregion
 
@@ -36,8 +36,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public FillImageTween()
         {
-            _fromFill = 0;
-            _toFill = 1;
+            fromFill = 0;
+            toFill = 1;
         }
 
         public FillImageTween(
@@ -55,9 +55,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 loop,
                 animationCurve)
         {
-            _fromFill = fromFill;
-            _toFill = toFill;
-            _tweenImage = tweenImage;
+            this.fromFill = fromFill;
+            this.toFill = toFill;
+            this.tweenImage = tweenImage;
         }
 
         #endregion
@@ -69,10 +69,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
             bool startFromCurrentValue = false,
             CancellationToken cancellationToken = default)
         {
-            if (_tweenImage == null)
+            if (tweenImage == null)
             {
-                _tweenImage = _tweenObject.GetComponent<Image>();
-                if (_tweenImage == null) return;
+                tweenImage = tweenObject.GetComponent<Image>();
+                if (tweenImage == null) return;
             }
 
             float startFill;
@@ -85,27 +85,27 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startFill = _toFill;
-                toFill = _fromFill;
+                startFill = this.toFill;
+                toFill = fromFill;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startFill = _fromFill;
-                toFill = _toFill;
+                startFill = fromFill;
+                toFill = this.toFill;
                 animationCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
-                var currentValue = _tweenImage.fillAmount;
+                var currentValue = tweenImage.fillAmount;
                 var t = (currentValue - startFill) / (toFill - startFill);
                 time = tweenTime * t;
             }
 
             while (loop)
             {
-                _tweenImage.fillAmount = startFill;
+                tweenImage.fillAmount = startFill;
 
                 while (time < tweenTime)
                 {
@@ -115,12 +115,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
                     var lerpValue = Mathf.LerpUnclamped(startFill, toFill, lerpTime);
 
-                    if (_tweenImage == null) return;
-                    _tweenImage.fillAmount = lerpValue;
+                    if (tweenImage == null) return;
+                    tweenImage.fillAmount = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                _tweenImage.fillAmount = toFill;
+                tweenImage.fillAmount = toFill;
                 time -= tweenTime;
 
                 switch (Loop)
@@ -133,9 +133,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
                         break;
 
                     case LoopType.PingPong:
-                        if (_tweenImage == null) return;
+                        if (tweenImage == null) return;
                         toFill = startFill;
-                        startFill = _tweenImage.fillAmount;
+                        startFill = tweenImage.fillAmount;
                         break;
                 }
             }
@@ -143,14 +143,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            if (_tweenImage == null) _tweenImage = TweenObject.GetComponent<Image>();
-            _tweenImage.fillAmount = _fromFill;
+            if (tweenImage == null) tweenImage = TweenObject.GetComponent<Image>();
+            tweenImage.fillAmount = fromFill;
         }
 
         public void SetFill(float from, float to)
         {
-            _fromFill = from;
-            _toFill = to;
+            fromFill = from;
+            toFill = to;
         }
 
         #endregion /Animation

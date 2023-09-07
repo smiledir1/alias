@@ -12,22 +12,22 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         [SerializeField]
         [Range(0, 1)]
-        private float _fromOpacity;
+        private float fromOpacity;
 
         [SerializeField]
         [Range(0, 1)]
-        private float _toOpacity;
+        private float toOpacity;
 
         [SerializeField]
-        private CanvasGroup _tweenObjectRenderer;
+        private CanvasGroup tweenObjectRenderer;
 
         #endregion /View
 
         #region Properties
 
-        public float FromOpacity => _fromOpacity;
-        public float ToOpacity => _toOpacity;
-        public CanvasGroup TweenObjectRenderer => _tweenObjectRenderer;
+        public float FromOpacity => fromOpacity;
+        public float ToOpacity => toOpacity;
+        public CanvasGroup TweenObjectRenderer => tweenObjectRenderer;
 
         #endregion
 
@@ -35,8 +35,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public TransparencyCanvasGroupTween()
         {
-            _fromOpacity = 0;
-            _toOpacity = 1;
+            fromOpacity = 0;
+            toOpacity = 1;
         }
 
         public TransparencyCanvasGroupTween(
@@ -54,9 +54,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 loop,
                 animationCurve)
         {
-            _fromOpacity = fromOpacity;
-            _toOpacity = toOpacity;
-            _tweenObjectRenderer = tweenObjectRenderer;
+            this.fromOpacity = fromOpacity;
+            this.toOpacity = toOpacity;
+            this.tweenObjectRenderer = tweenObjectRenderer;
         }
 
         #endregion /Constructor
@@ -68,10 +68,10 @@ namespace Common.UniTaskAnimations.SimpleTweens
             bool startFromCurrentValue = false,
             CancellationToken cancellationToken = default)
         {
-            if (_tweenObjectRenderer == null)
+            if (tweenObjectRenderer == null)
             {
-                _tweenObjectRenderer = _tweenObject.GetComponent<CanvasGroup>();
-                if (_tweenObjectRenderer == null) return;
+                tweenObjectRenderer = tweenObject.GetComponent<CanvasGroup>();
+                if (tweenObjectRenderer == null) return;
             }
 
             float startOpacity;
@@ -84,27 +84,27 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startOpacity = _toOpacity;
-                toOpacity = _fromOpacity;
+                startOpacity = this.toOpacity;
+                toOpacity = fromOpacity;
                 animationCurve = ReverseCurve;
             }
             else
             {
-                startOpacity = _fromOpacity;
-                toOpacity = _toOpacity;
+                startOpacity = fromOpacity;
+                toOpacity = this.toOpacity;
                 animationCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
-                var currentValue = _tweenObjectRenderer.alpha;
+                var currentValue = tweenObjectRenderer.alpha;
                 var t = (currentValue - startOpacity) / (toOpacity - startOpacity);
                 time = tweenTime * t;
             }
 
             while (loop)
             {
-                _tweenObjectRenderer.alpha = startOpacity;
+                tweenObjectRenderer.alpha = startOpacity;
 
                 while (time < tweenTime)
                 {
@@ -114,12 +114,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
                     var lerpValue = Mathf.LerpUnclamped(startOpacity, toOpacity, lerpTime);
 
-                    if (_tweenObjectRenderer == null) return;
-                    _tweenObjectRenderer.alpha = lerpValue;
+                    if (tweenObjectRenderer == null) return;
+                    tweenObjectRenderer.alpha = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                _tweenObjectRenderer.alpha = toOpacity;
+                tweenObjectRenderer.alpha = toOpacity;
                 time -= tweenTime;
 
                 switch (Loop)
@@ -132,9 +132,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
                         break;
 
                     case LoopType.PingPong:
-                        if (_tweenObjectRenderer == null) return;
+                        if (tweenObjectRenderer == null) return;
                         toOpacity = startOpacity;
-                        startOpacity = _tweenObjectRenderer.alpha;
+                        startOpacity = tweenObjectRenderer.alpha;
                         break;
                 }
             }
@@ -142,14 +142,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         public override void ResetValues()
         {
-            if (_tweenObjectRenderer == null) _tweenObjectRenderer = TweenObject.GetComponent<CanvasGroup>();
-            _tweenObjectRenderer.alpha = _fromOpacity;
+            if (tweenObjectRenderer == null) tweenObjectRenderer = TweenObject.GetComponent<CanvasGroup>();
+            tweenObjectRenderer.alpha = fromOpacity;
         }
 
         public void SetTransparency(float from, float to)
         {
-            _fromOpacity = from;
-            _toOpacity = to;
+            fromOpacity = from;
+            toOpacity = to;
         }
 
         #endregion /Animation

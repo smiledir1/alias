@@ -9,15 +9,15 @@ namespace Common.Cheats
     public class CheatsButton : MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _label;
+        private TextMeshProUGUI label;
 
         [SerializeField]
-        private Button _button;
+        private Button button;
 
         public void Initialize(string labelText, UnityAction onClick)
         {
-            _label.text = labelText;
-            _button.SetClickListener(onClick);
+            label.text = labelText;
+            button.SetClickListener(onClick);
         }
     }
 }
