@@ -179,6 +179,8 @@ namespace Common.UniTaskAnimations
                     FillImageTween.Clone(fillImageTween, targetObject),
                 FrameByFrameTween frameByFrameTween =>
                     FrameByFrameTween.Clone(frameByFrameTween, targetObject),
+                MultiPositionTween multiPositionTween =>
+                    MultiPositionTween.Clone(multiPositionTween, targetObject),
                 OffsetPositionTween offsetPositionTween =>
                     OffsetPositionTween.Clone(offsetPositionTween, targetObject),
                 PositionTween positionTween =>

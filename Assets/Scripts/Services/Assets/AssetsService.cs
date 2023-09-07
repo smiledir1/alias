@@ -80,7 +80,9 @@ namespace Services.Assets
                             continue;
                     }
                     else if (!keyStr.EndsWith($"/{typeKey}"))
+                    {
                         continue;
+                    }
 
                     return new AssetReference(keyStr);
                 }

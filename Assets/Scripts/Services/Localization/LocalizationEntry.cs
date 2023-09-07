@@ -1,15 +1,23 @@
-﻿namespace Services.Localization
+﻿using UnityEngine;
+
+namespace Services.Localization
 {
     [System.Serializable]
     public class LocalizationEntry
     {
-        public string Key;
-        public string Text;
+        [SerializeField]
+        public string key;
+        
+        [SerializeField]
+        public string text;
+        
+        public string Key => key;
+        public string Text => text;
 
         public LocalizationEntry(string key, string text)
         {
-            Key = key;
-            Text = text;
+            this.key = key;
+            this.text = text;
         }
     }
 }

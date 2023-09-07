@@ -72,7 +72,9 @@ namespace Game.States
         {
             var currentRound = 1;
             if (!_isNewGame)
+            {
                 currentRound = LoadGame();
+            }
             else
             {
                 var gameUserData = _userData.GetData<GameUserData>();

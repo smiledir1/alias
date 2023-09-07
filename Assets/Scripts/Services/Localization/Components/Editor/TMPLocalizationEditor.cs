@@ -195,7 +195,9 @@ namespace Services.Localization.Components.Editor
                     DrawLocalizationText(localizationEntry.Text, StripLanguage.ToString());
                 }
                 else
+                {
                     DrawLocalizationText(_findTexts[0], StripLanguage.ToString());
+                }
 
                 GUILayout.Space(5);
                 if (GUILayout.Button("Все языки"))

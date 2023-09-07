@@ -122,10 +122,6 @@ namespace Services.Localization.Editor
 
         private void OnGUI()
         {
-            var e = Event.current;
-
-            if (e.type == EventType.MouseUp && e.button == 1) Debug.Log("Right mouse button lifted");
-
             if (_window == null) InitializeWindow();
             var serializeWindowObject = new SerializedObject(this);
 
@@ -207,11 +203,9 @@ namespace Services.Localization.Editor
                     var entry = entries[j];
                     _translations[j, i] = entry.Text;
                     if (string.Compare(_keys[j], entry.Key, StringComparison.Ordinal) != 0)
-                    {
                         Debug.LogWarning(
                             $"{_localizationData.Languages[i].SystemLanguage}" +
                             $" {_keys[j]} {entry.Key} {i} {j} different keys");
-                    }
                 }
             }
 
@@ -221,14 +215,13 @@ namespace Services.Localization.Editor
 
         private void ImportCsv()
         {
-            var path = $"{Application.dataPath}/loc.csv";
+            var mainDir = Application.dataPath[..^6];
+            var path = Path.Combine(mainDir, "loc.csv");
             var text = File.ReadAllText(path, Encoding.UTF8);
-
 
             const char RowSeparator = ';';
             const char ColumnSeparator = '\n';
             ImportFromText(text, RowSeparator, ColumnSeparator);
-
             Debug.Log("Import complete");
         }
 
@@ -258,7 +251,8 @@ namespace Services.Localization.Editor
             const char RowSeparator = ';';
             const char ColumnSeparator = '\n';
 
-            var path = $"{Application.dataPath}/locExport.csv";
+            var mainDir = Application.dataPath[..^6];
+            var path = Path.Combine(mainDir, "loc.csv");
             var exportTextBuilder = new StringBuilder();
 
             exportTextBuilder.Append(RowSeparator);

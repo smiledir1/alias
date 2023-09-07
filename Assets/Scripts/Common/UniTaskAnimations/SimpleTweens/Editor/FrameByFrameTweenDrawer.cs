@@ -74,12 +74,13 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
                 _framesCount = 1;
             }
             else
+            {
                 _framesCount = value;
+            }
 
             x += width;
             var buttonRect = new Rect(x, y, width, LineHeight);
             if (GUI.Button(buttonRect, "Calculate"))
-            {
                 if (property.managedReferenceValue is FrameByFrameTween currentTween)
                 {
                     var newTime = currentTween.Sprites.Count / (float) _framesCount;
@@ -92,7 +93,6 @@ namespace Common.UniTaskAnimations.SimpleTweens.Editor
                         currentTween.TweenImage,
                         currentTween.Sprites);
                 }
-            }
 
             return LineHeight;
         }

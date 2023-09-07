@@ -12,96 +12,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01325be785644f55b27357a3e83089dc, type: 3}
   m_Name: LocalizationEn
   m_EditorClassIdentifier: 
-  Language: 10
-  Entries:
-  - Key: close
-    Text: Close
-  - Key: continue
-    Text: Continue
-  - Key: new_game
-    Text: New Game
-  - Key: settings
-    Text: Settings
-  - Key: confirm
-    Text: Confirm
-  - Key: packs
-    Text: Packs
-  - Key: pick
-    Text: Pick
-  - Key: start_new_game
-    Text: Start New Game
-  - Key: round_time
-    Text: Round Time
-  - Key: pack_name
-    Text: Pack Name
-  - Key: last_word
-    Text: Last Word
-  - Key: add_team
-    Text: Add team
-  - Key: remove_team
-    Text: Remove team
-  - Key: start_game
-    Text: Start game
-  - Key: start_round
-    Text: Start round
-  - Key: are_you_ready
-    Text: Are you ready?
-  - Key: right
-    Text: Right
-  - Key: wrong
-    Text: Wrong
-  - Key: round
-    Text: Round
-  - Key: end_round
-    Text: End round
-  - Key: next_round
-    Text: Next round
-  - Key: dynamite_team
-    Text: Explosive Guys
-  - Key: reading_stars_team
-    Text: Reading Stars
-  - Key: energized_team
-    Text: Energized
-  - Key: magic_walkers_team
-    Text: Magic Walkers
-  - Key: strong_athletes_team
-    Text: Strong Athletes
-  - Key: lucky_team
-    Text: Lucky Team
-  - Key: magic_dice_team
-    Text: Magic Dice
-  - Key: sea_dwellers_team
-    Text: 'Sea Dwellers '
-  - Key: meat_lovers_team
-    Text: Meat Lovers
-  - Key: penpals_team
-    Text: Penpals
-  - Key: strict_engineers_team
-    Text: Strict Engineers
-  - Key: magnetized_team
-    Text: Magnetized
-  - Key: adventurers_team
-    Text: Adventurers
-  - Key: brave_chemists_team
-    Text: Brave Chemists
-  - Key: teams
-    Text: Teams
-  - Key: free_skip
-    Text: Free Skip
-  - Key: stop
-    Text: Stop
-  - Key: in_pack_
-    Text: 'Word in pack: {0}'
-  - Key: rules_text
-    Text: In Alias, players form teams of two or more people. The goal of the game
-      is to explain a word to another player using synonyms, antonyms, descriptions,
-      and various clues. The captains using the buttons choose correctly or not the
-      team answered. The team that reaches the finish line first wins the game!
-  - Key: rules
-    Text: Rules
-  - Key: start_game_error
-    Text: Start Game Error
-  - Key: pack_not_selected
-    Text: Pack not selected
-  - Key: multiple_teams_must_participate
-    Text: Multiple teams must participate
+  language: 10
+  entries:
+  - key: close
+    text: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
+  - key: continue
+    text: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
+  - key: new_game
+    text: "\u041D\u043E\u0432\u0430\u044F \u0418\u0433\u0440\u0430"
+  - key: settings
+    text: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+  - key: confirm
+    text: "\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044C"
+  - key: packs
+    text: "\u041F\u0430\u043A\u0438"
+  - key: pick
+    text: "\u0412\u044B\u0431\u0440\u0430\u0442\u044C"
+  - key: start_new_game
+    text: "\u041D\u0430\u0447\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E \u0438\u0433\u0440\u0443"
+  - key: round_time
+    text: "\u0412\u0440\u0435\u043C\u044F \u043D\u0430 \u0440\u0430\u0443\u043D\u0434"
+  - key: pack_name
+    text: "\u0418\u043C\u044F \u043F\u0430\u043A\u0430"
+  - key: last_word
+    text: "\u041F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u0435 \u0421\u043B\u043E\u0432\u043E"
+  - key: add_team
+    text: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u0430\u043D\u0434\u0443"
+  - key: remove_team
+    text: "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u043E\u043C\u0430\u043D\u0434\u0443"
+  - key: start_game
+    text: "\u041D\u0430\u0447\u0430\u0442\u044C \u0438\u0433\u0440\u0443"
+  - key: start_round
+    text: "\u041D\u0430\u0447\u0430\u0442\u044C \u0440\u0430\u0443\u043D\u0434"
+  - key: are_you_ready
+    text: "\u0412\u044B \u0433\u043E\u0442\u043E\u0432\u044B?"
+  - key: right
+    text: "\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E"
+  - key: wrong
+    text: "\u041D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E"
+  - key: round
+    text: "\u0420\u0430\u0443\u043D\u0434"
+  - key: end_round
+    text: "\u041A\u043E\u043D\u0435\u0446 \u0440\u0430\u0443\u043D\u0434\u0430"
+  - key: next_round
+    text: "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0440\u0430\u0443\u043D\u0434"
+  - key: dynamite_team
+    text: "\u0412\u0437\u0440\u044B\u0432\u043D\u044B\u0435 \u0420\u0435\u0431\u044F\u0442\u0430"
+  - key: reading_stars_team
+    text: "\u0427\u0438\u0442\u0430\u044E\u0449\u0438\u0435 \u0417\u0432\u0435\u0437\u0434\u044B"
+  - key: energized_team
+    text: "\u0417\u0430\u0440\u044F\u0436\u0435\u043D\u043D\u044B\u0435 \u042D\u043D\u0435\u0440\u0433\u0438\u0435\u0439"
+  - key: magic_walkers_team
+    text: "\u0421\u043A\u043E\u0440\u043E\u0445\u043E\u0434\u044B"
+  - key: strong_athletes_team
+    text: "\u0421\u0438\u043B\u044C\u043D\u044B\u0435 \u0430\u0442\u043B\u0435\u0442\u044B"
+  - key: lucky_team
+    text: "\u0412\u0435\u0437\u0443\u0447\u0438\u0435"
+  - key: magic_dice_team
+    text: "\u0412\u043E\u043B\u0448\u0435\u0431\u043D\u044B\u0435 \u041A\u0443\u0431\u0438\u043A\u0438"
+  - key: sea_dwellers_team
+    text: "\u041C\u043E\u0440\u0441\u043A\u0438\u0435 \u0416\u0438\u0442\u0435\u043B\u0438"
+  - key: meat_lovers_team
+    text: "\u041B\u044E\u0431\u0438\u0442\u0435\u043B\u0438 \u041C\u044F\u0441\u043A\u0430"
+  - key: penpals_team
+    text: "\u0414\u0440\u0443\u0437\u044C\u044F \u043F\u043E \u043F\u0435\u0440\u0435\u043F\u0438\u0441\u043A\u0435"
+  - key: strict_engineers_team
+    text: "\u0421\u0442\u0440\u043E\u0433\u0438\u0435 \u0418\u043D\u0436\u0435\u043D\u0435\u0440\u044B"
+  - key: magnetized_team
+    text: "\u041D\u0430\u043C\u0430\u0433\u043D\u0438\u0447\u0435\u043D\u043D\u044B\u0435"
+  - key: adventurers_team
+    text: "\u0418\u0441\u043A\u0430\u0442\u0435\u043B\u0438 \u041F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0439"
+  - key: brave_chemists_team
+    text: "\u0425\u0440\u0430\u0431\u0440\u044B\u0435 \u0425\u0438\u043C\u0438\u043A\u0438"
+  - key: teams
+    text: "\u041A\u043E\u043C\u0430\u043D\u0434\u044B"
+  - key: free_skip
+    text: "\u0428\u0442\u0440\u0430\u0444 \u0437\u0430 \u043F\u0440\u043E\u043F\u0443\u0441\u043A"
+  - key: stop
+    text: "\u0421\u0442\u043E\u043F"
+  - key: in_pack_
+    text: "\u0421\u043B\u043E\u0432 \u0432 \u043F\u0430\u043A\u0435: {0}"
+  - key: rules_text
+    text: "\u0412 Alias \u0438\u0433\u0440\u0430\u044E\u0442 \u043A\u043E\u043C\u0430\u043D\u0434\u0430\u043C\u0438
+      \u0438\u0437 \u0434\u0432\u0443\u0445 \u0438 \u0431\u043E\u043B\u0435\u0435
+      \u0447\u0435\u043B\u043E\u0432\u0435\u043A. \u0426\u0435\u043B\u044C \u0438\u0433\u0440\u044B
+      \u2014 \u043E\u0431\u044A\u044F\u0441\u043D\u0438\u0442\u044C \u0441\u043B\u043E\u0432\u043E
+      \u0434\u0440\u0443\u0433\u043E\u043C\u0443 \u0438\u0433\u0440\u043E\u043A\u0443
+      \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u0441\u0438\u043D\u043E\u043D\u0438\u043C\u043E\u0432,
+      \u0430\u043D\u0442\u043E\u043D\u0438\u043C\u043E\u0432, \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0439
+      \u0438 \u0440\u0430\u0437\u043B\u0438\u0447\u043D\u044B\u0445 \u043F\u043E\u0434\u0441\u043A\u0430\u0437\u043E\u043A.
+      \u041A\u0430\u043F\u0438\u0442\u0430\u043D\u044B, \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E
+      \u043A\u043D\u043E\u043F\u043E\u043A, \u0432\u044B\u0431\u0438\u0440\u0430\u044E\u0442
+      \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u0438\u043B\u0438 \u043D\u0435\u0442
+      \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0430 \u043A\u043E\u043C\u0430\u043D\u0434\u0430.
+      \u041A\u043E\u043C\u0430\u043D\u0434\u0430, \u043A\u043E\u0442\u043E\u0440\u0430\u044F
+      \u043F\u0435\u0440\u0432\u043E\u0439 \u0434\u043E\u0441\u0442\u0438\u0433\u043D\u0435\u0442
+      \u0444\u0438\u043D\u0438\u0448\u0430, \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0435\u0442
+      \u0432 \u0438\u0433\u0440\u0435!"
+  - key: rules
+    text: "\u041F\u0440\u0430\u0432\u0438\u043B\u0430"
+  - key: start_game_error
+    text: "\u041E\u0448\u0438\u0431\u043A\u0430 \u0441\u0442\u0430\u0440\u0442\u0430
+      \u0438\u0433\u0440\u044B"
+  - key: pack_not_selected
+    text: "\u041F\u0430\u043A \u043D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D"
+  - key: multiple_teams_must_participate
+    text: "\u0414\u043E\u043B\u0436\u043D\u043E \u0443\u0447\u0430\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C
+      \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u043A\u043E\u043C\u0430\u043D\u0434"

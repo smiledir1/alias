@@ -8,32 +8,26 @@ namespace Services.Localization
     [CreateAssetMenu(menuName = "Services/Localization/LocalizationsConfig", fileName = "LocalizationsConfig")]
     public class LocalizationData : ScriptableObject
     {
-#if UNITY_EDITOR
-        [Header("https://docs.google.com/spreadsheets/d/[SPREADSHEETHASH]/export?format=csv")]
         [SerializeField]
-        private string _spreadsheetUrl;
+        private List<LocalizationDataItem> languages = new();
 
-        public string SpreadsheetUrl => _spreadsheetUrl;
-#endif
-        public List<LocalizationDataItem> Languages = new();
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            foreach (var language in Languages)
-            {
-                if (language == null) continue;
-                language.SystemLanguage = language.LanguageWords.editorAsset.Language;
-            }
-        }
-#endif
+        public List<LocalizationDataItem> Languages => languages;
     }
 
     [Serializable]
     public class LocalizationDataItem
     {
-        public SystemLanguage SystemLanguage;
-        public string LanguageLocalizeName;
-        public AssetReferenceT<LanguageEntry> LanguageWords;
+        [SerializeField]
+        private SystemLanguage _systemLanguage;
+
+        [SerializeField]
+        private string _languageLocalizeName;
+
+        [SerializeField]
+        private AssetReferenceT<LanguageEntry> _languageWords;
+
+        public SystemLanguage SystemLanguage => _systemLanguage;
+        public string LanguageLocalizeName => _languageLocalizeName;
+        public AssetReferenceT<LanguageEntry> LanguageWords => _languageWords;
     }
 }

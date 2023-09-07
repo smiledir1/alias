@@ -72,14 +72,18 @@ namespace Common.UniTaskAnimations.Editor
                 tweenName = "Null";
             }
             else
+            {
                 tweenName = property.managedReferenceValue.GetType().ToString();
+            }
 
             var lastIndexOfPoint = tweenName.LastIndexOf('.');
             var shortTweenNameLength = tweenName.Length - lastIndexOfPoint - 1;
             var shortTweenName = tweenName.Substring(lastIndexOfPoint + 1, shortTweenNameLength);
 
             if (string.Equals(_cachedName, shortTweenName, StringComparison.Ordinal))
+            {
                 label.text = _cachedName;
+            }
             else
             {
                 label.text += $" {shortTweenName}";
@@ -201,7 +205,9 @@ namespace Common.UniTaskAnimations.Editor
                     property.managedReferenceValue = tween;
             }
             else
+            {
                 property.managedReferenceValue = null;
+            }
         }
 
         private void ChangeTween(IBaseTween baseTween, SerializedProperty property)

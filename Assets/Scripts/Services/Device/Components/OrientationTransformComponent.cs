@@ -8,7 +8,7 @@ namespace Services.Device.Components
     public class OrientationTransformComponent : MonoBehaviour
     {
         [SerializeField]
-        private bool _initializeOnAwake = true;
+        private bool initializeOnAwake = true;
 
         [SerializeField]
         private ObjectCopyValues portraitObjectCopyValues;
@@ -21,7 +21,7 @@ namespace Services.Device.Components
 
         private void Awake()
         {
-            if (_initializeOnAwake) Initialize();
+            if (initializeOnAwake) Initialize();
         }
 
         private void OnDestroy()

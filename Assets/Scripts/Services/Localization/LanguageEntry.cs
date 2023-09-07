@@ -6,7 +6,13 @@ namespace Services.Localization
     [CreateAssetMenu(menuName = "Services/Localization/LocalizationLanguage", fileName = "Localization")]
     public class LanguageEntry : ScriptableObject
     {
-        public SystemLanguage Language;
-        public List<LocalizationEntry> Entries = new();
+        [SerializeField]
+        private SystemLanguage language;
+        
+        [SerializeField]
+        private List<LocalizationEntry> entries = new();
+        
+        public SystemLanguage Language => language;
+        public List<LocalizationEntry> Entries => entries;
     }
 }

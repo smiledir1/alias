@@ -155,7 +155,9 @@ namespace Game.UI.Screens.Round
                 _lastWord.SetActive(true);
             }
             else
+            {
                 FinishRound();
+            }
         }
 
         private void LoadWords()
@@ -234,7 +236,9 @@ namespace Game.UI.Screens.Round
         private void OnStartButton()
         {
             if (_isPause)
+            {
                 ResumeGame();
+            }
             else
             {
                 _gameTokenSource?.Cancel();

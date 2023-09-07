@@ -10,12 +10,11 @@ namespace Services.UI.Editor
     public class UIHelperWindow : EditorWindow
     {
         private static UIHelperWindow _window;
-
-        [SerializeField]
+        private static SerializedObject _windowSerializedObject;
+       
         [SerializeReference]
         private ITween _openSimpleTween;
 
-        [SerializeField]
         [SerializeReference]
         private ITween _closeSimpleTween;
 
@@ -26,13 +25,18 @@ namespace Services.UI.Editor
         {
             _window = GetWindow<UIHelperWindow>();
             _window.Show();
+            
+            _windowSerializedObject = new SerializedObject(_window);
         }
 
         private void OnGUI()
         {
             if (_window == null) InitializeWindow();
-            var serializeWindowObject = new SerializedObject(this);
-
+            
+            _windowSerializedObject.Update();
+            var property = _windowSerializedObject.FindProperty("_openSimpleTween");
+            EditorGUILayout.PropertyField(property);
+            
             _prefabPathFolder = EditorGUILayout.TextField("Path To Prefab Folder", _prefabPathFolder);
 
             if (GUILayout.Button("Set Tween as open animation")) MakeOpenAnimation();
@@ -52,7 +56,7 @@ namespace Services.UI.Editor
 
             EditorGUILayout.EndHorizontal();
 
-            serializeWindowObject.ApplyModifiedProperties();
+            _windowSerializedObject.ApplyModifiedProperties();
         }
 
         private void MakeOpenAnimation()
@@ -143,12 +147,10 @@ namespace Services.UI.Editor
                 }
 
                 if (isEmpty)
-                {
                     Debug.Log($"UIObject: {uiObject.name} " +
                               $"Property: {propertiesIterator.propertyPath} " +
                               $"Type: {propertiesIterator.type} " +
                               $"Is Empty");
-                }
             }
         }
     }

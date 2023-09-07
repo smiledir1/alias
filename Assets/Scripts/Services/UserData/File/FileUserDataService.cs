@@ -99,7 +99,6 @@ namespace Services.UserData.File
                 var dataName = data.DataName;
                 var hasUserData = HasUserData(dataName);
                 if (hasUserData)
-                {
                     try
                     {
                         var userDataText = GetUserDataText(dataName);
@@ -115,7 +114,6 @@ namespace Services.UserData.File
                     {
                         Debug.LogError($"Wrong read: {dataName} Type: {dataType}");
                     }
-                }
                 else
                     UserDatCollection.Add(dataType, data);
             }

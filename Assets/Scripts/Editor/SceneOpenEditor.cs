@@ -70,7 +70,9 @@ namespace Editor
                     Debug.Log("Could not find Scene " + scenePath);
             }
             else
+            {
                 EditorSceneManager.playModeStartScene = null;
+            }
 
             Menu.SetChecked("Tools/Scenes/AlwaysStartFromEntryScene",
                 _isAlwaysStartFromEntryScene);
