@@ -1,10 +1,11 @@
 #if UNITY_EDITOR
 using System;
 using System.Linq;
+using Services.Device;
 using UnityEditor;
 using UnityEngine;
 
-namespace Services.Device.Components.Editor
+namespace Common.Utils.ObjectCopy.Components.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(ScreenSizeTransformComponent), true)]

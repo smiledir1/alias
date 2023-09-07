@@ -1,11 +1,9 @@
 {
-    "name": "Utils.RectTransform",
+    "name": "Services.Device",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:c4b59fca02d2bf14eb33a0879ddc220c",
-        "GUID:71809db2279e1ae46817597ca4ad4e08",
-        "GUID:6f68e653e2f5b73408647a53e621f73e"
+        "GUID:6f68e653e2f5b73408647a53e621f73e",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -17,46 +17,17 @@ namespace Common.Utils.Defines
 
         public static void AddDefinesForDefaultTargets(List<string> defines)
         {
-            PlayerSettings.GetScriptingDefineSymbols(
-                NamedBuildTarget.Standalone,
-                out var projectDefines);
-            var addDefines = new List<string>(projectDefines);
-
-            foreach (var define in defines)
+            foreach (var buildTarget in DefaultBuildTargets)
             {
-                if (string.IsNullOrEmpty(define)) continue;
-                if (addDefines.Contains(define)) continue;
-                addDefines.Add(define);
+                AddDefinesTarget(defines, buildTarget);
             }
-
-            SetDefinesForDefaultTargets(addDefines);
         }
 
         public static void RemoveDefinesForDefaultTargets(List<string> defines)
         {
-            PlayerSettings.GetScriptingDefineSymbols(
-                NamedBuildTarget.Standalone,
-                out var projectDefines);
-            var addDefines = new List<string>(projectDefines);
-
-            foreach (var define in defines)
-            {
-                if (string.IsNullOrEmpty(define)) continue;
-                if (!addDefines.Contains(define)) continue;
-                addDefines.Remove(define);
-            }
-
-            SetDefinesForDefaultTargets(addDefines);
-        }
-
-        public static void SetDefinesForDefaultTargets(List<string> defines)
-        {
-            if (defines.Count == 0) return;
-
-            var definesArray = defines.ToArray();
             foreach (var buildTarget in DefaultBuildTargets)
             {
-                PlayerSettings.SetScriptingDefineSymbols(buildTarget, definesArray);
+                RemoveDefinesTarget(defines, buildTarget);
             }
         }
 

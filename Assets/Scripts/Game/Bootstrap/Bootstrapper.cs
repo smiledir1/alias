@@ -18,9 +18,14 @@ using Services.Logger;
 using Services.UI.PopupService;
 using Services.UI.ScreenService;
 using Services.UserData;
-using Services.UserData.File;
 using Services.Vibration;
 using UnityEngine;
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+using Services.UserData.WebGL;
+#else
+using Services.UserData.File;
+#endif
 
 #if YANDEX_PLATFORM
 using Services.YandexAdvertisement;
@@ -96,6 +101,7 @@ namespace Game.Bootstrap
             {
                 new GameUserData()
             };
+            
 #if UNITY_WEBGL && !UNITY_EDITOR
             var userDataService = new WebGLUserDataService(userDataObjects, false);
 #else

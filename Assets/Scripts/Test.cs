@@ -16,9 +16,8 @@ using Services.Helper;
 using Services.UI;
 using Services.UI.PopupService;
 using Services.UserData;
-using Services.UserData.File;
 using TMPro;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -205,7 +204,7 @@ public class Test : MonoBehaviour, IHasServices
         // Debug.Log( Camera.main.pixelRect);
         // Screen.SetResolution(width, height, false);
         // var gameWindow = UnityEditor.EditorWindow.GetWindow<PlayModeView>();
-        UnityEditor.PlayModeWindow.SetCustomRenderingResolution((uint) width, (uint) height, "NEWTESTRES");
+        //UnityEditor.PlayModeWindow.SetCustomRenderingResolution((uint) width, (uint) height, "NEWTESTRES");
 
         Debug.Log("set");
     }
@@ -278,8 +277,6 @@ public class Test : MonoBehaviour, IHasServices
         //Unity.Services.Analytics.AnalyticsService
         Debug.Log(number2.ToString($"F{round}"));
     }
-
-    private FileUserDataService _fileUserDataService;
 
     private void TestUserData()
     {
@@ -395,154 +392,154 @@ public class Test : MonoBehaviour, IHasServices
 
     #region Attributes
 
-    private void TestAttributes2()
-    {
-        var assetsService = new AssetsService();
-        var attributeType = typeof(ServiceAttribute);
-        // var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-        // foreach (var assembly in assemblies)
-        // {
-        //     var types = assembly.GetTypes();
-        //     foreach (var type in types)
-        //     {
-        //         var hasServiceAttribute = type.HasAttribute(attributeType);
-        //         if (hasServiceAttribute)
-        //         {
-        //             Debug.Log($"Type: {type}");
-        //             var fields = type.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
-        //             foreach (var fieldInfo in fields)
-        //             {
-        //                 var attributes = fieldInfo.GetCustomAttributes(attributeType);
-        //                 foreach (var attribute in attributes)
-        //                 {
-        //                     Debug.Log(attribute);
-        //                 }
-        //
-        //                 var isCustom = fieldInfo.HasAttribute(attributeType);
-        //                 if (isCustom)
-        //                 {
-        //                     var fieldType = fieldInfo.FieldType;
-        //                     if (fieldType == typeof(IAssetsService))
-        //                     {
-        //                         fieldInfo.SetValue(null, assetsService);
-        //                         Debug.Log("add");
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        //     // foreach (var customAttribute in assembly.CustomAttributes)
-        //     // {
-        //     //     if (customAttribute.AttributeType == attributeType)
-        //     //     {
-        //     //         
-        //     //     }
-        //     // }
-        //
-        //     //
-        //     // var serviceAttributes = Attribute.GetCustomAttributes(assembly, typeof(ServiceAttribute));
-        //     // if (serviceAttributes.Length > 0)
-        //     // {
-        //     //     foreach (var serviceAttribute in serviceAttributes)
-        //     //     {
-        //     //         Debug.Log(serviceAttribute);
-        //     //     }
-        //     // }
-        // }
-        var mainType = typeof(MonoBehaviour);
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-        foreach (var assembly in assemblies)
-        {
-            var types = assembly.GetTypes();
-            foreach (var type in types)
-            {
-                if (!type.IsSubclassOf(mainType)) continue;
-                var fields = type.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
-                foreach (var fieldInfo in fields)
-                {
-                    var attributes = fieldInfo.GetCustomAttributes(attributeType);
-                    foreach (var attribute in attributes)
-                    {
-                        Debug.Log(attribute);
-                    }
-
-                    var isCustom = fieldInfo.HasAttribute(attributeType);
-                    if (isCustom)
-                    {
-                        var fieldType = fieldInfo.FieldType;
-                        if (fieldType == typeof(IAssetsService))
-                        {
-                            fieldInfo.SetValue(null, assetsService);
-                            Debug.Log("add");
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void TestAttributesAndProperties()
-    {
-        if (number != 5) return;
-        var assembly = this.GetType().Assembly;
-        var attrs = Attribute.GetCustomAttributes(assembly, typeof(CustomAttribute));
-        var attrs2 = Attribute.GetCustomAttributes(assembly);
-
-        Debug.Log("attr");
-        foreach (var attr in attrs)
-        {
-            Debug.Log(attr);
-        }
-
-        Debug.Log("attr2");
-        foreach (var attr in attrs2)
-        {
-            Debug.Log(attr);
-        }
-
-
-        var properties = this.GetType().GetProperties(BindingFlags.Static & BindingFlags.NonPublic);
-        var properties4 = this.GetType().GetProperties(BindingFlags.Static | BindingFlags.NonPublic);
-        var properties2 = this.GetType().GetProperties(BindingFlags.Static);
-        var properties3 = this.GetType().GetProperties();
-        var fields = this.GetType().GetFields(BindingFlags.Static | BindingFlags.NonPublic);
-        Debug.Log("attr3");
-        foreach (var property in properties4)
-        {
-            var customAttributes = property.GetCustomAttributes(typeof(CustomAttribute));
-            foreach (var customAttribute in customAttributes)
-            {
-                Debug.Log(customAttribute);
-            }
-
-            var isCustom = property.HasAttribute<CustomAttribute>();
-            if (isCustom)
-            {
-                var number2 = 20;
-                var t = number2;
-                property.SetValue(null, t);
-            }
-        }
-
-        Debug.Log("attr4");
-        foreach (var fieldInfo in fields)
-        {
-            var customAttributes = fieldInfo.GetCustomAttributes(typeof(CustomAttribute));
-            foreach (var customAttribute in customAttributes)
-            {
-                Debug.Log(customAttribute);
-            }
-
-            var isCustom = fieldInfo.HasAttribute<CustomAttribute>();
-            if (isCustom)
-            {
-                var number2 = 20;
-                var t = number2;
-                var type = fieldInfo.FieldType;
-                fieldInfo.SetValue(null, t);
-            }
-        }
-    }
+    // private void TestAttributes2()
+    // {
+    //     var assetsService = new AssetsService();
+    //     var attributeType = typeof(ServiceAttribute);
+    //     // var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+    //     // foreach (var assembly in assemblies)
+    //     // {
+    //     //     var types = assembly.GetTypes();
+    //     //     foreach (var type in types)
+    //     //     {
+    //     //         var hasServiceAttribute = type.HasAttribute(attributeType);
+    //     //         if (hasServiceAttribute)
+    //     //         {
+    //     //             Debug.Log($"Type: {type}");
+    //     //             var fields = type.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
+    //     //             foreach (var fieldInfo in fields)
+    //     //             {
+    //     //                 var attributes = fieldInfo.GetCustomAttributes(attributeType);
+    //     //                 foreach (var attribute in attributes)
+    //     //                 {
+    //     //                     Debug.Log(attribute);
+    //     //                 }
+    //     //
+    //     //                 var isCustom = fieldInfo.HasAttribute(attributeType);
+    //     //                 if (isCustom)
+    //     //                 {
+    //     //                     var fieldType = fieldInfo.FieldType;
+    //     //                     if (fieldType == typeof(IAssetsService))
+    //     //                     {
+    //     //                         fieldInfo.SetValue(null, assetsService);
+    //     //                         Debug.Log("add");
+    //     //                     }
+    //     //                 }
+    //     //             }
+    //     //         }
+    //     //     }
+    //     //     // foreach (var customAttribute in assembly.CustomAttributes)
+    //     //     // {
+    //     //     //     if (customAttribute.AttributeType == attributeType)
+    //     //     //     {
+    //     //     //         
+    //     //     //     }
+    //     //     // }
+    //     //
+    //     //     //
+    //     //     // var serviceAttributes = Attribute.GetCustomAttributes(assembly, typeof(ServiceAttribute));
+    //     //     // if (serviceAttributes.Length > 0)
+    //     //     // {
+    //     //     //     foreach (var serviceAttribute in serviceAttributes)
+    //     //     //     {
+    //     //     //         Debug.Log(serviceAttribute);
+    //     //     //     }
+    //     //     // }
+    //     // }
+    //     var mainType = typeof(MonoBehaviour);
+    //     var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+    //     foreach (var assembly in assemblies)
+    //     {
+    //         var types = assembly.GetTypes();
+    //         foreach (var type in types)
+    //         {
+    //             if (!type.IsSubclassOf(mainType)) continue;
+    //             var fields = type.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
+    //             foreach (var fieldInfo in fields)
+    //             {
+    //                 var attributes = fieldInfo.GetCustomAttributes(attributeType);
+    //                 foreach (var attribute in attributes)
+    //                 {
+    //                     Debug.Log(attribute);
+    //                 }
+    //
+    //                 var isCustom = fieldInfo.HasAttribute(attributeType);
+    //                 if (isCustom)
+    //                 {
+    //                     var fieldType = fieldInfo.FieldType;
+    //                     if (fieldType == typeof(IAssetsService))
+    //                     {
+    //                         fieldInfo.SetValue(null, assetsService);
+    //                         Debug.Log("add");
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    //
+    // private void TestAttributesAndProperties()
+    // {
+    //     if (number != 5) return;
+    //     var assembly = this.GetType().Assembly;
+    //     var attrs = Attribute.GetCustomAttributes(assembly, typeof(CustomAttribute));
+    //     var attrs2 = Attribute.GetCustomAttributes(assembly);
+    //
+    //     Debug.Log("attr");
+    //     foreach (var attr in attrs)
+    //     {
+    //         Debug.Log(attr);
+    //     }
+    //
+    //     Debug.Log("attr2");
+    //     foreach (var attr in attrs2)
+    //     {
+    //         Debug.Log(attr);
+    //     }
+    //
+    //
+    //     var properties = this.GetType().GetProperties(BindingFlags.Static & BindingFlags.NonPublic);
+    //     var properties4 = this.GetType().GetProperties(BindingFlags.Static | BindingFlags.NonPublic);
+    //     var properties2 = this.GetType().GetProperties(BindingFlags.Static);
+    //     var properties3 = this.GetType().GetProperties();
+    //     var fields = this.GetType().GetFields(BindingFlags.Static | BindingFlags.NonPublic);
+    //     Debug.Log("attr3");
+    //     foreach (var property in properties4)
+    //     {
+    //         var customAttributes = property.GetCustomAttributes(typeof(CustomAttribute));
+    //         foreach (var customAttribute in customAttributes)
+    //         {
+    //             Debug.Log(customAttribute);
+    //         }
+    //
+    //         var isCustom = property.HasAttribute<CustomAttribute>();
+    //         if (isCustom)
+    //         {
+    //             var number2 = 20;
+    //             var t = number2;
+    //             property.SetValue(null, t);
+    //         }
+    //     }
+    //
+    //     Debug.Log("attr4");
+    //     foreach (var fieldInfo in fields)
+    //     {
+    //         var customAttributes = fieldInfo.GetCustomAttributes(typeof(CustomAttribute));
+    //         foreach (var customAttribute in customAttributes)
+    //         {
+    //             Debug.Log(customAttribute);
+    //         }
+    //
+    //         var isCustom = fieldInfo.HasAttribute<CustomAttribute>();
+    //         if (isCustom)
+    //         {
+    //             var number2 = 20;
+    //             var t = number2;
+    //             var type = fieldInfo.FieldType;
+    //             fieldInfo.SetValue(null, t);
+    //         }
+    //     }
+    // }
 
     #endregion
 }

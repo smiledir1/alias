@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
-using Services.UserData.File;
 
 namespace Services.UserData.WebGL
 {
-    public class WebGLFileUserDataService : FileUserDataService
+    public class WebGLUserDataService : BaseUserDataService
     {
         [DllImport("__Internal")]
         private static extern int HasKeyInLocalStorage(string key);
@@ -19,7 +18,7 @@ namespace Services.UserData.WebGL
         [DllImport("__Internal")]
         private static extern void RemoveFromLocalStorage(string key);
 
-        public WebGLFileUserDataService(List<UserDataObject> userDatCollection, bool isCrypt)
+        public WebGLUserDataService(List<UserDataObject> userDatCollection, bool isCrypt)
             : base(userDatCollection, isCrypt)
         {
         }

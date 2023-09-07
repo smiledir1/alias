@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Utils.ObjectCopy;
+using Services.Device;
 using Services.Helper;
 using UnityEngine;
 
-namespace Services.Device.Components
+namespace Common.Utils.ObjectCopy.Components
 {
     public class OrientationTransformComponent : MonoBehaviour
     {
