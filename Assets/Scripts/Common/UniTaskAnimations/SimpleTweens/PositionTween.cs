@@ -77,70 +77,70 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             _rectTransform = tweenObject.transform as RectTransform;
             Vector3 startPosition;
-            Vector3 toPosition;
-            AnimationCurve animationCurve;
-            var tweenTime = base.tweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            Vector3 endPosition;
+            AnimationCurve curve;
+            var curTweenTime = tweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
-                startPosition = this.toPosition;
-                toPosition = fromPosition;
-                animationCurve = ReverseCurve;
+                startPosition = toPosition;
+                endPosition = fromPosition;
+                curve = ReverseCurve;
             }
             else
             {
                 startPosition = fromPosition;
-                toPosition = this.toPosition;
-                animationCurve = base.animationCurve;
+                endPosition = toPosition;
+                curve = animationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var currentPosition = GetCurrentPosition();
                 var t = 1f;
-                if (toPosition.x - startPosition.x != 0f)
-                    t = (currentPosition.x - startPosition.x) / (toPosition.x - startPosition.x);
-                else if (toPosition.y - startPosition.y != 0f)
-                    t = (currentPosition.y - startPosition.y) / (toPosition.y - startPosition.y);
-                else if (toPosition.z - startPosition.z != 0f)
-                    t = (currentPosition.z - startPosition.z) / (toPosition.z - startPosition.z);
+                if (endPosition.x - startPosition.x != 0f)
+                    t = (currentPosition.x - startPosition.x) / (endPosition.x - startPosition.x);
+                else if (endPosition.y - startPosition.y != 0f)
+                    t = (currentPosition.y - startPosition.y) / (endPosition.y - startPosition.y);
+                else if (endPosition.z - startPosition.z != 0f)
+                    t = (currentPosition.z - startPosition.z) / (endPosition.z - startPosition.z);
 
-                time = tweenTime * t;
+                time = curTweenTime * t;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 GoToPosition(startPosition);
 
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
-                    var lerpValue = Vector3.LerpUnclamped(startPosition, toPosition, lerpTime);
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = curve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var lerpValue = Vector3.LerpUnclamped(startPosition, endPosition, lerpTime);
 
                     GoToPosition(lerpValue);
                     await UniTask.Yield(cancellationToken);
                 }
 
-                GoToPosition(toPosition);
-                time -= tweenTime;
+                GoToPosition(endPosition);
+                time -= curTweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
                         break;
 
                     case LoopType.PingPong:
-                        toPosition = startPosition;
+                        endPosition = startPosition;
                         startPosition = GetCurrentPosition();
                         break;
                 }
@@ -152,9 +152,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
             GoToPosition(fromPosition);
         }
 
-        public void SetPositions(Vector3 from, Vector3 to, PositionType positionType)
+        public void SetPositions(Vector3 from, Vector3 to, PositionType curPositionType)
         {
-            this.positionType = positionType;
+            positionType = curPositionType;
             fromPosition = from;
             toPosition = to;
         }

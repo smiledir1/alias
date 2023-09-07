@@ -7,16 +7,16 @@ namespace Game.Services.Teams
     public class TeamItem
     {
         [SerializeField]
-        private string _id;
+        public string id;
 
         [SerializeField]
-        private string _nameLocalizationKey;
+        public string nameLocalizationKey;
 
         [SerializeField]
-        private Sprite _icon;
+        public Sprite icon;
 
-        public string Id => _id;
-        public string NameLocalizationKey => _nameLocalizationKey;
-        public Sprite Icon => _icon;
+        public string Id => id;
+        public string NameLocalizationKey => nameLocalizationKey;
+        public Sprite Icon => icon;
     }
 }

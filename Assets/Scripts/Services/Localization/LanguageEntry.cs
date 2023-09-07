@@ -8,10 +8,10 @@ namespace Services.Localization
     {
         [SerializeField]
         private SystemLanguage language;
-        
+
         [SerializeField]
         private List<LocalizationEntry> entries = new();
-        
+
         public SystemLanguage Language => language;
         public List<LocalizationEntry> Entries => entries;
     }

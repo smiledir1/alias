@@ -78,15 +78,15 @@ namespace Game.States
             else
             {
                 var gameUserData = _userData.GetData<GameUserData>();
-                gameUserData.PlayedWordsIndexes = new List<int>();
+                gameUserData.playedWordsIndexes = new List<int>();
             }
 
-            if (_wordsPacksConfigItem.WordsPack.Asset == null) await _wordsPacksConfigItem.WordsPack.LoadAssetAsync();
+            if (_wordsPacksConfigItem.wordsPack.Asset == null) await _wordsPacksConfigItem.wordsPack.LoadAssetAsync();
 
             StartRound(currentRound).Forget();
             SendGameEvent(
                 currentRound.ToString(),
-                _wordsPacksConfigItem.Name,
+                _wordsPacksConfigItem.name,
                 _roundTimeSeconds.ToString(),
                 _isUnlimitedTimeForLastWord.ToString(),
                 _freeSkip.ToString(),
@@ -170,12 +170,12 @@ namespace Game.States
         private void SaveGame(int round)
         {
             var gameUserData = _userData.GetData<GameUserData>();
-            gameUserData.WordsPacksConfigItemName = _wordsPacksConfigItem.Name;
-            gameUserData.RoundTimeSeconds = _roundTimeSeconds;
-            gameUserData.IsUnlimitedTimeForLastWord = _isUnlimitedTimeForLastWord;
-            gameUserData.FreeSkip = _freeSkip;
-            gameUserData.Teams = _teamsService.CreateDataFromTeams(_teams);
-            gameUserData.CurrentRound = round;
+            gameUserData.wordsPacksConfigItemName = _wordsPacksConfigItem.name;
+            gameUserData.roundTimeSeconds = _roundTimeSeconds;
+            gameUserData.isUnlimitedTimeForLastWord = _isUnlimitedTimeForLastWord;
+            gameUserData.freeSkip = _freeSkip;
+            gameUserData.teams = _teamsService.CreateDataFromTeams(_teams);
+            gameUserData.currentRound = round;
             _userData.SaveUserData<GameUserData>();
         }
 
@@ -183,13 +183,13 @@ namespace Game.States
         {
             var gameUserData = _userData.GetData<GameUserData>();
             _wordsPacksConfigItem = _wordsPacksService.WordsPacksConfig.wordsPacksItems.Find(
-                x => x.Name == gameUserData.WordsPacksConfigItemName);
+                x => x.name == gameUserData.wordsPacksConfigItemName);
             if (_wordsPacksConfigItem == null) return 0;
-            _roundTimeSeconds = gameUserData.RoundTimeSeconds;
-            _isUnlimitedTimeForLastWord = gameUserData.IsUnlimitedTimeForLastWord;
-            _freeSkip = gameUserData.FreeSkip;
-            _teams = _teamsService.CreateTeamsFromData(gameUserData.Teams);
-            return gameUserData.CurrentRound;
+            _roundTimeSeconds = gameUserData.roundTimeSeconds;
+            _isUnlimitedTimeForLastWord = gameUserData.isUnlimitedTimeForLastWord;
+            _freeSkip = gameUserData.freeSkip;
+            _teams = _teamsService.CreateTeamsFromData(gameUserData.teams);
+            return gameUserData.currentRound;
         }
 
         private void SendGameEvent(

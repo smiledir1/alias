@@ -65,70 +65,70 @@ namespace Common.UniTaskAnimations.SimpleTweens
             var targetPosition = TweenObject.transform.localPosition;
 
             Vector3 startPosition;
-            Vector3 toPosition;
-            AnimationCurve animationCurve;
-            var tweenTime = TweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            Vector3 endPosition;
+            AnimationCurve curve;
+            var endTweenTime = TweenTime;
+            if (Loop == LoopType.PingPong) endTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startPosition = targetPosition + this.toPosition;
-                toPosition = targetPosition + fromPosition;
-                animationCurve = ReverseCurve;
+                endPosition = targetPosition + fromPosition;
+                curve = ReverseCurve;
             }
             else
             {
                 startPosition = targetPosition + fromPosition;
-                toPosition = targetPosition + this.toPosition;
-                animationCurve = AnimationCurve;
+                endPosition = targetPosition + this.toPosition;
+                curve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var localPosition = TweenObject.transform.localPosition;
                 var t = 1f;
-                if (toPosition.x - startPosition.x != 0f)
-                    t = (localPosition.x - startPosition.x) / (toPosition.x - startPosition.x);
-                else if (toPosition.y - startPosition.y != 0f)
-                    t = (localPosition.y - startPosition.y) / (toPosition.y - startPosition.y);
-                else if (toPosition.z - startPosition.z != 0f)
-                    t = (localPosition.z - startPosition.z) / (toPosition.z - startPosition.z);
+                if (endPosition.x - startPosition.x != 0f)
+                    t = (localPosition.x - startPosition.x) / (endPosition.x - startPosition.x);
+                else if (endPosition.y - startPosition.y != 0f)
+                    t = (localPosition.y - startPosition.y) / (endPosition.y - startPosition.y);
+                else if (endPosition.z - startPosition.z != 0f)
+                    t = (localPosition.z - startPosition.z) / (endPosition.z - startPosition.z);
 
-                time = tweenTime * t;
+                time = endTweenTime * t;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 TweenObject.transform.localPosition = startPosition;
 
-                while (time < tweenTime)
+                while (time < endTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
-                    var lerpValue = Vector3.LerpUnclamped(startPosition, toPosition, lerpTime);
+                    var normalizeTime = time / endTweenTime;
+                    var lerpTime = curve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var lerpValue = Vector3.LerpUnclamped(startPosition, endPosition, lerpTime);
 
                     TweenObject.transform.localPosition = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                TweenObject.transform.localPosition = toPosition;
-                time -= tweenTime;
+                TweenObject.transform.localPosition = endPosition;
+                time -= endTweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
                         break;
 
                     case LoopType.PingPong:
-                        toPosition = startPosition;
+                        endPosition = startPosition;
                         startPosition = TweenObject.transform.localPosition;
                         break;
                 }

@@ -9,31 +9,31 @@ namespace Services.Audio
     public class SoundSettings
     {
         [SerializeField]
-        private AssetReferenceT<AudioClip> _reference;
+        private AssetReferenceT<AudioClip> reference;
 
         [SerializeField]
-        private SoundType _type;
+        private SoundType type;
 
         [SerializeField]
-        private string _id;
+        private string id;
 
-        internal SoundType Type => _type;
-        internal AssetReferenceT<AudioClip> ClipReference => _reference;
-        internal string Id => _id;
+        internal SoundType Type => type;
+        internal AssetReferenceT<AudioClip> ClipReference => reference;
+        internal string Id => id;
 
         public SoundSettings(
             AssetReferenceT<AudioClip> reference,
             SoundType type,
             string id)
         {
-            _reference = reference;
-            _type = type;
-            _id = id;
+            this.reference = reference;
+            this.type = type;
+            this.id = id;
         }
 
-        internal void TrySetId(string id)
+        internal void TrySetId(string audioId)
         {
-            if (string.IsNullOrEmpty(_id)) _id = id;
+            if (string.IsNullOrEmpty(id)) id = audioId;
         }
     }
 }

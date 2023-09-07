@@ -75,57 +75,57 @@ namespace Common.UniTaskAnimations.SimpleTweens
             }
 
             float startOpacity;
-            float toOpacity;
-            AnimationCurve animationCurve;
-            var tweenTime = TweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            float endOpacity;
+            AnimationCurve curve;
+            var curTweenTime = TweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startOpacity = this.toOpacity;
-                toOpacity = fromOpacity;
-                animationCurve = ReverseCurve;
+                endOpacity = fromOpacity;
+                curve = ReverseCurve;
             }
             else
             {
                 startOpacity = fromOpacity;
-                toOpacity = this.toOpacity;
-                animationCurve = AnimationCurve;
+                endOpacity = this.toOpacity;
+                curve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var currentValue = tweenObjectRenderer.alpha;
-                var t = (currentValue - startOpacity) / (toOpacity - startOpacity);
-                time = tweenTime * t;
+                var t = (currentValue - startOpacity) / (endOpacity - startOpacity);
+                time = curTweenTime * t;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 tweenObjectRenderer.alpha = startOpacity;
 
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
-                    var lerpValue = Mathf.LerpUnclamped(startOpacity, toOpacity, lerpTime);
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = curve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var lerpValue = Mathf.LerpUnclamped(startOpacity, endOpacity, lerpTime);
 
                     if (tweenObjectRenderer == null) return;
                     tweenObjectRenderer.alpha = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                tweenObjectRenderer.alpha = toOpacity;
-                time -= tweenTime;
+                tweenObjectRenderer.alpha = endOpacity;
+                time -= curTweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
@@ -133,7 +133,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
                     case LoopType.PingPong:
                         if (tweenObjectRenderer == null) return;
-                        toOpacity = startOpacity;
+                        endOpacity = startOpacity;
                         startOpacity = tweenObjectRenderer.alpha;
                         break;
                 }

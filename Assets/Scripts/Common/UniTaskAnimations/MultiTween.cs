@@ -10,24 +10,24 @@ namespace Common.UniTaskAnimations
     public class MultiTween : IBaseTween
     {
         [SerializeField]
-        protected Transform _parentObject;
+        protected Transform parentObject;
 
         [SerializeField]
-        protected float _perObjectSecondsDelay;
+        protected float perObjectSecondsDelay;
 
         [SerializeReference]
         protected ITween Tween;
 
-        public Transform ParentObject => _parentObject;
-        public float PerObjectSecondsDelay => _perObjectSecondsDelay;
+        public Transform ParentObject => parentObject;
+        public float PerObjectSecondsDelay => perObjectSecondsDelay;
         public ITween CurTween => Tween;
 
         private List<ITween> _animations = new();
 
         public MultiTween(Transform parentObject, float perObjectSecondsDelay)
         {
-            _parentObject = parentObject;
-            _perObjectSecondsDelay = perObjectSecondsDelay;
+            this.parentObject = parentObject;
+            this.perObjectSecondsDelay = perObjectSecondsDelay;
         }
 
         public static MultiTween Clone(MultiTween tween, GameObject targetObject = null)
@@ -49,7 +49,7 @@ namespace Common.UniTaskAnimations
             CheckInitialize();
             foreach (var animation in _animations)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_perObjectSecondsDelay),
+                await UniTask.Delay(TimeSpan.FromSeconds(perObjectSecondsDelay),
                     cancellationToken: cancellationToken);
                 animation.StartAnimation(reverse, startFromCurrentValue, cancellationToken).Forget();
             }
@@ -76,9 +76,9 @@ namespace Common.UniTaskAnimations
         public void InitializeChildren()
         {
             _animations.Clear();
-            for (var i = 0; i < _parentObject.childCount; i++)
+            for (var i = 0; i < parentObject.childCount; i++)
             {
-                var child = _parentObject.GetChild(i);
+                var child = parentObject.GetChild(i);
                 var animation = ITween.Clone(Tween, child.gameObject);
                 _animations.Add(animation);
             }

@@ -8,14 +8,14 @@ namespace Services.UI.PopupService
     public class Popup : UIObject
     {
         [SerializeField]
-        protected Button _closeButton;
+        protected Button closeButton;
 
         protected override UniTask OnLoadAsync()
         {
-            if (_closeButton != null)
+            if (closeButton != null)
             {
-                _closeButton.onClick.RemoveAllListeners();
-                _closeButton.onClick.AddListener(Close);
+                closeButton.onClick.RemoveAllListeners();
+                closeButton.onClick.AddListener(Close);
             }
 
             return base.OnLoadAsync();
@@ -33,13 +33,13 @@ namespace Services.UI.PopupService
 
         public bool CheckForCloseButton()
         {
-            if (_closeButton == null)
+            if (closeButton == null)
             {
                 var buttons = gameObject.GetComponentsInChildren<Button>();
                 foreach (var button in buttons)
                 {
                     if (!button.gameObject.name.Contains("Close")) continue;
-                    _closeButton = button;
+                    closeButton = button;
                     return true;
                 }
             }

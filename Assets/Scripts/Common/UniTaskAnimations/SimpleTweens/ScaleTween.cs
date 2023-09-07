@@ -63,69 +63,69 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (TweenObject == null) return;
 
             Vector3 startScale;
-            Vector3 toScale;
-            AnimationCurve animationCurve;
-            var tweenTime = TweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            Vector3 endScale;
+            AnimationCurve curve;
+            var curTweenTime = TweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startScale = this.toScale;
-                toScale = fromScale;
-                animationCurve = ReverseCurve;
+                endScale = fromScale;
+                curve = ReverseCurve;
             }
             else
             {
                 startScale = fromScale;
-                toScale = this.toScale;
-                animationCurve = AnimationCurve;
+                endScale = this.toScale;
+                curve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var localScale = TweenObject.transform.localScale;
                 var t = 1f;
-                if (toScale.x - startScale.x != 0f)
-                    t = (localScale.x - startScale.x) / (toScale.x - startScale.x);
-                else if (toScale.y - startScale.y != 0f)
-                    t = (localScale.y - startScale.y) / (toScale.y - startScale.y);
-                else if (toScale.z - startScale.z != 0f) t = (localScale.z - startScale.z) / (toScale.z - startScale.z);
+                if (endScale.x - startScale.x != 0f)
+                    t = (localScale.x - startScale.x) / (endScale.x - startScale.x);
+                else if (endScale.y - startScale.y != 0f)
+                    t = (localScale.y - startScale.y) / (endScale.y - startScale.y);
+                else if (endScale.z - startScale.z != 0f) t = (localScale.z - startScale.z) / (endScale.z - startScale.z);
 
-                time = tweenTime * t;
+                time = curTweenTime * t;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 TweenObject.transform.localScale = startScale;
 
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
-                    var lerpValue = Vector3.LerpUnclamped(startScale, toScale, lerpTime);
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = curve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var lerpValue = Vector3.LerpUnclamped(startScale, endScale, lerpTime);
 
                     TweenObject.transform.localScale = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                TweenObject.transform.localScale = toScale;
-                time -= tweenTime;
+                TweenObject.transform.localScale = endScale;
+                time -= curTweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
                         break;
 
                     case LoopType.PingPong:
-                        toScale = startScale;
+                        endScale = startScale;
                         startScale = TweenObject.transform.localScale;
                         break;
                 }

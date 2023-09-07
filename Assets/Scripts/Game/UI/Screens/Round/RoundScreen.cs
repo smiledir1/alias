@@ -83,7 +83,7 @@ namespace Game.UI.Screens.Round
 
             InitializeElements();
 
-            _wordsPack = Model.WordsPacksConfigItem.WordsPack.Asset as WordsPack;
+            _wordsPack = Model.WordsPacksConfigItem.wordsPack.Asset as WordsPack;
 
             return base.OnOpenAsync();
         }
@@ -163,8 +163,8 @@ namespace Game.UI.Screens.Round
         private void LoadWords()
         {
             var gameUserData = _userData.GetData<GameUserData>();
-            if (gameUserData.PlayedWordsIndexes == null) return;
-            foreach (var indexes in gameUserData.PlayedWordsIndexes)
+            if (gameUserData.playedWordsIndexes == null) return;
+            foreach (var indexes in gameUserData.playedWordsIndexes)
             {
                 _generatedCount++;
                 _playedPackWordsHash.Add(_wordsPack.words[indexes]);
@@ -182,7 +182,7 @@ namespace Game.UI.Screens.Round
                 saveIndexes.Add(index);
             }
 
-            gameUserData.PlayedWordsIndexes = saveIndexes;
+            gameUserData.playedWordsIndexes = saveIndexes;
         }
 
         private void ShowNewWord()

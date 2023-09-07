@@ -1,10 +1,6 @@
 ﻿#if UNITY_EDITOR
-using System;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace Services.Localization.Editor
 {
@@ -20,7 +16,7 @@ namespace Services.Localization.Editor
 
         public override void OnInspectorGUI()
         {
-           // if (GUILayout.Button("UpdateEntries")) DownloadAndParseTable().Forget();
+            // if (GUILayout.Button("UpdateEntries")) DownloadAndParseTable().Forget();
 
             base.OnInspectorGUI();
 
@@ -103,9 +99,7 @@ namespace Services.Localization.Editor
                 var language = _localizationData.Languages[i];
                 if (language?.LanguageWords == null || language.LanguageWords.editorAsset == null) continue;
                 if (language.SystemLanguage != language.LanguageWords.editorAsset.Language)
-                {
                     Debug.LogError($"Different languages {i} {language.SystemLanguage}");
-                }
             }
         }
     }

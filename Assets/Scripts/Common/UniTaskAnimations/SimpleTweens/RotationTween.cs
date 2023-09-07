@@ -63,70 +63,70 @@ namespace Common.UniTaskAnimations.SimpleTweens
             if (TweenObject == null) return;
 
             Vector3 startRotation;
-            Vector3 toRotation;
-            AnimationCurve animationCurve;
-            var tweenTime = TweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            Vector3 endRotation;
+            AnimationCurve curve;
+            var curTweenTime = TweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startRotation = this.toRotation;
-                toRotation = fromRotation;
-                animationCurve = ReverseCurve;
+                endRotation = fromRotation;
+                curve = ReverseCurve;
             }
             else
             {
                 startRotation = fromRotation;
-                toRotation = this.toRotation;
-                animationCurve = AnimationCurve;
+                endRotation = this.toRotation;
+                curve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var localRotation = TweenObject.transform.eulerAngles;
                 var t = 1f;
-                if (toRotation.x - startRotation.x != 0f)
-                    t = (localRotation.x - startRotation.x) / (toRotation.x - startRotation.x);
-                else if (toRotation.y - startRotation.y != 0f)
-                    t = (localRotation.y - startRotation.y) / (toRotation.y - startRotation.y);
-                else if (toRotation.z - startRotation.z != 0f)
-                    t = (localRotation.z - startRotation.z) / (toRotation.z - startRotation.z);
+                if (endRotation.x - startRotation.x != 0f)
+                    t = (localRotation.x - startRotation.x) / (endRotation.x - startRotation.x);
+                else if (endRotation.y - startRotation.y != 0f)
+                    t = (localRotation.y - startRotation.y) / (endRotation.y - startRotation.y);
+                else if (endRotation.z - startRotation.z != 0f)
+                    t = (localRotation.z - startRotation.z) / (endRotation.z - startRotation.z);
 
-                time = tweenTime * t;
+                time = curTweenTime * t;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 TweenObject.transform.eulerAngles = startRotation;
 
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
-                    var lerpValue = Vector3.LerpUnclamped(startRotation, toRotation, lerpTime);
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = curve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var lerpValue = Vector3.LerpUnclamped(startRotation, endRotation, lerpTime);
 
                     TweenObject.transform.eulerAngles = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                TweenObject.transform.eulerAngles = toRotation;
+                TweenObject.transform.eulerAngles = endRotation;
                 time -= TweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
                         break;
 
                     case LoopType.PingPong:
-                        toRotation = startRotation;
+                        endRotation = startRotation;
                         startRotation = TweenObject.transform.eulerAngles;
                         break;
                 }

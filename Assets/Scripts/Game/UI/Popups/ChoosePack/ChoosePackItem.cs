@@ -33,10 +33,10 @@ namespace Game.UI.Popups.ChoosePack
             chooseButton.SetClickListener(OnChooseButton);
             _wordsPack = wordsPack;
 
-            packName.text = wordsPack.Name;
-            packDescription.text = wordsPack.Description;
-            packExampleWords.text = wordsPack.ExampleWords;
-            wordsCount.text = wordsPack.WordsCount;
+            packName.text = wordsPack.name;
+            packDescription.text = wordsPack.description;
+            packExampleWords.text = wordsPack.exampleWords;
+            wordsCount.text = wordsPack.wordsCount;
         }
 
         private void OnChooseButton()

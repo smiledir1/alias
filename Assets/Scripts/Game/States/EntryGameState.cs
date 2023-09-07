@@ -17,6 +17,7 @@ namespace Game.States
         protected override async UniTask OnEnterState()
         {
             _audioService.PlayMusic("main_music").Forget();
+            await UniTask.Yield();
 #if DEV_ENV
             await UniTask.WhenAll(
                 _assetsService.InstantiateAsync("CheatsButton"),

@@ -22,7 +22,7 @@ namespace Common.CheckCode.Editor
         private const string ExcludePathsKey = "_excludePathsKey";
 
         private static CheckCodeWindow _window;
-        
+
         private static string _pathToCli;
         private static string _projectName;
         private static string _inspectFormat;
@@ -32,19 +32,20 @@ namespace Common.CheckCode.Editor
         private static List<string> _excludePaths;
         private static bool _excludePathsExpanded;
         private static GUIStyle _boldLabel;
-        
+
         private static int _inspectFormatIndex;
         private static int _inspectSeverityIndex;
         private static int _cleanupFormatIndex;
         private static readonly string[] InspectFormats = {"Xml", "Text"};
         private static readonly string[] InspectSeverityLevels = {"ERROR", "WARNING", "SUGGESTION", "HINT", "NONE"};
+
         private static readonly string[] CleanupFormats =
         {
-            "Built-in: Reformat Code", 
-            "Built-in: Reformat & Apply Syntax Style", 
+            "Built-in: Reformat Code",
+            "Built-in: Reformat & Apply Syntax Style",
             "Built-in: Full Cleanup"
         };
-        
+
         [MenuItem("Tools/CheckCode/CheckCode Window")]
         private static void InitializeWindow()
         {
@@ -69,45 +70,45 @@ namespace Common.CheckCode.Editor
         {
             _pathToCli = EditorPrefs.GetString(PathToCliKey);
             _projectName = EditorPrefs.GetString(ProjectNameKey);
-            
+
             _inspectFormat = EditorPrefs.GetString(InspectFormatKey);
             _inspectFormatIndex = ArrayUtility.IndexOf(InspectFormats, _inspectFormat);
             if (_inspectFormatIndex == -1) _inspectFormatIndex = 0;
-            
+
             _inspectSeverity = EditorPrefs.GetString(InspectSeverityKey);
             _inspectSeverityIndex = ArrayUtility.IndexOf(InspectSeverityLevels, _inspectSeverity);
             if (_inspectSeverityIndex == -1) _inspectSeverityIndex = 0;
-            
+
             _cleanupFormat = EditorPrefs.GetString(CleanupFormatKey);
             _cleanupFormatIndex = ArrayUtility.IndexOf(CleanupFormats, _cleanupFormat);
             if (_cleanupFormatIndex == -1) _cleanupFormatIndex = 0;
-            
+
             _outputFileName = EditorPrefs.GetString(OutputFileNameKey);
             var excludePaths = EditorPrefs.GetString(ExcludePathsKey);
             _excludePaths = excludePaths.Split(';', StringSplitOptions.RemoveEmptyEntries).ToList();
             _excludePathsExpanded = false;
-            
+
             _boldLabel = new GUIStyle("Label")
             {
-               fontStyle = FontStyle.Bold
+                fontStyle = FontStyle.Bold
             };
         }
-        
+
         private void DrawOptions()
         {
             _pathToCli = EditorGUILayout.TextField("Path to CLI", _pathToCli);
             _projectName = EditorGUILayout.TextField("Project Name (with .sln)", _projectName);
             _excludePathsExpanded = EditorUtils.DrawList(_excludePaths, _excludePathsExpanded, "ExcludePaths");
-            
+
             GUILayout.Label("Inspection parameters", _boldLabel);
-            _inspectFormatIndex = EditorGUILayout.Popup("Inspection format", _inspectFormatIndex, 
+            _inspectFormatIndex = EditorGUILayout.Popup("Inspection format", _inspectFormatIndex,
                 InspectFormats);
             _inspectFormat = InspectFormats[_inspectFormatIndex];
-            _inspectSeverityIndex = EditorGUILayout.Popup("Inspection format", _inspectSeverityIndex, 
+            _inspectSeverityIndex = EditorGUILayout.Popup("Inspection format", _inspectSeverityIndex,
                 InspectSeverityLevels);
             _inspectSeverity = InspectSeverityLevels[_inspectSeverityIndex];
             _outputFileName = EditorGUILayout.TextField("Output File Name", _outputFileName);
-            
+
             GUILayout.Label("Cleanup parameters", _boldLabel);
             _cleanupFormat = CleanupFormats[_cleanupFormatIndex];
             _cleanupFormatIndex = EditorGUILayout.Popup("Inspection format", _cleanupFormatIndex,
@@ -152,9 +153,11 @@ namespace Common.CheckCode.Editor
                 default:
                     return;
             }
-            
-            var proc = new Process {
-                StartInfo = new ProcessStartInfo {
+
+            var proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
                     FileName = fileName,
                     Arguments = args,
                     UseShellExecute = false,
@@ -177,11 +180,12 @@ namespace Common.CheckCode.Editor
 
             EditorUtility.RevealInFinder(_outputFileName);
         }
-        
+
         private void CleanupCode()
         {
             var excludePaths = string.Join(";", _excludePaths);
-            var args = $"{_projectName} --profile=\"{_cleanupFormat}\" --exclude=\"{excludePaths}\" -x=JetBrains.Unity --no-build";
+            var args =
+                $"{_projectName} --profile=\"{_cleanupFormat}\" --exclude=\"{excludePaths}\" -x=JetBrains.Unity --no-build";
             Debug.Log(args);
 
             var fileName = string.Empty;
@@ -196,9 +200,11 @@ namespace Common.CheckCode.Editor
                 default:
                     return;
             }
-            
-            var proc = new Process {
-                StartInfo = new ProcessStartInfo {
+
+            var proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
                     FileName = fileName,
                     Arguments = args,
                     UseShellExecute = false,

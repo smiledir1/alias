@@ -33,7 +33,7 @@ namespace Game.UI.Screens.Meta
 
         protected override UniTask OnOpenAsync()
         {
-            var activeContinueButton = _userData.GetData<GameUserData>().CurrentRound != 0;
+            var activeContinueButton = _userData.GetData<GameUserData>().currentRound != 0;
             continueGameButton.gameObject.SetActive(activeContinueButton);
 
             continueGameButton.SetClickListener(OnContinueGameButton);

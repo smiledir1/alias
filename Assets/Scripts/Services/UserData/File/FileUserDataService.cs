@@ -8,7 +8,7 @@ namespace Services.UserData.File
     // TODO: Strong Crypt
     // SaveBytes
     // Crypt Settings?
-    public class FileUserDataService : BaseUserDataService, IUserDataService
+    public class FileUserDataService : BaseUserDataService
     {
         public FileUserDataService(List<UserDataObject> userDatCollection, bool isCrypt)
             : base(userDatCollection, isCrypt)

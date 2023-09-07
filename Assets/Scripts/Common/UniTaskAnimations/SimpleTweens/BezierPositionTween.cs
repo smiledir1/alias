@@ -106,24 +106,24 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             _rectTransform = tweenObject.transform as RectTransform;
             Vector3 startPosition;
-            Vector3 toPosition;
-            AnimationCurve animationCurve;
-            var tweenTime = base.tweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            Vector3 endPosition;
+            AnimationCurve reverseCurve;
+            var curTweenTime = tweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startPosition = this.toPosition;
-                toPosition = fromPosition;
-                animationCurve = ReverseCurve;
+                endPosition = fromPosition;
+                reverseCurve = ReverseCurve;
             }
             else
             {
                 startPosition = fromPosition;
-                toPosition = this.toPosition;
-                animationCurve = AnimationCurve;
+                endPosition = this.toPosition;
+                reverseCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
@@ -160,19 +160,19 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     t2 = ft;
                 }
 
-                time = tweenTime * t2;
+                time = curTweenTime * t2;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 GoToPosition(startPosition);
                 var cur = reverse ? _bezierLens.Length - 2 : 1;
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = reverseCurve?.Evaluate(normalizeTime) ?? normalizeTime;
 
                     Vector3 startPoint;
                     Vector3 toPoint;
@@ -218,20 +218,20 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     await UniTask.Yield(cancellationToken);
                 }
 
-                GoToPosition(toPosition);
-                time -= tweenTime;
+                GoToPosition(endPosition);
+                time -= curTweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
                         break;
 
                     case LoopType.PingPong:
-                        toPosition = startPosition;
+                        endPosition = startPosition;
                         startPosition = GetCurrentPosition();
                         reverse = !reverse;
                         break;
@@ -245,17 +245,17 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         public void SetPositions(
-            PositionType positionType,
+            PositionType curPositionType,
             Vector3 from,
             Vector3 to,
-            Vector3 bezier1Offset,
-            Vector3 bezier2Offset)
+            Vector3 curBezier1Offset,
+            Vector3 curBezier2Offset)
         {
-            this.positionType = positionType;
+            positionType = curPositionType;
             fromPosition = from;
             toPosition = to;
-            this.bezier1Offset = bezier1Offset;
-            this.bezier2Offset = bezier2Offset;
+            bezier1Offset = curBezier1Offset;
+            bezier2Offset = curBezier2Offset;
         }
 
         internal Vector3 GetCurrentPosition()

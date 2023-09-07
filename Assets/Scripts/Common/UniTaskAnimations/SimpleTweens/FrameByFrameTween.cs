@@ -71,42 +71,42 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             int startSprite;
             int toSprite;
-            AnimationCurve animationCurve;
-            var tweenTime = TweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            AnimationCurve curve;
+            var curTweenTime = TweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startSprite = sprites.Count - 1;
                 toSprite = 0;
-                animationCurve = ReverseCurve;
+                curve = ReverseCurve;
             }
             else
             {
                 startSprite = 0;
                 toSprite = sprites.Count - 1;
-                animationCurve = AnimationCurve;
+                curve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var currentPosition = GetImageSpritePosition();
                 var t = (currentPosition - startSprite) / (toSprite - startSprite);
-                time = tweenTime * t;
+                time = curTweenTime * t;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 tweenImage.sprite = sprites[startSprite];
 
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = curve?.Evaluate(normalizeTime) ?? normalizeTime;
                     var lerpValue = Mathf.LerpUnclamped(startSprite, toSprite, lerpTime);
 
                     if (tweenImage == null) return;
@@ -119,12 +119,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
                 tweenImage.sprite = sprites[toSprite];
 
-                time -= tweenTime;
+                time -= curTweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
@@ -145,9 +145,9 @@ namespace Common.UniTaskAnimations.SimpleTweens
             tweenImage.sprite = sprites[0];
         }
 
-        public void SetSprites(List<Sprite> sprites)
+        public void SetSprites(List<Sprite> mainSprites)
         {
-            this.sprites = sprites;
+            sprites = mainSprites;
         }
 
         #endregion /Animation

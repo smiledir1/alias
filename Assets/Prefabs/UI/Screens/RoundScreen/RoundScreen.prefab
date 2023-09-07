@@ -370,10 +370,10 @@ RectTransform:
   m_Father: {fileID: 4911780261144410100}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -265, y: -1295}
-  m_SizeDelta: {x: 400, y: 145}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 430, y: -345}
+  m_SizeDelta: {x: 765, y: 1330}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7952548516428013917
 CanvasRenderer:
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.15
 --- !u!114 &4977919450746123650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,31 +485,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initializeOnAwake: 1
   portraitObjectCopyValues:
-    _localPosition: {x: -265, y: -1295, z: 0}
-    _localRotation: {x: 0, y: 0, z: 0}
-    _localScale: {x: 1, y: 1, z: 1}
-    _anchorMax: {x: 0.5, y: 1}
-    _anchorMin: {x: 0.5, y: 1}
-    _pivot: {x: 0.5, y: 1}
-    _sizeDelta: {x: 400, y: 145}
-    _fontSize: 0
-    _fontSizeMax: 0
-    _fontSizeMin: 0
-    _raycastTarget: 1
-    _pixelsPerUnitMultiplier: 1
+    localPosition: {x: -265, y: -1295, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 400, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
   landscapeObjectCopyValues:
-    _localPosition: {x: 100, y: -1530, z: 0}
-    _localRotation: {x: 0, y: 0, z: 0}
-    _localScale: {x: 1, y: 1, z: 1}
-    _anchorMax: {x: 0, y: 1}
-    _anchorMin: {x: 0, y: 1}
-    _pivot: {x: 0, y: 0}
-    _sizeDelta: {x: 800, y: 1100}
-    _fontSize: 0
-    _fontSizeMax: 0
-    _fontSizeMin: 0
-    _raycastTarget: 1
-    _pixelsPerUnitMultiplier: 0.2
+    localPosition: {x: 430, y: -345, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0, y: 1}
+    anchorMin: {x: 0, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 765, y: 1330}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 0.15
 --- !u!1 &1897922236547075451
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 91.85
+  m_fontSize: 240.65
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 91.85
+  m_fontSize: 270
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1586,10 +1586,10 @@ RectTransform:
   m_Father: {fileID: 4911780261144410100}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 258, y: -206}
-  m_SizeDelta: {x: 200, y: 145}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -812.5, y: -206}
+  m_SizeDelta: {x: 765, y: 145}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &5630660494973291338
 CanvasRenderer:
@@ -1687,31 +1687,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initializeOnAwake: 1
   portraitObjectCopyValues:
-    _localPosition: {x: 258, y: -206, z: 0}
-    _localRotation: {x: 0, y: 0, z: 0}
-    _localScale: {x: 1, y: 1, z: 1}
-    _anchorMax: {x: 0.5, y: 1}
-    _anchorMin: {x: 0.5, y: 1}
-    _pivot: {x: 0, y: 0}
-    _sizeDelta: {x: 200, y: 145}
-    _fontSize: 0
-    _fontSizeMax: 0
-    _fontSizeMin: 0
-    _raycastTarget: 1
-    _pixelsPerUnitMultiplier: 1
+    localPosition: {x: 258, y: -206, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0, y: 0}
+    sizeDelta: {x: 200, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
   landscapeObjectCopyValues:
-    _localPosition: {x: -800, y: -292, z: 0}
-    _localRotation: {x: 0, y: 0, z: 0}
-    _localScale: {x: 1, y: 1, z: 1}
-    _anchorMax: {x: 1, y: 1}
-    _anchorMin: {x: 1, y: 1}
-    _pivot: {x: 0, y: 0}
-    _sizeDelta: {x: 600, y: 145}
-    _fontSize: 0
-    _fontSizeMax: 0
-    _fontSizeMin: 0
-    _raycastTarget: 1
-    _pixelsPerUnitMultiplier: 1
+    localPosition: {x: -812.5, y: -206, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 1, y: 1}
+    anchorMin: {x: 1, y: 1}
+    pivot: {x: 0, y: 0}
+    sizeDelta: {x: 765, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
 --- !u!1 &5590386966689830896
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,10 +2188,10 @@ RectTransform:
   m_Father: {fileID: 4911780261144410100}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 265, y: -1295}
-  m_SizeDelta: {x: 400, y: 145}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -430, y: -345}
+  m_SizeDelta: {x: 765, y: 1330}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &235755041668651266
 CanvasRenderer:
@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.15
 --- !u!114 &3843800931509462121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2303,31 +2303,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initializeOnAwake: 1
   portraitObjectCopyValues:
-    _localPosition: {x: 265, y: -1295, z: 0}
-    _localRotation: {x: 0, y: 0, z: 0}
-    _localScale: {x: 1, y: 1, z: 1}
-    _anchorMax: {x: 0.5, y: 1}
-    _anchorMin: {x: 0.5, y: 1}
-    _pivot: {x: 0.5, y: 1}
-    _sizeDelta: {x: 400, y: 145}
-    _fontSize: 0
-    _fontSizeMax: 0
-    _fontSizeMin: 0
-    _raycastTarget: 1
-    _pixelsPerUnitMultiplier: 1
+    localPosition: {x: 265, y: -1295, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 400, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
   landscapeObjectCopyValues:
-    _localPosition: {x: -100, y: -1530, z: 0}
-    _localRotation: {x: 0, y: 0, z: 0}
-    _localScale: {x: 1, y: 1, z: 1}
-    _anchorMax: {x: 1, y: 1}
-    _anchorMin: {x: 1, y: 1}
-    _pivot: {x: 1, y: 0}
-    _sizeDelta: {x: 800, y: 1100}
-    _fontSize: 0
-    _fontSizeMax: 0
-    _fontSizeMin: 0
-    _raycastTarget: 1
-    _pixelsPerUnitMultiplier: 0.2
+    localPosition: {x: -430, y: -345, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 1, y: 1}
+    anchorMin: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 765, y: 1330}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 0.15
 --- !u!1 &7629252153785429051
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,7 +2422,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71.15
+  m_fontSize: 80
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1

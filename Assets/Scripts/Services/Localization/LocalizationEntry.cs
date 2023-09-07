@@ -7,10 +7,10 @@ namespace Services.Localization
     {
         [SerializeField]
         public string key;
-        
+
         [SerializeField]
         public string text;
-        
+
         public string Key => key;
         public string Text => text;
 

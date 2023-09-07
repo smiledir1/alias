@@ -42,9 +42,9 @@ namespace Game.Services.Teams
 
         public Team CreateTeamFromData(TeamData data)
         {
-            var item = TeamsConfig.teams.Find(t => t.Id == data.Id);
+            var item = TeamsConfig.teams.Find(t => t.Id == data.id);
             var teamName = _localizationService.GetText(item.NameLocalizationKey);
-            return new Team(teamName, item.Id, item.Icon, data.Score);
+            return new Team(teamName, item.Id, item.Icon, data.score);
         }
 
         public List<Team> CreateTeamsFromData(List<TeamData> data)

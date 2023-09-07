@@ -79,12 +79,12 @@ namespace Game.Services.WordsPacks.Editor
             var wordsPacksConfig = AssetDatabase.LoadAssetAtPath<WordsPacksConfig>(wordsPacksConfigPath);
             var newConfigItem = new WordsPacksConfigItem
             {
-                Name = _name,
-                Description = _description,
-                ExampleWords = WordsPacksConfig.GetExampleWords(wordsPack),
-                WordsCount = words.Length.ToString(),
-                Language = _packLanguage,
-                WordsPack = new AssetReferenceT<WordsPack>(guid)
+                name = _name,
+                description = _description,
+                exampleWords = WordsPacksConfig.GetExampleWords(wordsPack),
+                wordsCount = words.Length.ToString(),
+                language = _packLanguage,
+                wordsPack = new AssetReferenceT<WordsPack>(guid)
             };
             wordsPacksConfig.wordsPacksItems.Add(newConfigItem);
             AssetDatabase.SaveAssets();

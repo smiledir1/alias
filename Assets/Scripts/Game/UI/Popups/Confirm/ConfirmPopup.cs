@@ -40,7 +40,7 @@ namespace Game.UI.Popups.Confirm
             }
 
             confirmButton.SetClickListener(OnConfirmClick);
-            _closeButton.SetClickListener(OnCloseClick);
+            closeButton.SetClickListener(OnCloseClick);
             return base.OnOpenAsync();
         }
 

@@ -11,7 +11,7 @@ namespace Services.UI.Editor
     {
         private static UIHelperWindow _window;
         private static SerializedObject _windowSerializedObject;
-       
+
         [SerializeReference]
         private ITween _openSimpleTween;
 
@@ -25,18 +25,18 @@ namespace Services.UI.Editor
         {
             _window = GetWindow<UIHelperWindow>();
             _window.Show();
-            
+
             _windowSerializedObject = new SerializedObject(_window);
         }
 
         private void OnGUI()
         {
             if (_window == null) InitializeWindow();
-            
+
             _windowSerializedObject.Update();
             var property = _windowSerializedObject.FindProperty("_openSimpleTween");
             EditorGUILayout.PropertyField(property);
-            
+
             _prefabPathFolder = EditorGUILayout.TextField("Path To Prefab Folder", _prefabPathFolder);
 
             if (GUILayout.Button("Set Tween as open animation")) MakeOpenAnimation();

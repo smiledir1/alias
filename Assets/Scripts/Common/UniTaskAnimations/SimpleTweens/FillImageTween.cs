@@ -76,57 +76,57 @@ namespace Common.UniTaskAnimations.SimpleTweens
             }
 
             float startFill;
-            float toFill;
-            AnimationCurve animationCurve;
-            var tweenTime = TweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            float endFill;
+            AnimationCurve reverseCurve;
+            var curTweenTime = TweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startFill = this.toFill;
-                toFill = fromFill;
-                animationCurve = ReverseCurve;
+                endFill = fromFill;
+                reverseCurve = ReverseCurve;
             }
             else
             {
                 startFill = fromFill;
-                toFill = this.toFill;
-                animationCurve = AnimationCurve;
+                endFill = this.toFill;
+                reverseCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var currentValue = tweenImage.fillAmount;
-                var t = (currentValue - startFill) / (toFill - startFill);
-                time = tweenTime * t;
+                var t = (currentValue - startFill) / (endFill - startFill);
+                time = curTweenTime * t;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 tweenImage.fillAmount = startFill;
 
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
-                    var lerpValue = Mathf.LerpUnclamped(startFill, toFill, lerpTime);
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = reverseCurve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var lerpValue = Mathf.LerpUnclamped(startFill, endFill, lerpTime);
 
                     if (tweenImage == null) return;
                     tweenImage.fillAmount = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                tweenImage.fillAmount = toFill;
-                time -= tweenTime;
+                tweenImage.fillAmount = endFill;
+                time -= curTweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
@@ -134,7 +134,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
                     case LoopType.PingPong:
                         if (tweenImage == null) return;
-                        toFill = startFill;
+                        endFill = startFill;
                         startFill = tweenImage.fillAmount;
                         break;
                 }

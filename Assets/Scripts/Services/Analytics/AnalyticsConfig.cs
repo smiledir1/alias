@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
 using Common.Utils.Defines;
@@ -30,7 +29,7 @@ namespace Services.Analytics
         {
             if (_prevUnityAnalytics == unityAnalytics) return;
             _prevUnityAnalytics = unityAnalytics;
-            
+
             if (unityAnalytics)
                 DefinesUtils.AddDefinesForDefaultTargets(new List<string> {UnityAnalyticsDefine});
             else

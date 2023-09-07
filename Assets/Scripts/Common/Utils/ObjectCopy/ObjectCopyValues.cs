@@ -10,43 +10,43 @@ namespace Common.Utils.ObjectCopy
     {
         [Header("Transform")]
         [SerializeField]
-        private Vector3 _localPosition;
+        private Vector3 localPosition;
 
         [SerializeField]
-        private Vector3 _localRotation;
+        private Vector3 localRotation;
 
         [SerializeField]
-        private Vector3 _localScale;
+        private Vector3 localScale;
 
         [SerializeField]
-        private Vector2 _anchorMax;
+        private Vector2 anchorMax;
 
         [SerializeField]
-        private Vector2 _anchorMin;
+        private Vector2 anchorMin;
 
         [SerializeField]
-        private Vector2 _pivot;
+        private Vector2 pivot;
 
         [SerializeField]
-        private Vector2 _sizeDelta;
+        private Vector2 sizeDelta;
 
         [Header("Text")]
         [SerializeField]
-        private float _fontSize;
+        private float fontSize;
 
         [SerializeField]
-        private float _fontSizeMax;
+        private float fontSizeMax;
 
         [SerializeField]
-        private float _fontSizeMin;
+        private float fontSizeMin;
 
 
         [Header("Image")]
         [SerializeField]
-        private bool _raycastTarget;
+        private bool raycastTarget;
 
         [SerializeField]
-        private float _pixelsPerUnitMultiplier;
+        private float pixelsPerUnitMultiplier;
 
         public ObjectCopyValues()
         {
@@ -59,65 +59,65 @@ namespace Common.Utils.ObjectCopy
 
         public void CopyFrom(RectTransform rectTransform)
         {
-            _localPosition = rectTransform.anchoredPosition3D;
-            _localRotation = rectTransform.eulerAngles;
-            _localScale = rectTransform.localScale;
-            _anchorMax = rectTransform.anchorMax;
-            _anchorMin = rectTransform.anchorMin;
-            _pivot = rectTransform.pivot;
-            _sizeDelta = rectTransform.sizeDelta;
+            localPosition = rectTransform.anchoredPosition3D;
+            localRotation = rectTransform.eulerAngles;
+            localScale = rectTransform.localScale;
+            anchorMax = rectTransform.anchorMax;
+            anchorMin = rectTransform.anchorMin;
+            pivot = rectTransform.pivot;
+            sizeDelta = rectTransform.sizeDelta;
 
             var text = rectTransform.GetComponent<TextMeshProUGUI>();
             if (text != null)
             {
                 if (text.enableAutoSizing)
                 {
-                    _fontSizeMax = text.fontSizeMax;
-                    _fontSizeMin = text.fontSizeMin;
+                    fontSizeMax = text.fontSizeMax;
+                    fontSizeMin = text.fontSizeMin;
                 }
                 else
                 {
-                    _fontSize = text.fontSize;
+                    fontSize = text.fontSize;
                 }
             }
 
             var image = rectTransform.GetComponent<Image>();
             if (image != null)
             {
-                _raycastTarget = image.raycastTarget;
-                _pixelsPerUnitMultiplier = image.pixelsPerUnitMultiplier;
+                raycastTarget = image.raycastTarget;
+                pixelsPerUnitMultiplier = image.pixelsPerUnitMultiplier;
             }
         }
 
         public void PasteTo(RectTransform rectTransform)
         {
-            rectTransform.anchorMax = _anchorMax;
-            rectTransform.anchorMin = _anchorMin;
-            rectTransform.pivot = _pivot;
-            rectTransform.sizeDelta = _sizeDelta;
-            rectTransform.anchoredPosition3D = _localPosition;
-            rectTransform.eulerAngles = _localRotation;
-            rectTransform.localScale = _localScale;
+            rectTransform.anchorMax = anchorMax;
+            rectTransform.anchorMin = anchorMin;
+            rectTransform.pivot = pivot;
+            rectTransform.sizeDelta = sizeDelta;
+            rectTransform.anchoredPosition3D = localPosition;
+            rectTransform.eulerAngles = localRotation;
+            rectTransform.localScale = localScale;
 
             var text = rectTransform.GetComponent<TextMeshProUGUI>();
             if (text != null)
             {
                 if (text.enableAutoSizing)
                 {
-                    text.fontSizeMax = _fontSizeMax;
-                    text.fontSizeMin = _fontSizeMin;
+                    text.fontSizeMax = fontSizeMax;
+                    text.fontSizeMin = fontSizeMin;
                 }
                 else
                 {
-                    text.fontSize = _fontSize;
+                    text.fontSize = fontSize;
                 }
             }
 
             var image = rectTransform.GetComponent<Image>();
             if (image != null)
             {
-                image.raycastTarget = _raycastTarget;
-                image.pixelsPerUnitMultiplier = _pixelsPerUnitMultiplier;
+                image.raycastTarget = raycastTarget;
+                image.pixelsPerUnitMultiplier = pixelsPerUnitMultiplier;
             }
         }
     }

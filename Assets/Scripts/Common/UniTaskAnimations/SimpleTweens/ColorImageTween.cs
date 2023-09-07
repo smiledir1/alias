@@ -74,72 +74,72 @@ namespace Common.UniTaskAnimations.SimpleTweens
             }
 
             Color startColor;
-            Color toColor;
-            AnimationCurve animationCurve;
-            var tweenTime = TweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            Color endColor;
+            AnimationCurve reverseCurve;
+            var curTweenTime = TweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startColor = this.toColor;
-                toColor = fromColor;
-                animationCurve = ReverseCurve;
+                endColor = fromColor;
+                reverseCurve = ReverseCurve;
             }
             else
             {
                 startColor = fromColor;
-                toColor = this.toColor;
-                animationCurve = AnimationCurve;
+                endColor = this.toColor;
+                reverseCurve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
             {
                 var localColor = tweenGraphic.color;
                 var t = 1f;
-                if (toColor.r - startColor.r != 0f)
-                    t = (localColor.r - startColor.r) / (toColor.r - startColor.r);
-                else if (toColor.g - startColor.g != 0f)
-                    t = (localColor.g - startColor.g) / (toColor.g - startColor.g);
-                else if (toColor.b - startColor.b != 0f)
-                    t = (localColor.b - startColor.b) / (toColor.b - startColor.b);
+                if (endColor.r - startColor.r != 0f)
+                    t = (localColor.r - startColor.r) / (endColor.r - startColor.r);
+                else if (endColor.g - startColor.g != 0f)
+                    t = (localColor.g - startColor.g) / (endColor.g - startColor.g);
+                else if (endColor.b - startColor.b != 0f)
+                    t = (localColor.b - startColor.b) / (endColor.b - startColor.b);
 
-                else if (toColor.a - startColor.a != 0f) t = (localColor.a - startColor.a) / (toColor.a - startColor.a);
+                else if (endColor.a - startColor.a != 0f) t = (localColor.a - startColor.a) / (endColor.a - startColor.a);
 
-                time = tweenTime * t;
+                time = curTweenTime * t;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 tweenGraphic.color = startColor;
 
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
-                    var lerpValue = Color.LerpUnclamped(startColor, toColor, lerpTime);
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = reverseCurve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var lerpValue = Color.LerpUnclamped(startColor, endColor, lerpTime);
 
                     tweenGraphic.color = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                tweenGraphic.color = toColor;
+                tweenGraphic.color = endColor;
                 time -= TweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
                         break;
 
                     case LoopType.PingPong:
-                        toColor = startColor;
+                        endColor = startColor;
                         startColor = tweenGraphic.color;
                         break;
                 }

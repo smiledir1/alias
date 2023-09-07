@@ -9,7 +9,7 @@ namespace Services.Audio
     {
         [SerializeField]
         private List<SoundSettings> sounds;
-        
+
         internal SoundSettings GetSoundSetting(string id)
         {
             return sounds.Find(sound =>

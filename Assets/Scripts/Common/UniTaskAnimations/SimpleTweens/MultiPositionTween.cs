@@ -99,23 +99,23 @@ namespace Common.UniTaskAnimations.SimpleTweens
             _rectTransform = tweenObject.transform as RectTransform;
             Vector3 startPosition;
             Vector3 toPosition;
-            AnimationCurve animationCurve;
-            var tweenTime = base.tweenTime;
-            if (Loop == LoopType.PingPong) tweenTime /= 2;
+            AnimationCurve curve;
+            var curTweenTime = this.tweenTime;
+            if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
-            var loop = true;
+            var curLoop = true;
 
             if (reverse)
             {
                 startPosition = _curvePoints[^1];
                 toPosition = _curvePoints[0];
-                animationCurve = ReverseCurve;
+                curve = ReverseCurve;
             }
             else
             {
                 startPosition = _curvePoints[0];
                 toPosition = _curvePoints[^1];
-                animationCurve = AnimationCurve;
+                curve = AnimationCurve;
             }
 
             if (startFromCurrentValue)
@@ -152,19 +152,19 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     t2 = ft;
                 }
 
-                time = tweenTime * t2;
+                time = curTweenTime * t2;
             }
 
-            while (loop)
+            while (curLoop)
             {
                 GoToPosition(startPosition);
                 var cur = reverse ? _linesLens.Length - 2 : 1;
-                while (time < tweenTime)
+                while (time < curTweenTime)
                 {
                     time += GetDeltaTime();
 
-                    var normalizeTime = time / tweenTime;
-                    var lerpTime = animationCurve?.Evaluate(normalizeTime) ?? normalizeTime;
+                    var normalizeTime = time / curTweenTime;
+                    var lerpTime = curve?.Evaluate(normalizeTime) ?? normalizeTime;
 
                     Vector3 startPoint;
                     Vector3 toPoint;
@@ -211,12 +211,12 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 }
 
                 GoToPosition(toPosition);
-                time -= tweenTime;
+                time -= curTweenTime;
 
                 switch (Loop)
                 {
                     case LoopType.Once:
-                        loop = false;
+                        curLoop = false;
                         break;
 
                     case LoopType.Loop:
@@ -238,15 +238,15 @@ namespace Common.UniTaskAnimations.SimpleTweens
         }
 
         public void SetPositions(
-            PositionType positionType,
-            MultiLineType lineType,
-            List<Vector3> positions,
-            float precision)
+            PositionType curPositionType,
+            MultiLineType curLineType,
+            List<Vector3> curPositions,
+            float curPrecision)
         {
-            this.positionType = positionType;
-            this.lineType = lineType;
-            this.positions = positions;
-            this.precision = precision;
+            positionType = curPositionType;
+            lineType = curLineType;
+            positions = curPositions;
+            precision = curPrecision;
         }
 
         internal Vector3 GetCurrentPosition()
@@ -326,7 +326,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             var min = 0.0001f;
             var count = (int) ((1f - min) / precision) + 2;
-            var alpha = this.alpha;
+            var curAlpha = alpha;
 
             var fullCount = (positionsCount - 1) * count;
             _curvePoints = new Vector3[fullCount];
@@ -343,7 +343,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             var p3 = positions[2];
 
             fullSqrPath = CountPoints(p0, p1, p2, p3,
-                alpha, 1, count, fullSqrPath, 1);
+                curAlpha, 1, count, fullSqrPath, 1);
 
             for (var i = 2; i < lastPos; i++)
             {
@@ -353,7 +353,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 p3 = positions[i + 1];
 
                 fullSqrPath = CountPoints(p0, p1, p2, p3,
-                    alpha, i, count, fullSqrPath, 0);
+                    curAlpha, i, count, fullSqrPath, 0);
             }
 
             p0 = positions[lastPos - 2];
@@ -362,7 +362,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             p3 = positions[lastPos] + p2;
 
             fullSqrPath = CountPoints(p0, p1, p2, p3,
-                alpha, lastPos, count, fullSqrPath, 0);
+                curAlpha, lastPos, count, fullSqrPath, 0);
 
             for (var i = 0; i < fullCount; i++)
             {
@@ -375,7 +375,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Vector2 p1,
             Vector2 p2,
             Vector2 p3,
-            float alpha,
+            float curAlpha,
             int pointPos,
             int count,
             float fullSqrPath,
@@ -387,7 +387,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 var t = j * precision;
                 t = t > 1 ? 1 : t;
                 _curvePoints[arrayPos] = GetPoint(
-                    p0, p1, p2, p3, t, alpha);
+                    p0, p1, p2, p3, t, curAlpha);
                 var len = (_curvePoints[arrayPos] - _curvePoints[arrayPos - 1]).magnitude;
                 _linesLens[arrayPos] = fullSqrPath + len;
                 fullSqrPath += len;
@@ -402,13 +402,13 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Vector2 p2,
             Vector2 p3,
             float t,
-            float alpha)
+            float curAlpha)
         {
             // calculate knots
             const float K0 = 0;
-            var k1 = GetKnotInterval(p0, p1, alpha);
-            var k2 = GetKnotInterval(p1, p2, alpha) + k1;
-            var k3 = GetKnotInterval(p2, p3, alpha) + k2;
+            var k1 = GetKnotInterval(p0, p1, curAlpha);
+            var k2 = GetKnotInterval(p1, p2, curAlpha) + k1;
+            var k3 = GetKnotInterval(p2, p3, curAlpha) + k2;
 
             // evaluate the point
             var u = Mathf.LerpUnclamped(k1, k2, t);
@@ -424,8 +424,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Vector2 d, float u) =>
             Vector2.LerpUnclamped(c, d, (u - a) / (b - a));
 
-        private float GetKnotInterval(Vector2 a, Vector2 b, float alpha) =>
-            Mathf.Pow(Vector2.SqrMagnitude(a - b), 0.5f * alpha);
+        private float GetKnotInterval(Vector2 a, Vector2 b, float curAlpha) =>
+            Mathf.Pow(Vector2.SqrMagnitude(a - b), 0.5f * curAlpha);
 
         #endregion
 

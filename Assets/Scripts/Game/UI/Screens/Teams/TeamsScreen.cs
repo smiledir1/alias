@@ -35,7 +35,7 @@ namespace Game.UI.Screens.Teams
             backButton.SetClickListener(OnBackButton);
             startGame.SetClickListener(OnStartGameButton);
 
-            packName.text = Model.WordsPacksConfigItem.Name;
+            packName.text = Model.WordsPacksConfigItem.name;
             roundSeconds.text = Model.RoundTimeSeconds.ToString();
             round.text = Model.CurrentRound.ToString();
 

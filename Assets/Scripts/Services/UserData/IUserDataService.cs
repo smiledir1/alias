@@ -11,6 +11,5 @@ namespace Services.UserData
         void ClearData();
         void ClearData(UserDataObject userData);
         void ClearData<T>() where T : UserDataObject;
-        
     }
 }

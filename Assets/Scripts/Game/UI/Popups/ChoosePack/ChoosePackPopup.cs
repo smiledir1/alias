@@ -40,7 +40,7 @@ namespace Game.UI.Popups.ChoosePack
             var parentTransform = choosePackItemTemplate.transform.parent;
             foreach (var configItem in configItems)
             {
-                if (configItem.Language != language) continue;
+                if (configItem.language != language) continue;
                 var packItem = Instantiate(choosePackItemTemplate, parentTransform);
                 packItem.Initialize(configItem);
                 packItem.ChoosePack += OnPackChoose;

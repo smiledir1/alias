@@ -101,7 +101,7 @@ namespace Game.Bootstrap
             {
                 new GameUserData()
             };
-            
+
 #if UNITY_WEBGL && !UNITY_EDITOR
             var userDataService = new WebGLUserDataService(userDataObjects, false);
 #else

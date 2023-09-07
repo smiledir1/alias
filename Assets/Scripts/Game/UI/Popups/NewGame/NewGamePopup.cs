@@ -67,7 +67,7 @@ namespace Game.UI.Popups.NewGame
             var choosePackPopupModel = new ChoosePackPopupModel();
             _popupService.ShowAsync<ChoosePackPopup>(choosePackPopupModel).Forget();
             _choosePack = await choosePackPopupModel.WaitForPackItem();
-            packName.text = _choosePack.Name;
+            packName.text = _choosePack.name;
         }
 
         private void OnAddTeamButton()
@@ -103,13 +103,13 @@ namespace Game.UI.Popups.NewGame
             if (!CheckStartGame()) return;
             Close();
             var roundTimeSeconds = (int) roundTime.value;
-            var isUnlimitedTimeForLastWord = this.isUnlimitedTimeForLastWord.isOn;
+            var curIsUnlimitedTimeForLastWord = this.isUnlimitedTimeForLastWord.isOn;
             var isFreeSkip = freeSkipToggle.isOn;
 
             var inGameState = new InGameState(
                 _choosePack,
                 roundTimeSeconds,
-                isUnlimitedTimeForLastWord,
+                curIsUnlimitedTimeForLastWord,
                 isFreeSkip,
                 _teams);
             inGameState.GoToState().SafeForget();

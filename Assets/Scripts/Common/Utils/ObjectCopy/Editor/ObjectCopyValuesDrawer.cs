@@ -62,25 +62,25 @@ namespace Common.Utils.ObjectCopy.Editor
 
         private void CopyTransform(SerializedProperty property, RectTransform rectTransform)
         {
-            var localPositionProperty = property.FindPropertyRelative("_localPosition");
+            var localPositionProperty = property.FindPropertyRelative("localPosition");
             localPositionProperty.vector3Value = rectTransform.anchoredPosition3D;
 
-            var localRotationProperty = property.FindPropertyRelative("_localRotation");
+            var localRotationProperty = property.FindPropertyRelative("localRotation");
             localRotationProperty.vector3Value = rectTransform.eulerAngles;
 
-            var localScaleProperty = property.FindPropertyRelative("_localScale");
+            var localScaleProperty = property.FindPropertyRelative("localScale");
             localScaleProperty.vector3Value = rectTransform.localScale;
 
-            var anchorMaxProperty = property.FindPropertyRelative("_anchorMax");
+            var anchorMaxProperty = property.FindPropertyRelative("anchorMax");
             anchorMaxProperty.vector2Value = rectTransform.anchorMax;
 
-            var anchorMinProperty = property.FindPropertyRelative("_anchorMin");
+            var anchorMinProperty = property.FindPropertyRelative("anchorMin");
             anchorMinProperty.vector2Value = rectTransform.anchorMin;
 
-            var pivotProperty = property.FindPropertyRelative("_pivot");
+            var pivotProperty = property.FindPropertyRelative("pivot");
             pivotProperty.vector2Value = rectTransform.pivot;
 
-            var sizeDeltaProperty = property.FindPropertyRelative("_sizeDelta");
+            var sizeDeltaProperty = property.FindPropertyRelative("sizeDelta");
             sizeDeltaProperty.vector2Value = rectTransform.sizeDelta;
 
             var text = rectTransform.GetComponent<TextMeshProUGUI>();
@@ -88,14 +88,14 @@ namespace Common.Utils.ObjectCopy.Editor
             {
                 if (text.enableAutoSizing)
                 {
-                    var fontSizeMaxProperty = property.FindPropertyRelative("_fontSizeMax");
-                    var fontSizeMinProperty = property.FindPropertyRelative("_fontSizeMin");
+                    var fontSizeMaxProperty = property.FindPropertyRelative("fontSizeMax");
+                    var fontSizeMinProperty = property.FindPropertyRelative("fontSizeMin");
                     fontSizeMaxProperty.floatValue = text.fontSizeMax;
                     fontSizeMinProperty.floatValue = text.fontSizeMin;
                 }
                 else
                 {
-                    var fontSizeProperty = property.FindPropertyRelative("_fontSize");
+                    var fontSizeProperty = property.FindPropertyRelative("fontSize");
                     fontSizeProperty.floatValue = text.fontSize;
                 }
             }
@@ -103,8 +103,8 @@ namespace Common.Utils.ObjectCopy.Editor
             var image = rectTransform.GetComponent<Image>();
             if (image != null)
             {
-                var raycastTargetProperty = property.FindPropertyRelative("_raycastTarget");
-                var pixelsPerUnitMultiplierProperty = property.FindPropertyRelative("_pixelsPerUnitMultiplier");
+                var raycastTargetProperty = property.FindPropertyRelative("raycastTarget");
+                var pixelsPerUnitMultiplierProperty = property.FindPropertyRelative("pixelsPerUnitMultiplier");
                 raycastTargetProperty.boolValue = image.raycastTarget;
                 pixelsPerUnitMultiplierProperty.floatValue = image.pixelsPerUnitMultiplier;
             }
@@ -112,25 +112,25 @@ namespace Common.Utils.ObjectCopy.Editor
 
         private void PasteTransform(SerializedProperty property, RectTransform rectTransform)
         {
-            var anchorMaxProperty = property.FindPropertyRelative("_anchorMax");
+            var anchorMaxProperty = property.FindPropertyRelative("anchorMax");
             rectTransform.anchorMax = anchorMaxProperty.vector2Value;
 
-            var anchorMinProperty = property.FindPropertyRelative("_anchorMin");
+            var anchorMinProperty = property.FindPropertyRelative("anchorMin");
             rectTransform.anchorMin = anchorMinProperty.vector2Value;
 
-            var pivotProperty = property.FindPropertyRelative("_pivot");
+            var pivotProperty = property.FindPropertyRelative("pivot");
             rectTransform.pivot = pivotProperty.vector2Value;
 
-            var sizeDeltaProperty = property.FindPropertyRelative("_sizeDelta");
+            var sizeDeltaProperty = property.FindPropertyRelative("sizeDelta");
             rectTransform.sizeDelta = sizeDeltaProperty.vector2Value;
 
-            var localPositionProperty = property.FindPropertyRelative("_localPosition");
+            var localPositionProperty = property.FindPropertyRelative("localPosition");
             rectTransform.anchoredPosition3D = localPositionProperty.vector3Value;
 
-            var localRotationProperty = property.FindPropertyRelative("_localRotation");
+            var localRotationProperty = property.FindPropertyRelative("localRotation");
             rectTransform.eulerAngles = localRotationProperty.vector3Value;
 
-            var localScaleProperty = property.FindPropertyRelative("_localScale");
+            var localScaleProperty = property.FindPropertyRelative("localScale");
             rectTransform.localScale = localScaleProperty.vector3Value;
 
             var text = rectTransform.GetComponent<TextMeshProUGUI>();
@@ -138,14 +138,14 @@ namespace Common.Utils.ObjectCopy.Editor
             {
                 if (text.enableAutoSizing)
                 {
-                    var fontSizeMaxProperty = property.FindPropertyRelative("_fontSizeMax");
-                    var fontSizeMinProperty = property.FindPropertyRelative("_fontSizeMin");
+                    var fontSizeMaxProperty = property.FindPropertyRelative("fontSizeMax");
+                    var fontSizeMinProperty = property.FindPropertyRelative("fontSizeMin");
                     text.fontSizeMax = fontSizeMaxProperty.floatValue;
                     text.fontSizeMin = fontSizeMinProperty.floatValue;
                 }
                 else
                 {
-                    var fontSizeProperty = property.FindPropertyRelative("_fontSize");
+                    var fontSizeProperty = property.FindPropertyRelative("fontSize");
                     text.fontSize = fontSizeProperty.floatValue;
                 }
             }
@@ -153,8 +153,8 @@ namespace Common.Utils.ObjectCopy.Editor
             var image = rectTransform.GetComponent<Image>();
             if (image != null)
             {
-                var raycastTargetProperty = property.FindPropertyRelative("_raycastTarget");
-                var pixelsPerUnitMultiplierProperty = property.FindPropertyRelative("_pixelsPerUnitMultiplier");
+                var raycastTargetProperty = property.FindPropertyRelative("raycastTarget");
+                var pixelsPerUnitMultiplierProperty = property.FindPropertyRelative("pixelsPerUnitMultiplier");
                 image.raycastTarget = raycastTargetProperty.boolValue;
                 image.pixelsPerUnitMultiplier = pixelsPerUnitMultiplierProperty.floatValue;
             }

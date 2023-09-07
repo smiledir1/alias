@@ -7,12 +7,7 @@ namespace Game.Services.WordsPacks
     public class WordsPacksConfig : ScriptableObject
     {
         public List<WordsPacksConfigItem> wordsPacksItems;
-        
-        private void OnEnable()
-        {
-            UnityEditor.EditorUtility.SetDirty(this);
-        }
-        
+
 #if UNITY_EDITOR
         private const int ExampleWords = 5;
 
@@ -21,14 +16,14 @@ namespace Game.Services.WordsPacks
         {
             foreach (var item in wordsPacksItems)
             {
-                if (item.WordsPack == null)
+                if (item.wordsPack == null)
                 {
                     Debug.LogWarning("Empty pack ");
                     continue;
                 }
 
-                item.ExampleWords = GetExampleWords(item.WordsPack.editorAsset);
-                item.WordsCount = item.WordsPack.editorAsset.words.Count.ToString();
+                item.exampleWords = GetExampleWords(item.wordsPack.editorAsset);
+                item.wordsCount = item.wordsPack.editorAsset.words.Count.ToString();
             }
         }
 

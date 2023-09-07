@@ -18,16 +18,16 @@ namespace Services.Localization
     public class LocalizationDataItem
     {
         [SerializeField]
-        private SystemLanguage _systemLanguage;
+        private SystemLanguage systemLanguage;
 
         [SerializeField]
-        private string _languageLocalizeName;
+        private string languageLocalizeName;
 
         [SerializeField]
-        private AssetReferenceT<LanguageEntry> _languageWords;
+        private AssetReferenceT<LanguageEntry> languageWords;
 
-        public SystemLanguage SystemLanguage => _systemLanguage;
-        public string LanguageLocalizeName => _languageLocalizeName;
-        public AssetReferenceT<LanguageEntry> LanguageWords => _languageWords;
+        public SystemLanguage SystemLanguage => systemLanguage;
+        public string LanguageLocalizeName => languageLocalizeName;
+        public AssetReferenceT<LanguageEntry> LanguageWords => languageWords;
     }
 }

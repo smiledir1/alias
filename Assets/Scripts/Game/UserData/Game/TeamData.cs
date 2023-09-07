@@ -5,13 +5,13 @@ namespace Game.UserData.Game
     [Serializable]
     public class TeamData
     {
-        public string Id;
-        public int Score;
+        public string id;
+        public int score;
 
         public TeamData(string id, int score)
         {
-            Id = id;
-            Score = score;
+            this.id = id;
+            this.score = score;
         }
     }
 }
