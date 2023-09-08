@@ -103,7 +103,7 @@ namespace Game.UI.Popups.NewGame
             if (!CheckStartGame()) return;
             Close();
             var roundTimeSeconds = (int) roundTime.value;
-            var curIsUnlimitedTimeForLastWord = this.isUnlimitedTimeForLastWord.isOn;
+            var curIsUnlimitedTimeForLastWord = isUnlimitedTimeForLastWord.isOn;
             var isFreeSkip = freeSkipToggle.isOn;
 
             var inGameState = new InGameState(

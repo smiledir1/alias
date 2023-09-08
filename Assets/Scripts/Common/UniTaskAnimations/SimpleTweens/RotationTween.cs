@@ -72,14 +72,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startRotation = this.toRotation;
+                startRotation = toRotation;
                 endRotation = fromRotation;
                 curve = ReverseCurve;
             }
             else
             {
                 startRotation = fromRotation;
-                endRotation = this.toRotation;
+                endRotation = toRotation;
                 curve = AnimationCurve;
             }
 

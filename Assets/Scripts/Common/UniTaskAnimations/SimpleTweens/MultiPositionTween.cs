@@ -100,7 +100,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
             Vector3 startPosition;
             Vector3 toPosition;
             AnimationCurve curve;
-            var curTweenTime = this.tweenTime;
+            var curTweenTime = tweenTime;
             if (Loop == LoopType.PingPong) curTweenTime /= 2;
             var time = 0f;
             var curLoop = true;

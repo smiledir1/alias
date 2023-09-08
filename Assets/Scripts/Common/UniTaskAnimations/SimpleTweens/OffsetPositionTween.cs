@@ -74,14 +74,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startPosition = targetPosition + this.toPosition;
+                startPosition = targetPosition + toPosition;
                 endPosition = targetPosition + fromPosition;
                 curve = ReverseCurve;
             }
             else
             {
                 startPosition = targetPosition + fromPosition;
-                endPosition = targetPosition + this.toPosition;
+                endPosition = targetPosition + toPosition;
                 curve = AnimationCurve;
             }
 

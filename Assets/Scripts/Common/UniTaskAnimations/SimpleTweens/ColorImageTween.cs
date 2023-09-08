@@ -83,14 +83,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startColor = this.toColor;
+                startColor = toColor;
                 endColor = fromColor;
                 reverseCurve = ReverseCurve;
             }
             else
             {
                 startColor = fromColor;
-                endColor = this.toColor;
+                endColor = toColor;
                 reverseCurve = AnimationCurve;
             }
 
@@ -105,7 +105,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
                 else if (endColor.b - startColor.b != 0f)
                     t = (localColor.b - startColor.b) / (endColor.b - startColor.b);
 
-                else if (endColor.a - startColor.a != 0f) t = (localColor.a - startColor.a) / (endColor.a - startColor.a);
+                else if (endColor.a - startColor.a != 0f)
+                    t = (localColor.a - startColor.a) / (endColor.a - startColor.a);
 
                 time = curTweenTime * t;
             }

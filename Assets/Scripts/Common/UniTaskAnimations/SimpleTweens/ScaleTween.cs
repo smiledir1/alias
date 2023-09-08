@@ -72,14 +72,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startScale = this.toScale;
+                startScale = toScale;
                 endScale = fromScale;
                 curve = ReverseCurve;
             }
             else
             {
                 startScale = fromScale;
-                endScale = this.toScale;
+                endScale = toScale;
                 curve = AnimationCurve;
             }
 
@@ -91,7 +91,8 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     t = (localScale.x - startScale.x) / (endScale.x - startScale.x);
                 else if (endScale.y - startScale.y != 0f)
                     t = (localScale.y - startScale.y) / (endScale.y - startScale.y);
-                else if (endScale.z - startScale.z != 0f) t = (localScale.z - startScale.z) / (endScale.z - startScale.z);
+                else if (endScale.z - startScale.z != 0f)
+                    t = (localScale.z - startScale.z) / (endScale.z - startScale.z);
 
                 time = curTweenTime * t;
             }

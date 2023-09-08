@@ -85,14 +85,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startFill = this.toFill;
+                startFill = toFill;
                 endFill = fromFill;
                 reverseCurve = ReverseCurve;
             }
             else
             {
                 startFill = fromFill;
-                endFill = this.toFill;
+                endFill = toFill;
                 reverseCurve = AnimationCurve;
             }
 

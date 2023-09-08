@@ -84,14 +84,14 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             if (reverse)
             {
-                startOpacity = this.toOpacity;
+                startOpacity = toOpacity;
                 endOpacity = fromOpacity;
                 curve = ReverseCurve;
             }
             else
             {
                 startOpacity = fromOpacity;
-                endOpacity = this.toOpacity;
+                endOpacity = toOpacity;
                 curve = AnimationCurve;
             }
 

@@ -79,6 +79,7 @@ namespace Services.Audio.Editor
                 var setting = new SoundSettings(referenceClip, type, assetName);
                 config.AddSoundSettings(setting);
             }
+
             EditorUtility.SetDirty(config);
         }
 
