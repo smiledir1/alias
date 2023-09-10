@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359819775130992640
   references:
@@ -251,37 +251,37 @@ MonoBehaviour:
     - rid: 7359819775130992640
       type: {class: FillImageTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 48532554}
-        _startDelay: 0
-        _tweenTime: 10
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _fromFill: 0
-        _toFill: 1
-        _tweenImage: {fileID: 48532557}
+        fromFill: 0
+        toFill: 1
+        tweenImage: {fileID: 0}
 --- !u!114 &48532557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359819775130992642
   references:
@@ -380,11 +380,11 @@ MonoBehaviour:
     - rid: 7359819775130992642
       type: {class: ColorImageTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 59931619}
-        _startDelay: 0
-        _tweenTime: 5
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
@@ -408,9 +408,9 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _fromColor: {r: 1, g: 1, b: 1, a: 1}
-        _toColor: {r: 0, g: 0, b: 0, a: 1}
-        _tweenGraphic: {fileID: 59931622}
+        fromColor: {r: 1, g: 1, b: 1, a: 1}
+        toColor: {r: 0, g: 0, b: 0, a: 1}
+        tweenGraphic: {fileID: 0}
 --- !u!114 &59931622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +448,173 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59931619}
+  m_CullTransparentMesh: 1
+--- !u!1 &94210901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 94210902}
+  - component: {fileID: 94210905}
+  - component: {fileID: 94210904}
+  - component: {fileID: 94210903}
+  m_Layer: 5
+  m_Name: Image (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &94210902
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94210901}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219788314}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -272, y: -905}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &94210903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94210901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bf62b1350f2304aa4c2fd0a40f0e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _god: {fileID: 0}
+  _scoreLabel: {fileID: 0}
+  _wordElementTemplate: {fileID: 0}
+  _closeButton: {fileID: 0}
+  _button: {fileID: 0}
+  number: 0
+  number2: 0
+  round: 0
+  width: 0
+  height: 0
+  objectCopyValuesAza2:
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 0, y: 0, z: 0}
+    anchorMax: {x: 0, y: 0}
+    anchorMin: {x: 0, y: 0}
+    pivot: {x: 0, y: 0}
+    sizeDelta: {x: 0, y: 0}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 0
+    pixelsPerUnitMultiplier: 0
+  SimpleA1Ref:
+    rid: -2
+  SimpleA2Ref:
+    rid: -2
+  SimpleA3Ref:
+    rid: 8957318380839239680
+  SimpleA4Ref:
+    rid: 8411132199406927872
+  _closeUi: {fileID: 0}
+  DateFormat: dd-mm-yy
+  Date: 
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8411132199406927872
+      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        tweenObject: {fileID: 94210901}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
+    - rid: 8957318380839239680
+      type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+      data:
+        synchronously: 0
+        _tweens: []
+--- !u!114 &94210904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94210901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 14074e32c3a5f124590b5e611b8474d1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 0.996
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.83
+--- !u!222 &94210905
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94210901}
   m_CullTransparentMesh: 1
 --- !u!1 &105697219
 GameObject:
@@ -807,8 +974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundKey: click1
-  _multiSound: 0
+  soundKey: 
+  multiSound: 0
 --- !u!1 &171288102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,6 +1174,10 @@ RectTransform:
   - {fileID: 1477450860}
   - {fileID: 1832143538}
   - {fileID: 651883962}
+  - {fileID: 1721424717}
+  - {fileID: 94210902}
+  - {fileID: 733998086}
+  - {fileID: 1467602316}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1027,24 +1198,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bf62b1350f2304aa4c2fd0a40f0e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _god: {fileID: 0}
+  _scoreLabel: {fileID: 0}
+  _wordElementTemplate: {fileID: 0}
+  _closeButton: {fileID: 0}
+  _button: {fileID: 0}
   number: 6
   number2: 0
   round: 0
   width: 2048
   height: 2732
   objectCopyValuesAza2:
-    _localPosition: {x: 0, y: 0, z: 0}
-    _localRotation: {x: 0, y: 0, z: 0}
-    _localScale: {x: 0, y: 0, z: 0}
-    _anchorMax: {x: 0, y: 0}
-    _anchorMin: {x: 0, y: 0}
-    _pivot: {x: 0, y: 0}
-    _sizeDelta: {x: 0, y: 0}
-    _fontSize: 0
-    _fontSizeMax: 0
-    _fontSizeMin: 0
-    _raycastTarget: 0
-    _pixelsPerUnitMultiplier: 0
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 0, y: 0, z: 0}
+    anchorMax: {x: 0, y: 0}
+    anchorMin: {x: 0, y: 0}
+    pivot: {x: 0, y: 0}
+    sizeDelta: {x: 0, y: 0}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 0
+    pixelsPerUnitMultiplier: 0
   SimpleA1Ref:
     rid: -2
   SimpleA2Ref:
@@ -1064,7 +1240,7 @@ MonoBehaviour:
     - rid: 1209636076761907209
       type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
       data:
-        _synchronously: 0
+        synchronously: 0
         _tweens: []
 --- !u!1 &239951350
 GameObject:
@@ -1117,7 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359819844530208778
   references:
@@ -1126,46 +1302,36 @@ MonoBehaviour:
     - rid: 7359819844530208778
       type: {class: FrameByFrameTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 239951350}
-        _startDelay: 0
-        _tweenTime: 5
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _tweenImage: {fileID: 239951353}
-        _sprites:
-        - {fileID: 21300000, guid: e2ce94f00fe55fe429dcade9e38e3019, type: 3}
-        - {fileID: 21300000, guid: f1a5b7cf8a4093c41aed933498bec8cc, type: 3}
-        - {fileID: 21300000, guid: 5a09d2365b3390144aa798fa76befdbf, type: 3}
-        - {fileID: 21300000, guid: 14074e32c3a5f124590b5e611b8474d1, type: 3}
-        - {fileID: 21300000, guid: a9122eb0197d9914db9d7d2ce4931a8d, type: 3}
-        - {fileID: 21300000, guid: 718b518e79f440045845141f8756dde3, type: 3}
-        - {fileID: 21300000, guid: fadee8b40e6e7e5448babf5daa7613b6, type: 3}
-        - {fileID: 21300000, guid: a28c29346282cb24fb5a020b13be7ee5, type: 3}
-        - {fileID: 21300000, guid: efdafad5b3f40bd4e9edf16b56ea0d16, type: 3}
-        - {fileID: 21300000, guid: 5eb8d95eba0ecb243a7288c9a283d357, type: 3}
+        tweenImage: {fileID: 0}
+        sprites: []
 --- !u!114 &239951353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,9 +1421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 345194857}
-  _recalculateOnEnable: 0
-  _key: close
+  text: {fileID: 345194857}
+  recalculateOnEnable: 1
+  key: 
 --- !u!114 &345194857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1406,7 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 1209636109393330176
   references:
@@ -1415,40 +1581,40 @@ MonoBehaviour:
     - rid: 1209636109393330176
       type: {class: BezierPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 489854627}
-        _startDelay: 0
-        _tweenTime: 1
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: -400, y: 0, z: 0}
-        _toPosition: {x: 500, y: 0, z: 0}
-        _bezier1Offset: {x: 350, y: -250, z: 0}
-        _bezier2Offset: {x: -400, y: -250, z: 0}
-        _precision: 0.05
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
+        bezier1Offset: {x: 0, y: 0, z: 0}
+        bezier2Offset: {x: 0, y: 0, z: 0}
+        precision: 0.05
 --- !u!114 &489854630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,7 +1993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 1209636086022144001
   references:
@@ -1838,7 +2004,7 @@ MonoBehaviour:
     - rid: 1209636086022144001
       type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
       data:
-        _synchronously: 0
+        synchronously: 0
         _tweens:
         - rid: -2
         - rid: -2
@@ -1934,24 +2100,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bf62b1350f2304aa4c2fd0a40f0e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _god: {fileID: 0}
+  _scoreLabel: {fileID: 0}
+  _wordElementTemplate: {fileID: 0}
+  _closeButton: {fileID: 0}
+  _button: {fileID: 0}
   number: 0
   number2: 0
   round: 0
   width: 0
   height: 0
   objectCopyValuesAza2:
-    _localPosition: {x: 0, y: 0, z: 0}
-    _localRotation: {x: 0, y: 0, z: 0}
-    _localScale: {x: 0, y: 0, z: 0}
-    _anchorMax: {x: 0, y: 0}
-    _anchorMin: {x: 0, y: 0}
-    _pivot: {x: 0, y: 0}
-    _sizeDelta: {x: 0, y: 0}
-    _fontSize: 0
-    _fontSizeMax: 0
-    _fontSizeMin: 0
-    _raycastTarget: 0
-    _pixelsPerUnitMultiplier: 0
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 0, y: 0, z: 0}
+    anchorMax: {x: 0, y: 0}
+    anchorMin: {x: 0, y: 0}
+    pivot: {x: 0, y: 0}
+    sizeDelta: {x: 0, y: 0}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 0
+    pixelsPerUnitMultiplier: 0
   SimpleA1Ref:
     rid: -2
   SimpleA2Ref:
@@ -1959,7 +2130,7 @@ MonoBehaviour:
   SimpleA3Ref:
     rid: 8957318380839239680
   SimpleA4Ref:
-    rid: 8957318380839239682
+    rid: 8411132199406927872
   _closeUi: {fileID: 0}
   DateFormat: dd-mm-yy
   Date: 
@@ -1968,19 +2139,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 8957318380839239680
-      type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
-      data:
-        _synchronously: 0
-        _tweens: []
-    - rid: 8957318380839239682
+    - rid: 8411132199406927872
       type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 651883961}
-        _startDelay: 0
-        _tweenTime: 1
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 651883961}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
@@ -2004,9 +2170,14 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 0, y: 0, z: 0}
-        _toPosition: {x: 0, y: 0, z: 0}
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
+    - rid: 8957318380839239680
+      type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+      data:
+        synchronously: 0
+        _tweens: []
 --- !u!114 &651883964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2179,6 +2350,173 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728893929}
   m_CullTransparentMesh: 1
+--- !u!1 &733998085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 733998086}
+  - component: {fileID: 733998089}
+  - component: {fileID: 733998088}
+  - component: {fileID: 733998087}
+  m_Layer: 5
+  m_Name: Image (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &733998086
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733998085}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219788314}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -272, y: -905}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &733998087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733998085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bf62b1350f2304aa4c2fd0a40f0e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _god: {fileID: 0}
+  _scoreLabel: {fileID: 0}
+  _wordElementTemplate: {fileID: 0}
+  _closeButton: {fileID: 0}
+  _button: {fileID: 0}
+  number: 0
+  number2: 0
+  round: 0
+  width: 0
+  height: 0
+  objectCopyValuesAza2:
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 0, y: 0, z: 0}
+    anchorMax: {x: 0, y: 0}
+    anchorMin: {x: 0, y: 0}
+    pivot: {x: 0, y: 0}
+    sizeDelta: {x: 0, y: 0}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 0
+    pixelsPerUnitMultiplier: 0
+  SimpleA1Ref:
+    rid: -2
+  SimpleA2Ref:
+    rid: -2
+  SimpleA3Ref:
+    rid: 8957318380839239680
+  SimpleA4Ref:
+    rid: 8411132199406927872
+  _closeUi: {fileID: 0}
+  DateFormat: dd-mm-yy
+  Date: 
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8411132199406927872
+      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        tweenObject: {fileID: 733998085}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
+    - rid: 8957318380839239680
+      type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+      data:
+        synchronously: 0
+        _tweens: []
+--- !u!114 &733998088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733998085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 14074e32c3a5f124590b5e611b8474d1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 0.996
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.83
+--- !u!222 &733998089
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733998085}
+  m_CullTransparentMesh: 1
 --- !u!1 &759544026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2230,7 +2568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359819750297305100
   references:
@@ -2239,37 +2577,37 @@ MonoBehaviour:
     - rid: 7359819750297305100
       type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 759544026}
-        _startDelay: 0
-        _tweenTime: 10
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 0, y: -500, z: 0}
-        _toPosition: {x: 0, y: 500, z: 0}
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &759544029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2435,9 +2773,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 889698139}
-  _recalculateOnEnable: 0
-  _key: close
+  text: {fileID: 889698139}
+  recalculateOnEnable: 1
+  key: 
 --- !u!114 &889698139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2586,7 +2924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: -2
   references:
@@ -3113,9 +3451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 1385501079}
-  _recalculateOnEnable: 0
-  _key: 
+  text: {fileID: 1385501079}
+  recalculateOnEnable: 1
+  key: 
 --- !u!1 &1399916443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3180,7 +3518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359820116790083585
   references:
@@ -3189,11 +3527,11 @@ MonoBehaviour:
     - rid: 7359820116790083585
       type: {class: BezierPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 1399916443}
-        _startDelay: 0
-        _tweenTime: 1
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
@@ -3217,12 +3555,12 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 200, y: 100, z: 0}
-        _toPosition: {x: 600, y: 200, z: 0}
-        _bezier1Offset: {x: 100, y: -100, z: 0}
-        _bezier2Offset: {x: -100, y: 100, z: 0}
-        _precision: 0.05
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
+        bezier1Offset: {x: 0, y: 0, z: 0}
+        bezier2Offset: {x: 0, y: 0, z: 0}
+        precision: 0.05
 --- !u!114 &1399916447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3260,6 +3598,173 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399916443}
+  m_CullTransparentMesh: 1
+--- !u!1 &1467602315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1467602316}
+  - component: {fileID: 1467602319}
+  - component: {fileID: 1467602318}
+  - component: {fileID: 1467602317}
+  m_Layer: 5
+  m_Name: Image (20)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1467602316
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467602315}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219788314}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -272, y: -905}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &1467602317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467602315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bf62b1350f2304aa4c2fd0a40f0e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _god: {fileID: 0}
+  _scoreLabel: {fileID: 0}
+  _wordElementTemplate: {fileID: 0}
+  _closeButton: {fileID: 0}
+  _button: {fileID: 0}
+  number: 0
+  number2: 0
+  round: 0
+  width: 0
+  height: 0
+  objectCopyValuesAza2:
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 0, y: 0, z: 0}
+    anchorMax: {x: 0, y: 0}
+    anchorMin: {x: 0, y: 0}
+    pivot: {x: 0, y: 0}
+    sizeDelta: {x: 0, y: 0}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 0
+    pixelsPerUnitMultiplier: 0
+  SimpleA1Ref:
+    rid: -2
+  SimpleA2Ref:
+    rid: -2
+  SimpleA3Ref:
+    rid: 8957318380839239680
+  SimpleA4Ref:
+    rid: 8411132199406927872
+  _closeUi: {fileID: 0}
+  DateFormat: dd-mm-yy
+  Date: 
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8411132199406927872
+      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        tweenObject: {fileID: 1467602315}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
+    - rid: 8957318380839239680
+      type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+      data:
+        synchronously: 0
+        _tweens: []
+--- !u!114 &1467602318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467602315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 14074e32c3a5f124590b5e611b8474d1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 0.996
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.83
+--- !u!222 &1467602319
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467602315}
   m_CullTransparentMesh: 1
 --- !u!1 &1477450859
 GameObject:
@@ -3325,7 +3830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359820294689128450
   references:
@@ -3334,43 +3839,39 @@ MonoBehaviour:
     - rid: 7359820294689128450
       type: {class: MultiPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 1477450859}
-        _startDelay: 0
-        _tweenTime: 2
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _positionType: 0
-        _lineType: 1
-        _positions:
-        - {x: -348, y: 1, z: 0}
-        - {x: -140, y: 310, z: 0}
-        - {x: 106, y: 130, z: 0}
-        - {x: 362, y: 397, z: 0}
-        _precision: 0.5
-        _alpha: 1
+        positionType: 0
+        lineType: 0
+        positions: []
+        precision: 0.05
+        alpha: 1
 --- !u!114 &1477450863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3462,7 +3963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359820271979855873
   references:
@@ -3471,37 +3972,37 @@ MonoBehaviour:
     - rid: 7359820271979855873
       type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 1548491029}
-        _startDelay: 0
-        _tweenTime: 1
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 0, y: 0, z: 0}
-        _toPosition: {x: 500, y: 500, z: 0}
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1548491032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3552,8 +4053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5f0abfedb447b792504da94732b9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundKey: click1
-  _multiSound: 0
+  soundKey: 
+  multiSound: 0
 --- !u!114 &1548491035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3785,7 +4286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359820294689128450
   references:
@@ -3794,45 +4295,39 @@ MonoBehaviour:
     - rid: 7359820294689128450
       type: {class: MultiPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 1590529561}
-        _startDelay: 0
-        _tweenTime: 1
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _positionType: 0
-        _lineType: 1
-        _positions:
-        - {x: 0, y: 0, z: 0}
-        - {x: 200, y: 500, z: 0}
-        - {x: 0, y: 500, z: 0}
-        - {x: -168, y: 356, z: 0}
-        - {x: -288, y: 684, z: 0}
-        - {x: 8, y: 736, z: 0}
-        _precision: 0.05
-        _alpha: 1
+        positionType: 0
+        lineType: 0
+        positions: []
+        precision: 0.05
+        alpha: 1
 --- !u!114 &1590529564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3958,6 +4453,186 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625717938}
+  m_CullTransparentMesh: 1
+--- !u!1 &1721424716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721424717}
+  - component: {fileID: 1721424721}
+  - component: {fileID: 1721424720}
+  - component: {fileID: 1721424719}
+  - component: {fileID: 1721424718}
+  m_Layer: 5
+  m_Name: Image (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1721424717
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721424716}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219788314}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -272, y: -905}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &1721424718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721424716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229624d14d7b7ae41bd689e02acf947b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1721424719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721424716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bf62b1350f2304aa4c2fd0a40f0e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _god: {fileID: 0}
+  _scoreLabel: {fileID: 0}
+  _wordElementTemplate: {fileID: 0}
+  _closeButton: {fileID: 0}
+  _button: {fileID: 0}
+  number: 0
+  number2: 0
+  round: 0
+  width: 0
+  height: 0
+  objectCopyValuesAza2:
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 0, y: 0, z: 0}
+    anchorMax: {x: 0, y: 0}
+    anchorMin: {x: 0, y: 0}
+    pivot: {x: 0, y: 0}
+    sizeDelta: {x: 0, y: 0}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 0
+    pixelsPerUnitMultiplier: 0
+  SimpleA1Ref:
+    rid: -2
+  SimpleA2Ref:
+    rid: -2
+  SimpleA3Ref:
+    rid: 8957318380839239680
+  SimpleA4Ref:
+    rid: 8411132199406927872
+  _closeUi: {fileID: 0}
+  DateFormat: dd-mm-yy
+  Date: 
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8411132199406927872
+      type: {class: PositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
+      data:
+        tweenObject: {fileID: 1721424716}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
+    - rid: 8957318380839239680
+      type: {class: GroupTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
+      data:
+        synchronously: 0
+        _tweens: []
+--- !u!114 &1721424720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721424716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 14074e32c3a5f124590b5e611b8474d1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 0.996
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.83
+--- !u!222 &1721424721
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721424716}
   m_CullTransparentMesh: 1
 --- !u!1 &1734735474
 GameObject:
@@ -4162,9 +4837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 1792895043}
-  _recalculateOnEnable: 0
-  _key: close
+  text: {fileID: 1792895043}
+  recalculateOnEnable: 1
+  key: 
 --- !u!114 &1792895043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4364,7 +5039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: -2
   references:
@@ -4512,7 +5187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: -2
   references:
@@ -4622,7 +5297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 7359820116790083585
   references:
@@ -4631,11 +5306,11 @@ MonoBehaviour:
     - rid: 7359820116790083585
       type: {class: BezierPositionTween, ns: Common.UniTaskAnimations.SimpleTweens, asm: UniTaskAnimations}
       data:
-        _tweenObject: {fileID: 1890892918}
-        _startDelay: 0
-        _tweenTime: 1
-        _loop: 0
-        _animationCurve:
+        tweenObject: {fileID: 0}
+        startDelay: 0
+        tweenTime: 1
+        loop: 0
+        animationCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
@@ -4659,12 +5334,12 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        _positionType: 0
-        _fromPosition: {x: 600, y: 200, z: 0}
-        _toPosition: {x: 400, y: -100, z: 0}
-        _bezier1Offset: {x: 100, y: -100, z: 0}
-        _bezier2Offset: {x: -100, y: 100, z: 0}
-        _precision: 0.05
+        positionType: 0
+        fromPosition: {x: 0, y: 0, z: 0}
+        toPosition: {x: 0, y: 0, z: 0}
+        bezier1Offset: {x: 0, y: 0, z: 0}
+        bezier2Offset: {x: 0, y: 0, z: 0}
+        precision: 0.05
 --- !u!114 &1890892922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4786,7 +5461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae2ee40f6f1d841bb81db4e8b1876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOnAwake: 0
+  startOnAwake: 0
   _tween:
     rid: 1209636100276748293
   references:
@@ -4797,9 +5472,9 @@ MonoBehaviour:
     - rid: 1209636100276748293
       type: {class: MultiTween, ns: Common.UniTaskAnimations, asm: UniTaskAnimations}
       data:
-        _parentObject: {fileID: 2103471132}
-        _perObjectSecondsDelay: 0.2
-        _tween:
+        parentObject: {fileID: 0}
+        perObjectSecondsDelay: 0
+        Tween:
           rid: -2
 --- !u!1 &2135722784
 GameObject:
@@ -4852,9 +5527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ddcfc5ea1c4bea88a12d5a0ece2dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 2135722787}
-  _recalculateOnEnable: 0
-  _key: close
+  text: {fileID: 2135722787}
+  recalculateOnEnable: 1
+  key: 
 --- !u!114 &2135722787
 MonoBehaviour:
   m_ObjectHideFlags: 0

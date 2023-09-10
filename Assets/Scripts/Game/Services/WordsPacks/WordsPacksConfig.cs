@@ -11,7 +11,7 @@ namespace Game.Services.WordsPacks
 #if UNITY_EDITOR
         private const int ExampleWords = 5;
 
-        [NaughtyAttributes.Button]
+       // [NaughtyAttributes.Button]
         private void CalculateWords()
         {
             foreach (var item in wordsPacksItems)

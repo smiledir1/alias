@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Common.Extensions;
+using Common.Utils.UnityObjects;
 using Cysharp.Threading.Tasks;
 using Services.UI;
 using TMPro;
@@ -45,27 +46,17 @@ namespace Game.UI.Screens.Teams
 
         private void CreateTeamItems()
         {
-            teamItemTemplate.gameObject.SetActive(false);
-            foreach (var teamItem in _teamItems)
-            {
-                Destroy(teamItem.gameObject);
-            }
-
-            _teamItems.Clear();
-
-            var parent = teamItemTemplate.transform.parent;
             var currentRound = Model.CurrentRound - 1;
             var teamsCount = Model.Teams.Count;
             var roundTeam = currentRound % teamsCount;
-            for (var i = 0; i < teamsCount; i++)
-            {
-                var team = Model.Teams[i];
-                var isRoundTeam = i == roundTeam;
-                var teamItem = Instantiate(teamItemTemplate, parent);
-                teamItem.Initialize(team, isRoundTeam);
-                teamItem.gameObject.SetActive(true);
-                _teamItems.Add(teamItem);
-            }
+            UnityObjectsUtils.DestroyCreateItems(
+                teamItemTemplate, _teamItems, Model.Teams,
+                (teamItem, pos) =>
+                {
+                    var team = Model.Teams[pos];
+                    var isRoundTeam = pos == roundTeam;
+                    teamItem.Initialize(team, isRoundTeam);
+                });
         }
 
         private void OnBackButton()

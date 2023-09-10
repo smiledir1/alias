@@ -8,11 +8,6 @@ namespace Game.Services.WordsPacks
     {
         public List<string> words;
 
-        private void OnEnable()
-        {
-            UnityEditor.EditorUtility.SetDirty(this);
-        }
-
         private void OnValidate()
         {
             var hash = new HashSet<string>();

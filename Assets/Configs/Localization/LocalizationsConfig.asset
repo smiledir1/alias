@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: LocalizationsConfig
   m_EditorClassIdentifier: 
   languages:
-  - _systemLanguage: 10
-    _languageLocalizeName: English
-    _languageWords:
+  - systemLanguage: 10
+    languageLocalizeName: English
+    languageWords:
       m_AssetGUID: 406b106d5643b4341b8725beb03c29b3
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  - _systemLanguage: 30
-    _languageLocalizeName: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
-    _languageWords:
+  - systemLanguage: 30
+    languageLocalizeName: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+    languageWords:
       m_AssetGUID: 508b2ff0abf22044abb2363589caa9fe
       m_SubObjectName: 
       m_SubObjectType: 

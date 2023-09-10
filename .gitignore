@@ -72,4 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .idea/
-
+NullReferenceDetector.*
+loc.csv
+inspect_results.xml

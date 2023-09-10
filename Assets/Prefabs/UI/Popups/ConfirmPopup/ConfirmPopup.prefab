@@ -312,7 +312,7 @@ MonoBehaviour:
     rid: 8411132184805769223
   CloseTween:
     rid: 8411132184805769234
-  _closeButton: {fileID: 6561962015825104302}
+  closeButton: {fileID: 6561962015825104302}
   header: {fileID: 4770216977849346683}
   text: {fileID: 1554889974949884927}
   confirmButton: {fileID: 8478671288952824729}

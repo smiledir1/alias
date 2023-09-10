@@ -101,10 +101,10 @@ namespace Common.CheckCode.Editor
             _excludePathsExpanded = EditorUtils.DrawList(_excludePaths, _excludePathsExpanded, "ExcludePaths");
 
             GUILayout.Label("Inspection parameters", _boldLabel);
-            _inspectFormatIndex = EditorGUILayout.Popup("Inspection format", _inspectFormatIndex,
+            _inspectFormatIndex = EditorGUILayout.Popup("Inspection output format", _inspectFormatIndex,
                 InspectFormats);
             _inspectFormat = InspectFormats[_inspectFormatIndex];
-            _inspectSeverityIndex = EditorGUILayout.Popup("Inspection format", _inspectSeverityIndex,
+            _inspectSeverityIndex = EditorGUILayout.Popup("Inspection severity", _inspectSeverityIndex,
                 InspectSeverityLevels);
             _inspectSeverity = InspectSeverityLevels[_inspectSeverityIndex];
             _outputFileName = EditorGUILayout.TextField("Output File Name", _outputFileName);
