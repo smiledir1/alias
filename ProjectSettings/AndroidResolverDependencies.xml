@@ -1,0 +1,87 @@
+<dependencies>
+  <packages>
+    <package>androidx.lifecycle:lifecycle-process:2.4.1</package>
+    <package>com.yandex.android:mobileads:6.0.0</package>
+  </packages>
+  <files>
+    <file>Assets/Plugins/Android/androidx.activity.activity-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.annotation.annotation-1.2.0.jar</file>
+    <file>Assets/Plugins/Android/androidx.annotation.annotation-experimental-1.1.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.appcompat.appcompat-1.2.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.appcompat.appcompat-resources-1.2.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.arch.core.core-common-2.1.0.jar</file>
+    <file>Assets/Plugins/Android/androidx.arch.core.core-runtime-2.1.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.collection.collection-1.1.0.jar</file>
+    <file>Assets/Plugins/Android/androidx.concurrent.concurrent-futures-1.0.0.jar</file>
+    <file>Assets/Plugins/Android/androidx.core.core-1.7.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.core.core-ktx-1.7.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.cursoradapter.cursoradapter-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.customview.customview-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.drawerlayout.drawerlayout-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.fragment.fragment-1.1.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.interpolator.interpolator-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-common-2.4.1.jar</file>
+    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-livedata-2.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-livedata-core-2.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-process-2.4.1.aar</file>
+    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-runtime-2.4.1.aar</file>
+    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-viewmodel-2.1.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.loader.loader-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.recyclerview.recyclerview-1.1.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.savedstate.savedstate-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.startup.startup-runtime-1.1.1.aar</file>
+    <file>Assets/Plugins/Android/androidx.tracing.tracing-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.transition.transition-1.2.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.vectordrawable.vectordrawable-1.1.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.vectordrawable.vectordrawable-animated-1.1.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.versionedparcelable.versionedparcelable-1.1.1.aar</file>
+    <file>Assets/Plugins/Android/androidx.viewpager.viewpager-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.viewpager2.viewpager2-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.android.installreferrer.installreferrer-2.2.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-identifier-18.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-appset-16.0.2.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-base-18.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-18.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-18.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.dagger.dagger-2.38.jar</file>
+    <file>Assets/Plugins/Android/com.google.guava.listenablefuture-1.0.jar</file>
+    <file>Assets/Plugins/Android/com.squareup.okio.okio-2.8.0.jar</file>
+    <file>Assets/Plugins/Android/com.yandex.android.mobileads-6.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.android.mobmetricalib-5.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.android.mobmetricalib-identifiers-5.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.assertion-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.beacon-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.div-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.div-core-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.div-data-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.div-evaluable-25.2.0.jar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.div-histogram-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.div-json-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.div-states-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.logging-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.yandex.div.utils-25.2.0.aar</file>
+    <file>Assets/Plugins/Android/javax.inject.javax.inject-1.jar</file>
+    <file>Assets/Plugins/Android/org.jetbrains.annotations-13.0.jar</file>
+    <file>Assets/Plugins/Android/org.jetbrains.kotlin.kotlin-stdlib-1.7.10.jar</file>
+    <file>Assets/Plugins/Android/org.jetbrains.kotlin.kotlin-stdlib-common-1.7.10.jar</file>
+    <file>Assets/Plugins/Android/org.jetbrains.kotlin.kotlin-stdlib-jdk7-1.7.10.jar</file>
+    <file>Assets/Plugins/Android/org.jetbrains.kotlin.kotlin-stdlib-jdk8-1.7.10.jar</file>
+  </files>
+  <settings>
+    <setting name="androidAbis" value="armeabi-v7a" />
+    <setting name="bundleId" value="com.smsm.alias" />
+    <setting name="explodeAars" value="True" />
+    <setting name="gradleBuildEnabled" value="True" />
+    <setting name="gradlePropertiesTemplateEnabled" value="False" />
+    <setting name="gradleTemplateEnabled" value="False" />
+    <setting name="installAndroidPackages" value="True" />
+    <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />
+    <setting name="packageDir" value="Assets/Plugins/Android" />
+    <setting name="patchAndroidManifest" value="True" />
+    <setting name="patchMainTemplateGradle" value="True" />
+    <setting name="projectExportEnabled" value="False" />
+    <setting name="useFullCustomMavenRepoPathWhenExport" value="True" />
+    <setting name="useFullCustomMavenRepoPathWhenNotExport" value="False" />
+    <setting name="useJetifier" value="True" />
+  </settings>
+</dependencies>
