@@ -24,6 +24,7 @@ namespace Game.Services.GameConfig
         None,
         Yandex,
         GooglePlay,
-        AppStore
+        AppStore,
+        RuStore
     }
 }

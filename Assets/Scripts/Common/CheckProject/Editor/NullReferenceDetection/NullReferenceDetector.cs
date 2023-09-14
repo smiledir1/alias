@@ -15,7 +15,7 @@ namespace Common.CheckProject.Editor.NullReferenceDetection
         {
             //var sceneObjects = UnityObject.FindObjectsOfType<GameObject>();
             //var allObjects = sceneObjects.Concat(prefabObjects).ToArray();
-            
+
             var prefabObjects = FindObjectsInPrefabs(prefabList);
 
             prefabObjects = RemoveIgnoredItems(prefabObjects, ignoreList);
@@ -42,10 +42,7 @@ namespace Common.CheckProject.Editor.NullReferenceDetection
 
         private Type AttributeFor(FieldInfo field)
         {
-            if (field.HasAttribute<BaseAttribute>())
-            {
-                return field.GetAttribute<BaseAttribute>().GetType();
-            }
+            if (field.HasAttribute<BaseAttribute>()) return field.GetAttribute<BaseAttribute>().GetType();
 
             return null;
         }

@@ -91,10 +91,7 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(10);
 
-            if (GUILayout.Button("+", GUILayout.Width(40)))
-            {
-                _ignoreList.Add(new Tuple<string, bool>("", false));
-            }
+            if (GUILayout.Button("+", GUILayout.Width(40))) _ignoreList.Add(new Tuple<string, bool>("", false));
 
             if (GUILayout.Button("-", GUILayout.Width(40)) && _ignoreList.Count > 0)
             {
@@ -105,13 +102,11 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
             GUILayout.Space(18);
 
             if (_ignoreList.Count != 0)
-            {
                 //handle UI and save changes to local ignoreList
                 for (var i = 0; i < _ignoreList.Count; i++)
                 {
                     _ignoreList[i] = HandleIndividualIgnoreItem(_ignoreList[i]);
                 }
-            }
 
             //save the inputs, if anything changed
             if (_dirtyIgnoreList)
@@ -122,7 +117,7 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
         }
 
         //Draws the UI element for each ignore item, and saves the values into the list for use
-        private static Tuple<String, bool> HandleIndividualIgnoreItem(Tuple<String, bool> t)
+        private static Tuple<string, bool> HandleIndividualIgnoreItem(Tuple<string, bool> t)
         {
             var rect = EditorGUILayout.BeginHorizontal();
             rect = new Rect(rect.x, rect.y - CellMargin, rect.width, rect.height + CellMargin * 2f);
@@ -168,10 +163,7 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(10);
 
-            if (GUILayout.Button("+", GUILayout.Width(40)))
-            {
-                _prefabsList.Add(null);
-            }
+            if (GUILayout.Button("+", GUILayout.Width(40))) _prefabsList.Add(null);
 
             if (GUILayout.Button("-", GUILayout.Width(40)) && _prefabsList.Count > 0)
             {
@@ -183,12 +175,10 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
 
             //handle UI and save changes to local ignoreList
             if (_prefabsList.Count > 0)
-            {
                 for (var i = 0; i < _prefabsList.Count; i++)
                 {
                     _prefabsList[i] = HandleIndividualPrefabItems(_prefabsList[i]);
                 }
-            }
 
             //save the inputs, if anything changed
             if (_dirtyPrefabsList)

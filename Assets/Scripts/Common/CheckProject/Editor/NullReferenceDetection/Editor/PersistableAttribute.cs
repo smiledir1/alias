@@ -25,15 +25,9 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
             _defaultEnabledState = enabled;
             _defaultColor = color;
 
-            if (!IsEntryExistingFor(EnabledPostfix))
-            {
-                IsEnabled = enabled;
-            }
+            if (!IsEntryExistingFor(EnabledPostfix)) IsEnabled = enabled;
 
-            if (!IsEntryExistingFor(ColorPostfix))
-            {
-                Color = color;
-            }
+            if (!IsEntryExistingFor(ColorPostfix)) Color = color;
         }
 
         public string Identifier => _identifier;
@@ -45,13 +39,9 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
                 if (_enabled == null)
                 {
                     if (IsEntryExistingFor(EnabledPostfix))
-                    {
                         _enabled = EditorPrefs.GetBool(KeyForPostfix(EnabledPostfix));
-                    }
                     else
-                    {
                         IsEnabled = true;
-                    }
                 }
 
                 return _enabled ?? _defaultEnabledState;
@@ -97,7 +87,7 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
         private string KeyForPostfix(string postix) =>
             $"null_helper_{_identifier}_{postix}";
 
-        private bool IsEntryExistingFor(string postfix) => 
+        private bool IsEntryExistingFor(string postfix) =>
             EditorPrefs.HasKey(KeyForPostfix(postfix));
     }
 }

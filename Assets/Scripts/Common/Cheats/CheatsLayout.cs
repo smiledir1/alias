@@ -1,9 +1,9 @@
 using Common.Extensions;
-using Services.Helper;
+using Services.Advertisement;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
+using Services.Helper;
 #if YANDEX_PLATFORM
 using Services.YandexGames;
 #endif
@@ -35,7 +35,9 @@ namespace Common.Cheats
         [Service]
         private static IYandexGamesService _yandexGamesService;
 #endif
-
+        
+        [Service]
+        private static IAdvertisementService _advertisementService;
         #endregion
 
         #region Cheats Layout
@@ -90,6 +92,8 @@ namespace Common.Cheats
 
         #region Create Cheats
 
+        private string _adsUnit = "demo-interstitial-yandex";
+        
         // TODO: Придумать как вынести
         private void CreateCheats()
         {
@@ -98,6 +102,36 @@ namespace Common.Cheats
 
             CreateCheatsInput("Test Button", "123Q", (text) => { Debug.Log($"Test {text}"); });
 
+            CreateCheatsLabel("Advertisement");
+            //var testUnit = "demo-interstitial-yandex";
+            //var testUnit = "R-M-2954019-1";
+            CreateCheatsButton("test unit", () =>
+            {
+                _adsUnit = "demo-interstitial-yandex";
+            });
+            
+            CreateCheatsButton("release unit", () =>
+            {
+                _adsUnit = "R-M-2954019-1";
+            });
+            
+            CreateCheatsButton("LoadInterstitial Ads", () =>
+            {
+                _advertisementService.LoadInterstitial(_adsUnit);
+            });
+            
+            CreateCheatsButton("HasLoadedInterstitial Ads", () =>
+            {
+                var hasAds = _advertisementService.HasLoadedInterstitial(_adsUnit);
+                Debug.Log($"Has ads {_adsUnit} {hasAds}");
+            });
+            
+            CreateCheatsButton("ShowInterstitial Ads", () =>
+            {
+                var hasAds = _advertisementService.ShowInterstitial(_adsUnit);
+                Debug.Log($"Show ads {_adsUnit} {hasAds}");
+            });
+            
 #if YANDEX_PLATFORM
             CreateCheatsLabel("Yandex Block");
             CreateCheatsButton("GetEnvironment", async () =>

@@ -21,6 +21,10 @@ using Services.UserData;
 using Services.Vibration;
 using UnityEngine;
 
+#if UNITY_ANDROID || UNITY_IOS
+using Services.YandexMobileAdvertisement;
+#endif
+
 #if UNITY_WEBGL && !UNITY_EDITOR
 using Services.UserData.WebGL;
 #else
@@ -130,6 +134,11 @@ namespace Game.Bootstrap
             ServiceLocator.AddService<IAdvertisementService>(yandexAdvertisementService);
 #endif
 
+#if UNITY_ANDROID || UNITY_IOS
+            var yandexMobileAdvertisementService = new YandexMobileAdvertisementService();
+            ServiceLocator.AddService<IAdvertisementService>(yandexMobileAdvertisementService);
+#endif
+            
             var deviceService = new DeviceService();
             ServiceLocator.AddService<IDeviceService>(deviceService);
 

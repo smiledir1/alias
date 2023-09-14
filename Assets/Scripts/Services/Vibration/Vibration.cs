@@ -47,7 +47,7 @@ namespace Services.Vibration
             {
                 var iVersionNumber = 0;
                 if (Application.platform != RuntimePlatform.Android) return iVersionNumber;
-            
+
                 var androidVersion = SystemInfo.operatingSystem;
                 var sdkPos = androidVersion.IndexOf("API-", StringComparison.Ordinal);
                 iVersionNumber = int.Parse(androidVersion.Substring(sdkPos + 4, 2));
@@ -113,7 +113,7 @@ namespace Services.Vibration
 #if UNITY_IOS
             _VibrateNope();
 #elif UNITY_ANDROID
-            long[] pattern = { 0, 50, 50, 50 };
+            long[] pattern = {0, 50, 50, 50};
             Vibrate(pattern, -1);
 #endif
         }

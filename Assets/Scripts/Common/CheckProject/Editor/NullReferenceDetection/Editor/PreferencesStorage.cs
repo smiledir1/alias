@@ -30,17 +30,11 @@ namespace Common.CheckProject.Editor.NullReferenceDetection.Editor
                 PersistableAttribute persistenceWrapper;
 
                 if (attribute == typeof(ValueOptional))
-                {
                     persistenceWrapper = new PersistableAttribute(attribute.Name, false, Color.black);
-                }
                 else if (attribute == typeof(ValueRequired))
-                {
                     persistenceWrapper = new PersistableAttribute(attribute.Name, true, new Color(.718f, .129f, .176f));
-                }
                 else
-                {
                     persistenceWrapper = new PersistableAttribute(attribute.Name);
-                }
 
                 Mapping.Add(attribute.Name, persistenceWrapper);
             }

@@ -92,7 +92,8 @@ namespace Game.Services.GameConfig.Editor
             {PlatformType.None, string.Empty},
             {PlatformType.Yandex, "YANDEX_PLATFORM"},
             {PlatformType.GooglePlay, "GOOGLE_PLAY_PLATFORM"},
-            {PlatformType.AppStore, "APP_STORE_PLATFORM"}
+            {PlatformType.AppStore, "APP_STORE_PLATFORM"},
+            {PlatformType.RuStore, "RU_STORE_PLATFORM"}
         };
 
         public static string GetDefineName(PlatformType platformType) =>
@@ -104,6 +105,9 @@ namespace Game.Services.GameConfig.Editor
             {
                 PlatformType.None => NamedBuildTarget.Unknown,
                 PlatformType.Yandex => NamedBuildTarget.WebGL,
+                PlatformType.GooglePlay => NamedBuildTarget.Android,
+                PlatformType.AppStore => NamedBuildTarget.iOS,
+                PlatformType.RuStore => NamedBuildTarget.Android,
                 _ => throw new ArgumentOutOfRangeException(nameof(platformType), platformType, null)
             };
         }

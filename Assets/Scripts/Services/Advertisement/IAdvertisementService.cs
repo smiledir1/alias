@@ -8,5 +8,8 @@ namespace Services.Advertisement
     {
         UniTask ShowInterstitialAd();
         UniTask ShowRewardedVideoAd(UnityAction onRewardedCallback = null);
+        void LoadInterstitial(string id);
+        bool HasLoadedInterstitial(string id);
+        bool ShowInterstitial(string id);
     }
 }
