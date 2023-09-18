@@ -7,9 +7,10 @@ namespace Services.Advertisement
     public interface IAdvertisementService : IService
     {
         UniTask ShowInterstitialAd();
+        UniTask LoadInterstitialAd();
+        bool HasLoadedInterstitialAd();
         UniTask ShowRewardedVideoAd(UnityAction onRewardedCallback = null);
-        void LoadInterstitial(string id);
-        bool HasLoadedInterstitial(string id);
-        bool ShowInterstitial(string id);
+        UniTask LoadRewardedVideoAd();
+        bool HasLoadedRewardedVideoAd();
     }
 }

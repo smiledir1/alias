@@ -207,6 +207,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c13d738cb536f64e9705dfaa52b9b42
+    m_Address: Configs/AppodealConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a170fa117788cb49a578ae53fae002c, type: 2}
   m_SchemaSet:

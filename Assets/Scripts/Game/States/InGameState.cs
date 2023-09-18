@@ -104,7 +104,7 @@ namespace Game.States
                 GotoMetaState();
                 return;
             }
-
+            _advertisementService.LoadInterstitialAd().Forget();
             var playedWords = await PlayGameRound(round);
             if (playedWords == null)
             {
@@ -114,12 +114,12 @@ namespace Game.States
 
             await EndGameRound(round, playedWords);
 
-
             SendEndRoundEvent(round, playedWords.Count);
 
+            _advertisementService.ShowInterstitialAd().Forget();
+            
             var newRound = round + 1;
             StartRound(newRound).Forget();
-            _advertisementService.ShowInterstitialAd().Forget();
         }
 
         private async UniTask<bool> StartRoundScreen(int round)

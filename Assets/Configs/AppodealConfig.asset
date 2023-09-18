@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f3440e15e0459abd32224a39488143, type: 3}
+  m_Name: AppodealConfig
+  m_EditorClassIdentifier: 
+  appKey: 29759a81975abb05094c3c05ff5f6b0f039e382b19ba97c8
+  isTesting: 1
+  useInterstitial: 1
+  useRewardedVideo: 1

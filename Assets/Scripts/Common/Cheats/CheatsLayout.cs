@@ -92,7 +92,7 @@ namespace Common.Cheats
 
         #region Create Cheats
 
-        private string _adsUnit = "demo-interstitial-yandex";
+        //private string _adsUnit = "demo-interstitial-yandex";
         
         // TODO: Придумать как вынести
         private void CreateCheats()
@@ -105,31 +105,56 @@ namespace Common.Cheats
             CreateCheatsLabel("Advertisement");
             //var testUnit = "demo-interstitial-yandex";
             //var testUnit = "R-M-2954019-1";
-            CreateCheatsButton("test unit", () =>
-            {
-                _adsUnit = "demo-interstitial-yandex";
-            });
+            // CreateCheatsButton("test unit", () =>
+            // {
+            //     _adsUnit = "demo-interstitial-yandex";
+            // });
+            //
+            // CreateCheatsButton("release unit", () =>
+            // {
+            //     _adsUnit = "R-M-2954019-1";
+            // });
             
-            CreateCheatsButton("release unit", () =>
+            CreateCheatsButton("LoadInterstitial Ads", async () =>
             {
-                _adsUnit = "R-M-2954019-1";
-            });
-            
-            CreateCheatsButton("LoadInterstitial Ads", () =>
-            {
-                _advertisementService.LoadInterstitial(_adsUnit);
+                Debug.Log("interstitial load start");
+                await _advertisementService.LoadInterstitialAd();
+                Debug.Log("interstitial load done");
             });
             
             CreateCheatsButton("HasLoadedInterstitial Ads", () =>
             {
-                var hasAds = _advertisementService.HasLoadedInterstitial(_adsUnit);
-                Debug.Log($"Has ads {_adsUnit} {hasAds}");
+                var hasAds = _advertisementService.HasLoadedInterstitialAd();
+                Debug.Log($"Has ads {hasAds}");
             });
             
-            CreateCheatsButton("ShowInterstitial Ads", () =>
+            CreateCheatsButton("ShowInterstitial Ads", async () =>
             {
-                var hasAds = _advertisementService.ShowInterstitial(_adsUnit);
-                Debug.Log($"Show ads {_adsUnit} {hasAds}");
+                Debug.Log("interstitial show start");
+                await _advertisementService.ShowInterstitialAd();
+                Debug.Log("interstitial show done");
+            });
+            
+            CreateCheatsButton("Load rewarded Ads", () =>
+            {
+                Debug.Log($"load ads start");
+                _advertisementService.LoadRewardedVideoAd();
+            });
+            
+            CreateCheatsButton("Has rewarded Ads", () =>
+            {
+                var hasAds = _advertisementService.HasLoadedRewardedVideoAd();
+                Debug.Log($"Has rew ads {hasAds}");
+            });
+            
+            CreateCheatsButton("Show rewarded Ads", () =>
+            {
+                Debug.Log($"Show ads start");
+                _advertisementService.ShowRewardedVideoAd(() =>
+                {
+                    Debug.Log("Get reward");
+                });
+                Debug.Log($"Show ads end");
             });
             
 #if YANDEX_PLATFORM

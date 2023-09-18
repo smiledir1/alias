@@ -9,6 +9,7 @@ using Game.States;
 using Game.UserData.Game;
 using Services.Advertisement;
 using Services.Analytics;
+using Services.Appodeal;
 using Services.Assets;
 using Services.Audio;
 using Services.Device;
@@ -20,10 +21,6 @@ using Services.UI.ScreenService;
 using Services.UserData;
 using Services.Vibration;
 using UnityEngine;
-
-#if UNITY_ANDROID || UNITY_IOS
-using Services.YandexMobileAdvertisement;
-#endif
 
 #if UNITY_WEBGL && !UNITY_EDITOR
 using Services.UserData.WebGL;
@@ -135,8 +132,8 @@ namespace Game.Bootstrap
 #endif
 
 #if UNITY_ANDROID || UNITY_IOS
-            var yandexMobileAdvertisementService = new YandexMobileAdvertisementService();
-            ServiceLocator.AddService<IAdvertisementService>(yandexMobileAdvertisementService);
+            var appodealService = new AppodealService(assetsService);
+            ServiceLocator.AddService<IAdvertisementService>(appodealService);
 #endif
             
             var deviceService = new DeviceService();

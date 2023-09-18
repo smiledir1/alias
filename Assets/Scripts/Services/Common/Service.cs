@@ -22,6 +22,15 @@ namespace Services.Common
 
         protected virtual UniTask OnDispose() => UniTask.CompletedTask;
 
+        protected async UniTask SetStarted()
+        {
+            while (State != ServiceState.Initialized)
+            {
+                await UniTask.Yield();
+            }
+            State = ServiceState.Started;
+        }
+
         protected static async UniTask WaitForServiceInitialize(IService service)
         {
             while (service.State != ServiceState.Initialized)

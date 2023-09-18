@@ -111,7 +111,7 @@ namespace Common.CheckCode.Editor
 
             GUILayout.Label("Cleanup parameters", _boldLabel);
             _cleanupFormat = CleanupFormats[_cleanupFormatIndex];
-            _cleanupFormatIndex = EditorGUILayout.Popup("Inspection format", _cleanupFormatIndex,
+            _cleanupFormatIndex = EditorGUILayout.Popup("Cleanup format", _cleanupFormatIndex,
                 CleanupFormats);
 
             if (GUILayout.Button("Save Options")) SaveOptions();
