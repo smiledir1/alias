@@ -35,12 +35,11 @@ namespace Services.Appodeal
             }
 
             if (_appodealConfig.UseRewardedVideo) adTypes |= AppodealAdType.RewardedVideo;
-            // if (_appodealConfig.IsTesting)
-            // {
-            //     AppodealStack.Monetization.Api.Appodeal.SetTesting(true);
-            //     AppodealStack.Monetization.Api.Appodeal.SetLogLevel(AppodealLogLevel.Verbose);
-            // }
-            AppodealStack.Monetization.Api.Appodeal.SetLogLevel(AppodealLogLevel.Verbose);
+            if (_appodealConfig.IsTesting)
+            {
+                AppodealStack.Monetization.Api.Appodeal.SetTesting(true);
+                AppodealStack.Monetization.Api.Appodeal.SetLogLevel(AppodealLogLevel.Verbose);
+            }
 
             AppodealCallbacks.Sdk.OnInitialized += OnInitializationFinished;
             AppodealStack.Monetization.Api.Appodeal.MuteVideosIfCallsMuted(true);
@@ -55,18 +54,10 @@ namespace Services.Appodeal
 
         private void OnInitializationFinished(object sender, SdkInitializedEventArgs e)
         {
-            // AppodealCallbacks.Interstitial.OnLoaded += OnInterstitialLoaded;
-            // AppodealCallbacks.Interstitial.OnFailedToLoad += OnInterstitialFailedToLoad;
-            // AppodealCallbacks.Interstitial.OnClosed += OnInterstitialClosed;
-            // AppodealCallbacks.Interstitial.OnClicked += OnInterstitialClicked;
             AppodealCallbacks.Interstitial.OnShown += OnInterstitialShown;
             AppodealCallbacks.Interstitial.OnShowFailed += OnInterstitialShowFailed;
             AppodealCallbacks.Interstitial.OnExpired += OnInterstitialExpired;
 
-            // AppodealCallbacks.RewardedVideo.OnLoaded += OnRewardedVideoLoaded;
-            // AppodealCallbacks.RewardedVideo.OnFailedToLoad += OnRewardedVideoFailedToLoad;
-            // AppodealCallbacks.RewardedVideo.OnClicked += OnRewardedVideoClicked;
-            // AppodealCallbacks.RewardedVideo.OnClosed += OnRewardedVideoClosed;
             AppodealCallbacks.RewardedVideo.OnShown += OnRewardedVideoShown;
             AppodealCallbacks.RewardedVideo.OnShowFailed += OnRewardedVideoShowFailed;
             AppodealCallbacks.RewardedVideo.OnFinished += OnRewardedVideoFinished;

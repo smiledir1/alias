@@ -32,11 +32,17 @@ namespace Services.YandexAdvertisement
             _audioService.ResumeMusic();
         }
 
+        public UniTask LoadInterstitialAd() => UniTask.CompletedTask;
+        public bool HasLoadedInterstitialAd() => true;
+
         public async UniTask ShowRewardedVideoAd(UnityAction onRewardedCallback = null)
         {
             _audioService.PauseMusic();
             await _yandexGamesService.ShowRewardedVideoAd(onRewardedCallback);
             _audioService.ResumeMusic();
         }
+
+        public UniTask LoadRewardedVideoAd() => UniTask.CompletedTask;
+        public bool HasLoadedRewardedVideoAd() => true;
     }
 }

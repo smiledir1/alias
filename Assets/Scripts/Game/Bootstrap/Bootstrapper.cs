@@ -51,7 +51,14 @@ namespace Game.Bootstrap
 #if DEV_ENV
             var devInitStartTime = Time.realtimeSinceStartup;
 #endif
-
+            
+            var loadingGameState = new LoadingGameState();
+            await loadingGameState.GoToState();
+            
+#if DEV_ENV
+            var registerStartTime = Time.realtimeSinceStartup - devInitStartTime;
+#endif
+            
             RegisterServices();
             await ServiceLocator.InitializeServices();
 #if DEV_ENV
@@ -72,7 +79,7 @@ namespace Game.Bootstrap
 #if DEV_ENV
             var fullInitTime = Time.realtimeSinceStartup - devInitStartTime;
             Debug.Log($"InitializeTime: {fullInitTime}\n" +
-                      // $"Service Initialize Time: {servicesInitializeTime}\n" +
+                      $"Service registerStartTime: {registerStartTime}\n" +
                       $"Service Start Time: {servicesStartTime}\n" +
                       $"Service Time: {servicesTime}");
 #endif

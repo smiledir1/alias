@@ -30,8 +30,7 @@ namespace Common.Utils
 
         public void Rebuild()
         {
-            layoutGroup.SetLayoutVertical();
-            layoutGroup.SetLayoutHorizontal();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroup.transform as RectTransform);
         }
 
         private void OnValidate()
