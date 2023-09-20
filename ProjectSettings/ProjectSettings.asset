@@ -155,7 +155,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.smapp.alias
-    Standalone: com.smsm.alias
+    Standalone: com.smapp.alias
     iPhone: com.smsm.alias
   buildNumber:
     Standalone: 0
@@ -837,7 +837,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 3
+  selectedPlatform: 2
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1
