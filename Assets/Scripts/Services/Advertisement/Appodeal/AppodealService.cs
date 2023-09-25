@@ -1,12 +1,11 @@
 using System;
 using AppodealStack.Monetization.Common;
 using Cysharp.Threading.Tasks;
-using Services.Advertisement;
 using Services.Assets;
 using Services.Common;
 using UnityEngine.Events;
 
-namespace Services.Appodeal
+namespace Services.Advertisement.Appodeal
 {
     public class AppodealService : Service, IAdvertisementService
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Services.Appodeal
+namespace Services.Advertisement.Appodeal
 {
     [CreateAssetMenu(menuName = "Services/Appodeal/AppodealConfig", fileName = "AppodealConfig")]
     public class AppodealConfig : ScriptableObject

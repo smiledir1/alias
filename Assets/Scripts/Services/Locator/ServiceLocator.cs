@@ -12,9 +12,9 @@ namespace Services.Locator
     public static class ServiceLocator
     {
         private static readonly Dictionary<Type, IService> Services = new();
-        private static readonly List<Service> AllServices = new();
+        private static readonly List<IService> AllServices = new();
 
-        public static void AddService<T>(Service service) where T : IService
+        public static void AddService<T>(IService service) where T : IService
         {
             if (!typeof(T).IsInterface)
             {

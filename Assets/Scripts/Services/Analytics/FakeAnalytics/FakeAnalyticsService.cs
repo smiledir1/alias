@@ -2,7 +2,7 @@
 using Services.Common;
 using UnityEngine;
 
-namespace Services.Analytics
+namespace Services.Analytics.FakeAnalytics
 {
     public class FakeAnalyticsService : Service, IAnalyticsService
     {

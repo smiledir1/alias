@@ -3,14 +3,14 @@ using Cysharp.Threading.Tasks;
 using Services.Assets;
 using Services.Common;
 
-namespace Services.Analytics
+namespace Services.Analytics.UniversalAnalytics
 {
     public class UniversalAnalyticsService : Service, IAnalyticsService
     {
         private readonly IAssetsService _assetsService;
 
         private AnalyticsConfig _analyticsConfig;
-        private List<IAnalyticsManager> _managers = new();
+        private List<IAnalyticsService> _managers = new();
 
         public UniversalAnalyticsService(IAssetsService assetsService)
         {
@@ -23,14 +23,14 @@ namespace Services.Analytics
 
             _analyticsConfig = await _assetsService.LoadAsset<AnalyticsConfig>();
 
-            _managers = new List<IAnalyticsManager>();
+            _managers = new List<IAnalyticsService>();
 
             if (_analyticsConfig.IsUnityAnalytics) _managers.Add(CreateUnityAnalytics());
 
             var initializeTasks = new List<UniTask>();
-            foreach (var analyticsManager in _managers)
+            foreach (var analytics in _managers)
             {
-                initializeTasks.Add(analyticsManager.Initialize());
+                initializeTasks.Add(analytics.Initialize());
             }
 
             await UniTask.WhenAll(initializeTasks);
@@ -60,10 +60,10 @@ namespace Services.Analytics
             }
         }
 
-        private IAnalyticsManager CreateUnityAnalytics()
+        private IAnalyticsService CreateUnityAnalytics()
         {
 #if ANALYTICS_UNITY
-            return new UnityAnalyticsManager();
+            return new UnityAnalyticsService();
 #else
             return null;
 #endif

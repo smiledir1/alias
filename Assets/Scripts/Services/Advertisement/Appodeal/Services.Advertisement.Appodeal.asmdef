@@ -1,0 +1,21 @@
+{
+    "name": "Services.Advertisement.Appodeal",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6f68e653e2f5b73408647a53e621f73e",
+        "GUID:87d2bb41bf94587408f4561e0f7a03e8",
+        "GUID:acc38f75b801c57408bda314ca9a15a0",
+        "GUID:1f613da493e88413786955ac61fc9673",
+        "GUID:4e20c7306599b442b84e265cb179eddc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

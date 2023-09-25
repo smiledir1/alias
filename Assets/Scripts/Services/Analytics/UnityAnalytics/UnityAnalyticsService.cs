@@ -1,17 +1,19 @@
 ﻿#if ANALYTICS_UNITY
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Services.Common;
 using Unity.Services.Core;
 
 namespace Services.Analytics
 {
-    public class UnityAnalyticsManager : IAnalyticsManager
+    public class UnityAnalyticsService : Service, IAnalyticsService
     {
         private Unity.Services.Analytics.IAnalyticsService _analytics;
 
-        public async UniTask Initialize()
+        protected override async UniTask OnInitialize()
         {
-            if (UnityServices.State == ServicesInitializationState.Uninitialized) await UnityServices.InitializeAsync();
+            if (UnityServices.State == ServicesInitializationState.Uninitialized) 
+                await UnityServices.InitializeAsync();
 
             _analytics = Unity.Services.Analytics.AnalyticsService.Instance;
             _analytics.StartDataCollection();

@@ -1,0 +1,20 @@
+{
+    "name": "Services.Analytics.UniversalAnalytics",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6f68e653e2f5b73408647a53e621f73e",
+        "GUID:4f67095af25e99a40af6b716c4f0b3c4",
+        "GUID:acc38f75b801c57408bda314ca9a15a0",
+        "GUID:c7c8f868c1e8dca46a7597eb0c6e93fe"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
