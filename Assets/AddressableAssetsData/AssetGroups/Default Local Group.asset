@@ -212,6 +212,131 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41bc75a16f18ffb41ae738be873a5531
+    m_Address: Assets/Configs/WordsPacks/Ru/Travel2Ru.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e0e81a5665d8b548bc43d8e7ef2f797
+    m_Address: Assets/Configs/WordsPacks/Ru/TolkienRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac8f9030e452ff443b22b657ee000546
+    m_Address: Assets/Configs/WordsPacks/Ru/StandardRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dada8c23d491bef4a9dc0f708560b084
+    m_Address: Assets/Configs/WordsPacks/Ru/SportRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c015bd5306190194cab3403f30646bf8
+    m_Address: Assets/Configs/WordsPacks/Ru/SexRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fb9b51512ae1db4bb006fafa05c4ef6
+    m_Address: Assets/Configs/WordsPacks/Ru/ScienceRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 137dc7f39ef3db4448488f69de4b93a1
+    m_Address: Assets/Configs/WordsPacks/Ru/ProfessionsRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f0ee10342320af458c0e9262e8080d5
+    m_Address: Assets/Configs/WordsPacks/Ru/MarvelRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cc3a07e86fee5d459661aed6eba7d0d
+    m_Address: Assets/Configs/WordsPacks/Ru/LiteratureHeroesRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ca28e72e926fc04680227de3d23f233
+    m_Address: Assets/Configs/WordsPacks/Ru/ITRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1422428741a98b4f9f0820b3ce43440
+    m_Address: Assets/Configs/WordsPacks/Ru/HarryPotter2Ru.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acaeb1922772a07459c7b4f7566ad831
+    m_Address: Assets/Configs/WordsPacks/Ru/GameOfTronesRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 691612ead1eda0b46a881043aa156489
+    m_Address: Assets/Configs/WordsPacks/Ru/FasionRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fe75fc4fc86b5c4fa9bd1e91b545090
+    m_Address: Assets/Configs/WordsPacks/Ru/FamousPersonsRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f8ee21ff8c5cbd4490d08be67ed079a
+    m_Address: Assets/Configs/WordsPacks/Ru/FairyTalesRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 743e2f9b9fc3e8643839e880e8d953c8
+    m_Address: Assets/Configs/WordsPacks/Ru/EatRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c831b790248e0c14d8604eb0532a4201
+    m_Address: Assets/Configs/WordsPacks/Ru/Dota2Ru.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e341e00338290b2498b7568801991457
+    m_Address: Assets/Configs/WordsPacks/Ru/DifficultRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fade81b8530e8b84bb9aa36845acc323
+    m_Address: Assets/Configs/WordsPacks/Ru/DcRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c081f9b42c587eb46b43d14a3c609a0a
+    m_Address: Assets/Configs/WordsPacks/Ru/CitiesRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c2c1f4e9411f6e4092d589e791cea4b
+    m_Address: Assets/Configs/WordsPacks/Ru/CinemaRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea5d792cd9e8e40429c8eda2f38e92b5
+    m_Address: Assets/Configs/WordsPacks/Ru/ChristmasRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1774ba17fbafd0c4eb5ad26419e57baf
+    m_Address: Assets/Configs/WordsPacks/Ru/AnimalsRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4be44751b6b4694395975dc43e4aa0d
+    m_Address: Assets/Configs/WordsPacks/Ru/AdditionsRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fe0e31114b5eba4c84cb0c5f2946558
+    m_Address: Assets/Configs/WordsPacks/Ru/MarvelUniverseRu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a170fa117788cb49a578ae53fae002c, type: 2}
   m_SchemaSet:

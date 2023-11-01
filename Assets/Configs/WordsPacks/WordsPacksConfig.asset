@@ -264,3 +264,307 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - name: "\u0420\u0430\u0437\u043D\u044B\u0435 \u0441\u043B\u043E\u0432\u0430"
+    description: 
+    exampleWords: "\u0442\u0440\u0430\u0432\u0430; \u043F\u0440\u043E\u0441\u0442\u0440\u0430\u043D\u0441\u0442\u0432\u043E;
+      \u0440\u0430\u0437\u043D\u0438\u0446\u0430; \u043E\u0440\u0430\u0442\u043E\u0440;
+      \u043B\u043E\u0442\u043E; "
+    wordsCount: 295
+    language: 30
+    wordsPack:
+      m_AssetGUID: e4be44751b6b4694395975dc43e4aa0d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0416\u0438\u0432\u043E\u0442\u043D\u044B\u0435"
+    description: 
+    exampleWords: "\u0441\u043E\u0440\u043E\u043A\u0430; \u043A\u0430\u0440\u0430\u043A\u0430\u0442\u0438\u0446\u0430;
+      \u0423\u0442\u043A\u0430; \u041B\u0430\u043C\u0430\u043D\u0442\u0438\u043D;
+      \u041A\u0443\u0440\u0438\u0446\u0430; "
+    wordsCount: 400
+    language: 30
+    wordsPack:
+      m_AssetGUID: 1774ba17fbafd0c4eb5ad26419e57baf
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u043E"
+    description: 
+    exampleWords: "\u0437\u0432\u0435\u0437\u0434\u0430; \u0443\u043F\u0430\u043A\u043E\u0432\u043E\u0447\u043D\u0430\u044F
+      \u0431\u0443\u043C\u0430\u0433\u0430; \u0431\u043E\u0433\u043E\u0441\u043B\u0443\u0436\u0435\u043D\u0438\u0435;
+      \u0441\u0438\u043C\u0432\u043E\u043B \u0433\u043E\u0434\u0430; \u0448\u0442\u0440\u0443\u0434\u0435\u043B\u044C; "
+    wordsCount: 181
+    language: 30
+    wordsPack:
+      m_AssetGUID: ea5d792cd9e8e40429c8eda2f38e92b5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u041A\u0438\u043D\u043E"
+    description: 
+    exampleWords: "\u0417\u0432\u0435\u0437\u0434\u043D\u0430\u044F \u043F\u044B\u043B\u044C;
+      \u0417\u0432\u043E\u043D\u043E\u043A; \u0420\u043E\u0431\u043E\u043A\u043E\u043F;
+      \u043B\u044E\u0431\u043E\u0432\u044C \u043F\u043E \u043F\u0440\u0430\u0432\u0438\u043B\u0430\u043C
+      \u0438 \u0431\u0435\u0437; 11 \u0434\u0440\u0443\u0437\u0435\u0439 \u041E\u0443\u0448\u0435\u043D\u0430; "
+    wordsCount: 400
+    language: 30
+    wordsPack:
+      m_AssetGUID: 1c2c1f4e9411f6e4092d589e791cea4b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0413\u043E\u0440\u043E\u0434\u0430"
+    description: 
+    exampleWords: "\u0425\u0443\u0441\u0442; \u041A\u043E\u0442\u0438; \u0417\u0430\u0445\u0430\u0440\u043E;
+      \u0411\u0430\u0440\u0441\u0435\u043B\u043E\u043D\u0430; \u0411\u0440\u0435\u0441\u0442; "
+    wordsCount: 250
+    language: 30
+    wordsPack:
+      m_AssetGUID: c081f9b42c587eb46b43d14a3c609a0a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0413\u0435\u0440\u043E\u0438 DC"
+    description: 
+    exampleWords: "\u0413\u0435\u043D\u0435\u0440\u0430\u043B \u0417\u043E\u0434;
+      \u0426\u0438\u043A\u043B\u043E\u043D; \u0414\u0435\u043A\u0440\u0438\u0442\u043E\u0440;
+      \u0434\u043E\u043A\u0442\u043E\u0440 \u0424\u044D\u0439\u0442; \u041F\u0430\u043D\u0434\u043E\u0440\u0430; "
+    wordsCount: 300
+    language: 30
+    wordsPack:
+      m_AssetGUID: fade81b8530e8b84bb9aa36845acc323
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0421\u043B\u043E\u0436\u043D\u044B\u0435 \u0441\u043B\u043E\u0432\u0430"
+    description: 
+    exampleWords: "\u0433\u043E\u043B\u0443\u0431\u043E\u0439 \u0442\u043E\u043C\u0430\u0442;
+      \u043A\u0443\u0431\u0438\u043A \u0420\u0443\u0431\u0438\u043A\u0430; \u0441\u043A\u0440\u0438\u043F\u043A\u0430
+      \u0421\u0442\u0440\u0430\u0434\u0438\u0432\u0430\u0440\u0438; \u0431\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u044B\u0439
+      \u0445\u0430\u043E\u0441; \u043C\u0438\u043B\u043B\u0438\u043E\u043D \u0430\u043B\u044B\u0445
+      \u0440\u043E\u0437; "
+    wordsCount: 300
+    language: 30
+    wordsPack:
+      m_AssetGUID: e341e00338290b2498b7568801991457
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: Dota2
+    description: 
+    exampleWords: "\u0420\u0443\u043D\u0430; \u041F\u0443\u0434\u0436; \u041C\u0438\u0440\u0430\u043D\u0430;
+      \u0410\u043B\u0445\u0438\u043C\u0438\u043A; \u041A\u0440\u0438\u043F\u0441\u0442\u0430\u0442; "
+    wordsCount: 150
+    language: 30
+    wordsPack:
+      m_AssetGUID: c831b790248e0c14d8604eb0532a4201
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0415\u0434\u0430"
+    description: 
+    exampleWords: "\u043E\u0434\u0436\u0430\u0445\u0443\u0440\u0438; \u043C\u0430\u0440\u0438\u043D\u043E\u0432\u0430\u043D\u044B\u0435
+      \u0448\u0430\u043C\u043F\u0438\u043D\u044C\u043E\u043D\u044B; \u0421\u0430\u0446\u0438\u0432\u0438;
+      \u0411\u0430\u0440\u0430\u043D\u044C\u0438 \u0440\u0435\u0431\u0440\u044B\u0448\u043A\u0438;
+      \u0433\u0430\u043B\u0443\u0448\u043A\u0438; "
+    wordsCount: 550
+    language: 30
+    wordsPack:
+      m_AssetGUID: 743e2f9b9fc3e8643839e880e8d953c8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0421\u043A\u0430\u0437\u043A\u0438"
+    description: 
+    exampleWords: "\u041F\u0435\u043F\u043F\u0438 \u0414\u043B\u0438\u043D\u043D\u044B\u0439
+      \u0447\u0443\u043B\u043E\u043A; \u043F\u0440\u0438\u043D\u0446\u0435\u0441\u0441\u0430;
+      \u0431\u0435\u043B\u044B\u0435 \u043A\u043E\u043F\u044B\u0442\u0446\u0430;
+      \u0420\u0443\u043A\u043E\u0434\u0435\u043B\u044C\u043D\u0438\u0446\u0430 \u0438
+      \u041B\u0435\u043D\u0438\u0432\u0438\u0446\u0430; \u043B\u0438\u0441\u0430
+      \u0438 \u0436\u0443\u0440\u0430\u0432\u043B\u044C; "
+    wordsCount: 500
+    language: 30
+    wordsPack:
+      m_AssetGUID: 9f8ee21ff8c5cbd4490d08be67ed079a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0417\u043D\u0430\u043C\u0435\u043D\u0438\u0442\u044B\u0435 \u043B\u044E\u0434\u0438"
+    description: 
+    exampleWords: "\u0412\u0430\u043D\u0433\u0430; \u0416\u0430\u043A \u0418\u0432
+      \u041A\u0443\u0441\u0442\u043E; \u041B\u0443\u0438 \u041F\u0430\u0441\u0442\u0435\u0440;
+      \u0411\u0435\u043D \u0410\u0444\u0444\u043B\u0435\u043A; \u041D\u0438\u043A\u043E\u043B\u0430\u0439
+      \u0413\u043E\u0433\u043E\u043B\u044C; "
+    wordsCount: 350
+    language: 30
+    wordsPack:
+      m_AssetGUID: 0fe75fc4fc86b5c4fa9bd1e91b545090
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u041C\u043E\u0434\u0430"
+    description: 
+    exampleWords: "\u041F\u0435\u0441\u0442\u0440\u044B\u0439; \u0410\u043A\u0441\u0435\u0441\u0441\u0443\u0430\u0440;
+      \u0418\u0434\u0435\u0430\u043B; \u041E\u0431\u043E\u0434\u043E\u043A; \u0413\u043E\u0440\u0436\u0435\u0442\u043A\u0430; "
+    wordsCount: 100
+    language: 30
+    wordsPack:
+      m_AssetGUID: 691612ead1eda0b46a881043aa156489
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0418\u0433\u0440\u0430 \u041F\u0440\u0435\u0441\u0442\u043E\u043B\u043E\u0432"
+    description: 
+    exampleWords: "\u0427\u0435\u0440\u043D\u044B\u0439 \u0434\u0440\u0430\u043A\u043E\u043D;
+      \u0422\u0435\u043D\u044C-\u0443\u0431\u0438\u0439\u0446\u0430; \u041E\u0440\u043B\u0438\u043D\u043E\u0435
+      \u0433\u043D\u0435\u0437\u0434\u043E; \u0412\u0435\u0442\u0440\u0430 \u0437\u0438\u043C\u044B;
+      \u042D\u0443\u0440\u043E\u043D \u0413\u0440\u0435\u0439\u0434\u0436\u043E\u0439; "
+    wordsCount: 250
+    language: 30
+    wordsPack:
+      m_AssetGUID: acaeb1922772a07459c7b4f7566ad831
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0413\u0430\u0440\u0440\u0438 \u041F\u043E\u0442\u0442\u0435\u0440 2"
+    description: 
+    exampleWords: "\u0432\u0435\u0439\u043B\u0430; \u043A\u043E\u0440\u043E\u043B\u044C
+      \u0437\u043C\u0435\u0439; \u0410\u043B\u044C\u0431\u0443\u0441 \u0414\u0430\u043C\u0431\u043B\u0434\u043E\u0440;
+      \u0420\u0430\u0441\u043F\u0440\u0435\u0434\u0435\u043B\u044F\u044E\u0449\u0430\u044F
+      \u0448\u043B\u044F\u043F\u0430; \u0422\u0440\u0430\u043D\u0441\u0433\u0440\u0435\u0441\u0441\u0438\u044F; "
+    wordsCount: 400
+    language: 30
+    wordsPack:
+      m_AssetGUID: b1422428741a98b4f9f0820b3ce43440
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: IT
+    description: 
+    exampleWords: "\u041A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440; \u0411\u0443\u0444\u0435\u0440;
+      Objective; \u0420\u0435\u043F\u043B\u0438\u043A\u0430\u0446\u0438\u044F; \u0423\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u0435; "
+    wordsCount: 346
+    language: 30
+    wordsPack:
+      m_AssetGUID: 0ca28e72e926fc04680227de3d23f233
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u041B\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u043D\u044B\u0435
+      \u0413\u0435\u0440\u043E\u0438"
+    description: 
+    exampleWords: "\u041C\u0438\u043B\u0435\u0434\u0438; \u0421\u0438\u043D\u044F\u044F
+      \u0431\u043E\u0440\u043E\u0434\u0430; \u0413\u043E\u0441\u043F\u043E\u0436\u0430
+      \u041F\u0440\u043E\u0441\u0442\u0430\u043A\u043E\u0432\u0430; \u041F\u0430\u043F\u0430
+      \u041A\u0430\u0440\u043B\u043E; \u0413\u0440\u0438\u0433\u043E\u0440\u0438\u0439
+      \u041F\u0435\u0447\u043E\u0440\u0438\u043D; "
+    wordsCount: 250
+    language: 30
+    wordsPack:
+      m_AssetGUID: 3cc3a07e86fee5d459661aed6eba7d0d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0412\u0441\u0435\u043B\u0435\u043D\u043D\u0430\u044F Marvel"
+    description: 
+    exampleWords: "\u0417\u0438\u043C\u043D\u0438\u0439 \u0441\u043E\u043B\u0434\u0430\u0442;
+      \u041D\u0430\u0431\u043B\u044E\u0434\u0430\u0442\u0435\u043B\u044C \u0423\u0430\u0442\u0443;
+      \u043A\u0430\u043F\u0438\u0442\u0430\u043D \u0411\u0440\u0438\u0442\u0430\u043D\u0438\u044F;
+      \u041E\u0434\u0438\u043D-\u041D\u0430\u0434-\u0412\u0441\u0435\u043C(One-Above-All);
+      \u043C\u043E\u0433\u0443\u0447\u0438\u0435 \u043C\u0441\u0442\u0438\u0442\u0435\u043B\u0438; "
+    wordsCount: 350
+    language: 30
+    wordsPack:
+      m_AssetGUID: 5f0ee10342320af458c0e9262e8080d5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u041F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438"
+    description: 
+    exampleWords: "\u0431\u043E\u0440\u0442\u043C\u0435\u0445\u0430\u043D\u0438\u043A;
+      \u043F\u043E\u0436\u0430\u0440\u043D\u044B\u0439; \u043B\u043E\u0446\u043C\u0430\u043D;
+      \u0433\u0438\u0434-\u043F\u0435\u0440\u0435\u0432\u043E\u0434\u0447\u0438\u043A;
+      \u0430\u043D\u0438\u043C\u0430\u0442\u043E\u0440; "
+    wordsCount: 400
+    language: 30
+    wordsPack:
+      m_AssetGUID: 137dc7f39ef3db4448488f69de4b93a1
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u041D\u0430\u0443\u043A\u0430"
+    description: 
+    exampleWords: "\u044D\u043B\u0435\u043A\u0442\u0440\u043E\u043B\u0438\u0437;
+      \u044D\u043A\u0441\u043F\u0435\u0440\u0438\u043C\u0435\u043D\u0442; \u043A\u043E\u043D\u0441\u0442\u0438\u0442\u0443\u0446\u0438\u044F;
+      \u0431\u0438\u043E\u043B\u043E\u0433\u0438\u044F; \u0441\u043B\u0435\u0434\u0441\u0442\u0432\u0438\u0435; "
+    wordsCount: 300
+    language: 30
+    wordsPack:
+      m_AssetGUID: 9fb9b51512ae1db4bb006fafa05c4ef6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: 18+
+    description: 
+    exampleWords: "\u0441\u0443\u0436\u0430\u044E\u0449\u0438\u0439 \u0433\u0435\u043B\u044C;
+      \u0434\u043E\u0440\u043E\u0433\u0430\u044F \u043F\u0440\u043E\u0441\u0442\u0438\u0442\u0443\u0442\u043A\u0430;
+      \u0441\u0442\u0438\u043C\u0443\u043B\u044F\u0442\u043E\u0440-\u0440\u0430\u0441\u0448\u0438\u0440\u0438\u0442\u0435\u043B\u044C;
+      \u0444\u0435\u043B\u043B\u044F\u0446\u0438\u044F; \u0441\u0435\u043A\u0441
+      \u0432 \u043B\u0438\u0444\u0442\u0435; "
+    wordsCount: 500
+    language: 30
+    wordsPack:
+      m_AssetGUID: c015bd5306190194cab3403f30646bf8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0421\u043F\u043E\u0440\u0442"
+    description: 
+    exampleWords: "\u0410\u043F\u043F\u0435\u0440\u043A\u043E\u0442; \u0417\u0430\u043C\u0435\u043D\u0430;
+      \u0424\u0435\u0445\u0442\u043E\u0432\u0430\u043D\u0438\u0435; \u0424\u0443\u0442\u0431\u043E\u043B;
+      \u0424\u0440\u0438\u0441\u0442\u0430\u0439\u043B; "
+    wordsCount: 301
+    language: 30
+    wordsPack:
+      m_AssetGUID: dada8c23d491bef4a9dc0f708560b084
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0420\u0430\u0437\u043B\u0438\u0447\u043D\u044B\u0435 \u0441\u043B\u043E\u0432\u0430"
+    description: 
+    exampleWords: "\u0440\u0435\u043F\u043B\u0438\u043A\u0430; \u0441\u0435\u0440\u0434\u0446\u0435;
+      \u0445\u0443\u0440\u043C\u0430; \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0442\u043E\u0440;
+      \u0437\u043B\u043E; "
+    wordsCount: 2501
+    language: 30
+    wordsPack:
+      m_AssetGUID: ac8f9030e452ff443b22b657ee000546
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u0414\u0436\u043E\u043D \u0420\u043E\u043D\u0430\u043B\u044C\u0434 \u0420\u0443\u044D\u043B
+      \u0422\u043E\u043B\u043A\u0438\u043D"
+    description: 
+    exampleWords: "\u0421\u044D\u043C\u0443\u0430\u0439\u0437 \u0413\u044D\u043C\u0434\u0436\u0438;
+      \u0411\u0430\u0440\u0434 \u041B\u0443\u0447\u043D\u0438\u043A; \u0434\u0435\u0442\u0438
+      \u0425\u0443\u0440\u0438\u043D\u0430; \u044D\u043B\u044C\u0444\u0438\u0439\u0441\u043A\u0438\u0439
+      \u044F\u0437\u044B\u043A; \u041A\u0445\u0435\u043B\u0435\u0434-\u0437\u0430\u0440\u0430\u043C; "
+    wordsCount: 400
+    language: 30
+    wordsPack:
+      m_AssetGUID: 2e0e81a5665d8b548bc43d8e7ef2f797
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - name: "\u041F\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u044F"
+    description: 
+    exampleWords: "\u0422\u0440\u0430\u043F; \u0413\u0430\u043B\u0435\u0440\u0435\u044F;
+      \u041A\u0440\u0443\u0433\u043E\u0437\u043E\u0440; \u041A\u043E\u043B\u0438\u0437\u0435\u0439;
+      \u041C\u0435\u0440\u043E\u043F\u0440\u0438\u044F\u0442\u0438\u0435; "
+    wordsCount: 150
+    language: 30
+    wordsPack:
+      m_AssetGUID: 41bc75a16f18ffb41ae738be873a5531
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

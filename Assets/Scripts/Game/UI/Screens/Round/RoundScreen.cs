@@ -201,10 +201,10 @@ namespace Game.UI.Screens.Round
             {
                 wordPos = Random.Range(0, wordsPackWordsCount);
                 word = _wordsPack.words[wordPos];
-            } while (_playedPackWordsHash.Contains(word));
+            } while (_playedPackWordsIndexes.Contains(wordPos));
 
             _playedPackWordsIndexes.Add(wordPos);
-            _playedPackWordsHash.Add(word);
+            if (_playedPackWordsHash.Contains(word)) _playedPackWordsHash.Add(word);
             _generatedCount++;
 
             if (wordsPackWordsCount <= _generatedCount)

@@ -14,6 +14,7 @@ namespace Game.Services.WordsPacks.Editor
         private string _fileName;
         private string _name;
         private string _description;
+        private bool _isJsonWords;
         private string _words;
         private SystemLanguage _packLanguage;
 
@@ -43,6 +44,7 @@ namespace Game.Services.WordsPacks.Editor
             _description = EditorGUILayout.TextArea(_description, GUILayout.Height(100));
 
             EditorGUILayout.LabelField("Words");
+            _isJsonWords = EditorGUILayout.Toggle("Is Json Words", _isJsonWords);
             _words = EditorGUILayout.TextArea(_words, GUILayout.Height(100));
 
             if (GUILayout.Button("Create new pack")) CreateNewPack();
@@ -51,19 +53,28 @@ namespace Game.Services.WordsPacks.Editor
         private void CreateNewPack()
         {
             var wordsPack = CreateInstance<WordsPack>();
-            var words = _words.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-
             var wordsHash = new HashSet<string>();
             var wordsList = new List<string>();
-            foreach (var word in words)
+            if (_isJsonWords)
             {
-                var clearWord = word.Replace("  ", "");
-                clearWord = clearWord.Replace('\r', '\0');
-                clearWord = clearWord.Replace('\n', '\0');
-                if (wordsHash.Contains(clearWord)) continue;
-                wordsHash.Add(clearWord);
-                wordsList.Add(clearWord);
+                var jsonWords = JsonUtility.FromJson<JsonWords>(_words);
+                wordsList = jsonWords.words;
+                //TODO: check dublicates
             }
+            else
+            {
+                var words = _words.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+                foreach (var word in words)
+                {
+                    var clearWord = word.Replace("  ", "");
+                    clearWord = clearWord.Replace('\r', '\0');
+                    clearWord = clearWord.Replace('\n', '\0');
+                    if (wordsHash.Contains(clearWord)) continue;
+                    wordsHash.Add(clearWord);
+                    wordsList.Add(clearWord);
+                }
+            }
+           
 
             wordsPack.words = wordsList;
 
@@ -82,7 +93,7 @@ namespace Game.Services.WordsPacks.Editor
                 name = _name,
                 description = _description,
                 exampleWords = WordsPacksConfig.GetExampleWords(wordsPack),
-                wordsCount = words.Length.ToString(),
+                wordsCount = wordsList.Count.ToString(),
                 language = _packLanguage,
                 wordsPack = new AssetReferenceT<WordsPack>(guid)
             };
@@ -90,6 +101,14 @@ namespace Game.Services.WordsPacks.Editor
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
+        
+        [Serializable]
+        private class JsonWords
+        {
+            public List<string> words;
+        }
     }
+    
+    
 }
 #endif
