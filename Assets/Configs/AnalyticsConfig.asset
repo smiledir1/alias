@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d44049baef441018b7a11bf395dcf42, type: 3}
   m_Name: AnalyticsConfig
   m_EditorClassIdentifier: 
-  unityAnalytics: 1
+  unityAnalytics: 0

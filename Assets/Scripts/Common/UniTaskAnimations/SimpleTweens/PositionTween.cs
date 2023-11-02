@@ -172,6 +172,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
         internal void GoToPosition(Vector3 position)
         {
+            if (tweenObject == null || tweenObject.transform == null) return;
             switch (positionType)
             {
                 case PositionType.Local:

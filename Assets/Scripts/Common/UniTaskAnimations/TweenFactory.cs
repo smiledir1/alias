@@ -56,36 +56,48 @@ namespace Common.UniTaskAnimations
 
         #region Create Tweens
 
-        public static SimpleTween CreatePositionTween(GameObject tweenObject = null) =>
-            new PositionTween(
+        public static SimpleTween CreatePositionTween(GameObject tweenObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
+            return new PositionTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 PositionType.Local,
                 Vector3.zero,
                 Vector3.zero);
+        }
 
-        public static SimpleTween CreateRotationTween(GameObject tweenObject = null) =>
-            new RotationTween(
+        public static SimpleTween CreateRotationTween(GameObject tweenObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
+            return new RotationTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 Vector3.zero,
                 Vector3.zero);
+        }
 
-        public static SimpleTween CreateScaleTween(GameObject tweenObject = null) =>
-            new ScaleTween(
+        public static SimpleTween CreateScaleTween(GameObject tweenObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
+            return new ScaleTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 Vector3.zero,
                 Vector3.one);
+        }
 
         public static SimpleTween CreateTransparencyCanvasGroupTween(GameObject tweenObject = null)
         {
@@ -96,30 +108,36 @@ namespace Common.UniTaskAnimations
                 canvasGroup.alpha = 1f;
             }
 
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
             return new TransparencyCanvasGroupTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 canvasGroup,
                 0,
                 1);
         }
 
-        public static SimpleTween CreateBezierPositionTween(GameObject tweenObject = null) =>
-            new BezierPositionTween(
+        public static SimpleTween CreateBezierPositionTween(GameObject tweenObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
+            return new BezierPositionTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 PositionType.Local,
                 Vector3.zero,
                 Vector3.zero,
                 Vector3.zero,
                 Vector3.zero,
                 0.1f);
+        }
 
         public static SimpleTween CreateFillImageTween(GameObject tweenObject = null)
         {
@@ -130,12 +148,14 @@ namespace Common.UniTaskAnimations
                 image.fillAmount = 1f;
             }
 
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
             return new FillImageTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 image,
                 0,
                 1);
@@ -150,12 +170,14 @@ namespace Common.UniTaskAnimations
                 image.color = Color.white;
             }
 
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
             return new ColorImageTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 image,
                 Color.white,
                 Color.black);
@@ -169,39 +191,48 @@ namespace Common.UniTaskAnimations
                 image = tweenObject.gameObject.AddComponent<Image>();
                 image.color = Color.white;
             }
-
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(LinearAnimationCurve);
             var sprites = new List<Sprite>();
             return new FrameByFrameTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                LinearAnimationCurve,
+                animationCurve,
                 image,
                 sprites);
         }
 
-        public static SimpleTween CreateOffsetPositionTween(GameObject tweenObject = null) =>
-            new OffsetPositionTween(
+        public static SimpleTween CreateOffsetPositionTween(GameObject tweenObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
+            return new OffsetPositionTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 Vector3.zero,
                 Vector3.zero);
+        }
 
-        public static SimpleTween CreateMultiPositionTween(GameObject tweenObject = null) =>
-            new MultiPositionTween(
+        public static SimpleTween CreateMultiPositionTween(GameObject tweenObject = null)
+        {
+            var animationCurve = new AnimationCurve();
+            animationCurve.CopyFrom(AnimationCurve);
+            return new MultiPositionTween(
                 tweenObject,
                 StartDelay,
                 TweenTime,
                 Loop,
-                AnimationCurve,
+                animationCurve,
                 PositionType.Local,
                 MultiLineType.Line,
                 new List<Vector3>(),
                 0.1f);
+        }
 
         #endregion
     }

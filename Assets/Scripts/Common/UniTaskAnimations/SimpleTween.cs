@@ -121,6 +121,8 @@ namespace Common.UniTaskAnimations
                 }
             }
 
+            if(!startFromCurrentValue) ResetValues();
+            
             await DelayAnimation(CancellationTokenSource.Token);
 #if UNITY_EDITOR
             PrevTime = UnityEditor.EditorApplication.timeSinceStartup;
@@ -141,7 +143,7 @@ namespace Common.UniTaskAnimations
 
         protected async UniTask DelayAnimation(CancellationToken cancellationToken)
         {
-            if (StartDelay > 0)
+            if (StartDelay > 0.001f)
                 await UniTask.Delay(TimeSpan.FromSeconds(StartDelay), cancellationToken: cancellationToken);
         }
 

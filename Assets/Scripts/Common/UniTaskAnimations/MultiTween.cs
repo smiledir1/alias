@@ -79,6 +79,7 @@ namespace Common.UniTaskAnimations
             for (var i = 0; i < parentObject.childCount; i++)
             {
                 var child = parentObject.GetChild(i);
+                if (!child.gameObject.activeSelf) continue;
                 var animation = ITween.Clone(Tween, child.gameObject);
                 _animations.Add(animation);
             }

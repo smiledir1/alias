@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Services.Common;
 using UnityEngine;
 
@@ -12,5 +13,6 @@ namespace Services.Localization
         UniTask ChangeLanguage(SystemLanguage language);
         UniTask<SystemLanguage> ChangeLanguage();
         string GetFormattedText(string key, params object[] parameters);
+        IReadOnlyList<LocalizationDataItem> GetAllLanguages();
     }
 }

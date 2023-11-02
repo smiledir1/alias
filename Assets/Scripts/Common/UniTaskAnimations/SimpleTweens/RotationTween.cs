@@ -99,7 +99,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
             while (curLoop)
             {
-                TweenObject.transform.eulerAngles = startRotation;
+                if (TweenObject != null) TweenObject.transform.eulerAngles = startRotation;
 
                 while (time < curTweenTime)
                 {
@@ -109,11 +109,11 @@ namespace Common.UniTaskAnimations.SimpleTweens
                     var lerpTime = curve?.Evaluate(normalizeTime) ?? normalizeTime;
                     var lerpValue = Vector3.LerpUnclamped(startRotation, endRotation, lerpTime);
 
-                    TweenObject.transform.eulerAngles = lerpValue;
+                    if (TweenObject != null) TweenObject.transform.eulerAngles = lerpValue;
                     await UniTask.Yield(cancellationToken);
                 }
 
-                TweenObject.transform.eulerAngles = endRotation;
+                if (TweenObject != null) TweenObject.transform.eulerAngles = endRotation;
                 time -= TweenTime;
 
                 switch (Loop)
@@ -127,7 +127,7 @@ namespace Common.UniTaskAnimations.SimpleTweens
 
                     case LoopType.PingPong:
                         endRotation = startRotation;
-                        startRotation = TweenObject.transform.eulerAngles;
+                        if (TweenObject != null) startRotation = TweenObject.transform.eulerAngles;
                         break;
                 }
             }

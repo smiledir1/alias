@@ -157,14 +157,13 @@ namespace Services.Localization.Editor
             _searchText = EditorGUILayout.TextField(_searchText, _searchStyle);
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Key", _centeredLabel);
+            GUILayout.Label("Key", _centeredLabel);
             for (var i = 0; i < _localizationData.Languages.Count; i++)
             {
                 if (!ShowLanguages[i]) continue;
                 var localizationDataItem = _localizationData.Languages[i];
                 var currentLanguage = localizationDataItem.SystemLanguage.ToString();
-                EditorGUILayout.LabelField(
-                    $"{currentLanguage} ({localizationDataItem.LanguageLocalizeName})",
+                GUILayout.Label($"{currentLanguage} ({localizationDataItem.LanguageLocalizeName})",
                     _centeredLabel);
             }
 

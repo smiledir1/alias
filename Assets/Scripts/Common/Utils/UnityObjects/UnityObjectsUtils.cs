@@ -30,7 +30,7 @@ namespace Common.Utils.UnityObjects
         public static void CreateItems<TComponent, TModel>(
             TComponent templateItem,
             List<TComponent> itemsList,
-            List<TModel> modelsList,
+            IReadOnlyList<TModel> modelsList,
             Action<TComponent, int> addItemCallback = null,
             Transform parent = null)
             where TComponent : Component
@@ -50,7 +50,7 @@ namespace Common.Utils.UnityObjects
         public static void CreateItemsAndInitialize<TComponent, TModel>(
             TComponent templateItem,
             List<TComponent> itemsList,
-            List<TModel> modelsList,
+            IReadOnlyList<TModel> modelsList,
             Action<TComponent, int> addItemCallback = null,
             Transform parent = null)
             where TComponent : Component, IInitializable<TModel>
@@ -72,7 +72,7 @@ namespace Common.Utils.UnityObjects
         public static void DestroyCreateItems<TComponent, TModel>(
             TComponent templateItem,
             List<TComponent> itemsList,
-            List<TModel> modelsList,
+            IReadOnlyList<TModel> modelsList,
             Action<TComponent, int> addItemCallback = null,
             Transform parent = null)
             where TComponent : Component
@@ -84,7 +84,7 @@ namespace Common.Utils.UnityObjects
         public static void DestroyCreateInitializeItems<TComponent, TModel>(
             TComponent templateItem,
             List<TComponent> itemsList,
-            List<TModel> modelsList,
+            IReadOnlyList<TModel> modelsList,
             Action<TComponent, int> addItemCallback = null,
             Transform parent = null)
             where TComponent : Component, IInitializable<TModel>

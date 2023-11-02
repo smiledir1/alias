@@ -128,5 +128,7 @@ namespace Services.Localization
             PlayerPrefs.Save();
             return language;
         }
+
+        public IReadOnlyList<LocalizationDataItem> GetAllLanguages() => _localizationData.Languages;
     }
 }

@@ -88,6 +88,8 @@ namespace Services.UI
                 await OpenTween.StartAnimation(false, false, _animationTokenSource.Token);
                 _animationTokenSource = null;
             }
+            
+            UIModel?.Open();
         }
 
         internal async UniTask CloseAsync()

@@ -7,9 +7,11 @@ namespace Common.Utils.ObjectCopy.Components
 {
     public class ScreenSizeTransformComponent : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField]
         private bool initializeOnAwake = true;
 
+        [Header("Portrait")]
         [SerializeField]
         private ObjectCopyValues extraThinObjectCopyValues;
 
@@ -22,6 +24,7 @@ namespace Common.Utils.ObjectCopy.Components
         [SerializeField]
         private ObjectCopyValues portraitTabletObjectCopyValues;
 
+        [Header("Landscape")]
         [SerializeField]
         private ObjectCopyValues landscapeTabletObjectCopyValues;
 
