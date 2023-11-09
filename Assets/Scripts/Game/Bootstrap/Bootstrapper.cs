@@ -8,7 +8,6 @@ using Game.Services.WordsPacks;
 using Game.States;
 using Game.UserData.Game;
 using Services.Advertisement;
-using Services.Advertisement.Appodeal;
 using Services.Analytics;
 using Services.Analytics.UniversalAnalytics;
 using Services.Assets;
@@ -32,6 +31,10 @@ using Services.UserData.File;
 #if YANDEX_PLATFORM
 using Services.YandexAdvertisement;
 using Services.YandexGames;
+#endif
+
+#if UNITY_ANDROID || UNITY_IOS
+using Services.Advertisement.Appodeal;
 #endif
 
 namespace Game.Bootstrap

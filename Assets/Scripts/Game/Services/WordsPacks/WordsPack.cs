@@ -8,6 +8,7 @@ namespace Game.Services.WordsPacks
     {
         public List<string> words;
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             var deleteNums = new List<int>();
@@ -17,7 +18,7 @@ namespace Game.Services.WordsPacks
                 var word = words[i];
                 if (hash.Contains(word))
                 {
-                    Debug.Log($"Const: {word} {i}");
+                    Debug.Log($"Const: {word} {i} {name}");
                     deleteNums.Add(i);
                 }
                 else
@@ -31,6 +32,12 @@ namespace Game.Services.WordsPacks
                 var num = deleteNums[i];
                 words.RemoveAt(num);
             }
+
+            if (deleteNums.Count > 0)
+            {
+                UnityEditor.EditorUtility.SetDirty(this);
+            }
         }
+#endif
     }
 }

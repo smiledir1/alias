@@ -84,7 +84,7 @@ namespace Game.UI.Screens.Round
             InitializeElements();
 
             _wordsPack = Model.WordsPacksConfigItem.wordsPack.Asset as WordsPack;
-
+            wordInPack.text = string.Format(_wordInPackLocalize, _wordsPack.words.Count - _generatedCount);
             return base.OnOpenAsync();
         }
 

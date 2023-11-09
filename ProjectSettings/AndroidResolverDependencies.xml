@@ -43,6 +43,7 @@
     <package>com.unity3d.ads:unity-ads:4.6.1</package>
     <package>com.vungle:publisher-sdk-android:6.12.1</package>
     <package>com.yandex.android:mobileads:5.10.0</package>
+    <package>com.yandex.android:mobmetricalib:5.2.0</package>
     <package>com.yandex.android:mobmetricalib:5.3.0</package>
     <package>io.bidmachine:ads.networks.adcolony:2.3.1.11</package>
     <package>io.bidmachine:ads.networks.amazon:2.3.1.12</package>
@@ -59,7 +60,7 @@
   </packages>
   <files />
   <settings>
-    <setting name="androidAbis" value="arm64-v8a" />
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
     <setting name="bundleId" value="com.loverocket.alias" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />

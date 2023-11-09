@@ -504,20 +504,6 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  - name: 18+
-    description: 
-    exampleWords: "\u0441\u0443\u0436\u0430\u044E\u0449\u0438\u0439 \u0433\u0435\u043B\u044C;
-      \u0434\u043E\u0440\u043E\u0433\u0430\u044F \u043F\u0440\u043E\u0441\u0442\u0438\u0442\u0443\u0442\u043A\u0430;
-      \u0441\u0442\u0438\u043C\u0443\u043B\u044F\u0442\u043E\u0440-\u0440\u0430\u0441\u0448\u0438\u0440\u0438\u0442\u0435\u043B\u044C;
-      \u0444\u0435\u043B\u043B\u044F\u0446\u0438\u044F; \u0441\u0435\u043A\u0441
-      \u0432 \u043B\u0438\u0444\u0442\u0435; "
-    wordsCount: 500
-    language: 30
-    wordsPack:
-      m_AssetGUID: c015bd5306190194cab3403f30646bf8
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
   - name: "\u0421\u043F\u043E\u0440\u0442"
     description: 
     exampleWords: "\u0410\u043F\u043F\u0435\u0440\u043A\u043E\u0442; \u0417\u0430\u043C\u0435\u043D\u0430;
