@@ -24,6 +24,7 @@ namespace Services.Audio
         private string _currentMusicId;
         private float _sfxVolume = 1f;
         private float _musicVolume = 1f;
+        private bool _paused;
 
         public AudioService(IAssetsService assetsService, bool pauseUnfocus = true)
         {
@@ -113,12 +114,14 @@ namespace Services.Audio
 
         public void PauseMusic()
         {
+            _paused = true;
             MuteMusic(true);
         }
 
         public void ResumeMusic()
         {
             MuteMusic(false);
+            _paused = false;
         }
 
         public async UniTask PlaySound(string id, bool multiSound = false)
@@ -184,6 +187,7 @@ namespace Services.Audio
 
         private void OnFocusChange(bool focus)
         {
+            if (_paused) return;
             MuteMusic(!focus);
         }
 

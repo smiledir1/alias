@@ -9,7 +9,6 @@ using Game.States;
 using Game.UserData.Game;
 using Services.Advertisement;
 using Services.Analytics;
-using Services.Analytics.UniversalAnalytics;
 using Services.Assets;
 using Services.Audio;
 using Services.Device;
@@ -21,6 +20,12 @@ using Services.UI.ScreenService;
 using Services.UserData;
 using Services.Vibration;
 using UnityEngine;
+
+#if DEV_ENV
+using Services.Analytics.FakeAnalytics;
+#else
+using Services.Analytics.UniversalAnalytics;
+#endif
 
 #if UNITY_WEBGL && !UNITY_EDITOR
 using Services.UserData.WebGL;
