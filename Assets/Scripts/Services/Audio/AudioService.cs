@@ -115,12 +115,12 @@ namespace Services.Audio
         public void PauseMusic()
         {
             _paused = true;
-            MuteMusic(true);
+            Mute(true);
         }
 
         public void ResumeMusic()
         {
-            MuteMusic(false);
+            Mute(false);
             _paused = false;
         }
 
@@ -173,13 +173,12 @@ namespace Services.Audio
             return soundSource;
         }
 
-        private void MuteMusic(bool mute)
+        private void Mute(bool mute)
         {
             foreach (var sourceList in _sources.Values)
             {
                 foreach (var source in sourceList)
                 {
-                    if (source.Type != SoundType.Music) continue;
                     source.Mute(mute);
                 }
             }
@@ -188,7 +187,7 @@ namespace Services.Audio
         private void OnFocusChange(bool focus)
         {
             if (_paused) return;
-            MuteMusic(!focus);
+            Mute(!focus);
         }
 
         #endregion

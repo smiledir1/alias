@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 6955523723137733513}
   - component: {fileID: 4977919450746123650}
   - component: {fileID: 7489756808364065495}
-  - component: {fileID: 6590707164807209906}
+  - component: {fileID: 3250574393024781759}
   m_Layer: 5
   m_Name: RightAnswerButton
   m_TagString: Untagged
@@ -372,8 +372,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 430, y: -345}
-  m_SizeDelta: {x: 765, y: 1330}
+  m_AnchoredPosition: {x: 280, y: -345}
+  m_SizeDelta: {x: 510, y: 1330}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7952548516428013917
 CanvasRenderer:
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundKey: good_answer
   multiSound: 1
---- !u!114 &6590707164807209906
+--- !u!114 &3250574393024781759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -480,10 +480,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1153448643888164703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26e2e28aec64ab794b27bb87df4d927, type: 3}
+  m_Script: {fileID: 11500000, guid: a37f0d80151de1c4a911ac36495e1ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initializeOnAwake: 1
+  extraThinObjectCopyValues:
+    localPosition: {x: -265, y: -1295, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 400, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
+  portraitIphoneObjectCopyValues:
+    localPosition: {x: -265, y: -1295, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 400, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
   portraitObjectCopyValues:
     localPosition: {x: -265, y: -1295, z: 0}
     localRotation: {x: 0, y: 0, z: 0}
@@ -497,7 +523,59 @@ MonoBehaviour:
     fontSizeMin: 0
     raycastTarget: 1
     pixelsPerUnitMultiplier: 1
+  portraitTabletObjectCopyValues:
+    localPosition: {x: -265, y: -1295, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 400, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
+  landscapeTabletObjectCopyValues:
+    localPosition: {x: 280, y: -345, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0, y: 1}
+    anchorMin: {x: 0, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 510, y: 1330}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 0.15
   landscapeObjectCopyValues:
+    localPosition: {x: 430, y: -345, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0, y: 1}
+    anchorMin: {x: 0, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 765, y: 1330}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 0.15
+  landscapeIphoneObjectCopyValues:
+    localPosition: {x: 430, y: -345, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0, y: 1}
+    anchorMin: {x: 0, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 765, y: 1330}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 0.15
+  extraLargeObjectCopyValues:
     localPosition: {x: 430, y: -345, z: 0}
     localRotation: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
@@ -604,7 +682,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 240.65
+  m_fontSize: 153.6
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1056,7 +1134,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 270
+  m_fontSize: 200.15
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1586,10 +1664,10 @@ RectTransform:
   m_Father: {fileID: 4911780261144410100}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -812.5, y: -206}
-  m_SizeDelta: {x: 765, y: 145}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 258, y: -206}
+  m_SizeDelta: {x: 200, y: 145}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &5630660494973291338
 CanvasRenderer:
@@ -2164,7 +2242,7 @@ GameObject:
   - component: {fileID: 1022422868575326877}
   - component: {fileID: 3843800931509462121}
   - component: {fileID: 519218827944692956}
-  - component: {fileID: 7255584223890340867}
+  - component: {fileID: 5871829251367158763}
   m_Layer: 5
   m_Name: WrongAnswerButton
   m_TagString: Untagged
@@ -2190,8 +2268,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -430, y: -345}
-  m_SizeDelta: {x: 765, y: 1330}
+  m_AnchoredPosition: {x: -290, y: -345}
+  m_SizeDelta: {x: 510, y: 1330}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &235755041668651266
 CanvasRenderer:
@@ -2289,7 +2367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundKey: wrong_answer
   multiSound: 1
---- !u!114 &7255584223890340867
+--- !u!114 &5871829251367158763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2298,10 +2376,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7524298169538299735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26e2e28aec64ab794b27bb87df4d927, type: 3}
+  m_Script: {fileID: 11500000, guid: a37f0d80151de1c4a911ac36495e1ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initializeOnAwake: 1
+  extraThinObjectCopyValues:
+    localPosition: {x: 265, y: -1295, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 400, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
+  portraitIphoneObjectCopyValues:
+    localPosition: {x: 265, y: -1295, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 400, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
   portraitObjectCopyValues:
     localPosition: {x: 265, y: -1295, z: 0}
     localRotation: {x: 0, y: 0, z: 0}
@@ -2315,7 +2419,59 @@ MonoBehaviour:
     fontSizeMin: 0
     raycastTarget: 1
     pixelsPerUnitMultiplier: 1
+  portraitTabletObjectCopyValues:
+    localPosition: {x: 265, y: -1295, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 0.5, y: 1}
+    anchorMin: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 400, y: 145}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 1
+  landscapeTabletObjectCopyValues:
+    localPosition: {x: -290, y: -345, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 1, y: 1}
+    anchorMin: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 510, y: 1330}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 0.15
   landscapeObjectCopyValues:
+    localPosition: {x: -430, y: -345, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 1, y: 1}
+    anchorMin: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 765, y: 1330}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 0.15
+  landscapeIphoneObjectCopyValues:
+    localPosition: {x: -430, y: -345, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+    anchorMax: {x: 1, y: 1}
+    anchorMin: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 1}
+    sizeDelta: {x: 765, y: 1330}
+    fontSize: 0
+    fontSizeMax: 0
+    fontSizeMin: 0
+    raycastTarget: 1
+    pixelsPerUnitMultiplier: 0.15
+  extraLargeObjectCopyValues:
     localPosition: {x: -430, y: -345, z: 0}
     localRotation: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
@@ -2422,7 +2578,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
+  m_fontSize: 71.15
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
