@@ -28,6 +28,12 @@
 </div>
 
 <script>
+    
+     window.addEventListener('scroll', function(event) {
+        window.scrollTo(0, 0);
+        event.preventDefault();
+    }, false);
+
     const hideFullScreenButton = "";
     const buildUrl = "Build";
     const loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";

@@ -143,11 +143,11 @@ public class Test : MonoBehaviour, IHasServices
         _closeUi.SetClickListener(() => { _popupService.CloseCurrentUIObject(); });
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
-    private static void InitializeCode()
-    {
-        Debug.Log("InitializeCode");
-    }
+    // [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+    // private static void InitializeCode()
+    // {
+    //     Debug.Log("InitializeCode");
+    // }
 
     public void OpenMessagePopup()
     {
