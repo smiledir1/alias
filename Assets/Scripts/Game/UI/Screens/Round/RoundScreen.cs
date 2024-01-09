@@ -84,6 +84,7 @@ namespace Game.UI.Screens.Round
             InitializeElements();
 
             _wordsPack = Model.WordsPacksConfigItem.wordsPack.Asset as WordsPack;
+            LoadWords();
             wordInPack.text = string.Format(_wordInPackLocalize, _wordsPack.words.Count - _generatedCount);
             return base.OnOpenAsync();
         }
@@ -136,7 +137,7 @@ namespace Game.UI.Screens.Round
         {
             startButton.gameObject.SetActive(false);
             gameFields.SetActive(true);
-            LoadWords();
+            //LoadWords();
             ShowNewWord();
             await UniTask.Yield(token);
             while (_roundTimerSeconds > 0)

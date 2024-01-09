@@ -110,7 +110,7 @@ namespace Game.UI.Popups.NewGame
                 _choosePack,
                 roundTimeSeconds,
                 curIsUnlimitedTimeForLastWord,
-                isFreeSkip,
+                !isFreeSkip,
                 _teams);
             inGameState.GoToState().SafeForget();
         }

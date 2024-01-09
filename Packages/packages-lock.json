@@ -16,6 +16,15 @@
       "dependencies": {},
       "hash": "d210e3d76adc0cce77f4ad2af1ade88dad6b1d5a"
     },
+    "com.gameanalytics.sdk": {
+      "version": "7.7.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.168"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.google.external-dependency-manager": {
       "version": "file:com.google.external-dependency-manager-1.2.176.tgz",
       "depth": 0,

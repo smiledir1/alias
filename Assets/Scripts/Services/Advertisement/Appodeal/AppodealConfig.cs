@@ -6,7 +6,10 @@ namespace Services.Advertisement.Appodeal
     public class AppodealConfig : ScriptableObject
     {
         [SerializeField]
-        private string appKey;
+        private string appKeyAndroid;
+
+        [SerializeField]
+        private string appKeyIos;
 
         [SerializeField]
         private bool isTesting;
@@ -17,7 +20,9 @@ namespace Services.Advertisement.Appodeal
         [SerializeField]
         private bool useRewardedVideo;
 
-        public string AppKey => appKey;
+        
+        public string AppKeyAndroid => appKeyAndroid;
+        public string AppKeyIos => appKeyIos;
         public bool UseInterstitial => useInterstitial;
         public bool UseRewardedVideo => useRewardedVideo;
         public bool IsTesting => isTesting;

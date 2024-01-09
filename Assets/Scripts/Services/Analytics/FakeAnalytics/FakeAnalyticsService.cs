@@ -11,6 +11,11 @@ namespace Services.Analytics.FakeAnalytics
             Debug.Log($"Send Event: {eventName}");
         }
 
+        public void SendEvent(string eventName, Parameter parameter)
+        {
+            Debug.Log($"Send Event: {eventName}\n {parameter.Name} {parameter.Value}");
+        }
+
         public void SendEvent(string eventName, List<Parameter> parameters)
         {
             var eventParameters = string.Empty;

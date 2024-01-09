@@ -9,6 +9,7 @@ using Game.States;
 using Game.UserData.Game;
 using Services.Advertisement;
 using Services.Analytics;
+using Services.Analytics.GameAnalytics;
 using Services.Assets;
 using Services.Audio;
 using Services.Device;
@@ -135,7 +136,7 @@ namespace Game.Bootstrap
 #if DEV_ENV
             var analyticsService = new FakeAnalyticsService();
 #else
-            var analyticsService = new UniversalAnalyticsService(assetsService);
+            var analyticsService = new GameAnalyticsService();
 #endif
             ServiceLocator.AddService<IAnalyticsService>(analyticsService);
 

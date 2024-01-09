@@ -156,7 +156,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.loverocket.alias
     Standalone: com.smapp.alias
-    iPhone: com.smsm.alias
+    iPhone: com.loverocket.alias
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -837,7 +837,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 4
+  selectedPlatform: 3
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1

@@ -44,6 +44,14 @@ namespace Services.Analytics.UniversalAnalytics
             }
         }
 
+        public void SendEvent(string eventName, Parameter parameter)
+        {
+            foreach (var manager in _managers)
+            {
+                manager.SendEvent(eventName, parameter);
+            }
+        }
+
         public void SendEvent(string eventName, List<Parameter> parameters)
         {
             foreach (var manager in _managers)

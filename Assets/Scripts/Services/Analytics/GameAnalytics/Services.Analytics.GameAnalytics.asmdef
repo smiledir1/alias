@@ -1,0 +1,20 @@
+{
+    "name": "Services.Analytics.GameAnalytics",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4f67095af25e99a40af6b716c4f0b3c4",
+        "GUID:6f68e653e2f5b73408647a53e621f73e",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:5e0b455853cd340e0813387221dfd501",
+        "GUID:f8c64bb88d959406689053ae3f31183d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

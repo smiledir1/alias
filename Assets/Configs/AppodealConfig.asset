@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f3440e15e0459abd32224a39488143, type: 3}
   m_Name: AppodealConfig
   m_EditorClassIdentifier: 
-  appKey: 383beccd846cde08f0e56534b132f35bc84d06ebefda6c95
+  appKeyAndroid: 383beccd846cde08f0e56534b132f35bc84d06ebefda6c95
+  appKeyIos: 
   isTesting: 0
   useInterstitial: 1
   useRewardedVideo: 1

@@ -116,10 +116,10 @@ namespace Game.States
 
             SendEndRoundEvent(round, playedWords.Count);
 
-            _advertisementService.ShowInterstitialAd().Forget();
-            
             var newRound = round + 1;
             StartRound(newRound).Forget();
+            
+            _advertisementService.ShowInterstitialAd().Forget();
         }
 
         private async UniTask<bool> StartRoundScreen(int round)
@@ -209,26 +209,25 @@ namespace Game.States
                 new("free_skip", freeSkip),
                 new("teams_count", teamsCount)
             };
-            _analyticsService.SendEvent("start_round", parameters);
+            _analyticsService.SendEvent("start_game", parameters);
+            var packParameter = new Parameter("pack_name", packName);
+            _analyticsService.SendEvent("start_game_pack", packParameter);
         }
 
         private void SendStartRoundEvent(int round)
         {
-            var parameters = new List<Parameter>
-            {
-                new("round", round.ToString())
-            };
-            _analyticsService.SendEvent("start_round", parameters);
+            var parameter = new Parameter("round", round.ToString());
+            _analyticsService.SendEvent("start_round", parameter);
         }
 
         private void SendEndRoundEvent(int round, int playerWordsCount)
         {
             var parameters = new List<Parameter>
             {
-                new("round", round.ToString()),
-                new("player_words_count", playerWordsCount.ToString())
+                new("player_words_count", playerWordsCount.ToString()),
+                new("round", round.ToString())
             };
-            _analyticsService.SendEvent("start_round", parameters);
+            _analyticsService.SendEvent("end_round", parameters);
         }
     }
 }

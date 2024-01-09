@@ -42,7 +42,15 @@ namespace Services.Advertisement.Appodeal
 
             AppodealCallbacks.Sdk.OnInitialized += OnInitializationFinished;
             AppodealStack.Monetization.Api.Appodeal.MuteVideosIfCallsMuted(true);
-            AppodealStack.Monetization.Api.Appodeal.Initialize(_appodealConfig.AppKey, adTypes);
+
+#if UNITY_ANDROID
+            var key = _appodealConfig.AppKeyAndroid;
+#elif UNITY_IOS
+            var key = _appodealConfig.AppKeyIos;
+#else
+            var key = string.Empty;
+#endif
+            AppodealStack.Monetization.Api.Appodeal.Initialize(key, adTypes);
         }
 
         protected override UniTask OnDispose()
