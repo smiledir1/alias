@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AppodealConfig
   m_EditorClassIdentifier: 
   appKeyAndroid: 383beccd846cde08f0e56534b132f35bc84d06ebefda6c95
-  appKeyIos: 
+  appKeyIos: 45041ebf1fae2a93a6fa94b47a5f74442eda4217157a3def
   isTesting: 0
   useInterstitial: 1
   useRewardedVideo: 1
