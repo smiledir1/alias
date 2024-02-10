@@ -14,6 +14,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Screens.Round
 {
+    // TODO: decompose, logic in model
     public class RoundScreen : UIObject<RoundScreenModel>
     {
         private const string WordInPackKey = "in_pack_";

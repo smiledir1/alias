@@ -53,7 +53,8 @@ namespace Game.Bootstrap
 #if DEV_ENV
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0) return;
 #endif
-            InitializeAsync().SafeForget();
+            Debug.Log("Run Bootstrapper");
+            //InitializeAsync().SafeForget();
         }
 
         private static async UniTask InitializeAsync()

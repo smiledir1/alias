@@ -5,6 +5,8 @@ using UnityEngine.AddressableAssets;
 
 namespace Services.Assets
 {
+    //TODO: make logic for cdn
+    // Main Service in program, Use with Addressables
     public class AssetsService : Service, IAssetsService
     {
         #region Service
